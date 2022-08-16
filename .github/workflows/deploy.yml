@@ -12,12 +12,12 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
-            cd ~/web-fleamarket-9
+            cd ~/web-fleamarket-9/client
             sudo git pull origin main
-            cd client
             sudo npm install
             sudo npm run build
-            cd ../server
+            cd ~/web-fleamarket-9/server
+            sudo git pull origin main
             sudo npm install
             sudo npm run build
             sudo pm2 restart server
