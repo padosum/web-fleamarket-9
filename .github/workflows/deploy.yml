@@ -12,7 +12,7 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
-            echo "hello"
+            echo "hell"
           host: ${{ secrets.HOST }}
           user: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
