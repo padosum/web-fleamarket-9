@@ -16,7 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn Vue
+          우아한 플리마켓
         </a>
       </header>
     </div>
