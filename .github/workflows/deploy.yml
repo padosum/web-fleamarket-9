@@ -13,3 +13,6 @@ jobs:
         with:
           command: |
             echo "hell"
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USER }}
+          key: ${{ secrets.PRIVATE_KEY }}
