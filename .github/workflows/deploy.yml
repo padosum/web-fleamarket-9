@@ -13,7 +13,6 @@ jobs:
         with:
           command: |
             cd ~/web-fleamarket-9/client
-            touch client.txt
             #sudo git pull origin main
             #touch client-pull.txt
             #sudo npm install
