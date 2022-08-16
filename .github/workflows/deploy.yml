@@ -16,11 +16,11 @@ jobs:
             sudo git pull origin main
             sudo npm install
             sudo npm run build
-            cd ~/web-fleamarket-9/server
-            sudo git pull origin main
-            sudo npm install
-            sudo npm run build
-            sudo pm2 restart server
+            # cd ~/web-fleamarket-9/server
+            # sudo git pull origin main
+            # sudo npm install
+            # sudo npm run build
+            # sudo pm2 restart server
           host: ${{ secrets.HOST }}
           user: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
