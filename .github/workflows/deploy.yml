@@ -13,6 +13,7 @@ jobs:
         with:
           command: |
             cd ~/web-fleamarket-9/client
+            sudo git pull origin main
             sudo npm run build
             pm2 restart client
           host: ${{ secrets.HOST }}
