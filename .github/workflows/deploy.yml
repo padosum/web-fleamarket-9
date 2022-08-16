@@ -13,10 +13,11 @@ jobs:
         with:
           command: |
             cd ~/web-fleamarket-9/client
+            touch client.txt
             sudo git pull origin main
-            echo "client"
-            sudo npm install
-            sudo npm run build
+            touch client-pull.txt
+            #sudo npm install
+            #sudo npm run build
             # cd ~/web-fleamarket-9/server
             # sudo git pull origin main
             # sudo npm install
