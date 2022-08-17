@@ -13,7 +13,8 @@ jobs:
         with:
           command: |
             cd ~/web-fleamarket-9
-            sudo git pull origin main
+            sudo git fetch origin main
+            sudo git reset --hard origin/main
             cd client
             sudo npm install
             sudo npm run build
