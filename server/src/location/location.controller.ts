@@ -6,6 +6,7 @@ import {
   Param,
   Delete,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { LocationService } from './location.service';
 import { CreateLocationDto } from './dto/create-location.dto';
@@ -16,6 +17,7 @@ import {
   DeleteLocationResponseSuccessDto,
 } from './dto/delete-location-response.dto';
 import { FindMyLocationResponse } from './dto/find-my-location-response.dto';
+import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 
 @Controller('location')
 @ApiTags('Location API')
@@ -26,6 +28,7 @@ export class LocationController {
     summary: 'location 추가 API',
     description: 'location을 추가한다.',
   })
+  @UseGuards(AuthenticatedGuard)
   @Post()
   create(@Body() createLocationDto: CreateLocationDto) {
     return this.locationService.create(createLocationDto);
