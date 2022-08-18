@@ -73,15 +73,18 @@ export class UsersService {
   async getUserInfoById(id: string) {
     const [user]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
       await this.conn.query(
-        `SELECT id, password, name FROM USER WHERE id = '${id}'`,
+        `SELECT idx, id, password, name FROM USER WHERE id = '${id}'`,
       );
 
     return user[0]
       ? {
+          idx: user[0].idx,
           id: user[0].id,
           name: user[0].name,
           password: user[0].password,
         }
-      : {};
+      : {
+          message: '존재하지 않는 사용자입니다.',
+        };
   }
 }

@@ -30,6 +30,7 @@ export class AuthService {
     }
     if (user && passwordVaild) {
       return {
+        idx: user.idx,
         id: user.id,
         name: user.name,
       };

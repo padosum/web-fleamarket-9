@@ -1,4 +1,12 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -10,6 +18,7 @@ import {
   GetUserResponseFailDto,
   GetUserResponseSuccessDto,
 } from './dto/get-user-response.dto';
+import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 
 @Controller('users')
 @ApiTags('Users API')
@@ -51,9 +60,12 @@ export class UsersController {
     description: 'fail',
     status: 400,
   })
+  @UseGuards(AuthenticatedGuard)
   @Get('/me')
-  getMyInfo(): Promise<GetUserResponseSuccessDto | GetUserResponseFailDto> {
-    return this.usersService.getUserInfoByIdx(12);
+  getMyInfo(
+    @Request() req,
+  ): Promise<GetUserResponseSuccessDto | GetUserResponseFailDto> {
+    return this.usersService.getUserInfoByIdx(req.user.idx);
   }
 
   @ApiOperation({
