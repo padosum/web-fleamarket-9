@@ -82,7 +82,6 @@ export class UsersService {
           id: user[0].id,
           name: user[0].name,
           password: user[0].password,
-          idx: user[0].idx
         }
       : {
           message: '존재하지 않는 사용자입니다.',
