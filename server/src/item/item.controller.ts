@@ -94,7 +94,7 @@ export class ItemController {
   async findItems(
     @Query('categoryId') categoryId?: number,
     @Query('locationId') locationId?: number,
-  ): Promise<FindItemsDto> {
+  ): Promise<FindItemsDto[]> {
     return this.itemService.findItems(categoryId, locationId);
   }
 

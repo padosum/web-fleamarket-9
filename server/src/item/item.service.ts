@@ -63,18 +63,38 @@ export class ItemService {
   async findItems(
     categoryId: number,
     locationId: number,
-  ): Promise<FindItemsDto> {
+  ): Promise<FindItemsDto[]> {
     try {
-      const result = [];
+      const result: FindItemsDto[] = [];
       const sql = `
-      SELECT * FROM ITEM 
+      SELECT 
+        * 
+      FROM ITEM
+      WHERE 1=1
+      ${categoryId ? `AND category = ${categoryId}` : ''}
+      ${locationId ? `AND code = "${locationId}"` : ''}
       `;
 
-      const res = await this.conn.query(sql);
+      const [queryRes] = (await this.conn.query(sql)) as any[];
 
-      console.log(res);
-    } catch (err) {}
-    return;
+      queryRes.forEach((item) => {
+        result.push({
+          title: item.title,
+          chatRoomCount: 0,
+          image: item.images,
+          isLike: false,
+          location: item.code,
+          updatedAt: item.updatedAt,
+        });
+      });
+
+      return result;
+    } catch (err) {
+      throw new HttpException(
+        '아이템 조회 중 에러가 발생했습니다.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   findOne(id: number): GetItemResponseSuccessDto | GetItemResponseFailDto {
