@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { ItemService } from './item.service';
 import { CreateItemDto } from './dto/create-item.dto';
@@ -35,6 +36,7 @@ import {
 } from './dto/update-item-status-response.dto';
 import { UpdateItemStatusDto } from './dto/update-item-status.dto';
 import { UpdateItemLikeResponseSuccessDto } from './dto/update-item-like-response.dto';
+import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 
 @Controller('item')
 @ApiTags('Item API')
@@ -56,6 +58,7 @@ export class ItemController {
     status: 400,
   })
   @Post()
+  @UseGuards(new AuthenticatedGuard())
   create(@Body() createItemDto: CreateItemDto) {
     return this.itemService.create(createItemDto);
   }

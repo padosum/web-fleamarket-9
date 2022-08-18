@@ -2,13 +2,6 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateItemDto {
   @ApiProperty({
-    example: 1,
-    description: 'item 아이디',
-    required: true,
-  })
-  readonly id: string;
-
-  @ApiProperty({
     example: '파랑 선풍기',
     description: 'item 이름',
     required: true,

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseGuards } from '@nestjs/common';
 import { CreateItemDto } from './dto/create-item.dto';
 import {
   DeleteItemResponseFailDto,
@@ -22,6 +22,15 @@ import { UpdateItemDto } from './dto/update-item.dto';
 @Injectable()
 export class ItemService {
   create(createItemDto: CreateItemDto) {
+
+    
+    try {
+      
+    } catch(err) {
+
+    }
+
+
     return 'This action adds a new item';
   }
 
