@@ -1,4 +1,5 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { query } from 'express';
 import { Connection } from 'mysql2/promise';
 
 import { MYSQL_CONNECTION } from 'src/constants';
@@ -59,7 +60,20 @@ export class ItemService {
     }
   }
 
-  findAll(categoryId: number, locationId: number): FindItemsDto {
+  async findItems(
+    categoryId: number,
+    locationId: number,
+  ): Promise<FindItemsDto> {
+    try {
+      const result = [];
+      const sql = `
+      SELECT * FROM ITEM 
+      `;
+
+      const res = await this.conn.query(sql);
+
+      console.log(res);
+    } catch (err) {}
     return;
   }
 
