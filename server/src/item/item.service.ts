@@ -1,5 +1,4 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { query } from 'express';
 import { Connection } from 'mysql2/promise';
 
 import { MYSQL_CONNECTION } from 'src/constants';
@@ -97,7 +96,55 @@ export class ItemService {
     }
   }
 
-  findOne(id: number): GetItemResponseSuccessDto | GetItemResponseFailDto {
+  async findItemDetail(
+    id: number,
+  ): Promise<GetItemResponseSuccessDto | GetItemResponseFailDto> {
+    try {
+      if (isNaN(id)) throw '올바른 아이템 id가 아닙니다.';
+
+      const sql = `
+        SELECT
+          images,
+          category,
+          updatedAt,
+          title,
+          contents,
+          price,
+          seller,
+          code as location,
+          IFNULL(viewCount, 0) as viewCount,
+          status
+        FROM
+          ITEM
+        WHERE
+          idx = ${id}
+      `;
+
+      const [queryRes]: any[] = await this.conn.query(sql);
+
+      if (queryRes.length === 0) throw '아이템을 찾을 수 없습니다.';
+
+      const item = queryRes[0];
+      const res: GetItemResponseSuccessDto = {
+        category: item.category,
+        chatRoomCount: 0,
+        contents: item.contents,
+        images: item.images,
+        isLike: false,
+        location: item.location,
+        price: item.price,
+        seller: item.seller,
+        status: item.status,
+        title: item.title,
+        updatedAt: item.updatedAt,
+        viewCount: item.viewCount,
+      };
+
+      return res;
+    } catch (err) {
+      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+    }
+
     return;
   }
 

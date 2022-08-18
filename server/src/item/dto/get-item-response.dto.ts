@@ -77,6 +77,13 @@ export class GetItemResponseSuccessDto {
     required: true,
   })
   readonly viewCount: number;
+
+  @ApiProperty({
+    example: 1,
+    description: 'item 상태',
+    required: true,
+  })
+  readonly status: number;
 }
 
 export class GetItemResponseFailDto {

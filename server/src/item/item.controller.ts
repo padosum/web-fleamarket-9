@@ -113,8 +113,8 @@ export class ItemController {
     status: 400,
   })
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.itemService.findOne(+id);
+  findItemDetail(@Param('id') id: string) {
+    return this.itemService.findItemDetail(+id);
   }
 
   @ApiOperation({
