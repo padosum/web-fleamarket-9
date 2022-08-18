@@ -11,8 +11,8 @@ import {
 } from './dto/get-user-response.dto';
 import Imysql from 'mysql2/typings/mysql/lib/protocol/packets';
 
-import { hash } from 'bcrypt';
 import { Connection } from 'mysql2/promise';
+import { SHA256 } from 'crypto-js';
 
 @Injectable()
 export class UsersService {
@@ -32,19 +32,21 @@ export class UsersService {
 
       if (existingId.id) throw '이미 존재하는 아이디입니다.';
 
-      const saltOrRound = 10;
-      const hashedPassword = await hash(password, saltOrRound);
+      const hashedPassword = SHA256(password).toString();
 
-      const [insertRes] = await this.conn.query(
-        `INSERT INTO USER (id, password, name) VALUES ('${id}', '${hashedPassword}', '${name}')`,
-      );
+      const [insertRes]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
+        await this.conn.query(
+          `INSERT INTO USER (id, password, name) VALUES ('${id}', '${hashedPassword}', '${name}')`,
+        );
 
       return {
+        idx: insertRes.insertId,
         name,
         message: null,
       };
     } catch (err) {
       return {
+        idx: null,
         name: null,
         message: err,
       };
