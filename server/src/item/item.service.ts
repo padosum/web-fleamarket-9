@@ -1,4 +1,7 @@
-import { Injectable, UseGuards } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { Connection } from 'mysql2/promise';
+
+import { MYSQL_CONNECTION } from 'src/constants';
 import { CreateItemDto } from './dto/create-item.dto';
 import {
   DeleteItemResponseFailDto,
@@ -21,17 +24,39 @@ import { UpdateItemDto } from './dto/update-item.dto';
 
 @Injectable()
 export class ItemService {
-  create(createItemDto: CreateItemDto) {
+  constructor(@Inject(MYSQL_CONNECTION) private conn: Connection) {}
 
-    
+  async create(createItemDto: CreateItemDto, userIdx: number): Promise<number> {
     try {
-      
-    } catch(err) {
+      await this.conn.beginTransaction();
+      const { title, images, price, contents, code, category } = createItemDto;
 
+      if (!title) throw '제목을 입력해주세요.';
+      if (!Array.isArray(images) || images.length === 0)
+        throw '이미지를 업로드해주세요.';
+      if (!price) throw '가격을 입력해주세요.';
+      if (!contents) throw '내용을 입력해주세요.';
+      if (!code) throw '지역을 입력해주세요.';
+      if (!category) throw '카테고리를 선택해주세요.';
+
+      const sql = `
+      INSERT INTO
+        ITEM(images, title, price, contents, code, category, status, seller)
+      VALUES
+        ("${images.join(
+          ',',
+        )}", "${title}", ${price}, "${contents}", "${code}", ${category}, ${1}, ${userIdx})
+      `;
+
+      const [res] = (await this.conn.query(sql)) as any;
+      const insertId = res.insertId;
+      await this.conn.commit();
+
+      return insertId;
+    } catch (err) {
+      await this.conn.rollback();
+      throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }
-
-
-    return 'This action adds a new item';
   }
 
   findAll(categoryId: number, locationId: number): FindItemsDto {

@@ -8,6 +8,7 @@ import {
   Delete,
   Query,
   UseGuards,
+  Request,
 } from '@nestjs/common';
 import { ItemService } from './item.service';
 import { CreateItemDto } from './dto/create-item.dto';
@@ -59,8 +60,12 @@ export class ItemController {
   })
   @Post()
   @UseGuards(new AuthenticatedGuard())
-  create(@Body() createItemDto: CreateItemDto) {
-    return this.itemService.create(createItemDto);
+  async create(@Body() createItemDto: CreateItemDto, @Request() req: any) {
+    const user = req.user;
+    const idx = await this.itemService.create(createItemDto, user.idx);
+
+    console.log(idx);
+    return { idx: idx };
   }
 
   @ApiOperation({
