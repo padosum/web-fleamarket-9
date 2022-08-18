@@ -14,7 +14,13 @@ import { ItemService } from './item.service';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { FindItemsDto } from './dto/find-items.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiOperation,
+  ApiPropertyOptional,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import {
   CreateItemResponseFailDto,
   CreateItemResponseSuccessDto,
@@ -64,7 +70,6 @@ export class ItemController {
     const user = req.user;
     const idx = await this.itemService.create(createItemDto, user.idx);
 
-    console.log(idx);
     return { idx: idx };
   }
 
@@ -77,12 +82,20 @@ export class ItemController {
     description: 'success',
     status: 200,
   })
+  @ApiQuery({
+    name: 'categoryId',
+    required: false,
+  })
+  @ApiQuery({
+    name: 'locationId',
+    required: false,
+  })
   @Get()
-  findAll(
-    @Query('categoryId') categoryId: number,
-    @Query('locationId') locationId: number,
-  ): FindItemsDto {
-    return this.itemService.findAll(categoryId, locationId);
+  async findItems(
+    @Query('categoryId') categoryId?: number,
+    @Query('locationId') locationId?: number,
+  ): Promise<FindItemsDto[]> {
+    return this.itemService.findItems(categoryId, locationId);
   }
 
   @ApiOperation({
@@ -100,8 +113,8 @@ export class ItemController {
     status: 400,
   })
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.itemService.findOne(+id);
+  findItemDetail(@Param('id') id: string) {
+    return this.itemService.findItemDetail(+id);
   }
 
   @ApiOperation({

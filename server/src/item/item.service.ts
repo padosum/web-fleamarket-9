@@ -59,11 +59,92 @@ export class ItemService {
     }
   }
 
-  findAll(categoryId: number, locationId: number): FindItemsDto {
-    return;
+  async findItems(
+    categoryId: number,
+    locationId: number,
+  ): Promise<FindItemsDto[]> {
+    try {
+      const result: FindItemsDto[] = [];
+      const sql = `
+      SELECT 
+        * 
+      FROM ITEM
+      WHERE 1=1
+      ${categoryId ? `AND category = ${categoryId}` : ''}
+      ${locationId ? `AND code = "${locationId}"` : ''}
+      `;
+
+      const [queryRes] = (await this.conn.query(sql)) as any[];
+
+      queryRes.forEach((item) => {
+        result.push({
+          title: item.title,
+          chatRoomCount: 0,
+          image: item.images,
+          isLike: false,
+          location: item.code,
+          updatedAt: item.updatedAt,
+        });
+      });
+
+      return result;
+    } catch (err) {
+      throw new HttpException(
+        '아이템 조회 중 에러가 발생했습니다.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
-  findOne(id: number): GetItemResponseSuccessDto | GetItemResponseFailDto {
+  async findItemDetail(
+    id: number,
+  ): Promise<GetItemResponseSuccessDto | GetItemResponseFailDto> {
+    try {
+      if (isNaN(id)) throw '올바른 아이템 id가 아닙니다.';
+
+      const sql = `
+        SELECT
+          images,
+          category,
+          updatedAt,
+          title,
+          contents,
+          price,
+          seller,
+          code as location,
+          IFNULL(viewCount, 0) as viewCount,
+          status
+        FROM
+          ITEM
+        WHERE
+          idx = ${id}
+      `;
+
+      const [queryRes]: any[] = await this.conn.query(sql);
+
+      if (queryRes.length === 0) throw '아이템을 찾을 수 없습니다.';
+
+      const item = queryRes[0];
+      const res: GetItemResponseSuccessDto = {
+        category: item.category,
+        chatRoomCount: 0,
+        contents: item.contents,
+        images: item.images,
+        isLike: false,
+        location: item.location,
+        price: item.price,
+        seller: item.seller,
+        status: item.status,
+        title: item.title,
+        updatedAt: item.updatedAt,
+        viewCount: item.viewCount,
+      };
+
+      return res;
+    } catch (err) {
+      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+    }
+
     return;
   }
 
