@@ -7,9 +7,23 @@ import { CategoryModule } from './category/category.module';
 import { ItemModule } from './item/item.module';
 import { LocationModule } from './location/location.module';
 import { ChatModule } from './chat/chat.module';
+import { ConfigModule } from '@nestjs/config';
+import { DbModule } from './db/db.module';
 
 @Module({
-  imports: [UsersModule, AuthModule, CategoryModule, ItemModule, LocationModule, ChatModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+    UsersModule,
+    AuthModule,
+    CategoryModule,
+    ItemModule,
+    LocationModule,
+    ChatModule,
+    DbModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

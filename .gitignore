@@ -28,6 +28,8 @@ client/yarn-error.log*
 server/dist
 server/node_modules
 
+server/.env
+
 # Logs
 logs
 *.log
