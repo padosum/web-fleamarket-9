@@ -24,7 +24,7 @@ import { DbModule } from './db/db.module';
     ChatModule,
     DbModule,
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [AppService],
 })
 export class AppModule {}

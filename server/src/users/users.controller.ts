@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
   CreateUserResponseFailDto,
   CreateUserResponseSuccessDto,
@@ -33,7 +33,7 @@ export class UsersController {
   @Post()
   create(
     @Body() createUserDto: CreateUserDto,
-  ): CreateUserResponseSuccessDto | CreateUserResponseFailDto {
+  ): Promise<CreateUserResponseSuccessDto | CreateUserResponseFailDto> {
     return this.usersService.create(createUserDto);
   }
 
@@ -52,8 +52,8 @@ export class UsersController {
     status: 400,
   })
   @Get('/me')
-  getMyInfo(): GetUserResponseSuccessDto | GetUserResponseFailDto {
-    return this.usersService.getUserInfo(12);
+  getMyInfo(): Promise<GetUserResponseSuccessDto | GetUserResponseFailDto> {
+    return this.usersService.getUserInfoByIdx(12);
   }
 
   @ApiOperation({
@@ -70,10 +70,15 @@ export class UsersController {
     description: 'fail',
     status: 400,
   })
+  @ApiParam({
+    name: 'id',
+    required: true,
+    description: 'user index',
+  })
   @Get('/:id')
   getUserInfo(
     @Param('id') id,
-  ): GetUserResponseSuccessDto | GetUserResponseFailDto {
-    return this.usersService.getUserInfo(id);
+  ): Promise<GetUserResponseSuccessDto | GetUserResponseFailDto> {
+    return this.usersService.getUserInfoByIdx(id);
   }
 }
