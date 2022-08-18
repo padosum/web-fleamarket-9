@@ -1,4 +1,11 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UseGuards,
+  Get,
+  Request,
+} from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import {
@@ -7,6 +14,8 @@ import {
 } from './dto/login-response.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { LogoutResponseDto } from './dto/logout-response.dto';
+import { LocalAuthGuard } from 'src/local.auth.guard';
+import { AuthenticatedGuard } from './authenticated.guard';
 
 @Controller('auth')
 @ApiTags('Login API')
@@ -27,6 +36,7 @@ export class AuthController {
     description: 'fail',
     status: 400,
   })
+  @UseGuards(LocalAuthGuard)
   @Post('/login')
   login(
     @Body() loginUserDto: LoginUserDto,
@@ -44,7 +54,19 @@ export class AuthController {
     status: 200,
   })
   @Post('/logout')
-  logout() {
-    return this.authService.logout();
+  logout(@Request() req) {
+    req.session.destroy();
+    return { msg: 'The user session has ended' };
+  }
+
+  //Get / protected
+  @ApiOperation({
+    summary: 'user protected API',
+    description: '로그아웃 한다.',
+  })
+  @UseGuards(AuthenticatedGuard)
+  @Get('/protected')
+  getHello(@Request() req): string {
+    return req.user;
   }
 }
