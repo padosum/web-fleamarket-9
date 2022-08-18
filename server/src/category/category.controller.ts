@@ -18,7 +18,7 @@ export class CategoryController {
     status: 200,
   })
   @Get()
-  findAll(): CategoryResponseDto {
+  findAll(): Promise<CategoryResponseDto> {
     return this.categoryService.findAll();
   }
 }
