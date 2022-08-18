@@ -29,6 +29,12 @@ import {
   UpdateItemResponseFailDto,
   UpdateItemResponseSuccessDto,
 } from './dto/update-item-response.dto';
+import {
+  UpdateItemStatusResponseFailDto,
+  UpdateItemStatusResponseSuccessDto,
+} from './dto/update-item-status-response.dto';
+import { UpdateItemStatusDto } from './dto/update-item-status.dto';
+import { UpdateItemLikeResponseSuccessDto } from './dto/update-item-like-response.dto';
 
 @Controller('item')
 @ApiTags('Item API')
@@ -92,7 +98,7 @@ export class ItemController {
 
   @ApiOperation({
     summary: 'item 업데이트 API',
-    description: '특정 item을 조회한다.',
+    description: '특정 item을 업데이트한다.',
   })
   @ApiResponse({
     type: UpdateItemResponseSuccessDto,
@@ -107,6 +113,28 @@ export class ItemController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateItemDto: UpdateItemDto) {
     return this.itemService.update(+id, updateItemDto);
+  }
+
+  @ApiOperation({
+    summary: 'item 상태 업데이트 API',
+    description: '특정 item의 상태를 업데이트한다.',
+  })
+  @ApiResponse({
+    type: UpdateItemStatusResponseSuccessDto,
+    description: 'success',
+    status: 200,
+  })
+  @ApiResponse({
+    type: UpdateItemStatusResponseFailDto,
+    description: 'fail',
+    status: 400,
+  })
+  @Patch('/status/:id')
+  updateStatus(
+    @Param('id') id: string,
+    @Body() updateItemStatusDto: UpdateItemStatusDto,
+  ) {
+    return this.itemService.updateStatus(+id, updateItemStatusDto.statusId);
   }
 
   @ApiOperation({
@@ -126,5 +154,33 @@ export class ItemController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.itemService.remove(+id);
+  }
+
+  @ApiOperation({
+    summary: 'item like API',
+    description: '특정 item의 like 업데이트한다.',
+  })
+  @ApiResponse({
+    type: UpdateItemLikeResponseSuccessDto,
+    description: 'success',
+    status: 200,
+  })
+  @Patch('/like/:id')
+  addLike(@Param('id') id: string) {
+    return this.itemService.addLike(+id);
+  }
+
+  @ApiOperation({
+    summary: 'item like 업데이트 API',
+    description: '특정 item의 like 여부를 업데이트한다.',
+  })
+  @ApiResponse({
+    type: UpdateItemLikeResponseSuccessDto,
+    description: 'success',
+    status: 200,
+  })
+  @Patch('/unlike/:id')
+  deleteLike(@Param('id') id: string) {
+    return this.itemService.deleteLike(+id);
   }
 }

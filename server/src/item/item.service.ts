@@ -13,6 +13,10 @@ import {
   UpdateItemResponseFailDto,
   UpdateItemResponseSuccessDto,
 } from './dto/update-item-response.dto';
+import {
+  UpdateItemStatusResponseFailDto,
+  UpdateItemStatusResponseSuccessDto,
+} from './dto/update-item-status-response.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 
 @Injectable()
@@ -36,7 +40,22 @@ export class ItemService {
     return;
   }
 
+  updateStatus(
+    id: number,
+    statusId: number,
+  ): UpdateItemStatusResponseFailDto | UpdateItemStatusResponseSuccessDto {
+    return;
+  }
+
   remove(id: number): DeleteItemResponseSuccessDto | DeleteItemResponseFailDto {
+    return;
+  }
+
+  addLike(id: number) {
+    return;
+  }
+
+  deleteLike(id: number) {
     return;
   }
 }
