@@ -61,8 +61,23 @@ export class LocationService {
     return location;
   }
 
-  find(): FindMyLocationResponse {
-    return;
+  async find(): Promise<FindMyLocationResponse[]> {
+    const {
+      user: { idx: userIdx },
+    } = this.request;
+
+    const [res] = await this.conn.query(`SELECT lo.idx
+                                              , lo.name
+                                           FROM USER_LOCATION ul
+                                          INNER JOIN LOCATION lo
+                                             ON ul.locationId = lo.idx
+                                          INNER JOIN USER u
+                                             ON ul.userId = u.idx
+                                          WHERE ul.userId = ${userIdx};`);
+
+    let location: FindMyLocationResponse[] = [].slice.call(res, 0);
+
+    return location;
   }
 
   async remove(

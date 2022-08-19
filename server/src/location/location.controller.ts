@@ -58,12 +58,13 @@ export class LocationController {
     description: '현재 user의 location을 조회한다.',
   })
   @ApiResponse({
-    type: FindMyLocationResponse,
+    type: [FindMyLocationResponse],
     description: 'success',
     status: 200,
   })
+  @UseGuards(AuthenticatedGuard)
   @Get('/me')
-  find(): FindMyLocationResponse {
+  find(): Promise<FindMyLocationResponse[]> {
     return this.locationService.find();
   }
 
