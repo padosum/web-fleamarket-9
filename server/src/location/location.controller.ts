@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { LocationService } from './location.service';
 import { CreateLocationDto } from './dto/create-location.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { FindLocationResponse } from './dto/find-location-response.dto';
 import {
   DeleteLocationResponseFailDto,
@@ -38,13 +38,18 @@ export class LocationController {
     summary: 'location 조회 API',
     description: 'location을 조회한다.',
   })
+  @ApiQuery({
+    name: 'name',
+    description: '동네 이름',
+    example: '방이동',
+  })
   @ApiResponse({
     type: [FindLocationResponse],
     description: 'success',
     status: 200,
   })
   @Get()
-  findAll(@Query('name') name: string): FindLocationResponse {
+  findAll(@Query('name') name: string) {
     return this.locationService.findAll(name);
   }
 

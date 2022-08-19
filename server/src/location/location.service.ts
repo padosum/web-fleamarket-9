@@ -42,8 +42,17 @@ export class LocationService {
     }
   }
 
-  findAll(name): FindLocationResponse {
-    return;
+  async findAll(name): Promise<FindLocationResponse[]> {
+    const [res]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] = await this
+      .conn.query(`SELECT idx
+                        , name
+                        , code
+                     FROM LOCATION
+                    WHERE name like '%${name}%';`);
+
+    let location: FindLocationResponse[] = [].slice.call(res, 0);
+
+    return location;
   }
 
   find(): FindMyLocationResponse {
