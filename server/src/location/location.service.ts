@@ -1,4 +1,10 @@
-import { Inject, Injectable, Scope } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Inject,
+  Injectable,
+  Scope,
+} from '@nestjs/common';
 import { CreateLocationDto } from './dto/create-location.dto';
 import {
   DeleteLocationResponseFailDto,
@@ -59,9 +65,29 @@ export class LocationService {
     return;
   }
 
-  remove(
+  async remove(
     id: number,
-  ): DeleteLocationResponseSuccessDto | DeleteLocationResponseFailDto {
-    return;
+  ): Promise<DeleteLocationResponseSuccessDto | DeleteLocationResponseFailDto> {
+    const {
+      user: { idx: userIdx },
+    } = this.request;
+
+    try {
+      const [res]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
+        await this.conn.query(
+          `DELETE FROM USER_LOCATION WHERE userId=${userIdx} AND locationId=${id}`,
+        );
+      console.log(res);
+      this.conn.commit();
+      return {
+        count: res.affectedRows,
+      };
+    } catch (err) {
+      this.conn.rollback();
+      throw new HttpException(
+        '동네 삭제 중 에러가 발생했습니다.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 }

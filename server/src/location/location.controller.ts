@@ -81,10 +81,11 @@ export class LocationController {
     description: 'fail',
     status: 400,
   })
+  @UseGuards(AuthenticatedGuard)
   @Delete(':id')
   remove(
     @Param('id') id: string,
-  ): DeleteLocationResponseSuccessDto | DeleteLocationResponseFailDto {
+  ): Promise<DeleteLocationResponseSuccessDto | DeleteLocationResponseFailDto> {
     return this.locationService.remove(+id);
   }
 }
