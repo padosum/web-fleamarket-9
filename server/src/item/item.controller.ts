@@ -213,8 +213,11 @@ export class ItemController {
     description: 'success',
     status: 200,
   })
+  @UseGuards(new AuthenticatedGuard())
   @Patch('/unlike/:id')
-  deleteLike(@Param('id') id: string) {
-    return this.itemService.deleteLike(+id);
+  deleteLike(@Param('id') id: string, @Request() req: any) {
+    const user = req.user;
+
+    return this.itemService.deleteLike(+id, user.idx);
   }
 }

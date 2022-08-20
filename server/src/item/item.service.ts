@@ -270,8 +270,25 @@ export class ItemService {
     }
   }
 
-  deleteLike(id: number) {
-    return;
+  async deleteLike(id: number, userIdx: number) {
+    try {
+      const sql = `
+        DELETE FROM 
+          USER_LIKE_ITEM
+        WHERE
+          userId = ${userIdx} AND
+          itemId = ${id}
+      `;
+
+      await this.conn.query(sql);
+
+      return { itemId: id, userId: userIdx };
+    } catch (err) {
+      throw new HttpException(
+        '좋아요 취소 중 에러가 발생했습니다.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   async getLikeInfo(id: number, userIdx: number) {
