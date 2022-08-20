@@ -189,8 +189,32 @@ export class ItemService {
     return;
   }
 
-  remove(id: number): DeleteItemResponseSuccessDto | DeleteItemResponseFailDto {
-    return;
+  async remove(
+    id: number,
+    userIdx: number,
+  ): Promise<DeleteItemResponseSuccessDto | DeleteItemResponseFailDto> {
+    try {
+      const itemInfo = (await this.findItemDetail(
+        id,
+      )) as GetItemResponseSuccessDto;
+
+      if (itemInfo.seller !== userIdx) {
+        throw '내가 등록한 아이템만 삭제할 수 있습니다.';
+      }
+
+      const sql = `
+        DELETE FROM
+          ITEM
+        WHERE
+          idx = ${id}
+      `;
+
+      await this.conn.query(sql);
+
+      return { id };
+    } catch (err) {
+      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+    }
   }
 
   addLike(id: number) {

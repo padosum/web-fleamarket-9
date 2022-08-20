@@ -64,8 +64,8 @@ export class ItemController {
     description: 'fail',
     status: 400,
   })
-  @Post()
   @UseGuards(new AuthenticatedGuard())
+  @Post()
   async create(@Body() createItemDto: CreateItemDto, @Request() req: any) {
     const user = req.user;
     const idx = await this.itemService.create(createItemDto, user.idx);
@@ -172,9 +172,12 @@ export class ItemController {
     description: 'fail',
     status: 400,
   })
+  @UseGuards(new AuthenticatedGuard())
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.itemService.remove(+id);
+  remove(@Param('id') id: string, @Request() req: any) {
+    const user = req.user;
+
+    return this.itemService.remove(+id, user.idx);
   }
 
   @ApiOperation({
