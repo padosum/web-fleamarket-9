@@ -12,6 +12,7 @@ import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ChatService } from './chat.service';
 import { ChatRoomResponseDto } from './dto/chat-room-response.dto';
 import { CreateChatMessageDto } from './dto/create-chat-message.dto';
+import { CreateChatRoomResponseDto } from './dto/create-chat-room-response.dto';
 import { CreateChatDto } from './dto/create-chat.dto';
 
 @Controller('chat')
@@ -24,12 +25,14 @@ export class ChatController {
     description: 'chat room을 추가한다.',
   })
   @ApiResponse({
-    type: ChatRoomResponseDto,
+    type: CreateChatRoomResponseDto,
     description: 'success',
     status: 200,
   })
   @Post()
-  create(@Body() createChatDto: CreateChatDto): ChatRoomResponseDto {
+  create(
+    @Body() createChatDto: CreateChatDto,
+  ): Promise<CreateChatRoomResponseDto> {
     return this.chatService.create(createChatDto);
   }
 

@@ -2,11 +2,18 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateChatDto {
   @ApiProperty({
-    example: 'user1',
+    example: 29,
     description: 'item 판매자 id',
     required: true,
   })
-  readonly sellerId: string;
+  readonly sellerId: number;
+
+  @ApiProperty({
+    example: 30,
+    description: 'item 구매자 id',
+    required: true,
+  })
+  readonly buyerId: number;
 
   @ApiProperty({
     example: 1,

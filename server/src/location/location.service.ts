@@ -36,12 +36,10 @@ export class LocationService {
         await this.conn.query(
           `INSERT INTO USER_LOCATION (userId, locationId) VALUES (${userIdx}, ${locationId})`,
         );
-      this.conn.commit();
       return {
         idx: res.insertId,
       };
     } catch (err) {
-      this.conn.rollback();
       return {
         idx: null,
       };
@@ -92,13 +90,10 @@ export class LocationService {
         await this.conn.query(
           `DELETE FROM USER_LOCATION WHERE userId=${userIdx} AND locationId=${id}`,
         );
-      console.log(res);
-      this.conn.commit();
       return {
         count: res.affectedRows,
       };
     } catch (err) {
-      this.conn.rollback();
       throw new HttpException(
         '동네 삭제 중 에러가 발생했습니다.',
         HttpStatus.BAD_REQUEST,
