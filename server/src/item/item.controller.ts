@@ -196,9 +196,12 @@ export class ItemController {
     description: 'success',
     status: 200,
   })
+  @UseGuards(new AuthenticatedGuard())
   @Patch('/like/:id')
-  addLike(@Param('id') id: string) {
-    return this.itemService.addLike(+id);
+  addLike(@Param('id') id: string, @Request() req: any) {
+    const user = req.user;
+
+    return this.itemService.addLike(+id, user.idx);
   }
 
   @ApiOperation({

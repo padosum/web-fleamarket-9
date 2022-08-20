@@ -21,6 +21,7 @@ import {
   UpdateItemStatusResponseSuccessDto,
 } from './dto/update-item-status-response.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
+import Imysql from 'mysql2/typings/mysql/lib/protocol/packets';
 
 @Injectable()
 export class ItemService {
@@ -244,11 +245,55 @@ export class ItemService {
     }
   }
 
-  addLike(id: number) {
-    return;
+  async addLike(id: number, userIdx: number) {
+    // 이미 좋아요 상태인지 확인
+    try {
+      const likeInfo = await this.getLikeInfo(id, userIdx);
+
+      if (likeInfo) return { idx: likeInfo.idx };
+
+      const sql = `
+        INSERT INTO
+          USER_LIKE_ITEM(userId, itemId)
+          VALUES(${userIdx}, ${id})
+      `;
+
+      const [res]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
+        await this.conn.query(sql);
+
+      return { idx: res.insertId };
+    } catch (err) {
+      throw new HttpException(
+        '좋아요 중 에러가 발생했습니다.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   deleteLike(id: number) {
     return;
+  }
+
+  async getLikeInfo(id: number, userIdx: number) {
+    try {
+      const sql = `
+        SELECT 
+          *
+        FROM
+          USER_LIKE_ITEM
+        WHERE
+          userId = ${userIdx} AND
+          itemId = ${id}
+      `;
+
+      const [res] = await this.conn.query(sql);
+
+      return res[0];
+    } catch (err) {
+      throw new HttpException(
+        '좋아요 정보 조회 중 에러가 발생했습니다.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 }
