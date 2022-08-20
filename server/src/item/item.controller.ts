@@ -150,12 +150,19 @@ export class ItemController {
     description: 'fail',
     status: 400,
   })
+  @UseGuards(new AuthenticatedGuard())
   @Patch('/status/:id')
   updateStatus(
     @Param('id') id: string,
     @Body() updateItemStatusDto: UpdateItemStatusDto,
+    @Request() req: any,
   ) {
-    return this.itemService.updateStatus(+id, updateItemStatusDto.statusId);
+    const user = req.user;
+    return this.itemService.updateStatus(
+      +id,
+      updateItemStatusDto.statusId,
+      user.idx,
+    );
   }
 
   @ApiOperation({

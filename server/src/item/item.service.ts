@@ -182,11 +182,38 @@ export class ItemService {
     }
   }
 
-  updateStatus(
+  async updateStatus(
     id: number,
     statusId: number,
-  ): UpdateItemStatusResponseFailDto | UpdateItemStatusResponseSuccessDto {
-    return;
+    userIdx,
+  ): Promise<
+    UpdateItemStatusResponseFailDto | UpdateItemStatusResponseSuccessDto
+  > {
+    try {
+      const itemInfo = (await this.findItemDetail(
+        id,
+      )) as GetItemResponseSuccessDto;
+
+      if (itemInfo.seller !== userIdx)
+        throw '내가 등록한 아이템의 상태만 변경할 수 있습니다.';
+
+      if (!statusId) throw '상태코드를 입력해주세요.';
+
+      const sql = `
+        UPDATE 
+          ITEM
+        SET
+          status = ${statusId}
+        WHERE
+          idx = ${id}
+      `;
+
+      await this.conn.query(sql);
+
+      return { id };
+    } catch (err) {
+      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+    }
   }
 
   async remove(
