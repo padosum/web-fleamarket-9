@@ -144,15 +144,42 @@ export class ItemService {
     } catch (err) {
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }
-
-    return;
   }
 
-  update(
+  async update(
     id: number,
     updateItemDto: UpdateItemDto,
-  ): UpdateItemResponseSuccessDto | UpdateItemResponseFailDto {
-    return;
+  ): Promise<UpdateItemResponseSuccessDto | UpdateItemResponseFailDto> {
+    try {
+      const { title, images, price, contents, code, category } = updateItemDto;
+      const sql = `
+        UPDATE
+          ITEM
+        SET
+          ${title ? `title = "${title}",` : ''}
+          ${
+            images && Array.isArray(images)
+              ? `images = "${images.join(',')}",`
+              : ''
+          }
+          ${price ? `price = ${price},` : ''}
+          ${contents ? `contents = "${contents}",` : ''}
+          ${code ? `code = "${code}",` : ''}
+          ${category ? `category = ${category},` : ''}
+          idx = ${id}
+        WHERE
+          idx = ${id}
+      `;
+
+      await this.conn.query(sql);
+
+      return { id };
+    } catch (err) {
+      throw new HttpException(
+        '아이템 업데이트 중 에러가 발생했습니다.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   updateStatus(
