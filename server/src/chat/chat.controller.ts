@@ -7,14 +7,18 @@ import {
   Param,
   Delete,
   Query,
+  UseGuards,
+  Request,
 } from '@nestjs/common';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 import { ChatService } from './chat.service';
 import { ChatRoomResponseDto } from './dto/chat-room-response.dto';
 import { CreateChatMessageDto } from './dto/create-chat-message.dto';
 import { CreateChatRoomResponseDto } from './dto/create-chat-room-response.dto';
 import { CreateChatDto } from './dto/create-chat.dto';
 
+@UseGuards(AuthenticatedGuard)
 @Controller('chat')
 @ApiTags('Chat API')
 export class ChatController {
@@ -81,10 +85,14 @@ export class ChatController {
   })
   @Post(':id')
   sendMessage(
-    @Param('id') id: number,
+    @Param('id') chatId: number,
     @Body() createChatMessageDto: CreateChatMessageDto,
+    @Request() req: any,
   ) {
-    return this.chatService.sendMessage(id);
+    const {
+      user: { idx },
+    } = req;
+    return this.chatService.sendMessage(createChatMessageDto, chatId, idx);
   }
 
   @ApiOperation({

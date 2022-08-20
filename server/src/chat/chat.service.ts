@@ -4,8 +4,8 @@ import { MYSQL_CONNECTION } from 'src/constants';
 import { ChatRoomResponseDto } from './dto/chat-room-response.dto';
 import { CreateChatRoomResponseDto } from './dto/create-chat-room-response.dto';
 import { CreateChatDto } from './dto/create-chat.dto';
-import { UpdateChatDto } from './dto/update-chat.dto';
 import Imysql from 'mysql2/typings/mysql/lib/protocol/packets';
+import { CreateChatMessageDto } from './dto/create-chat-message.dto';
 
 @Injectable()
 export class ChatService {
@@ -72,8 +72,35 @@ export class ChatService {
     return;
   }
 
-  sendMessage(id: number) {
-    return;
+  async sendMessage(
+    createChatMessageDto: CreateChatMessageDto,
+    chatId: number,
+    idx: number,
+  ) {
+    try {
+      const { message } = createChatMessageDto;
+      const [insertRes]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
+        await this.conn.query(
+          `INSERT INTO CHAT_MESSAGE (
+          sender
+        , chatId
+        , message
+        , \`read\`
+        ) VALUES (
+          ${idx}
+        , ${chatId}
+        , '${message}'
+        , 0
+        );`,
+        );
+
+      return {
+        idx: insertRes.insertId,
+        message: '메시지를 성공적으로 전송했습니다.',
+      };
+    } catch (err) {
+      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+    }
   }
 
   readMessage(id: number) {
