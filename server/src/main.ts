@@ -6,8 +6,9 @@ import * as passport from 'passport';
 const session = require('express-session');
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-
+  const app = await NestFactory.create(AppModule, {
+    cors: true,
+  });
   app.use(
     session({
       secret: 'secret',

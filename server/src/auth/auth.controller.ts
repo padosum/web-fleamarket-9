@@ -4,9 +4,12 @@ import {
   Body,
   UseGuards,
   Get,
-  Request,
+  Req,
+  Res,
+  HttpStatus,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import {
   LoginResponseFailDto,
@@ -15,7 +18,7 @@ import {
 import { LoginUserDto } from './dto/login-user.dto';
 import { LogoutResponseDto } from './dto/logout-response.dto';
 import { LocalAuthGuard } from 'src/local.auth.guard';
-import { AuthenticatedGuard } from './authenticated.guard';
+import { GithubOauthGuard } from './github.guard';
 
 @Controller('auth')
 @ApiTags('Login API')
@@ -54,19 +57,27 @@ export class AuthController {
     status: 200,
   })
   @Post('/logout')
-  logout(@Request() req) {
+  logout(@Req() req) {
     req.session.destroy();
     return { msg: 'The user session has ended' };
   }
 
-  //Get / protected
   @ApiOperation({
-    summary: 'user protected API',
-    description: '로그아웃 한다.',
+    summary: 'user github 로그인',
+    description: 'github로 로그인한다.',
   })
-  @UseGuards(AuthenticatedGuard)
-  @Get('/protected')
-  getHello(@Request() req): string {
+  @UseGuards(GithubOauthGuard)
+  @Get('/github')
+  loginGithub(@Req() req): string {
     return req.user;
+  }
+
+  @UseGuards(GithubOauthGuard)
+  @Get('/github/callback')
+  githubAuthCallback(
+    @Req() req: Request,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    res.status(HttpStatus.OK).json({ user: req.user });
   }
 }

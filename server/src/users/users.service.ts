@@ -87,4 +87,28 @@ export class UsersService {
           message: '존재하지 않는 사용자입니다.',
         };
   }
+
+  async createGithubUser(id: string, name: string) {
+    try {
+      const randomPassword = SHA256(Math.random().toString()).toString();
+      const [insertRes]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
+        await this.conn.query(
+          `INSERT INTO USER (id, password, name) VALUES ('${id}', '${randomPassword}', '${name}')`,
+        );
+
+      return {
+        idx: insertRes.insertId,
+        id,
+        name,
+        message: null,
+      };
+    } catch (err) {
+      return {
+        idx: null,
+        id: null,
+        name: null,
+        message: err,
+      };
+    }
+  }
 }
