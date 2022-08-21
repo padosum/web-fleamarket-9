@@ -237,7 +237,33 @@ export class ChatService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} chat`;
+  async remove(chatId: number, userIdx: number) {
+    try {
+      if (!(await this.checkChatMessageAuthorization(chatId, userIdx))) {
+        throw new HttpException(
+          '채팅 룸 삭제 권한이 없습니다.',
+          HttpStatus.FORBIDDEN,
+        );
+      }
+
+      await this.conn.beginTransaction();
+
+      await this.conn.query(
+        `DELETE FROM CHAT_MESSAGE WHERE chatId = ${chatId}`,
+      );
+
+      const [resDeleteRoom]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
+        await this.conn.query(`DELETE FROM CHAT WHERE idx = ${chatId}`);
+
+      this.conn.commit();
+
+      return {
+        rows: resDeleteRoom.affectedRows,
+        message: '채팅 방을 삭제했습니다.',
+      };
+    } catch (err) {
+      this.conn.rollback();
+      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+    }
   }
 }

@@ -145,8 +145,17 @@ export class ChatController {
     summary: 'chat room 삭제 API',
     description: 'chat room을 삭제한다.',
   })
+  @ApiParam({
+    name: 'id',
+    type: Number,
+    description: 'chat room id',
+    required: true,
+  })
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.chatService.remove(+id);
+  remove(@Param('id') chatId: string, @Request() req: any) {
+    const {
+      user: { idx },
+    } = req;
+    return this.chatService.remove(+chatId, idx);
   }
 }
