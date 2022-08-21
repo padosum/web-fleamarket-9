@@ -68,7 +68,54 @@ export class ChatService {
     }
   }
 
-  findAll(userId, itemId): ChatRoomResponseDto[] {
+  async findAllChatRoom(userIdx, itemId): Promise<ChatRoomResponseDto[]> {
+    try {
+      const sql = `
+      SELECT c.idx
+	         , CASE WHEN c.sellerId = ${userIdx} THEN buyer.name
+			            WHEN c.buyerId = ${userIdx} THEN seller.name 
+                  ELSE ''
+              END as userName 
+	         , m.message
+           , m.createAt as updatedAt
+           , i.images
+           , IFNULL((SELECT COUNT(message.idx)
+			                 FROM CHAT_MESSAGE message
+		                  WHERE message.chatId = c.idx
+                        AND message.sender <> ${userIdx}
+                        AND message.read = 0), 0) as unReadCount
+	      FROM CHAT c
+       INNER JOIN ITEM i
+          ON c.itemId = i.idx
+       INNER JOIN USER seller
+          ON c.sellerId = seller.idx
+       INNER JOIN USER buyer
+          ON c.buyerId = buyer.idx
+       INNER JOIN CHAT_MESSAGE m 
+          ON c.idx = m.chatId 
+       WHERE (c.sellerId = ${userIdx} 
+	        OR c.buyerId = ${userIdx})
+	       AND m.createAt = (SELECT MAX(createAt)
+                             FROM CHAT_MESSAGE message
+					                  WHERE message.chatId = c.idx)
+       ${itemId ? `AND itemId = ${itemId}` : ''}
+       ORDER BY m.createAt DESC;
+      `;
+
+      const [res]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
+        await this.conn.query(sql);
+
+      let chatRoomList: ChatRoomResponseDto[] = [].slice.call(res, 0);
+
+      return chatRoomList;
+    } catch (err) {
+      throw new HttpException(
+        '채팅방 조회 중 에러가 발생했습니다.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+  findAll(chatId, lastMessageId): ChatRoomResponseDto[] {
     return;
   }
 

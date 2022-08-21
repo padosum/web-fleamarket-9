@@ -44,17 +44,22 @@ export class ChatController {
     summary: 'chat room 조회 API',
     description: 'chat room을 조회한다.',
   })
+  @ApiQuery({
+    name: 'itemId',
+    type: Number,
+    required: false,
+  })
   @ApiResponse({
     type: [ChatRoomResponseDto],
     description: 'success',
     status: 200,
   })
   @Get()
-  findAll(
-    @Query('userId') userId: number,
-    @Query('itemId') itemId: number,
-  ): ChatRoomResponseDto[] {
-    return this.chatService.findAll(userId, itemId);
+  findAll(@Query('itemId') itemId: number, @Request() req: any) {
+    const {
+      user: { idx },
+    } = req;
+    return this.chatService.findAllChatRoom(idx, itemId);
   }
 
   @ApiOperation({
