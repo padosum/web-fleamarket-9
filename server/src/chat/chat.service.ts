@@ -174,10 +174,7 @@ export class ChatService {
 
       return true;
     } catch (err) {
-      throw new HttpException(
-        '채팅 메시지 권한 확인 중 에러가 발생했습니다.',
-        HttpStatus.BAD_REQUEST,
-      );
+      throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -212,8 +209,32 @@ export class ChatService {
     }
   }
 
-  readMessage(id: number) {
-    return;
+  async readMessage(chatId: number, userIdx: number) {
+    try {
+      if (!(await this.checkChatMessageAuthorization(chatId, userIdx))) {
+        throw new HttpException(
+          '채팅 메시지 조회 권한이 없습니다.',
+          HttpStatus.FORBIDDEN,
+        );
+      }
+
+      const sql = `
+        UPDATE CHAT_MESSAGE
+           SET \`read\` = 1
+         WHERE chatId = ${chatId}
+           AND sender <> ${userIdx}
+      `;
+
+      const [res]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
+        await this.conn.query(sql);
+
+      return {
+        changedRows: res.changedRows,
+        message: '메시지를 읽었습니다.',
+      };
+    } catch (err) {
+      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+    }
   }
 
   remove(id: number) {

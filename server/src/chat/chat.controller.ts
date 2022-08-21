@@ -10,7 +10,13 @@ import {
   UseGuards,
   Request,
 } from '@nestjs/common';
-import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiOperation,
+  ApiParam,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 import { ChatService } from './chat.service';
 import { ChatMessageResponseDto } from './dto/chat-message-response.dto';
@@ -99,6 +105,12 @@ export class ChatController {
     summary: 'chat message 전송 API',
     description: 'chat message를 전송한다.',
   })
+  @ApiParam({
+    name: 'id',
+    type: Number,
+    description: 'chat room id',
+    required: true,
+  })
   @Post(':id')
   sendMessage(
     @Param('id') chatId: number,
@@ -115,9 +127,18 @@ export class ChatController {
     summary: 'chat message 읽기 API',
     description: 'chat message 읽기',
   })
+  @ApiParam({
+    name: 'id',
+    type: Number,
+    description: 'chat room id',
+    required: true,
+  })
   @Patch(':id')
-  readMessage(@Param('id') id: number) {
-    return this.chatService.readMessage(id);
+  readMessage(@Param('id') chatId: number, @Request() req: any) {
+    const {
+      user: { idx },
+    } = req;
+    return this.chatService.readMessage(+chatId, idx);
   }
 
   @ApiOperation({
