@@ -6,6 +6,7 @@ import { CreateChatRoomResponseDto } from './dto/create-chat-room-response.dto';
 import { CreateChatDto } from './dto/create-chat.dto';
 import Imysql from 'mysql2/typings/mysql/lib/protocol/packets';
 import { CreateChatMessageDto } from './dto/create-chat-message.dto';
+import { ChatMessageResponseDto } from './dto/chat-message-response.dto';
 
 @Injectable()
 export class ChatService {
@@ -115,8 +116,69 @@ export class ChatService {
       );
     }
   }
-  findAll(chatId, lastMessageId): ChatRoomResponseDto[] {
-    return;
+
+  async findAllMessage(
+    chatId: number,
+    lastMessageId: number,
+    userIdx: number,
+  ): Promise<ChatMessageResponseDto[]> {
+    try {
+      if (!(await this.checkChatMessageAuthorization(chatId, userIdx))) {
+        throw new HttpException(
+          '채팅 메시지 조회 권한이 없습니다.',
+          HttpStatus.FORBIDDEN,
+        );
+      }
+
+      const sql = `
+      SELECT *
+        FROM (SELECT idx
+                   , sender
+                   , message
+                   , \`read\`
+                   , createAt
+               FROM CHAT_MESSAGE
+              WHERE chatId = ${chatId}
+                ${lastMessageId ? `AND idx < ${lastMessageId}` : ''}
+              ORDER BY createAt DESC
+              LIMIT 10) messages
+       ORDER BY messages.createAt;
+      `;
+
+      const [res]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
+        await this.conn.query(sql);
+
+      let chatMessageList: ChatMessageResponseDto[] = [].slice.call(res, 0);
+
+      return chatMessageList;
+    } catch (err) {
+      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  async checkChatMessageAuthorization(
+    chatIdx: number,
+    userIdx: number,
+  ): Promise<boolean> {
+    try {
+      const [res] = await this.conn.query(
+        `SELECT idx 
+           FROM CHAT 
+          WHERE (sellerId = ${userIdx} OR buyerId = ${userIdx})
+            AND idx = ${chatIdx};`,
+      );
+
+      if (!res[0]) {
+        return false;
+      }
+
+      return true;
+    } catch (err) {
+      throw new HttpException(
+        '채팅 메시지 권한 확인 중 에러가 발생했습니다.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   async sendMessage(

@@ -3,6 +3,13 @@ import { ApiProperty } from '@nestjs/swagger';
 export class ChatMessageResponseDto {
   @ApiProperty({
     example: 1,
+    description: 'message idx',
+    required: true,
+  })
+  readonly idx: number;
+
+  @ApiProperty({
+    example: 1,
     description: 'message를 보낸 사람 id',
     required: true,
   })
@@ -21,4 +28,11 @@ export class ChatMessageResponseDto {
     required: true,
   })
   readonly read: boolean;
+
+  @ApiProperty({
+    example: '2022-08-20 13:31:52',
+    description: 'message 보낸 시간',
+    required: true,
+  })
+  readonly createAt: string;
 }

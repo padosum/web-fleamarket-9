@@ -13,6 +13,7 @@ import {
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 import { ChatService } from './chat.service';
+import { ChatMessageResponseDto } from './dto/chat-message-response.dto';
 import { ChatRoomResponseDto } from './dto/chat-room-response.dto';
 import { CreateChatMessageDto } from './dto/create-chat-message.dto';
 import { CreateChatRoomResponseDto } from './dto/create-chat-room-response.dto';
@@ -67,21 +68,31 @@ export class ChatController {
     description: 'chat message를 조회한다.',
   })
   @ApiQuery({
+    name: 'chatId',
+    type: Number,
+    example: 1,
+    required: true,
+  })
+  @ApiQuery({
     name: 'lastMessageId',
     type: Number,
     required: false,
   })
   @ApiResponse({
-    type: [ChatRoomResponseDto],
+    type: [ChatMessageResponseDto],
     description: 'success',
     status: 200,
   })
   @Get('/message')
   findAllMessage(
     @Query('chatId') chatId: number,
+    @Request() req: any,
     @Query('lastMessageId') lastMessageId?: number,
-  ): ChatRoomResponseDto[] {
-    return this.chatService.findAll(chatId, lastMessageId);
+  ): Promise<ChatMessageResponseDto[]> {
+    const {
+      user: { idx: userIdx },
+    } = req;
+    return this.chatService.findAllMessage(chatId, lastMessageId, userIdx);
   }
 
   @ApiOperation({
