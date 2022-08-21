@@ -1,44 +1,64 @@
-import { useEffect } from 'react';
 import axios from 'axios';
+import { useState } from 'react';
+import { useAuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-
 export const Login = () => {
-  const CLIENT_ID = '3ae020d32550b21da1fe';
-  const REDIRECT_URL = `http://localhost:3000/login`;
-  // const GITHUB_LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}`;
-  const GITHUB_LOGIN_URL = `http://localhost:4000/api/auth/github`;
-  const urlSearchParams = new URLSearchParams(window.location.search);
-  const code = urlSearchParams.get('code');
-  const password = Math.random();
   const navigate = useNavigate();
+  const { login, isLoggedIn, user, logout } = useAuthContext('Login');
+  const [formValue, setFormValue] = useState({
+    id: '',
+    password: '',
+  });
 
-  const loginUsingGithubOAuth = async () => {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
     try {
-      const res = await axios.get('http://localhost:4000/api/auth/github');
-
-      const { name } = res.data.user;
-
-      navigate(`/?name=${name}`, { replace: true });
+      const { data } = await axios.post(
+        '/auth/login',
+        { id: formValue.id, password: formValue.password },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+        },
+      );
+      login(data);
+      navigate('/');
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
-
-  useEffect(
-    function () {
-      if (code) {
-        loginUsingGithubOAuth();
-      }
-    },
-    [code],
-  );
+  const handleChange = (event: any) => {
+    setFormValue({
+      ...formValue,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   return (
     <div>
       <h1>login</h1>
-      <h1>{code}</h1>
-      {/* <button onClick={loginUsingGithubOAuth}>github 로그인</button> */}
-      <a href="http://localhost:4000/api/auth/github">깃허브 로그인</a>
+      <form onSubmit={handleSubmit}>
+        아이디
+        <input
+          type="text"
+          name="id"
+          placeholder="enter an email"
+          value={formValue.id}
+          onChange={handleChange}
+        />
+        비밀번호
+        <input
+          type="password"
+          name="password"
+          placeholder="enter a password"
+          value={formValue.password}
+          onChange={handleChange}
+        />
+        <button type="submit">그냥 로그인</button>
+      </form>
+      <a href="http://localhost:4000/api/auth/github">😸 깃허브 로그인</a>
     </div>
   );
 };

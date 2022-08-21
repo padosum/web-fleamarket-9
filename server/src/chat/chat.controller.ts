@@ -17,7 +17,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
+import { AuthenticatedGuard } from 'src/auth/guard/authenticated.guard';
 import { ChatService } from './chat.service';
 import { ChatMessageResponseDto } from './dto/chat-message-response.dto';
 import { ChatRoomResponseDto } from './dto/chat-room-response.dto';

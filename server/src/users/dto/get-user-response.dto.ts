@@ -2,6 +2,13 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class GetUserResponseSuccessDto {
   @ApiProperty({
+    example: 1,
+    description: 'user idx',
+    required: true,
+  })
+  readonly idx: number;
+
+  @ApiProperty({
     example: 'baemin',
     description: 'user id',
     required: true,

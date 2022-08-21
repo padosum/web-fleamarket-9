@@ -29,6 +29,8 @@ server/dist
 server/node_modules
 
 server/.env
+server/.development.env
+server/.production.env
 
 # Logs
 logs

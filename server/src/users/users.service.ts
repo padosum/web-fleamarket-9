@@ -62,6 +62,7 @@ export class UsersService {
 
     return user[0]
       ? {
+          idx,
           id: user[0].id,
           name: user[0].name,
         }

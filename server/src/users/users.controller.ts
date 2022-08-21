@@ -18,7 +18,7 @@ import {
   GetUserResponseFailDto,
   GetUserResponseSuccessDto,
 } from './dto/get-user-response.dto';
-import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
+import { AuthenticatedGuard } from 'src/auth/guard/authenticated.guard';
 
 @Controller('users')
 @ApiTags('Users API')

@@ -17,7 +17,7 @@ import {
   DeleteLocationResponseSuccessDto,
 } from './dto/delete-location-response.dto';
 import { FindMyLocationResponse } from './dto/find-my-location-response.dto';
-import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
+import { AuthenticatedGuard } from 'src/auth/guard/authenticated.guard';
 
 @Controller('location')
 @ApiTags('Location API')

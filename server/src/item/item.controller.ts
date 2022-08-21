@@ -14,13 +14,7 @@ import { ItemService } from './item.service';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { FindItemsDto } from './dto/find-items.dto';
-import {
-  ApiOperation,
-  ApiPropertyOptional,
-  ApiQuery,
-  ApiResponse,
-  ApiTags,
-} from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
   CreateItemResponseFailDto,
   CreateItemResponseSuccessDto,
@@ -43,7 +37,7 @@ import {
 } from './dto/update-item-status-response.dto';
 import { UpdateItemStatusDto } from './dto/update-item-status.dto';
 import { UpdateItemLikeResponseSuccessDto } from './dto/update-item-like-response.dto';
-import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
+import { AuthenticatedGuard } from 'src/auth/guard/authenticated.guard';
 
 @Controller('item')
 @ApiTags('Item API')

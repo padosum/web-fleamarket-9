@@ -17,13 +17,17 @@ import {
 } from './dto/login-response.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { LogoutResponseDto } from './dto/logout-response.dto';
-import { LocalAuthGuard } from 'src/local.auth.guard';
-import { GithubOauthGuard } from './github.guard';
+import { LocalAuthGuard } from 'src/auth/guard/local.auth.guard';
+import { GithubOauthGuard } from './guard/github.guard';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('auth')
 @ApiTags('Login API')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly configService: ConfigService,
+  ) {}
 
   @ApiOperation({
     summary: 'user 로그인 API',
@@ -43,8 +47,10 @@ export class AuthController {
   @Post('/login')
   login(
     @Body() loginUserDto: LoginUserDto,
-  ): LoginResponseSuccessDto | LoginResponseFailDto {
-    return this.authService.login(loginUserDto);
+    @Req() req: Request,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    res.status(HttpStatus.OK).json(req.user);
   }
 
   @ApiOperation({
@@ -59,7 +65,7 @@ export class AuthController {
   @Post('/logout')
   logout(@Req() req) {
     req.session.destroy();
-    return { msg: 'The user session has ended' };
+    return { message: '로그아웃 하였습니다.' };
   }
 
   @ApiOperation({
@@ -78,6 +84,6 @@ export class AuthController {
     @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
   ) {
-    res.status(HttpStatus.OK).json({ user: req.user });
+    res.redirect(this.configService.get('CLIENT_HOST'));
   }
 }
