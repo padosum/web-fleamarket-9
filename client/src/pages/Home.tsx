@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 import { Button } from '../components/Button';
 import { Icon } from '../components/Icon';
+import { TextInput } from '../components/TextInput';
 import { TypoGraphy } from '../components/TypoGraphy';
-
-const red = '#f00';
 
 const Wrapper = styled.div`
   width: 100%;
-  background-color: ${red};
 `;
 
 const clickHandler = () => {
@@ -46,6 +44,8 @@ export const Home = () => {
       <TypoGraphy.SmallLink to="/b">Typo Link Small</TypoGraphy.SmallLink>
       <TypoGraphy.XSmallLink to="/s">Typo Link XSmall</TypoGraphy.XSmallLink>
 
+      <TextInput.Medium width={270} />
+      <TextInput.Large width={360} />
       <Button size="md">버튼1</Button>
       <Button size="md" disabled={true}>
         버튼2
