@@ -1,17 +1,18 @@
-import { Link } from 'react-router-dom';
-import { useAuthContext } from '../context/AuthContext';
+import styled from 'styled-components';
+import { TypoGraphy } from '../components/TypoGraphy';
+
+const red = '#f00';
+
+const Wrapper = styled.div`
+  width: 100%;
+  background-color: ${red};
+`;
 
 export const Home = () => {
-  const { isLoggedIn, user, logout } = useAuthContext('Home');
-
   return (
-    <div>
-      {isLoggedIn && <h1>안녕하세요 {user?.name}</h1>}
-      {isLoggedIn ? (
-        <button onClick={logout}>로그아웃하기</button>
-      ) : (
-        <Link to="/login">로그인으로 가기</Link>
-      )}
-    </div>
+    <Wrapper>
+      <TypoGraphy.Large>안녕하세요</TypoGraphy.Large>
+      <TypoGraphy.Medium>안녕하세요</TypoGraphy.Medium>
+    </Wrapper>
   );
 };

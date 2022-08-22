@@ -52,14 +52,14 @@ export const AuthProvider = ({ children }: Props) => {
   };
 
   useEffect(() => {
-    getMyInfo()
-      .then((data) => {
-        login(data);
-      })
-      .catch(() => {})
-      .finally(() => {
-        setIsLoading(false);
-      });
+    // getMyInfo()
+    //   .then((data) => {
+    //     login(data);
+    //   })
+    //   .catch(() => {})
+    //   .finally(() => {
+    //     setIsLoading(false);
+    //   });
   }, []);
 
   if (isLoading) {
