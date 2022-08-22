@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Button } from '../components/Button';
 import { Fab } from '../components/Fab';
 import { Icon } from '../components/Icon';
+import { LocationButton } from '../components/LocationButton';
 import { TextInput } from '../components/TextInput';
 import { TypoGraphy } from '../components/TypoGraphy';
 
@@ -60,6 +61,14 @@ export const Home = () => {
 
       <Fab onClick={clickHandler} />
       <Fab className="fab1" disabled={true} />
+
+      <div style={{ display: 'flex', gap: '2px' }}>
+        <LocationButton
+          className="locationBtn"
+          onClick={clickHandler}
+        ></LocationButton>
+        <LocationButton title="방이동" onClick={clickHandler}></LocationButton>
+      </div>
     </Wrapper>
   );
 };
