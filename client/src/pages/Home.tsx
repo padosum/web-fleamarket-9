@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from '../components/Button';
 import { Icon } from '../components/Icon';
 import { TypoGraphy } from '../components/TypoGraphy';
 
@@ -9,8 +10,13 @@ const Wrapper = styled.div`
   background-color: ${red};
 `;
 
+const clickHandler = () => {
+  console.log('click');
+};
+
 export const Home = () => {
   console.log('home');
+
   return (
     <Wrapper>
       <TypoGraphy.Large>안녕하세요</TypoGraphy.Large>
@@ -31,7 +37,7 @@ export const Home = () => {
       <Icon name="iconSend" color="offWhite"></Icon>
       <Icon name="iconMessage" color="offWhite"></Icon>
       <Icon name="iconHeart" color="offWhite"></Icon>
-      
+
       <TypoGraphy.Large>Typo Large</TypoGraphy.Large>
       <TypoGraphy.Medium>Typo Medium</TypoGraphy.Medium>
       <TypoGraphy.Small>Typo Small</TypoGraphy.Small>
@@ -39,6 +45,17 @@ export const Home = () => {
       <TypoGraphy.MediumLink to="/n">Typo Link Medium</TypoGraphy.MediumLink>
       <TypoGraphy.SmallLink to="/b">Typo Link Small</TypoGraphy.SmallLink>
       <TypoGraphy.XSmallLink to="/s">Typo Link XSmall</TypoGraphy.XSmallLink>
+
+      <Button size="md">버튼1</Button>
+      <Button size="md" disabled={true}>
+        버튼2
+      </Button>
+      <Button></Button>
+      <Button className="btn">버튼3</Button>
+      <Button size="lg" onClick={clickHandler}>
+        큰 버튼
+      </Button>
+      <Button bgColor="titleActive">Github 로그인</Button>
     </Wrapper>
   );
 };
