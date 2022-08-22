@@ -1,17 +1,27 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const TypoGraphyText = styled.h1`
+const TypoGraphyCommon = styled.h1<{ bold?: boolean }>`
   color: #222;
-  font-size: 18px;
   padding: 0;
   margin: 0;
+  ${(props) => (props.bold ? 'font-weight: bold;' : '')}
 `;
 
-const TypoGraphyMediumText = styled.h1`
-  color: #222;
+const TypoGraphyText = styled(TypoGraphyCommon)`
+  font-size: 18px;
+`;
+
+const TypoGraphyMediumText = styled(TypoGraphyCommon)`
   font-size: 16px;
-  padding: 0;
-  margin: 0;
+`;
+
+const TypoGraphySmallText = styled(TypoGraphyCommon)`
+  font-size: 14px;
+`;
+
+const TypoGraphyXSmallText = styled(TypoGraphyCommon)`
+  font-size: 12px;
 `;
 
 export const TypoGraphy = ({ children }: { children: string }) => {
@@ -22,4 +32,48 @@ TypoGraphy.Large = TypoGraphy;
 
 TypoGraphy.Medium = ({ children }: { children: string }) => {
   return <TypoGraphyMediumText>{children}</TypoGraphyMediumText>;
+};
+
+TypoGraphy.Small = ({ children }: { children: string }) => {
+  return <TypoGraphySmallText>{children}</TypoGraphySmallText>;
+};
+
+TypoGraphy.XSmall = ({ children }: { children: string }) => {
+  return <TypoGraphyXSmallText>{children}</TypoGraphyXSmallText>;
+};
+
+TypoGraphy.MediumLink = ({
+  children,
+  to,
+}: {
+  children: string;
+  to: string;
+}) => {
+  return (
+    <Link to={to}>
+      <TypoGraphyMediumText bold>{children}</TypoGraphyMediumText>
+    </Link>
+  );
+};
+
+TypoGraphy.SmallLink = ({ children, to }: { children: string; to: string }) => {
+  return (
+    <Link to={to}>
+      <TypoGraphySmallText bold>{children}</TypoGraphySmallText>
+    </Link>
+  );
+};
+
+TypoGraphy.XSmallLink = ({
+  children,
+  to,
+}: {
+  children: string;
+  to: string;
+}) => {
+  return (
+    <Link to={to}>
+      <TypoGraphyXSmallText bold>{children}</TypoGraphyXSmallText>
+    </Link>
+  );
 };

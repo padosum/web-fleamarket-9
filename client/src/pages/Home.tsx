@@ -9,10 +9,16 @@ const Wrapper = styled.div`
 `;
 
 export const Home = () => {
+  console.log('home');
   return (
     <Wrapper>
-      <TypoGraphy.Large>안녕하세요</TypoGraphy.Large>
-      <TypoGraphy.Medium>안녕하세요</TypoGraphy.Medium>
+      <TypoGraphy.Large>Typo Large</TypoGraphy.Large>
+      <TypoGraphy.Medium>Typo Medium</TypoGraphy.Medium>
+      <TypoGraphy.Small>Typo Small</TypoGraphy.Small>
+      <TypoGraphy.XSmall>Typo XSmall</TypoGraphy.XSmall>
+      <TypoGraphy.MediumLink to="/n">Typo Link Medium</TypoGraphy.MediumLink>
+      <TypoGraphy.SmallLink to="/b">Typo Link Small</TypoGraphy.SmallLink>
+      <TypoGraphy.XSmallLink to="/s">Typo Link XSmall</TypoGraphy.XSmallLink>
     </Wrapper>
   );
 };
