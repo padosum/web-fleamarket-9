@@ -1,155 +1,37 @@
+import React from 'react';
 import styled from 'styled-components';
+import * as icons from './iconPath';
+import { colors } from './Color';
 
-const IconWrapper = styled.div<{ width?: number; height?: number }>`
-  width: ${(props) => (props.width ? `${props.width}px` : '30px')};
-  height: ${(props) => (props.height ? `${props.height}px` : '30px')};
-`;
-
-const Img = styled.img<{ width?: number; height?: number }>`
-  width: ${(props) => (props.width ? `${props.width}px` : '30px')};
-  height: ${(props) => (props.height ? `${props.height}px` : '30px')};
-`;
-
-export const Icon = ({
-  src,
-  width,
-  height,
-}: {
-  src: string;
+export interface Props {
+  name: keyof typeof icons;
   width?: number;
   height?: number;
-}) => {
-  return (
-    <IconWrapper width={width} height={height}>
-      <Img src={src} alt="icon" width={width} height={height} />
-    </IconWrapper>
-  );
-};
+  color?: keyof typeof colors;
+}
 
-Icon.Category = () => {
-  return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
+const IconWrapper = styled.div<Props>`
+  width: ${({ width }) => (width ? `${width}px` : '16px')};
+  height: ${({ height }) => (height ? `${height}px` : '16px')};
 
-Icon.Menu = () => {
-  return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
+  & svg {
+    width: auto;
+    height: 100%;
+    display: block;
+  }
+  & path,
+  & circle,
+  & g {
+    stroke: ${({ color }) => (color ? colors[color] : colors.titleActive)};
+  }
+`;
 
-Icon.Profile = () => {
-  return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
+export const Icon = ({ name, width, height, color }: Props) => {
+  const SVGIcon = icons[name];
 
-Icon.Location = () => {
   return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
-
-Icon.LeftArrow = () => {
-  return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
-
-Icon.RightArrow = () => {
-  return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
-
-Icon.DownArrow = () => {
-  return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
-
-Icon.Close = () => {
-  return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
-
-Icon.Add = () => {
-  return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
-
-Icon.Check = () => {
-  return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
-
-Icon.More = () => {
-  return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
-
-Icon.Exit = () => {
-  return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
-
-Icon.Picture = () => {
-  return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
-
-Icon.Send = () => {
-  return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
-
-Icon.Chat = () => {
-  return (
-    <IconWrapper>
-      <Img />
-    </IconWrapper>
-  );
-};
-
-Icon.Like = () => {
-  return (
-    <IconWrapper>
-      <Img />
+    <IconWrapper name={name} width={width} height={height} color={color}>
+      <SVGIcon />
     </IconWrapper>
   );
 };
