@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Button } from '../components/Button';
+import { Fab } from '../components/Fab';
 import { Icon } from '../components/Icon';
 import { TextInput } from '../components/TextInput';
 import { TypoGraphy } from '../components/TypoGraphy';
@@ -56,6 +57,9 @@ export const Home = () => {
         큰 버튼
       </Button>
       <Button bgColor="titleActive">Github 로그인</Button>
+
+      <Fab onClick={clickHandler} />
+      <Fab className="fab1" disabled={true} />
     </Wrapper>
   );
 };
