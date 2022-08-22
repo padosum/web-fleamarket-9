@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const getMyInfo = async () => {
-    const { data } = await axios.get<User>('/users/me');
+    const { data } = await axios.get<User>('/api/users/me');
     return data;
   };
 
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }: Props) => {
   };
 
   const logout = async () => {
-    const { data } = await axios.post('/auth/logout');
+    const { data } = await axios.post('/api/auth/logout');
     if (data.message) {
       setUser(null);
       setIsLoggedIn(false);

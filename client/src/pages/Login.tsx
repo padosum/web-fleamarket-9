@@ -4,6 +4,7 @@ import { useAuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 export const Login = () => {
   const navigate = useNavigate();
+  const GITHUB_LOGIN_URL = `${process.env.REACT_APP_DATA_API}api/auth/github`;
   const { login, isLoggedIn, user, logout } = useAuthContext('Login');
   const [formValue, setFormValue] = useState({
     id: '',
@@ -14,7 +15,7 @@ export const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        '/auth/login',
+        '/api/auth/login',
         { id: formValue.id, password: formValue.password },
         {
           headers: {
@@ -58,7 +59,7 @@ export const Login = () => {
         />
         <button type="submit">그냥 로그인</button>
       </form>
-      <a href="http://localhost:4000/api/auth/github">😸 깃허브 로그인</a>
+      <a href={GITHUB_LOGIN_URL}>😸 깃허브 로그인</a>
     </div>
   );
 };
