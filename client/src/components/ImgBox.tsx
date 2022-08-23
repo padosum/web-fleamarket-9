@@ -17,7 +17,7 @@ const SmallImgBox = styled(ImgBoxCommon)`
   border-radius: 6px;
 `;
 
-const MediumImgBox = styled(ImgBoxCommon)`
+export const MediumImgBox = styled(ImgBoxCommon)`
   width: 76px;
   height: 76px;
   border-radius: 8px;

@@ -14,6 +14,7 @@ import { TypoGraphy } from '../components/TypoGraphy';
 import { ImgNavigation } from '../components/ImgNavigation';
 import { Dropdown } from '../components/Dropdown';
 import { CategoryListItem } from '../components/CategoryListItem';
+import { ImgButton } from '../components/ImgButton';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -243,6 +244,17 @@ export const Home = () => {
 
       <div style={{ transform: 'translateX(300px)' }}>
         <CategoryListItem text="신발" onClick={(e) => console.log(e)} />
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div>
+        <ImgButton.Add text="0/10" />
+      </div>
+      <div>
+        <ImgButton.Delete src="https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM" />
       </div>
     </Wrapper>
   );
