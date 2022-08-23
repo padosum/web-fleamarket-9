@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from '../components/Button';
 import { CategoryButton } from '../components/CategoryButton';
 import { Fab } from '../components/Fab';
 import { Icon } from '../components/Icon';
+import { ImgNavigation } from '../components/ImgNavigation';
 import { LocationButton } from '../components/LocationButton';
 import { TextInput } from '../components/TextInput';
 import { TypoGraphy } from '../components/TypoGraphy';
@@ -74,6 +75,8 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 export const Home = () => {
   console.log('home');
 
+  const [navIdx, setNavIdx] = useState(0);
+
   return (
     <Wrapper>
       <TypoGraphy.Large>안녕하세요</TypoGraphy.Large>
@@ -131,6 +134,10 @@ export const Home = () => {
         categories={categories}
         onChange={handleChange}
       ></CategoryButton>
+
+      <div style={{ backgroundColor: 'black' }}>
+        <ImgNavigation totalCount={5} index={navIdx} onClick={setNavIdx} />
+      </div>
     </Wrapper>
   );
 };
