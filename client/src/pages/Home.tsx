@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from '../components/Button';
 import { CategoryButton } from '../components/CategoryButton';
+import { ChatBadge } from '../components/ChatBadge';
 import { ChatBubble } from '../components/ChatBubble';
 import { Fab } from '../components/Fab';
 import { Icon } from '../components/Icon';
@@ -170,6 +171,18 @@ export const Home = () => {
         <ImgNavigation totalCount={5} index={navIdx} onClick={setNavIdx} />
       </div>
 
+      <div
+        style={{
+          width: 40,
+          height: 40,
+          position: 'relative',
+          backgroundColor: 'green',
+          left: 10,
+          top: 10,
+        }}
+      >
+        <ChatBadge count={9999} />
+      </div>
       <ChatBubble.TypeA text="상대방의 말" />
       <ChatBubble.TypeA text="엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트" />
       <ChatBubble.TypeB text="내가 한 말" />
