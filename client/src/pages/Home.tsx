@@ -6,11 +6,13 @@ import { ChatBadge } from '../components/ChatBadge';
 import { ChatBubble } from '../components/ChatBubble';
 import { Fab } from '../components/Fab';
 import { Icon } from '../components/Icon';
-import { ImgNavigation } from '../components/ImgNavigation';
 import { LocationButton } from '../components/LocationButton';
+import { StatusButton } from '../components/StatusButton';
 import { TabBar } from '../components/TabBar';
 import { TextInput } from '../components/TextInput';
 import { TypoGraphy } from '../components/TypoGraphy';
+import { ImgNavigation } from '../components/ImgNavigation';
+import { Dropdown } from '../components/Dropdown';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -19,6 +21,16 @@ const Wrapper = styled.div`
 const clickHandler = () => {
   console.log('click');
 };
+
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  console.log(e.target.value);
+};
+
+const status = [
+  { idx: 1, name: '판매중' },
+  { idx: 2, name: '예약중' },
+  { idx: 3, name: '판매완료' },
+];
 
 const categories = [
   {
@@ -71,10 +83,6 @@ const categories = [
   },
 ];
 
-const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  console.log(e.target.value);
-};
-
 const tabs = [
   {
     idx: 1,
@@ -89,17 +97,43 @@ const tabs = [
     title: '관심목록',
   },
 ];
+
+const location = [
+  { idx: 1, name: '방이동' },
+  { idx: 99999, name: '내 동네 설정하기' },
+];
+
 export const Home = () => {
   console.log('home');
 
+  const [navIdx, setNavIdx] = useState(0);
   const [currentTab, setCurrentTab] = useState(tabs[0].idx);
+  const [openStatus, setOpenStatus] = useState(false);
+  const [currentStatus, setCurrentStatus] = useState(status[0].idx);
+
   const handleTabChange = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!(e.target instanceof HTMLButtonElement)) {
       return;
     }
     setCurrentTab(+e.target.value);
   };
-  const [navIdx, setNavIdx] = useState(0);
+
+  const handleStatusToggle = (e: React.MouseEvent<HTMLDivElement>) => {
+    setOpenStatus((prevOpenStatus) => !prevOpenStatus);
+  };
+
+  const handleStatusChange = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!(e.target instanceof HTMLDivElement)) {
+      return;
+    }
+
+    if (!e.target.dataset.idx) {
+      return;
+    }
+
+    setOpenStatus((prevOpenStatus) => !prevOpenStatus);
+    setCurrentStatus(+e.target.dataset.idx);
+  };
 
   return (
     <Wrapper>
@@ -159,6 +193,16 @@ export const Home = () => {
         onChange={handleChange}
       ></CategoryButton>
 
+      <div style={{ margin: '10px 0px' }}>
+        <StatusButton
+          status={status}
+          select={currentStatus}
+          open={openStatus}
+          handleToggle={handleStatusToggle}
+          handleChange={handleStatusChange}
+        ></StatusButton>
+      </div>
+
       <div style={{ width: '320px', margin: '10px 0px' }}>
         <TabBar
           tabs={tabs}
@@ -187,6 +231,14 @@ export const Home = () => {
       <ChatBubble.TypeA text="엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트" />
       <ChatBubble.TypeB text="내가 한 말" />
       <ChatBubble.TypeB text="엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트" />
+
+      <div style={{ width: '200px', position: 'relative' }}>
+        <Dropdown
+          items={location}
+          select={0}
+          handleChange={() => {}}
+        ></Dropdown>
+      </div>
     </Wrapper>
   );
 };
