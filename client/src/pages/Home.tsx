@@ -1,5 +1,7 @@
+import React from 'react';
 import styled from 'styled-components';
 import { Button } from '../components/Button';
+import { CategoryButton } from '../components/CategoryButton';
 import { Fab } from '../components/Fab';
 import { Icon } from '../components/Icon';
 import { LocationButton } from '../components/LocationButton';
@@ -12,6 +14,61 @@ const Wrapper = styled.div`
 
 const clickHandler = () => {
   console.log('click');
+};
+
+const categories = [
+  {
+    idx: 1,
+    name: '디지털기기',
+  },
+  {
+    idx: 2,
+    name: '생활가전',
+  },
+  {
+    idx: 3,
+    name: '가구/인테리어',
+  },
+  {
+    idx: 4,
+    name: '게임/취미',
+  },
+  {
+    idx: 5,
+    name: '생활/가공식품',
+  },
+  {
+    idx: 6,
+    name: '스포츠/레저',
+  },
+  {
+    idx: 7,
+    name: '여성패션/잡화',
+  },
+  {
+    idx: 8,
+    name: '남성패션/잡화',
+  },
+  {
+    idx: 9,
+    name: '유아동',
+  },
+  {
+    idx: 10,
+    name: '뷰티/미용',
+  },
+  {
+    idx: 11,
+    name: '반려동물',
+  },
+  {
+    idx: 12,
+    name: '도서/티켓/음반',
+  },
+];
+
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  console.log(e.target.value);
 };
 
 export const Home = () => {
@@ -69,6 +126,11 @@ export const Home = () => {
         ></LocationButton>
         <LocationButton title="방이동" onClick={clickHandler}></LocationButton>
       </div>
+
+      <CategoryButton
+        categories={categories}
+        onChange={handleChange}
+      ></CategoryButton>
     </Wrapper>
   );
 };
