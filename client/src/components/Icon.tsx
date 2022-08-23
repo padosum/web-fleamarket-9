@@ -31,7 +31,7 @@ export const Icon = ({ name, width, height, color }: Props) => {
 
   return (
     <IconWrapper name={name} width={width} height={height} color={color}>
-      <SVGIcon />
+      <SVGIcon width={width} height={height} />
     </IconWrapper>
   );
 };

@@ -22,6 +22,7 @@ import { InvisibleHeader } from '../components/Header/InvisibleHeader';
 import { ImgButton } from '../components/ImgButton';
 import { InfoSaler } from '../components/InfoSaler';
 import { LocationBar } from '../components/LocationBar';
+import { ProductBar } from '../components/ProductBar';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -375,6 +376,14 @@ export const Home = () => {
 
       <div style={{ width: 500 }}>
         <LocationBar location="장안동" />
+      </div>
+
+      <div style={{ width: 500 }}>
+        <ProductBar
+          isLiked={true}
+          price="17,000원"
+          Button={<Button size="md">버튼1</Button>}
+        />
       </div>
     </Wrapper>
   );
