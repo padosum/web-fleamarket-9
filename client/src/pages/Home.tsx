@@ -14,6 +14,11 @@ import { TypoGraphy } from '../components/TypoGraphy';
 import { ImgNavigation } from '../components/ImgNavigation';
 import { Dropdown } from '../components/Dropdown';
 import { CategoryListItem } from '../components/CategoryListItem';
+import { MainHeader } from '../components/Header/MainHeader';
+import { ExitHeader } from '../components/Header/ExitHeader';
+import { BackHeader } from '../components/Header/BackHeader';
+import { WriteHeader } from '../components/Header/WriteHeader';
+import { InvisibleHeader } from '../components/Header/InvisibleHeader';
 import { ImgButton } from '../components/ImgButton';
 import { InfoSaler } from '../components/InfoSaler';
 
@@ -108,6 +113,9 @@ const location = [
 
 export const Home = () => {
   console.log('home');
+
+  const [openLocation, setOpenLocation] = useState(false);
+  const [openMore, setOpenMore] = useState(false);
 
   const [navIdx, setNavIdx] = useState(0);
   const [currentTab, setCurrentTab] = useState(tabs[0].idx);
@@ -235,16 +243,119 @@ export const Home = () => {
       <ChatBubble.TypeB text="내가 한 말" />
       <ChatBubble.TypeB text="엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트" />
 
-      <div style={{ width: '200px', position: 'relative' }}>
-        <Dropdown
-          items={location}
-          select={0}
-          handleChange={() => {}}
-        ></Dropdown>
-      </div>
-
       <div style={{ transform: 'translateX(300px)' }}>
         <CategoryListItem text="신발" onClick={(e) => console.log(e)} />
+      </div>
+
+      <div
+        style={{
+          width: '320px',
+          height: '200px',
+          border: '1px solid #222',
+          marginTop: '100px',
+          position: 'relative',
+        }}
+      >
+        <MainHeader
+          color={'primary'}
+          onClickCategory={() => console.log('clickCategory')}
+          onClickMap={() =>
+            setOpenLocation((prevOpenLocation) => !prevOpenLocation)
+          }
+          onClickUser={() => console.log('clickUser')}
+          onClickMenu={() => console.log('clickMenu')}
+        ></MainHeader>
+        {openLocation && (
+          <Dropdown
+            items={location}
+            select={0}
+            handleChange={() => {}}
+            left={'100'}
+          ></Dropdown>
+        )}
+      </div>
+
+      <h3>채팅 룸</h3>
+      <div
+        style={{ width: '320px', height: '200px', border: '1px solid #222' }}
+      >
+        <ExitHeader
+          title={'UserE'}
+          color={'white'}
+          onClickBack={() => console.log('clickBack')}
+          onClickExit={() => console.log('clickExit')}
+        ></ExitHeader>
+      </div>
+
+      <h3>동네 설정하기</h3>
+      <div
+        style={{ width: '320px', height: '200px', border: '1px solid #222' }}
+      >
+        <BackHeader
+          title={'UserE'}
+          color={'offWhite'}
+          onClickBack={() => console.log('clickBack')}
+        ></BackHeader>
+      </div>
+
+      <h3>채팅목록</h3>
+      <div
+        style={{ width: '320px', height: '200px', border: '1px solid #222' }}
+      >
+        <BackHeader
+          title={'채팅하기'}
+          color={'white'}
+          onClickBack={() => console.log('clickBack')}
+        ></BackHeader>
+      </div>
+
+      <h3>글쓰기</h3>
+      <div
+        style={{ width: '320px', height: '200px', border: '1px solid #222' }}
+      >
+        <WriteHeader
+          title={'글쓰기'}
+          color={'white'}
+          onClickBack={() => console.log('clickBack')}
+          onClickCheck={() => console.log('clickCheck')}
+        ></WriteHeader>
+      </div>
+      <div
+        style={{ width: '320px', height: '200px', border: '1px solid #222' }}
+      >
+        <WriteHeader
+          title={'글쓰기'}
+          color={'white'}
+          active={true}
+          onClickBack={() => console.log('clickBack')}
+          onClickCheck={() => console.log('clickCheck')}
+        ></WriteHeader>
+      </div>
+
+      <h3>상품 상세</h3>
+      <div
+        style={{
+          width: '320px',
+          height: '200px',
+          border: '1px solid #222',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          position: 'relative',
+          backgroundImage:
+            'url("https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM")',
+        }}
+      >
+        <InvisibleHeader
+          onClickBack={() => console.log('clickBack')}
+          onClickMore={() => setOpenMore((prevOpenMore) => !prevOpenMore)}
+        ></InvisibleHeader>
+        {openMore && (
+          <Dropdown
+            items={location}
+            select={0}
+            handleChange={() => {}}
+            left={'150'}
+          ></Dropdown>
+        )}
       </div>
       <br />
       <br />

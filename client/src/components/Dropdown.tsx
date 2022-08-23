@@ -10,11 +10,12 @@ interface Props {
   items: Item[];
   select: number;
   handleChange?: React.MouseEventHandler<HTMLDivElement>;
+  left?: string;
 }
 
 export const Dropdown = (props: Props) => {
   return (
-    <DropdownWrapper>
+    <DropdownWrapper left={props.left}>
       {props.items.map((item) => {
         if (item.idx !== props.select) {
           return (
@@ -33,10 +34,10 @@ export const Dropdown = (props: Props) => {
   );
 };
 
-const DropdownWrapper = styled.div`
+const DropdownWrapper = styled.div<{ left: string | undefined }>`
   position: absolute;
-  top: 120%;
-  width: 100%;
+  top: 50px;
+  ${({ left }) => (left ? `left: ${left}px;` : '')}
   z-index: 100;
 
   background: ${colors.gray3};
