@@ -21,6 +21,7 @@ import { WriteHeader } from '../components/Header/WriteHeader';
 import { InvisibleHeader } from '../components/Header/InvisibleHeader';
 import { ImgButton } from '../components/ImgButton';
 import { InfoSaler } from '../components/InfoSaler';
+import { LocationBar } from '../components/LocationBar';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -370,6 +371,10 @@ export const Home = () => {
       </div>
       <div style={{ width: 500 }}>
         <InfoSaler location="장안동" username="홍길동" />
+      </div>
+
+      <div style={{ width: 500 }}>
+        <LocationBar location="장안동" />
       </div>
     </Wrapper>
   );
