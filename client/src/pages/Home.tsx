@@ -23,6 +23,7 @@ import { ImgButton } from '../components/ImgButton';
 import { InfoSaler } from '../components/InfoSaler';
 import { LocationBar } from '../components/LocationBar';
 import { ProductBar } from '../components/ProductBar';
+import { InfoProduct } from '../components/InfoProduct';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -383,6 +384,16 @@ export const Home = () => {
           isLiked={true}
           price="17,000원"
           Button={<Button size="md">버튼1</Button>}
+        />
+      </div>
+
+      <div style={{ width: 500 }}>
+        <InfoProduct
+          src="https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM"
+          title="title"
+          price="1,000원"
+          buttonText="예약"
+          onButtonClick={() => {}}
         />
       </div>
     </Wrapper>
