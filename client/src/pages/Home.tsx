@@ -15,6 +15,7 @@ import { ImgNavigation } from '../components/ImgNavigation';
 import { Dropdown } from '../components/Dropdown';
 import { CategoryListItem } from '../components/CategoryListItem';
 import { ImgButton } from '../components/ImgButton';
+import { InfoSaler } from '../components/InfoSaler';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -255,6 +256,9 @@ export const Home = () => {
       </div>
       <div>
         <ImgButton.Delete src="https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM" />
+      </div>
+      <div style={{ width: 500 }}>
+        <InfoSaler location="장안동" username="홍길동" />
       </div>
     </Wrapper>
   );
