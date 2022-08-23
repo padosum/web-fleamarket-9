@@ -6,6 +6,7 @@ import { Fab } from '../components/Fab';
 import { Icon } from '../components/Icon';
 import { ImgNavigation } from '../components/ImgNavigation';
 import { LocationButton } from '../components/LocationButton';
+import { TabBar } from '../components/TabBar';
 import { TextInput } from '../components/TextInput';
 import { TypoGraphy } from '../components/TypoGraphy';
 
@@ -72,9 +73,30 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   console.log(e.target.value);
 };
 
+const tabs = [
+  {
+    idx: 1,
+    title: '판매목록',
+  },
+  {
+    idx: 2,
+    title: '채팅',
+  },
+  {
+    idx: 3,
+    title: '관심목록',
+  },
+];
 export const Home = () => {
   console.log('home');
 
+  const [currentTab, setCurrentTab] = useState(tabs[0].idx);
+  const handleTabChange = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!(e.target instanceof HTMLButtonElement)) {
+      return;
+    }
+    setCurrentTab(+e.target.value);
+  };
   const [navIdx, setNavIdx] = useState(0);
 
   return (
@@ -134,6 +156,14 @@ export const Home = () => {
         categories={categories}
         onChange={handleChange}
       ></CategoryButton>
+
+      <div style={{ width: '320px', margin: '10px 0px' }}>
+        <TabBar
+          tabs={tabs}
+          select={currentTab}
+          onClick={handleTabChange}
+        ></TabBar>
+      </div>
 
       <div style={{ backgroundColor: 'black' }}>
         <ImgNavigation totalCount={5} index={navIdx} onClick={setNavIdx} />
