@@ -13,6 +13,7 @@ import { TextInput } from '../components/TextInput';
 import { TypoGraphy } from '../components/TypoGraphy';
 import { ImgNavigation } from '../components/ImgNavigation';
 import { Dropdown } from '../components/Dropdown';
+import { CategoryListItem } from '../components/CategoryListItem';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -238,6 +239,10 @@ export const Home = () => {
           select={0}
           handleChange={() => {}}
         ></Dropdown>
+      </div>
+
+      <div style={{ transform: 'translateX(300px)' }}>
+        <CategoryListItem text="신발" onClick={(e) => console.log(e)} />
       </div>
     </Wrapper>
   );
