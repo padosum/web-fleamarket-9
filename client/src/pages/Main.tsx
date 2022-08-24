@@ -38,7 +38,7 @@ export const Main = () => {
       <LogoText>우아 마켙</LogoText>
       <Spacing height={24} />
       <div>
-        <Link to="list">
+        <Link to="home">
           <Button size="lg">구경하러 가기</Button>
         </Link>
       </div>

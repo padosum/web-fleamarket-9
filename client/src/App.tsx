@@ -1,9 +1,8 @@
 import React from 'react';
-import { Components, Login } from './pages';
+import { Components, Home, Login, Main } from './pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { PageLayout } from './components/PageLayout';
 import './styles/App.scss';
-import { Main } from './pages/Main';
 
 function App() {
   return (
@@ -13,6 +12,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/components" element={<Components />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </PageLayout>
     </BrowserRouter>
