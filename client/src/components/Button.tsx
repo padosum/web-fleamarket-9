@@ -36,13 +36,13 @@ const ButtonCommon = styled.button<Props>`
   justify-content: center;
   align-items: center;
 
-  width: ${({ size }) => (size ? WIDTH[size] : WIDTH.md)};
+  width: ${({ size }) => (size ? WIDTH[size] : '100%')};
   height: ${({ size }) => (size ? HEIGHT[size] : HEIGHT.md)};
   padding: ${({ size }) => (size ? PADDING[size] : PADDING.md)};
   color: ${colors.white};
   background-color: ${({ bgColor }) =>
     bgColor ? colors[bgColor] : colors.primary};
-  font-size: ${({ size }) => (size ? FONT_SIZE[size] : FONT_SIZE.md)};
+  font-size: ${({ size }) => (size ? FONT_SIZE[size] : '16px')};
   font-weight: 500;
   border-radius: 8px;
 

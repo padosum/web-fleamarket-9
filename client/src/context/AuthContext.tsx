@@ -11,7 +11,7 @@ interface AuthContextValue {
   user: User | null;
   isLoggedIn: boolean;
   login: (user: User) => void;
-  logout: () => void;
+  logout: () => Promise<boolean>;
 }
 
 export const AuthContext = createContext<AuthContextValue | null>(null);
@@ -44,22 +44,31 @@ export const AuthProvider = ({ children }: Props) => {
   };
 
   const logout = async () => {
-    const { data } = await axios.post('/api/auth/logout');
-    if (data.message) {
-      setUser(null);
-      setIsLoggedIn(false);
-    }
+    await axios.post('/api/auth/logout').catch((err) => {
+      if (err.response) {
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else if (err.request) {
+        console.log(err.request);
+      } else {
+        console.log(`Error`, err.message);
+      }
+    });
+    setUser(null);
+    setIsLoggedIn(false);
+    return true;
   };
 
   useEffect(() => {
-    // getMyInfo()
-    //   .then((data) => {
-    //     login(data);
-    //   })
-    //   .catch(() => {})
-    //   .finally(() => {
-    //     setIsLoading(false);
-    //   });
+    getMyInfo()
+      .then((data) => {
+        login(data);
+      })
+      .catch(() => {})
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   if (isLoading) {

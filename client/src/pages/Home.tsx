@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { CategorySlide } from '../components/Category/CategorySlide';
 import { Dropdown } from '../components/Dropdown';
 import { Fab } from '../components/Fab';
 import { MainHeader } from '../components/Header/MainHeader';
 import { ProductList } from '../components/ProductList';
+import { useAuthContext } from '../context/AuthContext';
 
 const HomeWrapper = styled.div`
   width: 100%;
@@ -120,6 +122,10 @@ export const Home = () => {
   const [openLocation, setOpenLocation] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
 
+  const navigate = useNavigate();
+
+  const { isLoggedIn } = useAuthContext('Login');
+
   const handleToggleCategory = () => {
     setOpenCategory((prevOpenCategory) => !prevOpenCategory);
   };
@@ -132,7 +138,13 @@ export const Home = () => {
           onClickMap={() =>
             setOpenLocation((prevOpenLocation) => !prevOpenLocation)
           }
-          onClickUser={() => console.log('clickUser')}
+          onClickUser={() => {
+            if (isLoggedIn) {
+              navigate('/user');
+            } else {
+              navigate('/login');
+            }
+          }}
           onClickMenu={() => console.log('clickMenu')}
         ></MainHeader>
         {openLocation && (

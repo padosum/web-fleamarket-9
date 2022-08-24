@@ -63,9 +63,9 @@ export class AuthController {
     status: 200,
   })
   @Post('/logout')
-  logout(@Req() req) {
+  logout(@Req() req, @Res({ passthrough: true }) res: Response) {
     req.session.destroy();
-    return { message: '로그아웃 하였습니다.' };
+    res.status(HttpStatus.OK).json({ message: '로그아웃 하였습니다.' });
   }
 
   @ApiOperation({

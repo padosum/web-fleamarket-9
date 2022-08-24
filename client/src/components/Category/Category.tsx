@@ -23,7 +23,7 @@ export const Category = ({
     };
 
     getCategories();
-  });
+  }, []);
 
   return (
     <CategoryContainer>
