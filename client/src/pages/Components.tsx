@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from '../components/Button';
-import { CategoryButton } from '../components/CategoryButton';
+import { CategoryButton } from '../components/Category/CategoryButton';
 import { ChatBadge } from '../components/ChatBadge';
 import { ChatBubble } from '../components/ChatBubble';
 import { Fab } from '../components/Fab';
@@ -13,7 +13,7 @@ import { TextInput } from '../components/TextInput';
 import { TypoGraphy } from '../components/TypoGraphy';
 import { ImgNavigation } from '../components/ImgNavigation';
 import { Dropdown } from '../components/Dropdown';
-import { CategoryListItem } from '../components/CategoryListItem';
+import { CategoryListItem } from '../components/Category/CategoryListItem';
 import { MainHeader } from '../components/Header/MainHeader';
 import { ExitHeader } from '../components/Header/ExitHeader';
 import { BackHeader } from '../components/Header/BackHeader';

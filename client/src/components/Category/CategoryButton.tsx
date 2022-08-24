@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from './Color';
+import { colors } from '../Color';
 
 interface Category {
   idx: number;

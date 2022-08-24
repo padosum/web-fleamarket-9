@@ -4,6 +4,14 @@ import { Button } from '../components/Button';
 import { colors } from '../components/Color';
 import { Spacing } from '../components/Spacing';
 
+const isIos = (contents: string) => {
+  return `
+    @supports (-webkit-touch-callout: none) {
+      ${contents}
+    }
+  `;
+};
+
 const MainWrapper = styled.div`
   width: 100%;
   max-width: 100%;
@@ -12,9 +20,7 @@ const MainWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @supports (-webkit-touch-callout: none) {
-    height: -webkit-fill-available;
-  }
+  ${isIos('height: -webkit-fill-available;')}
 
   background-color: ${colors.offWhite};
 `;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { CategorySlide } from '../components/Category/CategorySlide';
 import { Dropdown } from '../components/Dropdown';
 import { Fab } from '../components/Fab';
 import { MainHeader } from '../components/Header/MainHeader';
@@ -117,12 +118,17 @@ const products = [
 
 export const Home = () => {
   const [openLocation, setOpenLocation] = useState(false);
+  const [openCategory, setOpenCategory] = useState(false);
+
+  const handleToggleCategory = () => {
+    setOpenCategory((prevOpenCategory) => !prevOpenCategory);
+  };
   return (
     <HomeWrapper>
       <HeaderWrapper>
         <MainHeader
           color={'primary'}
-          onClickCategory={() => console.log('clickCategory')}
+          onClickCategory={handleToggleCategory}
           onClickMap={() =>
             setOpenLocation((prevOpenLocation) => !prevOpenLocation)
           }
@@ -138,6 +144,11 @@ export const Home = () => {
           ></Dropdown>
         )}
       </HeaderWrapper>
+
+      <CategorySlide
+        open={openCategory}
+        toggleOpen={handleToggleCategory}
+      ></CategorySlide>
 
       <ProductWrapper>
         <ProductList items={products} type="sales" />

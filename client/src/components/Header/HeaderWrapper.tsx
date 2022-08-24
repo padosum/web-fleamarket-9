@@ -11,7 +11,12 @@ const HeaderWrapperStyle = styled.div<Props>`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 56px;
+  min-height: 56px;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
 
   ${({ color }) => (color ? `background-color: ${colors[color]};` : '')}
   padding: 0 16px;
