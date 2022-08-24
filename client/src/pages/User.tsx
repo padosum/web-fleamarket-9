@@ -32,7 +32,7 @@ export const User = () => {
         <BackHeader
           title="내 계정"
           color="offWhite"
-          onClickBack={() => navigate('/home')}
+          onClickBack={() => navigate(-1)}
         ></BackHeader>
       </HeaderWrapper>
       <UserInfo>

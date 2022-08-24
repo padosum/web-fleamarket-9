@@ -3,18 +3,13 @@ import { useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { BackHeader } from '../components/Header/BackHeader';
-import { colors } from '../components/Color';
 import styled from 'styled-components';
 import { TextInput } from '../components/TextInput';
 import { Spacing } from '../components/Spacing';
 import { Button } from '../components/Button';
-import { Icon } from '../components/Icon';
-import { TypoGraphy } from '../components/TypoGraphy';
-
-export const Login = () => {
+export const Signup = () => {
   const navigate = useNavigate();
-  const GITHUB_LOGIN_URL = `${process.env.REACT_APP_DATA_API}api/auth/github`;
-  const { login } = useAuthContext('Login');
+  const { login, isLoggedIn, user, logout } = useAuthContext('Login');
 
   const [formValue, setFormValue] = useState({
     id: '',
@@ -51,7 +46,7 @@ export const Login = () => {
     <LoginWrapper>
       <HeaderWrapper>
         <BackHeader
-          title="로그인"
+          title="회원가입"
           color="offWhite"
           onClickBack={() => navigate(-1)}
         ></BackHeader>
@@ -61,6 +56,7 @@ export const Login = () => {
       </TitleWrapper>
       <FormWrapper>
         <form onSubmit={handleSubmit}>
+          아이디
           <TextInput
             placeholder="아이디를 입력하세요"
             name="id"
@@ -69,6 +65,7 @@ export const Login = () => {
             height={'40'}
           ></TextInput>
           <Spacing height={20}></Spacing>
+          비밀번호
           <TextInput
             type="password"
             name="password"
@@ -78,17 +75,8 @@ export const Login = () => {
             height={'40'}
           ></TextInput>
           <Spacing height={20}></Spacing>
-          <Button>로그인</Button>
+          <Button>회원가입</Button>
         </form>
-        <Spacing height={20}></Spacing>
-        <GithubLoginButton href={GITHUB_LOGIN_URL}>
-          <Icon name="iconGithub" fill="white" />
-          <span style={{ marginLeft: '10px' }}>깃허브 로그인</span>
-        </GithubLoginButton>
-        <Spacing height={30}></Spacing>
-        <SignupWrapper>
-          <TypoGraphy.SmallLink to="/signup">회원가입</TypoGraphy.SmallLink>
-        </SignupWrapper>
       </FormWrapper>
     </LoginWrapper>
   );
@@ -116,23 +104,4 @@ const HeaderWrapper = styled.div`
 
 const FormWrapper = styled.div`
   padding: 24px 16px;
-`;
-
-const GithubLoginButton = styled.a`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
-  height: 42px;
-  background-color: ${colors.titleActive};
-  color: ${colors.white};
-
-  border-radius: 8px;
-`;
-
-const SignupWrapper = styled.div`
-  display: flex;
-  justify-content: center;
 `;
