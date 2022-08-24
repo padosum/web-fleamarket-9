@@ -28,6 +28,7 @@ const LogoImg = styled.img`
 const LogoText = styled.span`
   font-size: 36px;
   font-weight: 700;
+  font-family: 'UhBeeHam', sans-serif;
 `;
 
 export const Main = () => {
