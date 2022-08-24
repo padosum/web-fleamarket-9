@@ -21,6 +21,7 @@ import { WriteHeader } from '../components/Header/WriteHeader';
 import { InvisibleHeader } from '../components/Header/InvisibleHeader';
 import { ImgButton } from '../components/ImgButton';
 import { InfoSaler } from '../components/InfoSaler';
+import { ProductList } from '../components/ProductList';
 import { LocationBar } from '../components/LocationBar';
 import { ProductBar } from '../components/ProductBar';
 import { InfoProduct } from '../components/InfoProduct';
@@ -112,6 +113,36 @@ const tabs = [
 const location = [
   { idx: 1, name: '방이동' },
   { idx: 99999, name: '내 동네 설정하기' },
+];
+
+const products = [
+  {
+    idx: 1,
+    title: '파랑 선풍기',
+    location: '방이동',
+    timestamp: '3시간 전',
+    price: 59000,
+    likeCnt: 1,
+    messageCnt: 1,
+  },
+  {
+    idx: 2,
+    title: '카멜 브라운 스카프 팝니당당',
+    location: '방이동',
+    timestamp: '3시간 전',
+    price: 59000,
+    likeCnt: 1,
+    messageCnt: 1,
+  },
+  {
+    idx: 3,
+    title: '아이폰',
+    location: '방이동',
+    timestamp: '3시간 전',
+    price: 59000,
+    likeCnt: 0,
+    messageCnt: 0,
+  },
 ];
 
 export const Home = () => {
@@ -375,6 +406,29 @@ export const Home = () => {
         <InfoSaler location="장안동" username="홍길동" />
       </div>
 
+      <br />
+      <br />
+      <div
+        style={{
+          width: '320px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+        }}
+      >
+        <ProductList items={products} type="sales" />
+      </div>
+
+      <div
+        style={{
+          width: '320px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+        }}
+      >
+        <ProductList items={products} type="shopping" />
+      </div>
       <div style={{ width: 500 }}>
         <LocationBar location="장안동" />
       </div>

@@ -4,6 +4,7 @@ import { colors } from './Color';
 interface Item {
   idx: number;
   name: string;
+  color?: keyof typeof colors;
 }
 
 interface Props {
@@ -11,11 +12,13 @@ interface Props {
   select: number;
   handleChange?: React.MouseEventHandler<HTMLDivElement>;
   left?: string;
+  width?: string;
+  top?: string;
 }
 
 export const Dropdown = (props: Props) => {
   return (
-    <DropdownWrapper left={props.left}>
+    <DropdownWrapper left={props.left} width={props.width} top={props.top}>
       {props.items.map((item) => {
         if (item.idx !== props.select) {
           return (
@@ -23,6 +26,7 @@ export const Dropdown = (props: Props) => {
               key={item.idx}
               data-idx={item.idx}
               onMouseDown={props.handleChange}
+              color={item.color}
             >
               {item.name}
             </DropdownItemStyle>
@@ -34,11 +38,16 @@ export const Dropdown = (props: Props) => {
   );
 };
 
-const DropdownWrapper = styled.div<{ left: string | undefined }>`
+const DropdownWrapper = styled.div<{
+  left: string | undefined;
+  width: string | undefined;
+  top: string | undefined;
+}>`
   position: absolute;
-  top: 50px;
-  ${({ left }) => (left ? `left: ${left}px;` : '')}
   z-index: 100;
+  top: ${({ top }) => (top ? `${top}px` : '50px')};
+  ${({ left }) => (left ? `left: ${left}px;` : '')}
+  ${({ width }) => (width ? `width: ${width}px;` : '')}
 
   background: ${colors.gray3};
   border: 1px solid ${colors.gray3};
@@ -49,10 +58,12 @@ const DropdownWrapper = styled.div<{ left: string | undefined }>`
   overflow: hidden;
 `;
 
-const DropdownItemStyle = styled.div`
+const DropdownItemStyle = styled.div<{ color?: keyof typeof colors }>`
   cursor: pointer;
   padding: 16px;
   background: ${colors.offWhite};
+
+  color: ${({ color }) => (color ? colors[color] : colors.titleActive)};
 
   &:not(last-child) {
     border-bottom: 1px solid ${colors.gray3};
