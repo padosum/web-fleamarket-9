@@ -25,6 +25,7 @@ import { ProductList } from '../components/ProductList';
 import { LocationBar } from '../components/LocationBar';
 import { ProductBar } from '../components/ProductBar';
 import { InfoProduct } from '../components/InfoProduct';
+import { ChatBar } from '../components/ChatBar';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -449,6 +450,10 @@ export const Home = () => {
           buttonText="예약"
           onButtonClick={() => {}}
         />
+      </div>
+
+      <div style={{ width: 500 }}>
+        <ChatBar buttonActive={true} />
       </div>
     </Wrapper>
   );
