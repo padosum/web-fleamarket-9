@@ -167,9 +167,7 @@ const chatRooms = [
     unReadCount: 0,
   },
 ];
-export const Home = () => {
-  console.log('home');
-
+export const Components = () => {
   const [openLocation, setOpenLocation] = useState(false);
   const [openMore, setOpenMore] = useState(false);
 
