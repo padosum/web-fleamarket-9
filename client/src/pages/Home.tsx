@@ -5,6 +5,7 @@ import { CategorySlide } from '../components/Category/CategorySlide';
 import { Dropdown } from '../components/Dropdown';
 import { Fab } from '../components/Fab';
 import { MainHeader } from '../components/Header/MainHeader';
+import { MenuSlide } from '../components/Menu/MenuSlide';
 import { ProductList } from '../components/ProductList';
 import { useAuthContext } from '../context/AuthContext';
 
@@ -121,14 +122,18 @@ const products = [
 export const Home = () => {
   const [openLocation, setOpenLocation] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
-
-  const navigate = useNavigate();
-
+  const [openMenu, setOpenMenu] = useState(false);
   const { isLoggedIn } = useAuthContext('Login');
+  const navigate = useNavigate();
 
   const handleToggleCategory = () => {
     setOpenCategory((prevOpenCategory) => !prevOpenCategory);
   };
+
+  const handleToggleMenu = () => {
+    setOpenMenu((openMenu) => !openMenu);
+  };
+
   return (
     <HomeWrapper>
       <HeaderWrapper>
@@ -145,7 +150,7 @@ export const Home = () => {
               navigate('/login');
             }
           }}
-          onClickMenu={() => console.log('clickMenu')}
+          onClickMenu={handleToggleMenu}
         ></MainHeader>
         {openLocation && (
           <Dropdown
@@ -157,13 +162,12 @@ export const Home = () => {
         )}
       </HeaderWrapper>
 
-      <CategorySlide
-        open={openCategory}
-        toggleOpen={handleToggleCategory}
-      ></CategorySlide>
+      <CategorySlide open={openCategory} toggleOpen={handleToggleCategory} />
+
+      <MenuSlide open={openMenu} toggleOpen={handleToggleMenu} />
 
       <ProductWrapper>
-        <ProductList items={products} type="sales" />
+        <ProductList items={products} type="shopping" />
       </ProductWrapper>
       <FabButtonWrapper>
         <Fab />

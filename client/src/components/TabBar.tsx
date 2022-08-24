@@ -14,10 +14,10 @@ interface Props {
 }
 
 const TabBarStyle = styled.div`
+  width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
-  padding: 0px 16px 0px;
   height: 50px;
 
   background: ${colors.offWhite};

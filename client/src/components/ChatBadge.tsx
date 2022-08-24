@@ -20,7 +20,7 @@ const ChatBadgeWrapper = styled.div<{
   ${({ top }) => (top ? `top: ${top}px;` : 'top: -5px;')}
   ${({ right }) => (right ? `right: ${right}px;` : '')}
   background-color: ${colors.primary3};
-  border-radius: 50%;
+  border-radius: 999px;
 `;
 
 export const ChatBadge = ({
