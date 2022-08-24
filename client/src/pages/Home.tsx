@@ -25,6 +25,7 @@ import { ProductList } from '../components/ProductList';
 import { LocationBar } from '../components/LocationBar';
 import { ProductBar } from '../components/ProductBar';
 import { InfoProduct } from '../components/InfoProduct';
+import { ChatListItem } from '../components/ChatListItem';
 import { ChatBar } from '../components/ChatBar';
 
 const Wrapper = styled.div`
@@ -146,6 +147,26 @@ const products = [
   },
 ];
 
+const chatRooms = [
+  {
+    idx: 1,
+    userName: 'UserE',
+    message: '실제로 신어볼 수 있는건가요???sdfsfssssssfsdf',
+    updatedAt: '1분 전',
+    image:
+      'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
+    unReadCount: 2,
+  },
+  {
+    idx: 2,
+    userName: 'UserD',
+    message: '감사합니다! :)',
+    updatedAt: '1시간 전',
+    image:
+      'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
+    unReadCount: 0,
+  },
+];
 export const Home = () => {
   console.log('home');
 
@@ -271,7 +292,7 @@ export const Home = () => {
           top: 10,
         }}
       >
-        <ChatBadge count={9999} />
+        <ChatBadge count={9999} left={-5} />
       </div>
       <ChatBubble.TypeA text="상대방의 말" />
       <ChatBubble.TypeA text="엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트엄청 긴 텍스트" />
@@ -452,6 +473,11 @@ export const Home = () => {
         />
       </div>
 
+      <div style={{ width: 320, height: 500 }}>
+        {chatRooms.map((item) => (
+          <ChatListItem key={item.idx} {...item}></ChatListItem>
+        ))}
+      </div>
       <div style={{ width: 500 }}>
         <ChatBar buttonActive={true} />
       </div>
