@@ -48,7 +48,7 @@ export class AuthController {
   login(
     @Body() loginUserDto: LoginUserDto,
     @Req() req: Request,
-    @Res({ passthrough: true }) res: Response,
+    @Res() res: Response,
   ) {
     res.status(HttpStatus.OK).json(req.user);
   }

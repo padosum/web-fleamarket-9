@@ -8,6 +8,7 @@ import { LocationModule } from './location/location.module';
 import { ChatModule } from './chat/chat.module';
 import { ConfigModule } from '@nestjs/config';
 import { DbModule } from './db/db.module';
+import { ImageModule } from './image/image.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { DbModule } from './db/db.module';
     LocationModule,
     ChatModule,
     DbModule,
+    ImageModule,
   ],
   controllers: [],
   providers: [AppService],
