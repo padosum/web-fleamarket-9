@@ -113,6 +113,23 @@ export class ItemController {
   }
 
   @ApiOperation({
+    summary: '관심목록 아이템 조회 API',
+    description: '관심목록 아이템을 조회한다.',
+  })
+  @ApiResponse({
+    type: [FindItemsDto],
+    description: 'success',
+    status: 200,
+  })
+  @UseGuards(AuthenticatedGuard)
+  @Get('/liked')
+  async findLikedItems(@Req() req: any): Promise<FindItemsDto[]> {
+    const userIdx = req.user.idx;
+
+    return this.itemService.findLikedItems(userIdx);
+  }
+
+  @ApiOperation({
     summary: 'item 조회 API',
     description: '특정 item을 조회한다.',
   })

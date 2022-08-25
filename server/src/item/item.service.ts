@@ -157,6 +157,69 @@ export class ItemService {
     }
   }
 
+  async findLikedItems(userIdx?: number): Promise<FindItemsDto[]> {
+    try {
+      // 내가 좋아요 한 아이템 목록들
+      const likedItemSql = `
+        SELECT *
+        FROM USER_LIKE_ITEM
+        WHERE 
+          userId = ${userIdx}
+      `;
+      const [likedItems] = await this.conn.query(likedItemSql);
+
+      const result: FindItemsDto[] = [];
+      const sql = `
+      SELECT 
+        * 
+      FROM ITEM
+      WHERE
+      idx in (${[0, ...(likedItems as any[]).map((item) => item.itemId)]})
+      `;
+
+      const [queryRes] = (await this.conn.query(sql)) as any[];
+
+      for (const item of queryRes) {
+        let isLike = false;
+        if (userIdx) {
+          // 내가 좋아요 했는지 확인
+          const isLikedSql = `
+            SELECT 
+              count(idx) as count 
+            FROM USER_LIKE_ITEM 
+            WHERE 
+              itemId = ${item.idx} AND
+              userId = ${userIdx}
+          `;
+
+          const [isLikeRes] = await this.conn.query(isLikedSql);
+
+          if (isLikeRes[0].count > 0) isLike = true;
+        }
+
+        result.push({
+          idx: item.idx,
+          title: item.title,
+          chatRoomCount: 0,
+          likeCount: item.likeCount,
+          viewCount: item.viewCount,
+          image: item.images,
+          isLike,
+          location: item.code,
+          updatedAt: item.updatedAt,
+          price: item.price,
+        });
+      }
+
+      return result;
+    } catch (err) {
+      throw new HttpException(
+        '아이템 조회 중 에러가 발생했습니다.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
   async findItemDetail(
     id: number,
   ): Promise<GetItemResponseSuccessDto | GetItemResponseFailDto> {
