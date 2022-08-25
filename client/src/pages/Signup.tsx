@@ -1,27 +1,57 @@
 import axios from 'axios';
-import { useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { BackHeader } from '../components/Header/BackHeader';
 import styled from 'styled-components';
-import { TextInput } from '../components/TextInput';
 import { Spacing } from '../components/Spacing';
 import { Button } from '../components/Button';
+import Form from '../context/FormContext';
+import Field from '../components/Form/Field';
+import ErrorMessage from '../components/Form/ErrorMessage';
+
+type InputValue = {
+  [key: string]: string;
+};
+
+const isValidId = (inputId: string) => {
+  var regExp = /^[a-z]+[a-z0-9]{5,19}$/g;
+
+  return regExp.test(inputId);
+};
+
+const validate = ({ id, password, name }: InputValue): InputValue => {
+  const errors = {
+    id: '',
+    password: '',
+    name: '',
+  };
+
+  if (!id) {
+    errors.id = '아이디를 입력하세요';
+  }
+  if (!password) {
+    errors.password = '비밀번호를 입력하세요';
+  }
+  if (!name) {
+    errors.name = '이름을 입력하세요';
+  }
+
+  if (!isValidId(id)) {
+    errors.id = '아이디는 영문, 숫자 조합 6자 이상 20자이하여야 합니다.';
+  }
+
+  return errors;
+};
+
 export const Signup = () => {
   const navigate = useNavigate();
   const { login, isLoggedIn, user, logout } = useAuthContext('Login');
 
-  const [formValue, setFormValue] = useState({
-    id: '',
-    password: '',
-  });
-
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
+  const handleSubmit = async (values: InputValue) => {
     try {
       const { data } = await axios.post(
-        '/api/auth/login',
-        { id: formValue.id, password: formValue.password },
+        '/api/users',
+        { id: values.id, password: values.password, name: values.name },
         {
           headers: {
             'Content-Type': 'application/json',
@@ -29,17 +59,28 @@ export const Signup = () => {
           },
         },
       );
-      login(data);
-      navigate('/');
+
+      if (data.message) {
+        alert(data.message);
+        return;
+      }
+
+      const { data: loginResponse } = await axios.post(
+        '/api/auth/login',
+        { id: values.id, password: values.password },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+        },
+      );
+
+      login(loginResponse);
+      navigate('/home');
     } catch (err) {
-      console.log(err);
+      alert(err);
     }
-  };
-  const handleChange = (event: any) => {
-    setFormValue({
-      ...formValue,
-      [event.target.name]: event.target.value,
-    });
   };
 
   return (
@@ -55,28 +96,39 @@ export const Signup = () => {
         <Title>우아 마켙</Title>
       </TitleWrapper>
       <FormWrapper>
-        <form onSubmit={handleSubmit}>
+        <Form
+          initialValues={{ id: '', password: '', name: '' }}
+          validate={validate}
+          onSubmit={handleSubmit}
+        >
           아이디
-          <TextInput
-            placeholder="아이디를 입력하세요"
+          <Field
             name="id"
-            value={formValue.id}
-            onChange={handleChange}
-            height={'40'}
-          ></TextInput>
+            placeholder="영문, 숫자 조합 6자 이상 20자 이하"
+            autocomplete="off"
+          ></Field>
+          <ErrorMessage name="id" />
           <Spacing height={20}></Spacing>
           비밀번호
-          <TextInput
+          <Field
             type="password"
             name="password"
             placeholder="비밀번호를 입력하세요"
-            value={formValue.password}
-            onChange={handleChange}
-            height={'40'}
-          ></TextInput>
+            autocomplete="off"
+          ></Field>
+          <ErrorMessage name="password" />
+          <Spacing height={20}></Spacing>
+          이름
+          <Field
+            type="text"
+            name="name"
+            placeholder="이름을 입력하세요"
+            autocomplete="off"
+          ></Field>
+          <ErrorMessage name="name" />
           <Spacing height={20}></Spacing>
           <Button>회원가입</Button>
-        </form>
+        </Form>
       </FormWrapper>
     </LoginWrapper>
   );

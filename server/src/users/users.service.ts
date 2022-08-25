@@ -41,12 +41,14 @@ export class UsersService {
 
       return {
         idx: insertRes.insertId,
+        id,
         name,
         message: null,
       };
     } catch (err) {
       return {
         idx: null,
+        id: null,
         name: null,
         message: err,
       };

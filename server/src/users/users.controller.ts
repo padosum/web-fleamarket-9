@@ -19,6 +19,7 @@ import {
   GetUserResponseSuccessDto,
 } from './dto/get-user-response.dto';
 import { AuthenticatedGuard } from 'src/auth/guard/authenticated.guard';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('users')
 @ApiTags('Users API')

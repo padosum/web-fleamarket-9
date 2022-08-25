@@ -1,32 +1,47 @@
 import axios from 'axios';
-import { useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { BackHeader } from '../components/Header/BackHeader';
 import { colors } from '../components/Color';
 import styled from 'styled-components';
-import { TextInput } from '../components/TextInput';
 import { Spacing } from '../components/Spacing';
 import { Button } from '../components/Button';
 import { Icon } from '../components/Icon';
 import { TypoGraphy } from '../components/TypoGraphy';
+import Form from '../context/FormContext';
+import ErrorMessage from '../components/Form/ErrorMessage';
+import Field from '../components/Form/Field';
+
+type InputValue = {
+  [key: string]: string;
+};
 
 export const Login = () => {
   const navigate = useNavigate();
   const GITHUB_LOGIN_URL = `${process.env.REACT_APP_DATA_API}api/auth/github`;
   const { login } = useAuthContext('Login');
 
-  const [formValue, setFormValue] = useState({
-    id: '',
-    password: '',
-  });
+  const validate = ({ id, password }: InputValue): InputValue => {
+    const errors = {
+      id: '',
+      password: '',
+    };
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
+    if (!id) {
+      errors.id = '아이디를 입력하세요';
+    }
+    if (!password) {
+      errors.password = '비밀번호를 입력하세요';
+    }
+
+    return errors;
+  };
+
+  const handleSubmit = async (values: InputValue) => {
     try {
       const { data } = await axios.post(
         '/api/auth/login',
-        { id: formValue.id, password: formValue.password },
+        { id: values.id, password: values.password },
         {
           headers: {
             'Content-Type': 'application/json',
@@ -35,16 +50,10 @@ export const Login = () => {
         },
       );
       login(data);
-      navigate('/');
+      navigate('/home');
     } catch (err) {
-      console.log(err);
+      alert('가입 정보가 없습니다.');
     }
-  };
-  const handleChange = (event: any) => {
-    setFormValue({
-      ...formValue,
-      [event.target.name]: event.target.value,
-    });
   };
 
   return (
@@ -60,26 +69,23 @@ export const Login = () => {
         <Title>우아 마켙</Title>
       </TitleWrapper>
       <FormWrapper>
-        <form onSubmit={handleSubmit}>
-          <TextInput
-            placeholder="아이디를 입력하세요"
-            name="id"
-            value={formValue.id}
-            onChange={handleChange}
-            height={'40'}
-          ></TextInput>
+        <Form
+          initialValues={{ id: '', password: '' }}
+          validate={validate}
+          onSubmit={handleSubmit}
+        >
+          <Field name="id" placeholder="아이디를 입력하세요"></Field>
+          <ErrorMessage name="id" />
           <Spacing height={20}></Spacing>
-          <TextInput
+          <Field
             type="password"
             name="password"
             placeholder="비밀번호를 입력하세요"
-            value={formValue.password}
-            onChange={handleChange}
-            height={'40'}
-          ></TextInput>
+          ></Field>
+          <ErrorMessage name="password" />
           <Spacing height={20}></Spacing>
           <Button>로그인</Button>
-        </form>
+        </Form>
         <Spacing height={20}></Spacing>
         <GithubLoginButton href={GITHUB_LOGIN_URL}>
           <Icon name="iconGithub" fill="white" />

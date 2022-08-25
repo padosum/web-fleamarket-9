@@ -9,6 +9,13 @@ export class CreateUserResponseSuccessDto {
   readonly idx: number;
 
   @ApiProperty({
+    example: 'react',
+    description: 'user id',
+    required: true,
+  })
+  readonly id: string;
+
+  @ApiProperty({
     example: '홍길동',
     description: 'user 이름',
     required: true,

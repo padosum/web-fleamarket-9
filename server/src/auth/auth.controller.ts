@@ -48,7 +48,7 @@ export class AuthController {
   login(
     @Body() loginUserDto: LoginUserDto,
     @Req() req: Request,
-    @Res() res: Response,
+    @Res({ passthrough: true }) res: Response,
   ) {
     res.status(HttpStatus.OK).json(req.user);
   }
@@ -84,6 +84,6 @@ export class AuthController {
     @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
   ) {
-    res.redirect(this.configService.get('CLIENT_HOST'));
+    res.redirect(`${this.configService.get('CLIENT_HOST')}/home`);
   }
 }
