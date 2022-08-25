@@ -42,6 +42,7 @@ export class LocationController {
     name: 'name',
     description: '동네 이름',
     example: '방이동',
+    required: false,
   })
   @ApiResponse({
     type: [FindLocationResponse],

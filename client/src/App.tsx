@@ -1,5 +1,15 @@
 import React from 'react';
-import { Components, Home, Login, Main, Signup, User, Write } from './pages';
+import {
+  Components,
+  Home,
+  Login,
+  Main,
+  Signup,
+  User,
+  Write,
+  Location,
+  LocationSearch,
+} from './pages';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { PageLayout } from './components/PageLayout';
 import './styles/App.scss';
@@ -16,6 +26,10 @@ function App() {
         {!isLoggedIn && <Route path="/login" element={<Login />} />}
         {isLoggedIn && <Route path="/user" element={<User />} />}
         {!isLoggedIn && <Route path="/signup" element={<Signup />} />}
+        {isLoggedIn && <Route path="/location" element={<Location />} />}
+        {isLoggedIn && (
+          <Route path="/location/search" element={<LocationSearch />} />
+        )}
         <Route path="/home" element={<Home />} />
         <Route path="/item/write" element={<Write />} />
         <Route path="*" element={<Navigate replace to="/" />} />

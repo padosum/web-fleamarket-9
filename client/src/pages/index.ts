@@ -5,5 +5,17 @@ import { Main } from './Main';
 import { User } from './User';
 import { Signup } from './Signup';
 import { Write } from './Write';
+import { Location } from './Location';
+import { LocationSearch } from './LocationSearch';
 
-export { Login, Home, Components, Main, User, Signup, Write };
+export {
+  Login,
+  Home,
+  Components,
+  Main,
+  User,
+  Signup,
+  Write,
+  Location,
+  LocationSearch,
+};

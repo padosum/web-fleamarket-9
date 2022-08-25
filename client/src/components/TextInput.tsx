@@ -80,6 +80,12 @@ const TextArea = styled.textarea`
   }
 `;
 
+const IconInput = styled(InputCommon)`
+  padding: 10px 16px 8px 36px;
+  font-size: 16px;
+  line-height: 22px;
+`;
+
 export const TextInput = (
   props: React.InputHTMLAttributes<HTMLInputElement>,
 ) => {
@@ -115,5 +121,13 @@ TextInput.TextArea = (
     <MediumInputContainer height={props.height} width={props.width}>
       <TextArea type="text" {...props} />
     </MediumInputContainer>
+  );
+};
+
+TextInput.Icon = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
+  return (
+    <LargeInputContainer height={props.height} width={props.width}>
+      <IconInput type="text" {...props} />
+    </LargeInputContainer>
   );
 };

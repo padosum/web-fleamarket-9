@@ -15,3 +15,4 @@ export { ReactComponent as iconMenu } from '../assets/icon/menu.svg';
 export { ReactComponent as iconDown } from '../assets/icon/chevron-down.svg';
 export { ReactComponent as iconMap } from '../assets/icon/map-pin.svg';
 export { ReactComponent as iconGithub } from '../assets/icon/github.svg';
+export { ReactComponent as iconSearch } from '../assets/icon/search.svg';
