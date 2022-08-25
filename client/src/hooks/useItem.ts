@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-type ItemTypes = {
+export type ItemTypes = {
   idx: number;
   title: string;
   chatRoomCount: number;

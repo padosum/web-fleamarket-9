@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useIsLoggedIn } from '../../hooks/useIsLoggedIn';
 import { colors } from '../Color';
 import { Icon } from '../Icon';
 import { HeaderWrapper } from './HeaderWrapper';
@@ -56,6 +57,8 @@ export const MainHeader = ({
   onClickUser,
   onClickMenu,
 }: Props) => {
+  const isLoggedIn = useIsLoggedIn();
+
   return (
     <HeaderWrapper color={color} rad={true}>
       <LeftWrapper onClick={onClickCategory}>
@@ -68,9 +71,11 @@ export const MainHeader = ({
         <div onClick={onClickUser}>
           <Icon name="iconUser" width={24} height={24} color="white"></Icon>
         </div>
-        <div onClick={onClickMenu}>
-          <Icon name="iconMenu" width={24} height={24} color="white"></Icon>
-        </div>
+        {isLoggedIn && (
+          <div onClick={onClickMenu}>
+            <Icon name="iconMenu" width={24} height={24} color="white"></Icon>
+          </div>
+        )}
       </RightWrapper>
     </HeaderWrapper>
   );
