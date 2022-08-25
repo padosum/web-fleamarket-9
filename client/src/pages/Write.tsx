@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import React, { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { CategoryButton } from '../components/Category/CategoryButton';
 import { colors } from '../components/Color';
@@ -10,6 +10,7 @@ import { LocationBar } from '../components/LocationBar';
 import { Spacing } from '../components/Spacing';
 import { TextInput } from '../components/TextInput';
 import { useCategory } from '../hooks/useCategory';
+import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
 
 const WriteWrapper = styled.div`
   width: 100%;
@@ -73,6 +74,7 @@ export const Write = () => {
     category: 0,
   });
 
+  const isLoggedIn = useIsLoggedIn();
   const fileInputRef = useRef<HTMLInputElement>(null!);
   const { category } = useCategory();
 
@@ -153,7 +155,7 @@ export const Write = () => {
         images: info.imgUrls,
         price: +info.price.replace(/,/g, ''),
         contents: info.contents,
-        code: '110101',
+        code: info.location,
         category: info.category,
       });
 
@@ -168,6 +170,7 @@ export const Write = () => {
 
   return (
     <form onSubmit={onSubmit}>
+      {!isLoggedIn && <Navigate to="/home" replace />}
       <WriteWrapper>
         <HeaderWrapper>
           <WriteHeader

@@ -9,6 +9,7 @@ import {
   Query,
   UseGuards,
   Request,
+  Req,
 } from '@nestjs/common';
 import { ItemService } from './item.service';
 import { CreateItemDto } from './dto/create-item.dto';
@@ -68,8 +69,8 @@ export class ItemController {
   }
 
   @ApiOperation({
-    summary: 'item 전체 조회 API',
-    description: 'item을 전체 조회한다.',
+    summary: '내 아이템 제외 조회 API',
+    description: '내 아이템을 제외한 item을 전체 조회한다.',
   })
   @ApiResponse({
     type: [FindItemsDto],
@@ -85,11 +86,30 @@ export class ItemController {
     required: false,
   })
   @Get()
-  async findItems(
+  async findOtherItems(
+    @Req() req: any,
     @Query('categoryId') categoryId?: number,
     @Query('locationId') locationId?: number,
   ): Promise<FindItemsDto[]> {
-    return this.itemService.findItems(categoryId, locationId);
+    const userIdx = req.user?.idx;
+    return this.itemService.findOtherItems(userIdx, categoryId, locationId);
+  }
+
+  @ApiOperation({
+    summary: '내 아이템 조회 API',
+    description: '내 아이템을 조회한다.',
+  })
+  @ApiResponse({
+    type: [FindItemsDto],
+    description: 'success',
+    status: 200,
+  })
+  @UseGuards(AuthenticatedGuard)
+  @Get('/me')
+  async findMyItems(@Req() req: any): Promise<FindItemsDto[]> {
+    const userIdx = req.user.idx;
+
+    return this.itemService.findMyItems(userIdx);
   }
 
   @ApiOperation({

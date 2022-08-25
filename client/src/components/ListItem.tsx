@@ -5,6 +5,8 @@ import { Icon } from './Icon';
 import { ImgBox } from './ImgBox';
 import * as icons from './iconPath';
 import { Dropdown } from './Dropdown';
+import moment from 'moment';
+import { comma } from '../utils/util';
 
 interface Props {
   title: string;
@@ -14,6 +16,7 @@ interface Props {
   messageCnt: number;
   likeCnt: number;
   type: string;
+  image: string;
 }
 
 interface DropdownItem {
@@ -35,6 +38,7 @@ export const ListItem = ({
   messageCnt,
   likeCnt,
   type,
+  image,
 }: Props) => {
   const [like, setLike] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
@@ -69,14 +73,14 @@ export const ListItem = ({
   return (
     <ItemWrapper>
       <ImgWrapper>
-        <ImgBox.Large></ImgBox.Large>
+        <ImgBox.Large src={image} />
       </ImgWrapper>
       <ItemDescription>
         <ItemTitleText>{title}</ItemTitleText>
         <LocationTimestampStyle>
-          {location}·{timestamp}
+          {location}·{moment(timestamp).format('YYYY-MM-DD')}
         </LocationTimestampStyle>
-        <PriceStyle>{price.toLocaleString()}원</PriceStyle>
+        <PriceStyle>{comma(price + '')}원</PriceStyle>
       </ItemDescription>
       <ButtonWrapper onClick={handleClickAction}>
         {type === 'sales' ? (

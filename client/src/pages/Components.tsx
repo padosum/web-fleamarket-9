@@ -126,6 +126,7 @@ const products = [
     price: 59000,
     likeCnt: 1,
     messageCnt: 1,
+    image: '',
   },
   {
     idx: 2,
@@ -135,6 +136,7 @@ const products = [
     price: 59000,
     likeCnt: 1,
     messageCnt: 1,
+    image: '',
   },
   {
     idx: 3,
@@ -144,6 +146,7 @@ const products = [
     price: 59000,
     likeCnt: 0,
     messageCnt: 0,
+    image: '',
   },
 ];
 

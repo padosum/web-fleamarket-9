@@ -60,9 +60,10 @@ export class ItemService {
     }
   }
 
-  async findItems(
-    categoryId: number,
-    locationId: number,
+  async findOtherItems(
+    userIdx?: number,
+    categoryId?: number,
+    locationId?: number,
   ): Promise<FindItemsDto[]> {
     try {
       const result: FindItemsDto[] = [];
@@ -73,18 +74,58 @@ export class ItemService {
       WHERE 1=1
       ${categoryId ? `AND category = ${categoryId}` : ''}
       ${locationId ? `AND code = "${locationId}"` : ''}
+      ${userIdx ? `AND seller != ${userIdx}` : ''}
       `;
 
       const [queryRes] = (await this.conn.query(sql)) as any[];
 
       queryRes.forEach((item) => {
         result.push({
+          idx: item.idx,
           title: item.title,
           chatRoomCount: 0,
+          likeCount: 0,
           image: item.images,
           isLike: false,
           location: item.code,
           updatedAt: item.updatedAt,
+          price: item.price,
+        });
+      });
+
+      return result;
+    } catch (err) {
+      throw new HttpException(
+        '아이템 조회 중 에러가 발생했습니다.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  async findMyItems(userIdx?: number): Promise<FindItemsDto[]> {
+    try {
+      const result: FindItemsDto[] = [];
+      const sql = `
+      SELECT 
+        * 
+      FROM ITEM
+      WHERE
+      seller = ${userIdx}
+      `;
+
+      const [queryRes] = (await this.conn.query(sql)) as any[];
+
+      queryRes.forEach((item) => {
+        result.push({
+          idx: item.idx,
+          title: item.title,
+          chatRoomCount: 0,
+          likeCount: 0,
+          image: item.images,
+          isLike: false,
+          location: item.code,
+          updatedAt: item.updatedAt,
+          price: item.price,
         });
       });
 

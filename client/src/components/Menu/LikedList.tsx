@@ -26,6 +26,7 @@ const products = [
     price: 59000,
     likeCnt: 1,
     messageCnt: 1,
+    image: '',
   },
   {
     idx: 2,
@@ -35,6 +36,7 @@ const products = [
     price: 59000,
     likeCnt: 1,
     messageCnt: 1,
+    image: '',
   },
   {
     idx: 3,
@@ -44,6 +46,7 @@ const products = [
     price: 59000,
     likeCnt: 0,
     messageCnt: 0,
+    image: '',
   },
   {
     idx: 4,
@@ -53,6 +56,7 @@ const products = [
     price: 59000,
     likeCnt: 0,
     messageCnt: 0,
+    image: '',
   },
   {
     idx: 5,
@@ -62,6 +66,7 @@ const products = [
     price: 59000,
     likeCnt: 0,
     messageCnt: 0,
+    image: '',
   },
   {
     idx: 6,
@@ -71,6 +76,7 @@ const products = [
     price: 59000,
     likeCnt: 0,
     messageCnt: 0,
+    image: '',
   },
   {
     idx: 7,
@@ -80,6 +86,7 @@ const products = [
     price: 59000,
     likeCnt: 0,
     messageCnt: 0,
+    image: '',
   },
   {
     idx: 8,
@@ -89,6 +96,7 @@ const products = [
     price: 59000,
     likeCnt: 0,
     messageCnt: 0,
+    image: '',
   },
   {
     idx: 9,
@@ -98,6 +106,7 @@ const products = [
     price: 59000,
     likeCnt: 0,
     messageCnt: 0,
+    image: '',
   },
 ];
 

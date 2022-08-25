@@ -2,6 +2,13 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class FindItemsDto {
   @ApiProperty({
+    example: 1,
+    description: 'item 고유번호',
+    required: true,
+  })
+  readonly idx: number;
+
+  @ApiProperty({
     example: 'http://image.com',
     description: 'item image url',
     required: true,
@@ -37,9 +44,23 @@ export class FindItemsDto {
   readonly isLike: boolean;
 
   @ApiProperty({
+    example: true,
+    description: 'item like 수',
+    required: true,
+  })
+  readonly likeCount: number;
+
+  @ApiProperty({
     example: 1,
     description: 'item 채팅 룸 수',
     required: true,
   })
   readonly chatRoomCount: number;
+
+  @ApiProperty({
+    example: 100000,
+    description: 'item 가격',
+    required: true,
+  })
+  readonly price: number;
 }

@@ -8,6 +8,7 @@ interface Item {
   price: number;
   messageCnt: number;
   likeCnt: number;
+  image: string;
 }
 
 interface Props {

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useMemo, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { CategorySlide } from '../components/Category/CategorySlide';
 import { Dropdown } from '../components/Dropdown';
@@ -8,6 +8,7 @@ import { MainHeader } from '../components/Header/MainHeader';
 import { MenuSlide } from '../components/Menu/MenuSlide';
 import { ProductList } from '../components/ProductList';
 import { useAuthContext } from '../context/AuthContext';
+import { useItem } from '../hooks/useItem';
 
 const HomeWrapper = styled.div`
   width: 100%;
@@ -35,96 +36,35 @@ const location = [
   { idx: 99999, name: '내 동네 설정하기' },
 ];
 
-const products = [
-  {
-    idx: 1,
-    title: '파랑 선풍기',
-    location: '방이동',
-    timestamp: '3시간 전',
-    price: 59000,
-    likeCnt: 1,
-    messageCnt: 1,
-  },
-  {
-    idx: 2,
-    title: '카멜 브라운 스카프 팝니당당',
-    location: '방이동',
-    timestamp: '3시간 전',
-    price: 59000,
-    likeCnt: 1,
-    messageCnt: 1,
-  },
-  {
-    idx: 3,
-    title: '아이폰',
-    location: '방이동',
-    timestamp: '3시간 전',
-    price: 59000,
-    likeCnt: 0,
-    messageCnt: 0,
-  },
-  {
-    idx: 4,
-    title: '신발',
-    location: '방이동',
-    timestamp: '3시간 전',
-    price: 59000,
-    likeCnt: 0,
-    messageCnt: 0,
-  },
-  {
-    idx: 5,
-    title: '아이폰',
-    location: '방이동',
-    timestamp: '3시간 전',
-    price: 59000,
-    likeCnt: 0,
-    messageCnt: 0,
-  },
-  {
-    idx: 6,
-    title: '아이폰',
-    location: '방이동',
-    timestamp: '3시간 전',
-    price: 59000,
-    likeCnt: 0,
-    messageCnt: 0,
-  },
-  {
-    idx: 7,
-    title: '아이폰',
-    location: '방이동',
-    timestamp: '3시간 전',
-    price: 59000,
-    likeCnt: 0,
-    messageCnt: 0,
-  },
-  {
-    idx: 8,
-    title: '아이폰',
-    location: '방이동',
-    timestamp: '3시간 전',
-    price: 59000,
-    likeCnt: 0,
-    messageCnt: 0,
-  },
-  {
-    idx: 9,
-    title: '아이폰',
-    location: '방이동',
-    timestamp: '3시간 전',
-    price: 59000,
-    likeCnt: 0,
-    messageCnt: 0,
-  },
-];
-
 export const Home = () => {
   const [openLocation, setOpenLocation] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const { isLoggedIn } = useAuthContext('Login');
   const navigate = useNavigate();
+  const windowLocation = useLocation();
+
+  const [categoryId, locationId] = useMemo(() => {
+    const urlParams = new URLSearchParams(windowLocation.search);
+    return ['category', 'location'].map((key) => urlParams.get(key));
+  }, [windowLocation.search]);
+
+  const { items } = useItem(categoryId!, locationId!);
+
+  const products = useMemo(() => {
+    return items.map((item) => {
+      return {
+        idx: item.idx,
+        title: item.title,
+        location: item.location,
+        timestamp: item.updatedAt,
+        price: item.price,
+        likeCnt: item.likeCount,
+        messageCnt: item.chatRoomCount,
+        image: item.image,
+      };
+    });
+  }, [items]);
 
   const handleToggleCategory = () => {
     setOpenCategory((prevOpenCategory) => !prevOpenCategory);
@@ -169,9 +109,11 @@ export const Home = () => {
       <ProductWrapper>
         <ProductList items={products} type="shopping" />
       </ProductWrapper>
-      <FabButtonWrapper>
-        <Fab onClick={() => navigate('/item/write')} />
-      </FabButtonWrapper>
+      {isLoggedIn && (
+        <FabButtonWrapper>
+          <Fab onClick={() => navigate('/item/write')} />
+        </FabButtonWrapper>
+      )}
     </HomeWrapper>
   );
 };
