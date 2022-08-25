@@ -27,6 +27,7 @@ const products = [
     likeCnt: 1,
     messageCnt: 1,
     image: '',
+    isLiked: false,
   },
   {
     idx: 2,
@@ -37,6 +38,7 @@ const products = [
     likeCnt: 1,
     messageCnt: 1,
     image: '',
+    isLiked: false,
   },
   {
     idx: 3,
@@ -47,6 +49,7 @@ const products = [
     likeCnt: 0,
     messageCnt: 0,
     image: '',
+    isLiked: false,
   },
   {
     idx: 4,
@@ -57,6 +60,7 @@ const products = [
     likeCnt: 0,
     messageCnt: 0,
     image: '',
+    isLiked: false,
   },
   {
     idx: 5,
@@ -67,6 +71,7 @@ const products = [
     likeCnt: 0,
     messageCnt: 0,
     image: '',
+    isLiked: false,
   },
   {
     idx: 6,
@@ -77,6 +82,7 @@ const products = [
     likeCnt: 0,
     messageCnt: 0,
     image: '',
+    isLiked: false,
   },
   {
     idx: 7,
@@ -87,6 +93,7 @@ const products = [
     likeCnt: 0,
     messageCnt: 0,
     image: '',
+    isLiked: false,
   },
   {
     idx: 8,
@@ -97,6 +104,7 @@ const products = [
     likeCnt: 0,
     messageCnt: 0,
     image: '',
+    isLiked: false,
   },
   {
     idx: 9,
@@ -107,16 +115,22 @@ const products = [
     likeCnt: 0,
     messageCnt: 0,
     image: '',
+    isLiked: false,
   },
 ];
 
 export const LikedList = () => {
   return (
     <LikedListWrapper>
-      <ListWrapper>
-        <ProductList items={products} type="shopping" />
-      </ListWrapper>
-      {/* <EmptyText>관심을 표시한 상품이 없습니다.</EmptyText> */}
+      {products.length > 0 && (
+        <ListWrapper>
+          <ProductList items={products} type="shopping" />
+        </ListWrapper>
+      )}
+
+      {products.length === 0 && (
+        <EmptyText>관심을 표시한 상품이 없습니다.</EmptyText>
+      )}
     </LikedListWrapper>
   );
 };

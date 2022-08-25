@@ -58,6 +58,13 @@ export class FindItemsDto {
   readonly chatRoomCount: number;
 
   @ApiProperty({
+    example: 1,
+    description: 'item 조회수',
+    required: true,
+  })
+  readonly viewCount: number;
+
+  @ApiProperty({
     example: 100000,
     description: 'item 가격',
     required: true,

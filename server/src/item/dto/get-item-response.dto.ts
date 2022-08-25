@@ -79,6 +79,13 @@ export class GetItemResponseSuccessDto {
   readonly viewCount: number;
 
   @ApiProperty({
+    example: 10,
+    description: 'item 좋아요 수',
+    required: true,
+  })
+  readonly likeCount: number;
+
+  @ApiProperty({
     example: 1,
     description: 'item 상태',
     required: true,

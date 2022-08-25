@@ -34,16 +34,20 @@ export const SalesList = () => {
         likeCnt: item.likeCount,
         messageCnt: item.chatRoomCount,
         image: item.image,
+        isLiked: item.isLike,
       };
     });
   }, [items]);
 
   return (
     <SalesListWrapper>
-      <ListWrapper>
-        <ProductList items={products} type="sales" />
-      </ListWrapper>
-      {/* <EmptyText>등록한 상품이 없습니다.</EmptyText> */}
+      {products.length > 0 && (
+        <ListWrapper>
+          <ProductList items={products} type="sales" />
+        </ListWrapper>
+      )}
+
+      {products.length === 0 && <EmptyText>등록한 상품이 없습니다.</EmptyText>}
     </SalesListWrapper>
   );
 };

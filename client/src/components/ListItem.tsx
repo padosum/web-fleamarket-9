@@ -7,8 +7,12 @@ import * as icons from './iconPath';
 import { Dropdown } from './Dropdown';
 import moment from 'moment';
 import { comma } from '../utils/util';
+import axios from 'axios';
+import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
+  idx: number;
   title: string;
   location: string;
   timestamp: string;
@@ -17,6 +21,7 @@ interface Props {
   likeCnt: number;
   type: string;
   image: string;
+  isLiked: boolean;
 }
 
 interface DropdownItem {
@@ -31,6 +36,7 @@ const dropdownItems: DropdownItem[] = [
 ];
 
 export const ListItem = ({
+  idx,
   title,
   location,
   timestamp,
@@ -39,12 +45,26 @@ export const ListItem = ({
   likeCnt,
   type,
   image,
+  isLiked,
 }: Props) => {
-  const [like, setLike] = useState(false);
+  const [like, setLike] = useState(isLiked);
   const [openMenu, setOpenMenu] = useState(false);
+  const isLoggedIn = useIsLoggedIn();
+  const navigate = useNavigate();
 
-  const handleClickAction = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleClickAction = async (e: React.MouseEvent<HTMLDivElement>) => {
     if (type === 'shopping') {
+      if (!isLoggedIn) {
+        if (window.confirm('로그인 이후에 가능합니다.\n로그인 하시겠습니까?')) {
+          navigate('/login');
+        }
+        return;
+      }
+      if (like) {
+        axios.patch(`/api/item/unlike/${idx}`);
+      } else {
+        axios.patch(`/api/item/like/${idx}`);
+      }
       setLike((prevLike) => !prevLike);
       return;
     }

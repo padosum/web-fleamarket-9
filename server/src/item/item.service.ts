@@ -79,19 +79,37 @@ export class ItemService {
 
       const [queryRes] = (await this.conn.query(sql)) as any[];
 
-      queryRes.forEach((item) => {
+      for (const item of queryRes) {
+        let isLike = false;
+        if (userIdx) {
+          // 내가 좋아요 했는지 확인
+          const isLikedSql = `
+            SELECT 
+              count(idx) as count 
+            FROM USER_LIKE_ITEM 
+            WHERE 
+              itemId = ${item.idx} AND
+              userId = ${userIdx}
+          `;
+
+          const [isLikeRes] = await this.conn.query(isLikedSql);
+
+          if (isLikeRes[0].count > 0) isLike = true;
+        }
+
         result.push({
           idx: item.idx,
           title: item.title,
           chatRoomCount: 0,
-          likeCount: 0,
+          likeCount: item.likeCount,
+          viewCount: item.viewCount,
           image: item.images,
-          isLike: false,
+          isLike,
           location: item.code,
           updatedAt: item.updatedAt,
           price: item.price,
         });
-      });
+      }
 
       return result;
     } catch (err) {
@@ -120,7 +138,8 @@ export class ItemService {
           idx: item.idx,
           title: item.title,
           chatRoomCount: 0,
-          likeCount: 0,
+          likeCount: item.likeCount,
+          viewCount: item.viewCount,
           image: item.images,
           isLike: false,
           location: item.code,
@@ -151,6 +170,7 @@ export class ItemService {
           updatedAt,
           title,
           contents,
+          IFNULL(likeCount, 0) as likeCount,
           price,
           seller,
           code as location,
@@ -166,6 +186,16 @@ export class ItemService {
 
       if (queryRes.length === 0) throw '아이템을 찾을 수 없습니다.';
 
+      // 조회수 업데이트 쿼리
+      const viewCountUpdateSql = `
+        UPDATE ITEM
+        SET
+          viewCount = ${queryRes[0].viewCount + 1}
+        WHERE
+          idx = ${id}
+      `;
+      await this.conn.query(viewCountUpdateSql);
+
       const item = queryRes[0];
       const res: GetItemResponseSuccessDto = {
         category: item.category,
@@ -174,6 +204,7 @@ export class ItemService {
         images: item.images,
         isLike: false,
         location: item.location,
+        likeCount: item.likeCount,
         price: item.price,
         seller: item.seller,
         status: item.status,
@@ -302,6 +333,22 @@ export class ItemService {
       const [res]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
         await this.conn.query(sql);
 
+      // like Count + 1처리
+      // 기존 카운트
+      const itemDetail = (await this.findItemDetail(
+        id,
+      )) as GetItemResponseSuccessDto;
+
+      const itemUpdateSql = `
+        UPDATE ITEM
+          SET
+            likeCount = ${itemDetail.likeCount + 1}
+          WHERE
+            idx = ${id}
+      `;
+
+      await this.conn.query(itemUpdateSql);
+
       return { idx: res.insertId };
     } catch (err) {
       throw new HttpException(
@@ -322,6 +369,26 @@ export class ItemService {
       `;
 
       await this.conn.query(sql);
+
+      // like 개수 체크 쿼리
+      const checkLikeCountSql = `
+        SELECT 
+          count(idx) as count 
+        FROM USER_LIKE_ITEM 
+        WHERE 
+          itemId = ${id}
+      `;
+      const [res] = await this.conn.query(checkLikeCountSql);
+
+      // ITEM count 업데이트
+      const itemCountUpdateSql = `
+        UPDATE ITEM
+        SET
+          likeCount = ${res[0].count}
+        WHERE
+          idx = ${id}  
+      `;
+      await this.conn.query(itemCountUpdateSql);
 
       return { itemId: id, userId: userIdx };
     } catch (err) {

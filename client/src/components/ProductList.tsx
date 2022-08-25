@@ -9,6 +9,7 @@ interface Item {
   messageCnt: number;
   likeCnt: number;
   image: string;
+  isLiked: boolean;
 }
 
 interface Props {

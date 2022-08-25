@@ -62,6 +62,7 @@ export const Home = () => {
         likeCnt: item.likeCount,
         messageCnt: item.chatRoomCount,
         image: item.image,
+        isLiked: item.isLike,
       };
     });
   }, [items]);
