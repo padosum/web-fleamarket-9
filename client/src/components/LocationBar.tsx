@@ -9,6 +9,7 @@ const LocationBarWrapper = styled.div`
   display: flex;
   align-items: center;
   padding-left: 18px;
+  overflow: hidden;
 `;
 
 const LocationBarText = styled.span`

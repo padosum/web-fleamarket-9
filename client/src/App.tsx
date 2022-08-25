@@ -1,5 +1,5 @@
 import React from 'react';
-import { Components, Home, Login, Main, Signup, User } from './pages';
+import { Components, Home, Login, Main, Signup, User, Write } from './pages';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { PageLayout } from './components/PageLayout';
 import './styles/App.scss';
@@ -17,6 +17,7 @@ function App() {
         {isLoggedIn && <Route path="/user" element={<User />} />}
         {!isLoggedIn && <Route path="/signup" element={<Signup />} />}
         <Route path="/home" element={<Home />} />
+        <Route path="/item/write" element={<Write />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </PageLayout>

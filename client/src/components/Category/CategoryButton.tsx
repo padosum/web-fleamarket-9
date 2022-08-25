@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { colors } from '../Color';
 
@@ -8,6 +9,7 @@ interface Category {
 
 interface Props {
   categories: Category[];
+  initialCategory?: number;
   children?: React.ReactNode;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
@@ -48,7 +50,11 @@ const RadioButton = styled.input`
   }
 `;
 
-export const CategoryButton = ({ categories, onChange }: Props) => {
+export const CategoryButton = ({
+  initialCategory,
+  categories,
+  onChange,
+}: Props) => {
   return (
     <CategoryButtonWrapper>
       {categories.map(({ idx, name }) => {
@@ -60,6 +66,7 @@ export const CategoryButton = ({ categories, onChange }: Props) => {
               name="category"
               value={idx}
               onChange={onChange}
+              defaultChecked={initialCategory === idx}
             />
             <RadioLabel>{name}</RadioLabel>
           </label>

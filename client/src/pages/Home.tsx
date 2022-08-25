@@ -170,7 +170,7 @@ export const Home = () => {
         <ProductList items={products} type="shopping" />
       </ProductWrapper>
       <FabButtonWrapper>
-        <Fab />
+        <Fab onClick={() => navigate('/item/write')} />
       </FabButtonWrapper>
     </HomeWrapper>
   );

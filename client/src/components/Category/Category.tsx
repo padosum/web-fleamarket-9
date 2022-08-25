@@ -1,7 +1,6 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useCategory } from '../../hooks/useCategory';
 import { colors } from '../Color';
 import { ImgBox } from '../ImgBox';
 
@@ -10,20 +9,7 @@ export const Category = ({
 }: {
   toggleOpen: React.MouseEventHandler<HTMLDivElement>;
 }) => {
-  const [category, setCategory] = useState([]);
-
-  useEffect(() => {
-    const getCategories = async () => {
-      try {
-        const { data } = await axios.get('/api/category');
-        setCategory(data);
-      } catch (err) {
-      } finally {
-      }
-    };
-
-    getCategories();
-  }, []);
+  const { category } = useCategory();
 
   return (
     <CategoryContainer>

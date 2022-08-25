@@ -1,0 +1,250 @@
+import axios, { AxiosError } from 'axios';
+import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { CategoryButton } from '../components/Category/CategoryButton';
+import { colors } from '../components/Color';
+import { WriteHeader } from '../components/Header/WriteHeader';
+import { ImgButton } from '../components/ImgButton';
+import { LocationBar } from '../components/LocationBar';
+import { Spacing } from '../components/Spacing';
+import { TextInput } from '../components/TextInput';
+import { useCategory } from '../hooks/useCategory';
+
+const WriteWrapper = styled.div`
+  width: 100%;
+  max-width: 100%;
+
+  @supports (-webkit-touch-callout: none) {
+    max-height: -webkit-fill-available;
+  }
+
+  box-sizing: border-box;
+`;
+
+const HeaderWrapper = styled.div`
+  position: sticky;
+  width: 100%;
+  z-index: 9;
+  top: 0;
+  border-bottom: 1px solid ${colors.gray3};
+`;
+
+const BodyWrapper = styled.div`
+  padding: 0 16px;
+  box-sizing: border-box;
+`;
+
+const ImgWrap = styled.div`
+  display: flex;
+  padding: 24px 0;
+`;
+
+const HorizontalBar = styled.div`
+  height: 1px;
+  width: 100%;
+  background-color: ${colors.gray3};
+`;
+
+const HorizontalSpacing = styled.div<{ width: number }>`
+  width: ${({ width }) => `${width}px`};
+`;
+
+const LocationWrapper = styled.div`
+  height: 36px;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+`;
+
+const CategoryWrapper = styled.div`
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+`;
+
+export const Write = () => {
+  const [info, setInfo] = useState({
+    imgUrls: [] as string[],
+    title: '',
+    price: '',
+    contents: '',
+    location: '잠실',
+    category: 0,
+  });
+
+  const fileInputRef = useRef<HTMLInputElement>(null!);
+  const { category } = useCategory();
+
+  const onFileInputChange = async (
+    evt: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const files = evt.currentTarget.files;
+
+    if (files?.length) {
+      const img = files[0];
+      evt.currentTarget.value = '';
+      const formData = new FormData();
+      formData.append('file', img);
+      const res = await axios.post('/api/image', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      const { url } = res.data;
+
+      setInfo({ ...info, imgUrls: [...info.imgUrls, url] });
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const onInputTextChange = (
+    type: string,
+    evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    switch (type) {
+      case 'title':
+      case 'contents':
+        setInfo({ ...info, [type]: evt.target.value });
+        break;
+      case 'price':
+        setInfo({
+          ...info,
+          [type]: evt.target.value
+            .replace(/[^0-9]/g, '')
+            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ','),
+        });
+        break;
+      case 'category':
+        setInfo({ ...info, [type]: +evt.target.value });
+    }
+  };
+
+  const onImageAddClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const onImageDeleteClick = (url: string) => {
+    setInfo({
+      ...info,
+      imgUrls: info.imgUrls.filter((imgUrl) => imgUrl !== url),
+    });
+  };
+
+  const checkValidation = () => {
+    return !!(
+      info.imgUrls.length > 0 &&
+      info.title &&
+      info.price &&
+      info.contents &&
+      info.location &&
+      info.category > 0
+    );
+  };
+
+  const onSubmit = async (evt?: React.FormEvent) => {
+    evt?.preventDefault();
+
+    if (!checkValidation()) return;
+
+    try {
+      await axios.post('/api/item', {
+        title: info.title,
+        images: info.imgUrls,
+        price: +info.price.replace(/,/g, ''),
+        contents: info.contents,
+        code: '110101',
+        category: info.category,
+      });
+
+      alert('물품을 등록했습니다.');
+      navigate('/home');
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        alert(err!.response!.data.message);
+      }
+    }
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <WriteWrapper>
+        <HeaderWrapper>
+          <WriteHeader
+            title={'글쓰기'}
+            color={'white'}
+            active={checkValidation()}
+            onClickBack={() => navigate('/home')}
+            onClickCheck={() => onSubmit()}
+          />
+        </HeaderWrapper>
+
+        <input
+          type="file"
+          onChange={onFileInputChange}
+          ref={fileInputRef}
+          style={{ display: 'none' }}
+          accept="image/*"
+        />
+        <BodyWrapper>
+          <ImgWrap>
+            <ImgButton.Add onClick={onImageAddClick} text="0/10" />
+            {info.imgUrls.map((imgUrl) => {
+              return [
+                <HorizontalSpacing key={'space' + imgUrl} width={16} />,
+                <ImgButton.Delete
+                  onClick={onImageDeleteClick.bind(null, imgUrl)}
+                  key={'img' + imgUrl}
+                  src={imgUrl}
+                />,
+              ];
+            })}
+          </ImgWrap>
+          <HorizontalBar />
+          <Spacing height={24} />
+          <TextInput.NoBorder
+            onChange={onInputTextChange.bind(null, 'title')}
+            value={info.title}
+            placeholder="글 제목"
+          />
+          {info.title && (
+            <>
+              <Spacing height={5} />
+              <CategoryWrapper className="no-drag">
+                <CategoryButton
+                  initialCategory={info.category}
+                  categories={category}
+                  onChange={onInputTextChange.bind(null, 'category')}
+                />
+              </CategoryWrapper>
+            </>
+          )}
+
+          <Spacing height={24} />
+          <HorizontalBar />
+          <Spacing height={24} />
+          <TextInput.NoBorder
+            onChange={onInputTextChange.bind(null, 'price')}
+            value={info.price}
+            placeholder="₩ 가격(선택사항)"
+            maxLength={10}
+          />
+          <Spacing height={24} />
+          <HorizontalBar />
+          <Spacing height={24} />
+          <TextInput.TextArea
+            onChange={onInputTextChange.bind(null, 'contents')}
+            value={info.contents}
+            placeholder="게시글 내용을 작성해주세요."
+            height={150}
+          />
+          <Spacing height={48} />
+        </BodyWrapper>
+        <HorizontalBar />
+        <LocationWrapper>
+          <LocationBar location={info.location} />
+        </LocationWrapper>
+      </WriteWrapper>
+    </form>
+  );
+};

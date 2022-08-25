@@ -46,6 +46,40 @@ const LargeInput = styled(InputCommon)`
   line-height: 22px;
 `;
 
+const NoBorderInput = styled.input`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: ${colors.gray1};
+  width: 100%;
+  height: inherit;
+  outline: none;
+  box-sizing: border-box;
+  color: ${colors.titleActive};
+  border: none;
+
+  &::placeholder {
+    color: ${colors.gray1};
+  }
+`;
+
+const TextArea = styled.textarea`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: ${colors.gray1};
+  width: 100%;
+  height: inherit;
+  outline: none;
+  box-sizing: border-box;
+  color: ${colors.titleActive};
+  border: none;
+
+  &::placeholder {
+    color: ${colors.gray1};
+  }
+`;
+
 export const TextInput = (
   props: React.InputHTMLAttributes<HTMLInputElement>,
 ) => {
@@ -63,5 +97,23 @@ TextInput.Large = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
     <LargeInputContainer height={props.height} width={props.width}>
       <LargeInput type="text" {...props} />
     </LargeInputContainer>
+  );
+};
+
+TextInput.NoBorder = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
+  return (
+    <MediumInputContainer height={props.height} width={props.width}>
+      <NoBorderInput type="text" {...props} />
+    </MediumInputContainer>
+  );
+};
+
+TextInput.TextArea = (
+  props: React.InputHTMLAttributes<HTMLTextAreaElement>,
+) => {
+  return (
+    <MediumInputContainer height={props.height} width={props.width}>
+      <TextArea type="text" {...props} />
+    </MediumInputContainer>
   );
 };
