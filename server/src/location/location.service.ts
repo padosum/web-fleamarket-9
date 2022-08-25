@@ -10,7 +10,6 @@ import {
   DeleteLocationResponseFailDto,
   DeleteLocationResponseSuccessDto,
 } from './dto/delete-location-response.dto';
-import { FindLocationResponse } from './dto/find-location-response.dto';
 import { FindMyLocationResponse } from './dto/find-my-location-response.dto';
 import Imysql from 'mysql2/typings/mysql/lib/protocol/packets';
 import { MYSQL_CONNECTION } from 'src/constants';
@@ -47,13 +46,21 @@ export class LocationService {
   }
 
   async findAll(name = '') {
+    const {
+      user: { idx: userIdx },
+    } = this.request;
+
     const sql = `
-    SELECT idx
-         , name
-         , code
-      FROM LOCATION
-     WHERE name like '%${name}%'
-       AND LENGTH(name) - LENGTH(REPLACE(name, ' ', '')) > 1;
+    SELECT * FROM (SELECT idx
+                        , name
+                        , code
+                     FROM LOCATION
+                    WHERE name like '%${name}%'
+                      AND LENGTH(name) - LENGTH(REPLACE(name, ' ', '')) > 1
+                      AND LOCATION.idx NOT IN (SELECT USER_LOCATION.locationId 
+                                                 FROM USER_LOCATION 
+							                                   WHERE USER_LOCATION.userId = ${userIdx})
+                                                 LIMIT 20) location; 
     `;
 
     const [res]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =

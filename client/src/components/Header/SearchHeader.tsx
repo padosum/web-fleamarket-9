@@ -8,6 +8,8 @@ interface Props {
   title?: string;
   color: keyof typeof colors;
   onClickBack: React.MouseEventHandler<HTMLDivElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  placeholder?: string;
 }
 
 const LeftWrapper = styled.div`
@@ -30,17 +32,18 @@ const CenterWrapper = styled.div`
   flex-grow: 1;
 `;
 
-const IconStyle = styled(Icon)`
-  position: absolute;
-  left: 100px;
-`;
-
 const InputIconWrapper = styled.div`
   position: absolute;
   left: 50px;
 `;
 
-export const SearchHeader = ({ title, color, onClickBack }: Props) => {
+export const SearchHeader = ({
+  title,
+  color,
+  onClickBack,
+  onChange,
+  placeholder,
+}: Props) => {
   return (
     <HeaderWrapper color={color}>
       <LeftWrapper onClick={onClickBack}>
@@ -50,7 +53,10 @@ export const SearchHeader = ({ title, color, onClickBack }: Props) => {
         <InputIconWrapper>
           <Icon name="iconSearch"></Icon>
         </InputIconWrapper>
-        <TextInput.Icon></TextInput.Icon>
+        <TextInput.Icon
+          onChange={onChange}
+          placeholder={placeholder}
+        ></TextInput.Icon>
       </CenterWrapper>
     </HeaderWrapper>
   );
