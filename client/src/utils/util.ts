@@ -80,3 +80,30 @@ export function debounce<Params extends any[]>(
     }, timeout);
   };
 }
+
+export default function listenForOutsideClicks({
+  listening,
+  setListening,
+  menuRef,
+  setIsOpen,
+}: {
+  listening: any;
+  setListening: Function;
+  menuRef: any;
+  setIsOpen: Function;
+}) {
+  return () => {
+    if (listening) return;
+    if (!menuRef.current) return;
+    setListening(true);
+    [`click`, `touchstart`].forEach((type) => {
+      document.addEventListener(`click`, (evt) => {
+        const cur = menuRef.current;
+        if (!cur) return;
+        const node = evt.target;
+        if (cur.contains(node)) return;
+        setIsOpen(false);
+      });
+    });
+  };
+}

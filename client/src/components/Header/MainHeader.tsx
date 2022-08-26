@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { useIsLoggedIn } from '../../hooks/useIsLoggedIn';
 import { colors } from '../Color';
@@ -12,6 +12,7 @@ interface Props {
   onClickMap: React.MouseEventHandler<HTMLDivElement>;
   onClickUser: React.MouseEventHandler<HTMLDivElement>;
   onClickMenu: React.MouseEventHandler<HTMLDivElement>;
+  ref?: React.MutableRefObject<HTMLDivElement>;
 }
 
 const LeftWrapper = styled.div<{
@@ -25,7 +26,7 @@ const LeftWrapper = styled.div<{
   user-select: none;
 `;
 
-const CenterWrapper = styled.div`
+const CenterWrapper = styled.div<{ ref: any }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,35 +52,40 @@ const RightWrapper = styled.div`
   }
 `;
 
-export const MainHeader = ({
-  title,
-  color,
-  onClickCategory,
-  onClickMap,
-  onClickUser,
-  onClickMenu,
-}: Props) => {
-  const isLoggedIn = useIsLoggedIn();
+export const MainHeader = forwardRef(
+  (
+    {
+      title,
+      color,
+      onClickCategory,
+      onClickMap,
+      onClickUser,
+      onClickMenu,
+    }: Props,
+    ref,
+  ) => {
+    const isLoggedIn = useIsLoggedIn();
 
-  return (
-    <HeaderWrapper color={color} rad={true}>
-      <LeftWrapper onClick={onClickCategory}>
-        <Icon name="iconCategory" width={24} height={24} color="white"></Icon>
-      </LeftWrapper>
-      <CenterWrapper onClick={onClickMap}>
-        <Icon name="iconMap" width={24} height={24} color="white"></Icon>
-        {title}
-      </CenterWrapper>
-      <RightWrapper>
-        <div onClick={onClickUser}>
-          <Icon name="iconUser" width={24} height={24} color="white"></Icon>
-        </div>
-        {isLoggedIn && (
-          <div onClick={onClickMenu}>
-            <Icon name="iconMenu" width={24} height={24} color="white"></Icon>
+    return (
+      <HeaderWrapper color={color} rad={true}>
+        <LeftWrapper onClick={onClickCategory}>
+          <Icon name="iconCategory" width={24} height={24} color="white"></Icon>
+        </LeftWrapper>
+        <CenterWrapper onClick={onClickMap} ref={ref}>
+          <Icon name="iconMap" width={24} height={24} color="white"></Icon>
+          {title}
+        </CenterWrapper>
+        <RightWrapper>
+          <div onClick={onClickUser}>
+            <Icon name="iconUser" width={24} height={24} color="white"></Icon>
           </div>
-        )}
-      </RightWrapper>
-    </HeaderWrapper>
-  );
-};
+          {isLoggedIn && (
+            <div onClick={onClickMenu}>
+              <Icon name="iconMenu" width={24} height={24} color="white"></Icon>
+            </div>
+          )}
+        </RightWrapper>
+      </HeaderWrapper>
+    );
+  },
+);

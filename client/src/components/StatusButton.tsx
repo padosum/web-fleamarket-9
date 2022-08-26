@@ -16,7 +16,6 @@ interface Props {
   handleToggle?: React.MouseEventHandler<HTMLDivElement>;
   handleChange?: Function;
   ref?: React.MutableRefObject<HTMLDivElement>;
-  dropdownRef?: React.MutableRefObject<HTMLDivElement>;
 }
 
 export const StatusButton = forwardRef((props: Props, ref) => {
@@ -36,7 +35,6 @@ export const StatusButton = forwardRef((props: Props, ref) => {
       </StatusButtonStyle>
       {props.open && (
         <Dropdown
-          ref={props.dropdownRef}
           items={props.status}
           select={props.select}
           handleChange={props.handleChange}

@@ -1,11 +1,6 @@
 import axios from 'axios';
-import { useEffect, useMemo, useState } from 'react';
-import {
-  useLocation,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { CategorySlide } from '../components/Category/CategorySlide';
 import { Dropdown } from '../components/Dropdown';
@@ -15,6 +10,7 @@ import { MenuSlide } from '../components/Menu/MenuSlide';
 import { ProductList } from '../components/ProductList';
 import { useAuthContext } from '../context/AuthContext';
 import { useItem } from '../hooks/useItem';
+import listenForOutsideClicks from '../utils/util';
 
 const HomeWrapper = styled.div`
   width: 100%;
@@ -47,26 +43,36 @@ export const Home = () => {
   const [location, setLocation] = useState([]);
   const [currentLocationName, setCurrentLocationName] = useState('');
 
-  const getLocation = async () => {
-    try {
-      const { data } = await axios.get('/api/location/me');
-      const formatLocation = data.map(
-        ({ idx, name }: { idx: number; name: string }) => {
-          return {
-            idx,
-            name: name.split(' ')[2],
-          };
-        },
-      );
-
-      formatLocation.push({ idx: 999, name: '내 동네 설정하기' });
-      setLocation(formatLocation);
-    } catch (err) {}
-  };
-
   useEffect(() => {
+    const getLocation = async () => {
+      try {
+        const { data } = await axios.get('/api/location/me');
+        const formatLocation = data.map(
+          ({ idx, name }: { idx: number; name: string }) => {
+            return {
+              idx,
+              name: name.split(' ')[2],
+            };
+          },
+        );
+
+        formatLocation.push({ idx: 999, name: '내 동네 설정하기' });
+        setLocation(formatLocation);
+      } catch (err) {}
+    };
     getLocation();
   }, []);
+
+  const locationRef = useRef(null);
+  const [listening, setListening] = useState(false);
+  useEffect(
+    listenForOutsideClicks({
+      listening,
+      setListening,
+      menuRef: locationRef,
+      setIsOpen: setOpenLocation,
+    }),
+  );
 
   const { isLoggedIn } = useAuthContext('Login');
   const navigate = useNavigate();
@@ -124,6 +130,7 @@ export const Home = () => {
     <HomeWrapper>
       <HeaderWrapper>
         <MainHeader
+          ref={locationRef}
           title={currentLocationName ? currentLocationName : '장소'}
           color={'primary'}
           onClickCategory={handleToggleCategory}

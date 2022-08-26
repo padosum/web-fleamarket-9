@@ -7,7 +7,6 @@ import { colors } from '../components/Color';
 import { Dropdown } from '../components/Dropdown';
 import { InvisibleHeader } from '../components/Header/InvisibleHeader';
 import { ImageSlide } from '../components/ImageSlide';
-import { ImgBox } from '../components/ImgBox';
 import { InfoSaler } from '../components/InfoSaler';
 import { ProductBar } from '../components/ProductBar';
 import { Spacing } from '../components/Spacing';
@@ -15,7 +14,7 @@ import { StatusButton } from '../components/StatusButton';
 import { TypoGraphy } from '../components/TypoGraphy';
 import { useAuthContext } from '../context/AuthContext';
 import { useItemDetail } from '../hooks/useItemDetail';
-import { elapsedTime } from '../utils/util';
+import listenForOutsideClicks, { elapsedTime } from '../utils/util';
 
 const status = [
   { idx: 1, name: '판매중' },
@@ -46,9 +45,6 @@ export const Detail = () => {
 
   const { user, isLoggedIn } = useAuthContext('Detail');
   const navigate = useNavigate();
-  const itemMoreRef = useRef<HTMLDivElement>(null!);
-  const itemStatusDropdownRef = useRef<HTMLDivElement>(null!);
-  const itemStatusRef = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
     if (item.constructor === Object && Object.keys(item).length === 0) {
@@ -58,36 +54,27 @@ export const Detail = () => {
     }
   }, [item]);
 
-  // useEffect(() => {
-  //   const outsideClickHandler = (evt: MouseEvent) => {
-  //     const target = evt.target;
+  const statusRef = useRef(null);
+  const [listening, setListening] = useState(false);
+  useEffect(
+    listenForOutsideClicks({
+      listening,
+      setListening,
+      menuRef: statusRef,
+      setIsOpen: setOpenStatus,
+    }),
+  );
 
-  //     if (itemStatusDropdownRef.current.contains(target as Node) === false) {
-  //       setOpenMore(false);
-  //     }
-  //   };
-
-  //   window.addEventListener('mousedown', outsideClickHandler);
-
-  //   return () => window.removeEventListener('mousedown', outsideClickHandler);
-  // }, []);
-
-  // useEffect(() => {
-  //   const outsideClickHandler = (evt: MouseEvent) => {
-  //     const target = evt.target;
-
-  //     if (
-  //       itemStatusRef.current !== target &&
-  //       itemStatusDropdownRef.current.contains(target as Node) === false
-  //     ) {
-  //       setOpenStatus(false);
-  //     }
-  //   };
-
-  //   window.addEventListener('mousedown', outsideClickHandler);
-
-  //   return () => window.removeEventListener('mousedown', outsideClickHandler);
-  // }, []);
+  const moreRef = useRef(null);
+  const [listeningMore, setListeningMore] = useState(false);
+  useEffect(
+    listenForOutsideClicks({
+      listening: listeningMore,
+      setListening: setListeningMore,
+      menuRef: moreRef,
+      setIsOpen: setOpenMore,
+    }),
+  );
 
   const onDropDownMenuClick = (num: number) => {
     switch (num) {
@@ -131,9 +118,7 @@ export const Detail = () => {
       axios.patch(`/api/item/status/${id}`, {
         statusId: num,
       });
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
     setOpenStatus((prevOpenStatus) => !prevOpenStatus);
     setCurrentStatus(num);
   };
@@ -183,11 +168,11 @@ export const Detail = () => {
           onClickMore={() => {
             setOpenMore((prevOpenMore) => !prevOpenMore);
           }}
+          ref={moreRef}
           visibleMore={owner}
         />
         {openMore && (
           <Dropdown
-            ref={itemMoreRef}
             width="100"
             top="20"
             right="20"
@@ -204,8 +189,7 @@ export const Detail = () => {
         <ContentWrapper>
           {owner && (
             <StatusButton
-              ref={itemStatusRef}
-              dropdownRef={itemStatusDropdownRef}
+              ref={statusRef}
               status={status}
               select={currentStatus}
               open={openStatus}
