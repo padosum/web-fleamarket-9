@@ -36,7 +36,7 @@ export class ItemService {
       if (!title) throw '제목을 입력해주세요.';
       if (!Array.isArray(images) || images.length === 0)
         throw '이미지를 업로드해주세요.';
-      if (!price) throw '가격을 입력해주세요.';
+      if (price === undefined) throw '가격을 입력해주세요.';
       if (!contents) throw '내용을 입력해주세요.';
       if (!code) throw '지역을 입력해주세요.';
       if (!category) throw '카테고리를 선택해주세요.';

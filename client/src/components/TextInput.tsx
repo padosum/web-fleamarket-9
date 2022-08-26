@@ -74,6 +74,7 @@ const TextArea = styled.textarea`
   box-sizing: border-box;
   color: ${colors.titleActive};
   border: none;
+  resize: none;
 
   &::placeholder {
     color: ${colors.gray1};

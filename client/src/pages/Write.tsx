@@ -147,7 +147,6 @@ export const Write = () => {
     return !!(
       info.imgUrls.length > 0 &&
       info.title &&
-      info.price &&
       info.contents &&
       info.location &&
       info.category > 0
@@ -164,7 +163,7 @@ export const Write = () => {
         await axios.post('/api/item', {
           title: info.title,
           images: info.imgUrls,
-          price: +info.price.replace(/,/g, ''),
+          price: info.price ? +info.price.replace(/,/g, '') : 0,
           contents: info.contents,
           code: state.locationName,
           locationId: state.locationId,
@@ -241,7 +240,10 @@ export const Write = () => {
 
         <ImgWrap>
           <HorizontalSpacing width={16} />
-          <ImgButton.Add onClick={onImageAddClick} text="0/10" />
+          <ImgButton.Add
+            onClick={onImageAddClick}
+            text={`${info.imgUrls.length}/10`}
+          />
           {info.imgUrls.map((imgUrl) => {
             return [
               <HorizontalSpacing key={'space' + imgUrl} width={16} />,
@@ -262,6 +264,7 @@ export const Write = () => {
             onChange={onInputTextChange.bind(null, 'title')}
             value={info.title}
             placeholder="글 제목"
+            maxLength={30}
           />
           {info.title && (
             <>
@@ -281,9 +284,9 @@ export const Write = () => {
           <Spacing height={24} />
           <TextInput.NoBorder
             onChange={onInputTextChange.bind(null, 'price')}
-            value={info.price}
+            value={info.price ? '₩ ' + info.price : ''}
             placeholder="₩ 가격(선택사항)"
-            maxLength={10}
+            maxLength={15}
           />
           <Spacing height={24} />
           <HorizontalBar />
@@ -293,6 +296,7 @@ export const Write = () => {
             value={info.contents}
             placeholder="게시글 내용을 작성해주세요."
             height={150}
+            maxLength={500}
           />
           <Spacing height={48} />
         </BodyWrapper>
