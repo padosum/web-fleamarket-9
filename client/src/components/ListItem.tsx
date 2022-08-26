@@ -7,7 +7,7 @@ import * as icons from './iconPath';
 import { Dropdown } from './Dropdown';
 import moment from 'moment';
 import { comma } from '../utils/util';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
 import { useNavigate } from 'react-router-dom';
 
@@ -86,6 +86,27 @@ export const ListItem = ({
 
       // 삭제하기
       case 99999:
+        deleteItem(idx);
+        break;
+    }
+  };
+
+  const deleteItem = async (itemId: number) => {
+    try {
+      if (
+        !window.confirm(
+          '아이템을 삭제하시겠습니까?\n아이템과 관련된 채팅 내용이 모두 사라집니다.',
+        )
+      ) {
+        return;
+      }
+
+      await axios.delete(`/api/item/${itemId}`);
+      alert('아이템을 삭제했습니다.');
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        alert(err.response?.data.message);
+      }
     }
   };
 
