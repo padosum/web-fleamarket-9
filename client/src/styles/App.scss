@@ -1,13 +1,29 @@
-@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css); 
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 100;
+  src: url(./NotoSansKR-Regular.woff2) format('woff2');
+}
+
 @font-face {
   font-family: 'UhBeeHam';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeHam.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeHam.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
-body, h1, h2, h3, h4, h5, h6, input, textarea, select {
-	font-family: 'Noto Sans KR', sans-serif;
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+select {
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 body {
@@ -38,4 +54,12 @@ button {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.no-scroll {
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }

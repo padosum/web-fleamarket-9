@@ -86,6 +86,8 @@ export const Write = () => {
     locationId: state?.locationId || 0,
   });
 
+  const { title, price, contents } = info;
+
   const isLoggedIn = useIsLoggedIn();
   const fileInputRef = useRef<HTMLInputElement>(null!);
   const { category } = useCategory();
@@ -226,7 +228,7 @@ export const Write = () => {
             color={'white'}
             active={checkValidation()}
             onClickBack={() => navigate('/home')}
-            onClickCheck={() => onSubmit()}
+            onClickCheck={onSubmit}
           />
         </HeaderWrapper>
 
@@ -262,14 +264,13 @@ export const Write = () => {
           <Spacing height={24} />
           <TextInput.NoBorder
             onChange={onInputTextChange.bind(null, 'title')}
-            value={info.title}
             placeholder="글 제목"
             maxLength={30}
           />
-          {info.title && (
+          {title && (
             <>
               <Spacing height={5} />
-              <CategoryWrapper className="no-drag">
+              <CategoryWrapper className="no-scroll">
                 <CategoryButton
                   initialCategory={info.category}
                   categories={category}
@@ -284,7 +285,7 @@ export const Write = () => {
           <Spacing height={24} />
           <TextInput.NoBorder
             onChange={onInputTextChange.bind(null, 'price')}
-            value={info.price ? '₩ ' + info.price : ''}
+            value={price ? '₩ ' + price : ''}
             placeholder="₩ 가격(선택사항)"
             maxLength={15}
           />
@@ -293,7 +294,7 @@ export const Write = () => {
           <Spacing height={24} />
           <TextInput.TextArea
             onChange={onInputTextChange.bind(null, 'contents')}
-            value={info.contents}
+            value={contents}
             placeholder="게시글 내용을 작성해주세요."
             height={150}
             maxLength={500}

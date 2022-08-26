@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { colors } from '../Color';
 
 const GrayText = styled.span`
-  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
