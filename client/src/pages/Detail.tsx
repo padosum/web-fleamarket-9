@@ -234,7 +234,7 @@ export const Detail = () => {
         <ProductBar
           onLikeClick={handleClickLike}
           isLiked={like}
-          price={Number(item.price).toLocaleString()}
+          price={item.price ? Number(item.price).toLocaleString() : ''}
           Button={
             <Button size="md" onClick={() => handleClickChat(owner, id)}>
               {owner
@@ -250,10 +250,6 @@ export const Detail = () => {
   );
 };
 
-const TestWrapper = styled.div`
-  width: 100%;
-  background-color: 'red';
-`;
 const DetailWrapper = styled.div`
   width: 100%;
   max-width: 100%;
