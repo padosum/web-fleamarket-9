@@ -36,7 +36,11 @@ export function queryToString(query: { [key: string]: string }) {
 }
 
 export function comma(str: string) {
-  return str.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+  if (typeof str !== 'string') return '';
+
+  return str
+    .replace(/[^0-9]/g, '')
+    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export function elapsedTime(date: string) {

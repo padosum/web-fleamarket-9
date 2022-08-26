@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { colors } from '../Color';
 import { Icon } from '../Icon';
 import { HeaderWrapper } from './HeaderWrapper';
-import { useScroll } from '../../hooks/useScroll';
 
 interface Props {
   color?: keyof typeof colors | '';

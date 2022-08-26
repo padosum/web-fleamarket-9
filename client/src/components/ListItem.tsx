@@ -76,6 +76,18 @@ export const ListItem = ({
     }
   };
 
+  const onDropDownMenuClick = (num: number) => {
+    switch (num) {
+      // 수정하기
+      case 1:
+        navigate(`/item/edit/${idx}`);
+        break;
+
+      // 삭제하기
+      case 99999:
+    }
+  };
+
   interface IconProps {
     name: keyof typeof icons;
     color: keyof typeof colors;
@@ -130,7 +142,7 @@ export const ListItem = ({
             left="-90"
             items={dropdownItems}
             select={0}
-            handleChange={() => {}}
+            handleChange={onDropDownMenuClick}
           ></Dropdown>
         )}
       </ButtonWrapper>

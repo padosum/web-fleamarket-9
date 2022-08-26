@@ -10,7 +10,7 @@ interface Item {
 interface Props {
   items: Item[];
   select: number;
-  handleChange?: React.MouseEventHandler<HTMLDivElement>;
+  handleChange?: Function;
   left?: string;
   width?: string;
   top?: string;
@@ -25,7 +25,7 @@ export const Dropdown = (props: Props) => {
             <DropdownItemStyle
               key={item.idx}
               data-idx={item.idx}
-              onMouseDown={props.handleChange}
+              onMouseDown={props.handleChange?.bind(null, item.idx)}
               color={item.color}
             >
               {item.name}

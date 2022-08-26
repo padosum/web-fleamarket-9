@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
-import React, { useRef, useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Navigate, useMatch, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { CategoryButton } from '../components/Category/CategoryButton';
 import { colors } from '../components/Color';
@@ -11,6 +11,7 @@ import { Spacing } from '../components/Spacing';
 import { TextInput } from '../components/TextInput';
 import { useCategory } from '../hooks/useCategory';
 import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
+import { comma } from '../utils/util';
 
 const WriteWrapper = styled.div`
   width: 100%;
@@ -65,6 +66,9 @@ const CategoryWrapper = styled.div`
 `;
 
 export const Write = () => {
+  const match = useMatch('/item/edit/:id');
+  const itemId = match?.params.id;
+
   const [info, setInfo] = useState({
     imgUrls: [] as string[],
     title: '',
@@ -112,9 +116,7 @@ export const Write = () => {
       case 'price':
         setInfo({
           ...info,
-          [type]: evt.target.value
-            .replace(/[^0-9]/g, '')
-            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ','),
+          [type]: comma(evt.target.value),
         });
         break;
       case 'category':
@@ -150,23 +152,78 @@ export const Write = () => {
     if (!checkValidation()) return;
 
     try {
-      await axios.post('/api/item', {
-        title: info.title,
-        images: info.imgUrls,
-        price: +info.price.replace(/,/g, ''),
-        contents: info.contents,
-        code: info.location,
-        category: info.category,
-      });
+      if (!itemId) {
+        await axios.post('/api/item', {
+          title: info.title,
+          images: info.imgUrls,
+          price: +info.price.replace(/,/g, ''),
+          contents: info.contents,
+          code: info.location,
+          category: info.category,
+        });
 
-      alert('물품을 등록했습니다.');
-      navigate('/home');
+        alert('물품을 등록했습니다.');
+        navigate('/home');
+      }
+
+      if (itemId) {
+        await axios.patch(`/api/item/${itemId}`, {
+          title: info.title,
+          images: info.imgUrls,
+          price: +info.price.replace(/,/g, ''),
+          contents: info.contents,
+          code: info.location,
+          category: info.category,
+        });
+
+        alert('물품을 수정했습니다.');
+        navigate('/home');
+      }
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
         alert(err!.response!.data.message);
       }
     }
   };
+
+  const getItemDetail = async () => {
+    const res = await axios.get(`/api/item/${itemId}`);
+    /**
+     * {
+            "category": 8,
+            "chatRoomCount": 0,
+            "contents": "나이키 신발 팝니다\n12만원",
+            "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661443858496áá¡áá®á«áá©áá³.jpeg",
+            "isLike": 0,
+            "location": "잠실",
+            "likeCount": 1,
+            "price": "120000",
+            "seller": 40,
+            "sellerName": "이형준",
+            "status": 2,
+            "title": "나이키 신발 팝니다",
+            "updatedAt": "2022-08-25T16:29:01.000Z",
+            "viewCount": 85,
+            "categoryName": "남성패션/잡화"
+        }
+     */
+    const { data: info } = res;
+
+    setInfo({
+      title: info.title,
+      category: info.category,
+      contents: info.contents,
+      imgUrls: info.images.split(','),
+      location: info.location,
+      price: comma(info.price),
+    });
+  };
+
+  useEffect(() => {
+    if (itemId) {
+      getItemDetail();
+    }
+  }, [itemId]);
 
   return (
     <form onSubmit={onSubmit}>

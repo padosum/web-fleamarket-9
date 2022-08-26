@@ -34,6 +34,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/item/:id" element={<Detail />} />
         <Route path="/item/write" element={<Write />} />
+        <Route path="/item/edit/:id" element={<Write />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </PageLayout>
