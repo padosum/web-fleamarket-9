@@ -222,27 +222,35 @@ export class ItemService {
 
   async findItemDetail(
     id: number,
+    userIdx: number,
   ): Promise<GetItemResponseSuccessDto | GetItemResponseFailDto> {
     try {
       if (isNaN(id)) throw '올바른 아이템 id가 아닙니다.';
 
       const sql = `
-        SELECT
-          images,
-          category,
-          updatedAt,
-          title,
-          contents,
-          IFNULL(likeCount, 0) as likeCount,
-          price,
-          seller,
-          code as location,
-          IFNULL(viewCount, 0) as viewCount,
-          status
-        FROM
-          ITEM
-        WHERE
-          idx = ${id}
+      SELECT ITEM.images
+          , ITEM.category
+          , ITEM.updatedAt
+          , ITEM.title
+          , ITEM.contents
+          , IFNULL(ITEM.likeCount, 0) as likeCount
+          , ITEM.price
+          , ITEM.seller
+          , seller.name as sellerName
+          , ITEM.code as location
+          , IFNULL(ITEM.viewCount, 0) as viewCount
+          , ITEM.status
+          , CATEGORY.name as categoryName
+          , IFNULL((SELECT true
+                      FROM USER_LIKE_ITEM
+                     WHERE USER_LIKE_ITEM.userId = ${userIdx}
+                       AND USER_LIKE_ITEM.itemId = ITEM.idx), false) as isLike
+      FROM ITEM
+     INNER JOIN USER as seller 
+       ON ITEM.seller = seller.idx
+     INNER JOIN CATEGORY
+        ON ITEM.category = CATEGORY.idx
+     WHERE ITEM.idx = ${id}
       `;
 
       const [queryRes]: any[] = await this.conn.query(sql);
@@ -265,15 +273,17 @@ export class ItemService {
         chatRoomCount: 0,
         contents: item.contents,
         images: item.images,
-        isLike: false,
+        isLike: item.isLike,
         location: item.location,
         likeCount: item.likeCount,
         price: item.price,
         seller: item.seller,
+        sellerName: item.sellerName,
         status: item.status,
         title: item.title,
         updatedAt: item.updatedAt,
         viewCount: item.viewCount,
+        categoryName: item.categoryName,
       };
 
       return res;
@@ -328,6 +338,7 @@ export class ItemService {
     try {
       const itemInfo = (await this.findItemDetail(
         id,
+        userIdx,
       )) as GetItemResponseSuccessDto;
 
       if (itemInfo.seller !== userIdx)
@@ -359,6 +370,7 @@ export class ItemService {
     try {
       const itemInfo = (await this.findItemDetail(
         id,
+        userIdx,
       )) as GetItemResponseSuccessDto;
 
       if (itemInfo.seller !== userIdx) {
@@ -400,6 +412,7 @@ export class ItemService {
       // 기존 카운트
       const itemDetail = (await this.findItemDetail(
         id,
+        userIdx,
       )) as GetItemResponseSuccessDto;
 
       const itemUpdateSql = `

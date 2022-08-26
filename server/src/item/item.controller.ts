@@ -144,8 +144,9 @@ export class ItemController {
     status: 400,
   })
   @Get(':id')
-  findItemDetail(@Param('id') id: string) {
-    return this.itemService.findItemDetail(+id);
+  findItemDetail(@Req() req: any, @Param('id') id: string) {
+    const userIdx = req.user?.idx;
+    return this.itemService.findItemDetail(+id, userIdx);
   }
 
   @ApiOperation({

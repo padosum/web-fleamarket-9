@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { colors } from './Color';
 
 const ImgBoxCommon = styled.div`
@@ -37,17 +37,27 @@ const Img = styled.img`
 const Gradient = styled.div<{
   width?: number | string;
   height?: number | string;
+  src?: string;
 }>`
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.24) 0%,
-    rgba(0, 0, 0, 0) 16.52%,
-    rgba(0, 0, 0, 0) 87.36%,
-    rgba(0, 0, 0, 0.24) 100%
-  );
+  ${(props) =>
+    props.src &&
+    css`
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url(${props.src}),
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.24) 0%,
+          rgba(0, 0, 0, 0) 16.52%,
+          rgba(0, 0, 0, 0) 87.36%,
+          rgba(0, 0, 0, 0.24) 100%
+        );
+      background-blend-mode: color;
+    `}
 
-  ${(props) => (props.width ? `width: ${props.width}px;` : '')}
-  ${(props) => (props.height ? `height: ${props.height}px;` : '')}
+  ${(props) => (props.width ? `width: ${props.width}px;` : 'width: 100%;')}
+  ${(props) => (props.height ? `height: ${props.height}px;` : 'height: 100%;')}
 `;
 
 export const ImgBox = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
@@ -64,6 +74,10 @@ ImgBox.Large = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
   return <LargeImgBox>{props.src && <Img {...props} />}</LargeImgBox>;
 };
 
-ImgBox.Gradient = (props: { width: number; height: number }) => {
+ImgBox.Gradient = (props: {
+  width?: number;
+  height?: number;
+  src?: string;
+}) => {
   return <Gradient {...props} />;
 };

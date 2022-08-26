@@ -9,11 +9,18 @@ export class GetItemResponseSuccessDto {
   readonly images: string[];
 
   @ApiProperty({
+    example: 1,
+    description: 'item category idx',
+    required: true,
+  })
+  readonly category: number;
+
+  @ApiProperty({
     example: '전자기기',
     description: 'item category 이름',
     required: true,
   })
-  readonly category: number;
+  readonly categoryName: string;
 
   @ApiProperty({
     example: '2022.08.17',
@@ -63,6 +70,13 @@ export class GetItemResponseSuccessDto {
     required: true,
   })
   readonly seller: number;
+
+  @ApiProperty({
+    example: '김우아',
+    description: 'item 판매자명',
+    required: true,
+  })
+  readonly sellerName: number;
 
   @ApiProperty({
     example: '방이동',

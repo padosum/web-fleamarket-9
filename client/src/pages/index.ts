@@ -7,6 +7,7 @@ import { Signup } from './Signup';
 import { Write } from './Write';
 import { Location } from './Location';
 import { LocationSearch } from './LocationSearch';
+import { Detail } from './Detail';
 
 export {
   Login,
@@ -18,4 +19,5 @@ export {
   Write,
   Location,
   LocationSearch,
+  Detail,
 };

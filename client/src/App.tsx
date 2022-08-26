@@ -9,6 +9,7 @@ import {
   Write,
   Location,
   LocationSearch,
+  Detail,
 } from './pages';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { PageLayout } from './components/PageLayout';
@@ -31,6 +32,7 @@ function App() {
           <Route path="/location/search" element={<LocationSearch />} />
         )}
         <Route path="/home" element={<Home />} />
+        <Route path="/item/:id" element={<Detail />} />
         <Route path="/item/write" element={<Write />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>

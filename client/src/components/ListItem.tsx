@@ -53,6 +53,7 @@ export const ListItem = ({
   const navigate = useNavigate();
 
   const handleClickAction = async (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     if (type === 'shopping') {
       if (!isLoggedIn) {
         if (window.confirm('로그인 이후에 가능합니다.\n로그인 하시겠습니까?')) {
@@ -91,7 +92,7 @@ export const ListItem = ({
   };
 
   return (
-    <ItemWrapper>
+    <ItemWrapper onClick={() => navigate(`/item/${idx}`)}>
       <ImgWrapper>
         <ImgBox.Large src={image} />
       </ImgWrapper>

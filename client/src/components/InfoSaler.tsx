@@ -7,6 +7,7 @@ const InfoSalerWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
 `;
 
 const BoldText = styled.span`

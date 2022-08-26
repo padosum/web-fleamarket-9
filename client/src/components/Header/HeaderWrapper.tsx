@@ -3,7 +3,7 @@ import { colors } from '../Color';
 
 interface Props {
   children: React.ReactNode;
-  color?: keyof typeof colors;
+  color?: keyof typeof colors | '';
   rad?: boolean;
 }
 

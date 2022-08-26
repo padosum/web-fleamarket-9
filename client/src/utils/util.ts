@@ -38,3 +38,41 @@ export function queryToString(query: { [key: string]: string }) {
 export function comma(str: string) {
   return str.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 }
+
+export function elapsedTime(date: string) {
+  const start = new Date(date);
+  const end = new Date(); // 현재 날짜
+
+  const diff = (end as any) - (start as any); // 경과 시간
+
+  const times = [
+    { time: '분', milliSeconds: 1000 * 60 },
+    { time: '시간', milliSeconds: 1000 * 60 * 60 },
+    { time: '일', milliSeconds: 1000 * 60 * 60 * 24 },
+    { time: '개월', milliSeconds: 1000 * 60 * 60 * 24 * 30 },
+    { time: '년', milliSeconds: 1000 * 60 * 60 * 24 * 365 },
+  ].reverse();
+
+  for (const value of times) {
+    const betweenTime = Math.floor(diff / value.milliSeconds);
+
+    if (betweenTime > 0) {
+      return `${betweenTime}${value.time} 전`;
+    }
+  }
+
+  return '방금 전';
+}
+
+export function debounce<Params extends any[]>(
+  func: (...args: Params) => any,
+  timeout: number,
+): (...args: Params) => void {
+  let timer: NodeJS.Timeout;
+  return (...args: Params) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func(...args);
+    }, timeout);
+  };
+}

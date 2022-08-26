@@ -5,6 +5,7 @@ const TypoGraphyCommon = styled.h1<{ bold?: boolean }>`
   color: #222;
   padding: 0;
   margin: 0;
+  font-weight: 400;
   ${(props) => (props.bold ? 'font-weight: bold;' : '')}
 `;
 

@@ -2,10 +2,13 @@ import styled from 'styled-components';
 import { colors } from '../Color';
 import { Icon } from '../Icon';
 import { HeaderWrapper } from './HeaderWrapper';
+import { useScroll } from '../../hooks/useScroll';
 
 interface Props {
+  color?: keyof typeof colors | '';
   onClickBack: React.MouseEventHandler<HTMLDivElement>;
-  onClickMore: React.MouseEventHandler<HTMLDivElement>;
+  onClickMore?: React.MouseEventHandler<HTMLDivElement>;
+  visibleMore?: boolean;
 }
 const LeftWrapper = styled.div`
   display: flex;
@@ -35,15 +38,22 @@ const RightWrapper = styled.div`
   user-select: none;
 `;
 
-export const InvisibleHeader = ({ onClickBack, onClickMore }: Props) => {
+export const InvisibleHeader = ({
+  color,
+  onClickBack,
+  onClickMore,
+  visibleMore,
+}: Props) => {
   return (
-    <HeaderWrapper>
+    <HeaderWrapper color={color}>
       <LeftWrapper onClick={onClickBack}>
         <Icon name="iconLeft" width={24} height={24} color="white"></Icon>
       </LeftWrapper>
       <CenterWrapper></CenterWrapper>
       <RightWrapper onClick={onClickMore}>
-        <Icon name="iconMore" width={24} height={24} color="white"></Icon>
+        {visibleMore && (
+          <Icon name="iconMore" width={24} height={24} color="white"></Icon>
+        )}
       </RightWrapper>
     </HeaderWrapper>
   );

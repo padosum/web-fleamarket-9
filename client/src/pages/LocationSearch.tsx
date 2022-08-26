@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import React, { useEffect, useRef, useState } from 'react';
 import { SearchHeader } from '../components/Header/SearchHeader';
 import { colors } from '../components/Color';
-import debounce from '../util/debounce';
+import { debounce } from '../utils/util';
 
 export const LocationSearch = () => {
   const navigate = useNavigate();

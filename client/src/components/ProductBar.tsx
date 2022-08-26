@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { colors } from './Color';
 import { Icon } from './Icon';
+import * as icons from './iconPath';
 
 const ProductBarWrapper = styled.div`
   height: 60px;
@@ -9,6 +10,7 @@ const ProductBarWrapper = styled.div`
   display: flex;
   align-items: center;
   padding-left: 18px;
+  box-sizing: border-box;
 `;
 
 const VerticalBar = styled.div`
@@ -49,10 +51,26 @@ export const ProductBar = ({
   price: string;
   Button: React.ReactNode;
 }) => {
+  interface IconProps {
+    name: keyof typeof icons;
+    color: keyof typeof colors;
+    width: number;
+    height: number;
+    clickable: boolean;
+  }
+
+  const iconProps: IconProps = {
+    name: 'iconHeart',
+    color: isLiked ? 'primary' : 'gray1',
+    width: 24,
+    height: 24,
+    clickable: true,
+  };
+
   return (
     <ProductBarWrapper>
       <LikeButtonWrapper onClick={onLikeClick} isLiked={isLiked}>
-        <Icon name="iconHeart" width={21} height={17} />
+        <Icon {...iconProps} {...(isLiked ? { fill: 'primary' } : {})} />
       </LikeButtonWrapper>
       <VerticalBar />
       <PriceText>{price}</PriceText>
