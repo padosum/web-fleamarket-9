@@ -39,7 +39,11 @@ const BodyWrapper = styled.div`
 
 const ImgWrap = styled.div`
   display: flex;
+  max-width: 100%;
   padding: 24px 0;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: auto;
 `;
 
 const HorizontalBar = styled.div`
@@ -50,6 +54,7 @@ const HorizontalBar = styled.div`
 
 const HorizontalSpacing = styled.div<{ width: number }>`
   width: ${({ width }) => `${width}px`};
+  min-width: ${({ width }) => `${width}px`};
 `;
 
 const LocationWrapper = styled.div`
@@ -233,20 +238,24 @@ export const Write = () => {
           style={{ display: 'none' }}
           accept="image/*"
         />
+
+        <ImgWrap>
+          <HorizontalSpacing width={16} />
+          <ImgButton.Add onClick={onImageAddClick} text="0/10" />
+          {info.imgUrls.map((imgUrl) => {
+            return [
+              <HorizontalSpacing key={'space' + imgUrl} width={16} />,
+              <ImgButton.Delete
+                onClick={onImageDeleteClick.bind(null, imgUrl)}
+                key={'img' + imgUrl}
+                src={imgUrl}
+              />,
+            ];
+          })}
+          <HorizontalSpacing width={16} />
+        </ImgWrap>
+
         <BodyWrapper>
-          <ImgWrap>
-            <ImgButton.Add onClick={onImageAddClick} text="0/10" />
-            {info.imgUrls.map((imgUrl) => {
-              return [
-                <HorizontalSpacing key={'space' + imgUrl} width={16} />,
-                <ImgButton.Delete
-                  onClick={onImageDeleteClick.bind(null, imgUrl)}
-                  key={'img' + imgUrl}
-                  src={imgUrl}
-                />,
-              ];
-            })}
-          </ImgWrap>
           <HorizontalBar />
           <Spacing height={24} />
           <TextInput.NoBorder
