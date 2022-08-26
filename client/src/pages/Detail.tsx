@@ -6,6 +6,7 @@ import { Button } from '../components/Button';
 import { colors } from '../components/Color';
 import { Dropdown } from '../components/Dropdown';
 import { InvisibleHeader } from '../components/Header/InvisibleHeader';
+import { ImageSlide } from '../components/ImageSlide';
 import { ImgBox } from '../components/ImgBox';
 import { InfoSaler } from '../components/InfoSaler';
 import { ProductBar } from '../components/ProductBar';
@@ -57,36 +58,36 @@ export const Detail = () => {
     }
   }, [item]);
 
-  useEffect(() => {
-    const outsideClickHandler = (evt: MouseEvent) => {
-      const target = evt.target;
+  // useEffect(() => {
+  //   const outsideClickHandler = (evt: MouseEvent) => {
+  //     const target = evt.target;
 
-      if (itemStatusDropdownRef.current.contains(target as Node) === false) {
-        setOpenMore(false);
-      }
-    };
+  //     if (itemStatusDropdownRef.current.contains(target as Node) === false) {
+  //       setOpenMore(false);
+  //     }
+  //   };
 
-    window.addEventListener('mousedown', outsideClickHandler);
+  //   window.addEventListener('mousedown', outsideClickHandler);
 
-    return () => window.removeEventListener('mousedown', outsideClickHandler);
-  }, []);
+  //   return () => window.removeEventListener('mousedown', outsideClickHandler);
+  // }, []);
 
-  useEffect(() => {
-    const outsideClickHandler = (evt: MouseEvent) => {
-      const target = evt.target;
+  // useEffect(() => {
+  //   const outsideClickHandler = (evt: MouseEvent) => {
+  //     const target = evt.target;
 
-      if (
-        itemStatusRef.current !== target &&
-        itemStatusDropdownRef.current.contains(target as Node) === false
-      ) {
-        setOpenStatus(false);
-      }
-    };
+  //     if (
+  //       itemStatusRef.current !== target &&
+  //       itemStatusDropdownRef.current.contains(target as Node) === false
+  //     ) {
+  //       setOpenStatus(false);
+  //     }
+  //   };
 
-    window.addEventListener('mousedown', outsideClickHandler);
+  //   window.addEventListener('mousedown', outsideClickHandler);
 
-    return () => window.removeEventListener('mousedown', outsideClickHandler);
-  }, []);
+  //   return () => window.removeEventListener('mousedown', outsideClickHandler);
+  // }, []);
 
   const onDropDownMenuClick = (num: number) => {
     switch (num) {
@@ -198,8 +199,8 @@ export const Detail = () => {
       </HeaderWrapper>
 
       <BodyWrapper>
-        <ImgBox.Gradient height={320} src={item.images}></ImgBox.Gradient>
-
+        {/* <ImgBox.Gradient height={320} src={item.images}></ImgBox.Gradient> */}
+        <ImageSlide images={item.images}></ImageSlide>
         <ContentWrapper>
           {owner && (
             <StatusButton

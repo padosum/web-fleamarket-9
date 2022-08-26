@@ -63,3 +63,13 @@ button {
 .no-scroll::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+
+// swiper 
+.swiper-pagination-bullet {
+  background-color: transparent !important;
+  border: 1px solid #2AC1BC !important;
+}
+.swiper-pagination-bullet-active {
+  background: #2AC1BC !important;
+  border: 1px solid #2AC1BC !important;
+}

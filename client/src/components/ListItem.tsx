@@ -144,7 +144,7 @@ export const ListItem = ({
   return (
     <ItemWrapper ref={itemListRef} onClick={() => navigate(`/item/${idx}`)}>
       <ImgWrapper>
-        <ImgBox.Large src={image} />
+        <ImgBox.Large src={image.split(',')[0]} />
       </ImgWrapper>
       <ItemDescription>
         <ItemTitleText>{title}</ItemTitleText>
