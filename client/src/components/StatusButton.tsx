@@ -13,7 +13,7 @@ interface Props {
   open: boolean;
   children?: React.ReactNode;
   handleToggle?: React.MouseEventHandler<HTMLDivElement>;
-  handleChange?: React.MouseEventHandler<HTMLDivElement>;
+  handleChange?: Function;
 }
 
 export const StatusButton = (props: Props) => {

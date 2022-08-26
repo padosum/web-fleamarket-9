@@ -6,7 +6,6 @@ import { LocationButton } from '../components/LocationButton';
 import { colors } from '../components/Color';
 import { Spacing } from '../components/Spacing';
 import { useEffect, useState } from 'react';
-import { getModeForUsageLocation } from 'typescript';
 
 export const Location = () => {
   const navigate = useNavigate();

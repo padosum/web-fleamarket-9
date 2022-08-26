@@ -46,13 +46,11 @@ export const AuthProvider = ({ children }: Props) => {
   const logout = async () => {
     await axios.post('/api/auth/logout').catch((err) => {
       if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
+        alert(err.response.data);
       } else if (err.request) {
-        console.log(err.request);
+        alert(err.request);
       } else {
-        console.log(`Error`, err.message);
+        alert(err.message);
       }
     });
     setUser(null);

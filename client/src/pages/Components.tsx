@@ -317,6 +317,7 @@ export const Components = () => {
         }}
       >
         <MainHeader
+          title={''}
           color={'primary'}
           onClickCategory={() => console.log('clickCategory')}
           onClickMap={() =>

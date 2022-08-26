@@ -6,6 +6,7 @@ import { Icon } from '../Icon';
 import { HeaderWrapper } from './HeaderWrapper';
 
 interface Props {
+  title: string;
   color: keyof typeof colors;
   onClickCategory: React.MouseEventHandler<HTMLDivElement>;
   onClickMap: React.MouseEventHandler<HTMLDivElement>;
@@ -51,6 +52,7 @@ const RightWrapper = styled.div`
 `;
 
 export const MainHeader = ({
+  title,
   color,
   onClickCategory,
   onClickMap,
@@ -65,7 +67,8 @@ export const MainHeader = ({
         <Icon name="iconCategory" width={24} height={24} color="white"></Icon>
       </LeftWrapper>
       <CenterWrapper onClick={onClickMap}>
-        <Icon name="iconMap" width={24} height={24} color="white"></Icon>장소
+        <Icon name="iconMap" width={24} height={24} color="white"></Icon>
+        {title}
       </CenterWrapper>
       <RightWrapper>
         <div onClick={onClickUser}>

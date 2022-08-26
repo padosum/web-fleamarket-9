@@ -42,24 +42,16 @@ export const Detail = () => {
     setOpenStatus((prevOpenStatus) => !prevOpenStatus);
   };
 
-  const handleStatusChange = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!(e.target instanceof HTMLDivElement)) {
-      return;
-    }
-
-    if (!e.target.dataset.idx) {
-      return;
-    }
-
+  const handleStatusChange = (num: number) => {
     try {
       axios.patch(`/api/item/status/${id}`, {
-        statusId: e.target.dataset.idx,
+        statusId: num,
       });
     } catch (err) {
       console.log(err);
     }
     setOpenStatus((prevOpenStatus) => !prevOpenStatus);
-    setCurrentStatus(+e.target.dataset.idx);
+    setCurrentStatus(num);
   };
 
   const handleClickLike = async (e: React.MouseEvent<HTMLDivElement>) => {
@@ -86,7 +78,8 @@ export const Detail = () => {
       <HeaderWrapper>
         <InvisibleHeader
           onClickBack={() => navigate('/home')}
-          visibleMore={false}
+          onClickMore={() => {}}
+          visibleMore={owner}
         />
       </HeaderWrapper>
 

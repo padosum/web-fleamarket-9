@@ -42,4 +42,11 @@ export class CreateItemDto {
     required: true,
   })
   readonly category: number;
+
+  @ApiProperty({
+    example: 1,
+    description: '동네 index',
+    required: true,
+  })
+  readonly locationId: number;
 }

@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { Navigate, useMatch, useNavigate } from 'react-router-dom';
+import { Navigate, useMatch, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { CategoryButton } from '../components/Category/CategoryButton';
 import { colors } from '../components/Color';
@@ -66,6 +66,8 @@ const CategoryWrapper = styled.div`
 `;
 
 export const Write = () => {
+  const { state }: { state: any } = useLocation();
+
   const match = useMatch('/item/edit/:id');
   const itemId = match?.params.id;
 
@@ -76,6 +78,7 @@ export const Write = () => {
     contents: '',
     location: '잠실',
     category: 0,
+    locationId: state?.locationId || 0,
   });
 
   const isLoggedIn = useIsLoggedIn();
@@ -158,7 +161,8 @@ export const Write = () => {
           images: info.imgUrls,
           price: +info.price.replace(/,/g, ''),
           contents: info.contents,
-          code: info.location,
+          code: state.locationName,
+          locationId: state.locationId,
           category: info.category,
         });
 
@@ -173,6 +177,7 @@ export const Write = () => {
           price: +info.price.replace(/,/g, ''),
           contents: info.contents,
           code: info.location,
+          locationId: info.locationId,
           category: info.category,
         });
 
@@ -188,25 +193,6 @@ export const Write = () => {
 
   const getItemDetail = async () => {
     const res = await axios.get(`/api/item/${itemId}`);
-    /**
-     * {
-            "category": 8,
-            "chatRoomCount": 0,
-            "contents": "나이키 신발 팝니다\n12만원",
-            "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661443858496áá¡áá®á«áá©áá³.jpeg",
-            "isLike": 0,
-            "location": "잠실",
-            "likeCount": 1,
-            "price": "120000",
-            "seller": 40,
-            "sellerName": "이형준",
-            "status": 2,
-            "title": "나이키 신발 팝니다",
-            "updatedAt": "2022-08-25T16:29:01.000Z",
-            "viewCount": 85,
-            "categoryName": "남성패션/잡화"
-        }
-     */
     const { data: info } = res;
 
     setInfo({
@@ -215,6 +201,7 @@ export const Write = () => {
       contents: info.contents,
       imgUrls: info.images.split(','),
       location: info.location,
+      locationId: info.locationId,
       price: comma(info.price),
     });
   };
@@ -302,7 +289,7 @@ export const Write = () => {
         </BodyWrapper>
         <HorizontalBar />
         <LocationWrapper>
-          <LocationBar location={info.location} />
+          <LocationBar location={itemId ? info.location : state.locationName} />
         </LocationWrapper>
       </WriteWrapper>
     </form>

@@ -30,7 +30,8 @@ export class ItemService {
   async create(createItemDto: CreateItemDto, userIdx: number): Promise<number> {
     try {
       await this.conn.beginTransaction();
-      const { title, images, price, contents, code, category } = createItemDto;
+      const { title, images, price, contents, code, category, locationId } =
+        createItemDto;
 
       if (!title) throw '제목을 입력해주세요.';
       if (!Array.isArray(images) || images.length === 0)
@@ -42,11 +43,11 @@ export class ItemService {
 
       const sql = `
       INSERT INTO
-        ITEM(images, title, price, contents, code, category, status, seller)
+        ITEM(images, title, price, contents, code, category, status, seller, locationId)
       VALUES
         ("${images.join(
           ',',
-        )}", "${title}", ${price}, "${contents}", "${code}", ${category}, ${1}, ${userIdx})
+        )}", "${title}", ${price}, "${contents}", "${code}", ${category}, ${1}, ${userIdx}, ${locationId})
       `;
 
       const [res] = (await this.conn.query(sql)) as any;
@@ -73,7 +74,7 @@ export class ItemService {
       FROM ITEM
       WHERE 1=1
       ${categoryId ? `AND category = ${categoryId}` : ''}
-      ${locationId ? `AND code = "${locationId}"` : ''}
+      ${locationId ? `AND locationId = "${locationId}"` : ''}
       ${userIdx ? `AND seller != ${userIdx}` : ''}
       `;
 
@@ -240,11 +241,17 @@ export class ItemService {
           , ITEM.code as location
           , IFNULL(ITEM.viewCount, 0) as viewCount
           , ITEM.status
+          , ITEM.locationId
           , CATEGORY.name as categoryName
           , IFNULL((SELECT true
                       FROM USER_LIKE_ITEM
-                     WHERE USER_LIKE_ITEM.userId = ${userIdx}
-                       AND USER_LIKE_ITEM.itemId = ITEM.idx), false) as isLike
+                     WHERE USER_LIKE_ITEM.itemId = ITEM.idx
+                     ${
+                       userIdx
+                         ? `AND USER_LIKE_ITEM.userId = ${userIdx}`
+                         : 'AND USER_LIKE_ITEM.userId = NULL'
+                     }
+                       ), false) as isLike
       FROM ITEM
      INNER JOIN USER as seller 
        ON ITEM.seller = seller.idx
