@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import styled from 'styled-components';
 import { colors } from './Color';
 import { Dropdown } from './Dropdown';
@@ -14,21 +15,28 @@ interface Props {
   children?: React.ReactNode;
   handleToggle?: React.MouseEventHandler<HTMLDivElement>;
   handleChange?: Function;
+  ref?: React.MutableRefObject<HTMLDivElement>;
+  dropdownRef?: React.MutableRefObject<HTMLDivElement>;
 }
 
-export const StatusButton = (props: Props) => {
+export const StatusButton = forwardRef((props: Props, ref) => {
   const currentName = props.status.filter(
     (item) => item.idx === props.select,
   )[0].name;
 
   return (
     <StatusButtonContainer>
-      <StatusButtonStyle onMouseDown={props.handleToggle} open={props.open}>
+      <StatusButtonStyle
+        ref={ref}
+        onMouseDown={props.handleToggle}
+        open={props.open}
+      >
         <StatusButtonTextStyle>{currentName}</StatusButtonTextStyle>
         <ArrowDownIcon />
       </StatusButtonStyle>
       {props.open && (
         <Dropdown
+          ref={props.dropdownRef}
           items={props.status}
           select={props.select}
           handleChange={props.handleChange}
@@ -36,7 +44,7 @@ export const StatusButton = (props: Props) => {
       )}
     </StatusButtonContainer>
   );
-};
+});
 
 const ArrowDownIcon = () => {
   return (
@@ -78,6 +86,7 @@ const StatusButtonTextStyle = styled.div`
 const StatusButtonStyle = styled.div<{
   open: boolean;
   handleToggle?: React.MouseEventHandler<HTMLDivElement>;
+  ref?: any;
 }>`
   display: flex;
   align-items: center;

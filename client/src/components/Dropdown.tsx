@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import styled from 'styled-components';
 import { colors } from './Color';
 
@@ -14,11 +15,19 @@ interface Props {
   left?: string;
   width?: string;
   top?: string;
+  right?: string;
+  ref?: React.MutableRefObject<HTMLDivElement>;
 }
 
-export const Dropdown = (props: Props) => {
+export const Dropdown = forwardRef((props: Props, ref) => {
   return (
-    <DropdownWrapper left={props.left} width={props.width} top={props.top}>
+    <DropdownWrapper
+      ref={ref}
+      left={props.left}
+      width={props.width}
+      top={props.top}
+      right={props.right}
+    >
       {props.items.map((item) => {
         if (item.idx !== props.select) {
           return (
@@ -36,17 +45,20 @@ export const Dropdown = (props: Props) => {
       })}
     </DropdownWrapper>
   );
-};
+});
 
 const DropdownWrapper = styled.div<{
   left: string | undefined;
   width: string | undefined;
   top: string | undefined;
+  right: string | undefined;
+  ref: any;
 }>`
   position: absolute;
   z-index: 100;
   top: ${({ top }) => (top ? `${top}px` : '50px')};
   ${({ left }) => (left ? `left: ${left}px;` : '')}
+  ${({ right }) => (right ? `right: ${right}px;` : '')}
   ${({ width }) => (width ? `width: ${width}px;` : '')}
 
   background: ${colors.gray3};

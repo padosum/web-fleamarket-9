@@ -1,9 +1,10 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import axios, { AxiosError } from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '../components/Button';
 import { colors } from '../components/Color';
+import { Dropdown } from '../components/Dropdown';
 import { InvisibleHeader } from '../components/Header/InvisibleHeader';
 import { ImgBox } from '../components/ImgBox';
 import { InfoSaler } from '../components/InfoSaler';
@@ -21,6 +22,17 @@ const status = [
   { idx: 3, name: '판매완료' },
 ];
 
+interface DropdownItem {
+  idx: number;
+  name: string;
+  color?: keyof typeof colors;
+}
+
+const dropdownItems: DropdownItem[] = [
+  { idx: 1, name: '수정하기' },
+  { idx: 99999, name: '삭제하기', color: 'red' },
+];
+
 export const Detail = () => {
   const { id } = useParams();
 
@@ -29,6 +41,13 @@ export const Detail = () => {
   const [currentStatus, setCurrentStatus] = useState(item.status | 1);
   const [openStatus, setOpenStatus] = useState(false);
   const [like, setLike] = useState(item.isLike);
+  const [openMore, setOpenMore] = useState(false);
+
+  const { user, isLoggedIn } = useAuthContext('Detail');
+  const navigate = useNavigate();
+  const itemMoreRef = useRef<HTMLDivElement>(null!);
+  const itemStatusDropdownRef = useRef<HTMLDivElement>(null!);
+  const itemStatusRef = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
     if (item.constructor === Object && Object.keys(item).length === 0) {
@@ -37,6 +56,70 @@ export const Detail = () => {
       setCurrentStatus(item.status);
     }
   }, [item]);
+
+  useEffect(() => {
+    const outsideClickHandler = (evt: MouseEvent) => {
+      const target = evt.target;
+
+      if (itemStatusDropdownRef.current.contains(target as Node) === false) {
+        setOpenMore(false);
+      }
+    };
+
+    window.addEventListener('mousedown', outsideClickHandler);
+
+    return () => window.removeEventListener('mousedown', outsideClickHandler);
+  }, []);
+
+  useEffect(() => {
+    const outsideClickHandler = (evt: MouseEvent) => {
+      const target = evt.target;
+
+      if (
+        itemStatusRef.current !== target &&
+        itemStatusDropdownRef.current.contains(target as Node) === false
+      ) {
+        setOpenStatus(false);
+      }
+    };
+
+    window.addEventListener('mousedown', outsideClickHandler);
+
+    return () => window.removeEventListener('mousedown', outsideClickHandler);
+  }, []);
+
+  const onDropDownMenuClick = (num: number) => {
+    switch (num) {
+      // 수정하기
+      case 1:
+        navigate(`/item/edit/${id}`);
+        break;
+
+      // 삭제하기
+      case 99999:
+        deleteItem(id);
+        break;
+    }
+  };
+
+  const deleteItem = async (itemId: string | undefined) => {
+    try {
+      if (
+        !window.confirm(
+          '아이템을 삭제하시겠습니까?\n아이템과 관련된 채팅 내용이 모두 사라집니다.',
+        )
+      ) {
+        return;
+      }
+
+      await axios.delete(`/api/item/${itemId}`);
+      alert('아이템을 삭제했습니다.');
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        alert(err.response?.data.message);
+      }
+    }
+  };
 
   const handleStatusToggle = (e: React.MouseEvent<HTMLDivElement>) => {
     setOpenStatus((prevOpenStatus) => !prevOpenStatus);
@@ -55,6 +138,13 @@ export const Detail = () => {
   };
 
   const handleClickLike = async (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isLoggedIn) {
+      if (window.confirm('로그인 이후에 가능합니다.\n로그인 하시겠습니까?')) {
+        navigate('/login');
+      }
+      return;
+    }
+
     if (item.isLike) {
       axios.patch(`/api/item/unlike/${id}`);
     } else {
@@ -64,9 +154,20 @@ export const Detail = () => {
     setLike((prevLike: any) => !prevLike);
   };
 
-  const { user } = useAuthContext('Detail');
+  const handleClickChat = (owner: boolean, id: string) => {
+    if (!isLoggedIn) {
+      if (window.confirm('로그인 이후에 가능합니다.\n로그인 하시겠습니까?')) {
+        navigate('/login');
+      }
+      return;
+    }
 
-  const navigate = useNavigate();
+    if (owner) {
+      navigate('/chat');
+    } else {
+      navigate(`/chat/${id}`);
+    }
+  };
 
   if (!id) {
     return null;
@@ -78,9 +179,22 @@ export const Detail = () => {
       <HeaderWrapper>
         <InvisibleHeader
           onClickBack={() => navigate('/home')}
-          onClickMore={() => {}}
+          onClickMore={() => {
+            setOpenMore((prevOpenMore) => !prevOpenMore);
+          }}
           visibleMore={owner}
         />
+        {openMore && (
+          <Dropdown
+            ref={itemMoreRef}
+            width="100"
+            top="20"
+            right="20"
+            items={dropdownItems}
+            select={0}
+            handleChange={onDropDownMenuClick}
+          ></Dropdown>
+        )}
       </HeaderWrapper>
 
       <BodyWrapper>
@@ -89,6 +203,8 @@ export const Detail = () => {
         <ContentWrapper>
           {owner && (
             <StatusButton
+              ref={itemStatusRef}
+              dropdownRef={itemStatusDropdownRef}
               status={status}
               select={currentStatus}
               open={openStatus}
@@ -120,7 +236,7 @@ export const Detail = () => {
           isLiked={like}
           price={Number(item.price).toLocaleString()}
           Button={
-            <Button size="md">
+            <Button size="md" onClick={() => handleClickChat(owner, id)}>
               {owner
                 ? `채팅${
                     item.chatRoomCount > 0 ? ` (${item.chatRoomCount})` : ''
@@ -185,6 +301,7 @@ const DescriptionWrapper = styled.div`
   font-size: 16px;
   line-height: 24px;
   word-break: keep-all;
+  word-wrap: break-word;
   margin: 16px 0;
 `;
 const HorizontalBar = styled.div`
