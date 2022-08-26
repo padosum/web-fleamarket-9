@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { colors } from './Color';
 import { Icon } from './Icon';
@@ -51,6 +51,7 @@ export const ListItem = ({
   const [openMenu, setOpenMenu] = useState(false);
   const isLoggedIn = useIsLoggedIn();
   const navigate = useNavigate();
+  const itemListRef = useRef<HTMLDivElement>(null!);
 
   const handleClickAction = async (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -103,8 +104,24 @@ export const ListItem = ({
     clickable: true,
   };
 
+  useEffect(() => {
+    if (type === 'sales') {
+      const outsideClickHandler = (evt: MouseEvent) => {
+        const target = evt.target;
+
+        if (itemListRef.current.contains(target as Node) === false) {
+          setOpenMenu(false);
+        }
+      };
+
+      window.addEventListener('mousedown', outsideClickHandler);
+
+      return () => window.removeEventListener('mousedown', outsideClickHandler);
+    }
+  }, []);
+
   return (
-    <ItemWrapper onClick={() => navigate(`/item/${idx}`)}>
+    <ItemWrapper ref={itemListRef} onClick={() => navigate(`/item/${idx}`)}>
       <ImgWrapper>
         <ImgBox.Large src={image} />
       </ImgWrapper>
