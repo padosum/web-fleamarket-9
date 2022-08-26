@@ -384,14 +384,41 @@ export class ItemService {
         throw '내가 등록한 아이템만 삭제할 수 있습니다.';
       }
 
-      const sql = `
+      // 관련된 채팅 조회
+      const findRelatedChatSql = `
+        SELECT idx FROM CHAT Where itemId = ${id}
+      `;
+      const [relatedChats] = (await this.conn.query(findRelatedChatSql)) as any;
+
+      // 관련 채팅 메시지 삭제
+      const deleteRelatedChatMessageSql = `
+        DELETE FROM CHAT_MESSAGE Where chatId in (${[
+          0,
+          ...relatedChats.map((relatedChat) => relatedChat.idx),
+        ]})
+      `;
+      await this.conn.query(deleteRelatedChatMessageSql);
+
+      // 관련 채팅 삭제
+      const deleteRelatedChatSql = `
+        DELETE FROM CHAT Where itemId = ${id}
+      `;
+      await this.conn.query(deleteRelatedChatSql);
+
+      // 관련 좋아요 삭제
+      const deleteRelatedLikeSql = `
+        DELETE FROM USER_LIKE_ITEM WHERE itemId = ${id}
+      `;
+      await this.conn.query(deleteRelatedLikeSql);
+
+      const itemDeleteSql = `
         DELETE FROM
           ITEM
         WHERE
           idx = ${id}
       `;
 
-      await this.conn.query(sql);
+      await this.conn.query(itemDeleteSql);
 
       return { id };
     } catch (err) {
