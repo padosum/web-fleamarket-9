@@ -33,6 +33,7 @@ export class AuthService {
         idx: user.idx,
         id: user.id,
         name: user.name,
+        location: user.location,
       };
     }
     return null;

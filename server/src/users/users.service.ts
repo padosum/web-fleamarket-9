@@ -54,6 +54,20 @@ export class UsersService {
       };
     }
   }
+
+  async getUserLocationByIdx(idx: number) {
+    const [location]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
+      await this.conn.query(`SELECT USER_LOCATION.userId as userId
+                                  , USER_LOCATION.locationId as locationId
+                                  , LOCATION.name as locationName
+                                  , LOCATION.code as locationCode
+                              FROM USER_LOCATION
+                             INNER JOIN LOCATION 
+                                ON USER_LOCATION.locationId = LOCATION.idx
+                             WHERE USER_LOCATION.userId = ${idx}`);
+    return location;
+  }
+
   async getUserInfoByIdx(
     idx: number,
   ): Promise<GetUserResponseSuccessDto | GetUserResponseFailDto> {
@@ -61,12 +75,13 @@ export class UsersService {
       await this.conn.query(
         `SELECT id, password, name FROM USER WHERE idx = ${idx}`,
       );
-
+    const location = await this.getUserLocationByIdx(idx);
     return user[0]
       ? {
           idx,
           id: user[0].id,
           name: user[0].name,
+          location: location,
         }
       : {
           message: '존재하지 않는 사용자입니다.',
@@ -79,12 +94,15 @@ export class UsersService {
         `SELECT idx, id, password, name FROM USER WHERE id = '${id}'`,
       );
 
+    const location = await this.getUserLocationByIdx(user[0].idx);
+
     return user[0]
       ? {
           idx: user[0].idx,
           id: user[0].id,
           name: user[0].name,
           password: user[0].password,
+          location: location,
         }
       : {
           message: '존재하지 않는 사용자입니다.',

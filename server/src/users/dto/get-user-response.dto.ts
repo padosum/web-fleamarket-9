@@ -21,6 +21,18 @@ export class GetUserResponseSuccessDto {
     required: true,
   })
   readonly name: string;
+
+  @ApiProperty({
+    example: {
+      userId: '홍길동',
+      locationId: 12,
+      locationName: '방이동',
+      locationCode: '1234',
+    },
+    description: 'user 동네 정보',
+    required: true,
+  })
+  readonly location: {};
 }
 
 export class GetUserResponseFailDto {

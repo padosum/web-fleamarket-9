@@ -1,10 +1,17 @@
 import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
+interface Location {
+  userId: number;
+  locationId: number;
+  locationName: string;
+  locationCode: string;
+}
 interface User {
   idx: number;
   id: string;
   name: string;
+  location: Location[];
 }
 
 interface AuthContextValue {

@@ -2,14 +2,23 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '../components/Button';
 import { BackHeader } from '../components/Header/BackHeader';
+import { Icon } from '../components/Icon';
 import { Spacing } from '../components/Spacing';
 import { TypoGraphy } from '../components/TypoGraphy';
 import { useAuthContext } from '../context/AuthContext';
+
+interface Location {
+  userId: number;
+  locationId: number;
+  locationName: string;
+  locationCode: string;
+}
 
 interface User {
   idx: number;
   id: string;
   name: string;
+  location: Location[];
 }
 
 interface AuthContextValue {
@@ -38,6 +47,24 @@ export const User = () => {
       <UserInfo>
         <TypoGraphy.Medium>{user?.name}</TypoGraphy.Medium>
         <Spacing height={20}></Spacing>
+
+        {user?.location.length !== 0 && (
+          <>
+            <LocationWrapper>
+              <Icon name="iconMap"></Icon>
+              <span style={{ width: '5px' }}></span>
+              {user?.location.map((item, idx) => {
+                return (
+                  <span key={item.locationId}>
+                    {(idx !== 0 ? ', ' : '') + item.locationName.split(' ')[2]}
+                  </span>
+                );
+              })}
+            </LocationWrapper>
+            <Spacing height={50}></Spacing>
+          </>
+        )}
+
         <Button
           bgColor="primary"
           onClick={async () => {
@@ -70,4 +97,10 @@ const UserInfo = styled.div`
   align-items: center;
   justify-content: center;
   padding: 24px 16px;
+`;
+
+const LocationWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;

@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Navigate, useMatch, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { CategoryButton } from '../components/Category/CategoryButton';
@@ -9,6 +9,7 @@ import { ImgButton } from '../components/ImgButton';
 import { LocationBar } from '../components/LocationBar';
 import { Spacing } from '../components/Spacing';
 import { TextInput } from '../components/TextInput';
+import { useAuthContext } from '../context/AuthContext';
 import { useCategory } from '../hooks/useCategory';
 import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
 import { comma } from '../utils/util';
@@ -89,6 +90,7 @@ export const Write = () => {
   const { title, price, contents } = info;
 
   const isLoggedIn = useIsLoggedIn();
+  const { user } = useAuthContext('Write');
   const fileInputRef = useRef<HTMLInputElement>(null!);
   const { category } = useCategory();
 
@@ -221,6 +223,9 @@ export const Write = () => {
   return (
     <form onSubmit={onSubmit}>
       {!isLoggedIn && <Navigate to="/home" replace />}
+      {isLoggedIn && user?.location.length === 0 && (
+        <Navigate to="/location" replace />
+      )}
       <WriteWrapper>
         <HeaderWrapper>
           <WriteHeader

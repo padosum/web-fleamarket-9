@@ -77,6 +77,11 @@ export const Location = () => {
               onClick={() => navigate('/location/search')}
             ></LocationButton>
           )}
+          {location.length === 0 && (
+            <LocationButton
+              onClick={() => navigate('/location/search')}
+            ></LocationButton>
+          )}
         </ButtonWrapper>
       </ContentWrapper>
     </LocationWrapper>
