@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "UMD",
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "strictNullChecks": true,
+    "target": "ES5",
+    "outDir": "dist",
+    "declaration": true
+  },
+  "include": ["index.ts"]
+}

@@ -9,6 +9,7 @@ import { ChatModule } from './chat/chat.module';
 import { ConfigModule } from '@nestjs/config';
 import { DbModule } from './db/db.module';
 import { ImageModule } from './image/image.module';
+import { ChatGateway } from './chat.gateway';
 
 @Module({
   imports: [
@@ -29,6 +30,6 @@ import { ImageModule } from './image/image.module';
     ImageModule,
   ],
   controllers: [],
-  providers: [AppService],
+  providers: [AppService, ChatGateway],
 })
 export class AppModule {}

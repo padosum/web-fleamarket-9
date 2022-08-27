@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { setupSwagger } from './swagger';
 import * as passport from 'passport';
+import { WsAdapter } from '@nestjs/platform-ws';
 
 const session = require('express-session');
 
@@ -16,6 +17,7 @@ async function bootstrap() {
       saveUninitialized: false,
     }),
   );
+  app.useWebSocketAdapter(new WsAdapter(app));
   app.use(passport.initialize());
   app.use(passport.session());
 

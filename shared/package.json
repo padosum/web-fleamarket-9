@@ -1,0 +1,19 @@
+{
+  "name": "fleamarket-9-shared",
+  "version": "1.0.2",
+  "description": "hi",
+  "author": "lee <camp_dlgudwnsl1234@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "DO_NOT_USE"
+  ],
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "typescript": "^4.8.2"
+  }
+}

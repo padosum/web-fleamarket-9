@@ -10,7 +10,7 @@ client/coverage
 
 # production
 client/build
-
+shared/node_modules
 # misc
 .DS_Store
 client/.env.local

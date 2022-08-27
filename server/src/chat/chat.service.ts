@@ -266,4 +266,8 @@ export class ChatService {
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }
   }
+
+  test() {
+    return 'test';
+  }
 }
