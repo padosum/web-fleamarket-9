@@ -53,38 +53,13 @@ export const ChatDetail = () => {
 
   const [chatInput, setChatInput] = useState('');
   const chatWrapperRef = useRef<HTMLDivElement>(null!);
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   const worker = useWorker();
   const { user, isLoggedIn } = useAuthContext('chat-detail');
 
-  const navigate = useNavigate();
-
-  const { id } = useParams();
-
-  useEffect(() => {
-    const getChatRoom = async () => {
-      try {
-        const { data } = await axios.get(`/api/chat/room`, {
-          params: { chatId: id },
-        });
-        setChatRoom(data);
-      } catch (err) {
-        alert(err);
-      }
-    };
-    const getMessages = async () => {
-      try {
-        const { data } = await axios.get('/api/chat/message', {
-          params: { chatId: id },
-        });
-        setMessages(data);
-      } catch (err) {
-        navigate(-1);
-      }
-    };
-    getChatRoom();
-    getMessages();
-  }, []);
+  // TODO 전달받은 id 값으로 메시지 조회
 
   const onSendButtonClick = () => {
     axios.post(`/api/chat/${id}`, {
@@ -117,7 +92,12 @@ export const ChatDetail = () => {
   };
 
   useEffect(() => {
-    worker.port.onmessage = (e) => handleMessage(e.data);
+    const handleWebSocketData = (e: any) => handleMessage(e.data);
+    worker.port.addEventListener('message', handleWebSocketData);
+
+    worker.port.start();
+    return () =>
+      worker.port.removeEventListener('message', handleWebSocketData);
   }, []);
 
   useEffect(() => {

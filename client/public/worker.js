@@ -9,7 +9,7 @@ const RECEIVE_CHAT = 'receive-chat';
 
 const tabs = [];
 
-const WEBSOCKET_URL = 'ws://172.19.132.135:4001';
+const WEBSOCKET_URL = 'ws://localhost:4001';
 
 // 서버와의 연결
 let ws = new WebSocket(WEBSOCKET_URL);
@@ -29,6 +29,11 @@ ws.onmessage = ({ data: _data }) => {
         tab.postMessage(data);
       });
       break;
+
+    case GET_LIKE:
+      tabs.forEach((tab) => {
+        tab.postMessage({ event, data: data });
+      });
   }
 };
 
@@ -38,6 +43,10 @@ function setAuth(idx) {
 
 function sendChat(data) {
   ws.send(JSON.stringify({ event: SEND_CHAT, data }));
+}
+
+function sendLike(data) {
+  ws.send(JSON.stringify({ event: SEND_LIKE, data }));
 }
 
 // 다른 탭과의 연결
@@ -58,6 +67,11 @@ onconnect = function (e) {
 
       case SEND_CHAT: {
         sendChat(data);
+        break;
+      }
+
+      case SEND_LIKE: {
+        sendLike(data);
         break;
       }
     }

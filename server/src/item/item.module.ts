@@ -4,6 +4,7 @@ import { ItemController } from './item.controller';
 
 @Module({
   controllers: [ItemController],
-  providers: [ItemService]
+  providers: [ItemService],
+  exports: [ItemService],
 })
 export class ItemModule {}

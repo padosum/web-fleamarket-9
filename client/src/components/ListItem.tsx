@@ -10,6 +10,7 @@ import { comma } from '../utils/util';
 import axios, { AxiosError } from 'axios';
 import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
 import { useNavigate } from 'react-router-dom';
+import { useLikeNotify } from '../context/LikeContext';
 
 interface Props {
   idx: number;
@@ -52,6 +53,7 @@ export const ListItem = ({
   const isLoggedIn = useIsLoggedIn();
   const navigate = useNavigate();
   const itemListRef = useRef<HTMLDivElement>(null!);
+  const { notify: notifyItemLiked } = useLikeNotify();
 
   const handleClickAction = async (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -66,6 +68,7 @@ export const ListItem = ({
         axios.patch(`/api/item/unlike/${idx}`);
       } else {
         axios.patch(`/api/item/like/${idx}`);
+        notifyItemLiked(+idx);
       }
       setLike((prevLike) => !prevLike);
       return;

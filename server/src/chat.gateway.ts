@@ -5,6 +5,8 @@ import {
 } from '@nestjs/websockets';
 import { Server } from 'ws';
 import { ChatService } from './chat/chat.service';
+import { ItemService } from './item/item.service';
+import { UsersService } from './users/users.service';
 import {
   AUTH,
   ITEM_UPLOAD,
@@ -17,7 +19,11 @@ import {
 
 @WebSocketGateway(4001)
 export class ChatGateway {
-  constructor(private readonly chatService: ChatService) {}
+  constructor(
+    private readonly chatService: ChatService,
+    private readonly itemService: ItemService,
+    private readonly usersService: UsersService,
+  ) {}
 
   @WebSocketServer()
   server: Server;
@@ -43,14 +49,34 @@ export class ChatGateway {
 
   // 좋아요를 했다.
   @SubscribeMessage(SEND_LIKE)
-  handleItemLike(client: any, payload: any): void {
+  async handleItemLike(client: any, payload: any): Promise<void> {
+    // 좋아요한 아이템
+    const { itemId } = payload;
+    const userId = client.userId;
+
+    const itemDetail = (await this.itemService.findItemDetail(
+      itemId,
+      userId,
+    )) as any;
+
+    // 좋아요한 사람의 이름
+    const userInfo = (await this.usersService.getUserInfoByIdx(userId)) as any;
+
+    // 좋아요한 아이템의 셀러
+    const sellerId = itemDetail.seller;
     const clients = Array.from(this.server.clients);
 
-    clients.forEach((c: any) => {
-      if (c !== client) {
-        c.send(JSON.stringify({ event: GET_LIKE, data: payload }));
+    for (const c of clients) {
+      // 해당 셀러에게 메시지 전송
+      if (+(c as any).userId === +sellerId) {
+        (c as any).send(
+          JSON.stringify({
+            event: GET_LIKE,
+            data: { itemTitle: itemDetail.title, likeUser: userInfo.name },
+          }),
+        );
       }
-    });
+    }
   }
 
   // 채팅을 전송했다.
