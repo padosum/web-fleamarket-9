@@ -5,7 +5,7 @@ import { colors } from '../components/Color';
 import { ExitHeader } from '../components/Header/ExitHeader';
 import { InfoProduct } from '../components/InfoProduct';
 import { Spacing } from '../components/Spacing';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useWorker } from '../context/WorkerContext';
 import { SEND_CHAT } from '../utils/constant';
@@ -43,15 +43,30 @@ export const ChatDetail = () => {
   const [messages, setMessages] = useState<
     { message: string; sender: number }[]
   >([]);
-  const { id } = useParams();
 
   const [chatInput, setChatInput] = useState('');
   const chatWrapperRef = useRef<HTMLDivElement>(null!);
 
   const worker = useWorker();
-  const { user } = useAuthContext('chat-detail');
+  const { user, isLoggedIn } = useAuthContext('chat-detail');
 
-  // TODO 전달받은 id 값으로 메시지 조회
+  const navigate = useNavigate();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    const getMessages = async () => {
+      try {
+        const { data } = await axios.get('/api/chat/message', {
+          params: { chatId: id },
+        });
+        setMessages(data);
+      } catch (err) {
+        navigate(-1);
+      }
+    };
+    getMessages();
+  }, []);
 
   const onSendButtonClick = () => {
     axios.post(`/api/chat/${id}`, {
@@ -69,6 +84,20 @@ export const ChatDetail = () => {
     setMessages((messages) => [...messages, data]);
   };
 
+  const handleExitChatRoom = async () => {
+    if (
+      !window.confirm(
+        '채팅방을 삭제하시겠습니까?\n채팅 내용이 모두 사라집니다.',
+      )
+    ) {
+      return;
+    }
+
+    const { data } = await axios.delete(`/api/chat/${id}`);
+    alert(data.message);
+    navigate(-1);
+  };
+
   useEffect(() => {
     worker.port.onmessage = (e) => handleMessage(e.data);
   }, []);
@@ -79,11 +108,12 @@ export const ChatDetail = () => {
 
   return (
     <ChatDetailWrapper>
+      {!isLoggedIn && <Navigate to="/home" replace />}
       <ExitHeader
         title={'UserE'}
         color={'white'}
-        onClickBack={() => console.log('clickBack')}
-        onClickExit={() => console.log('clickExit')}
+        onClickBack={() => navigate(-1)}
+        onClickExit={handleExitChatRoom}
       ></ExitHeader>
       <HorizontalBar />
       <InfoProduct

@@ -123,33 +123,42 @@ export class ItemService {
 
   async findMyItems(userIdx?: number): Promise<FindItemsDto[]> {
     try {
-      const result: FindItemsDto[] = [];
       const sql = `
-      SELECT 
-        * 
-      FROM ITEM
-      WHERE
-      seller = ${userIdx}
+      SELECT ITEM.idx as idx
+           , ITEM.images
+           , ITEM.category
+           , ITEM.updatedAt
+           , ITEM.title
+           , ITEM.contents
+           , IFNULL(ITEM.likeCount, 0) as likeCount
+           , ITEM.price
+           , ITEM.seller
+           , ITEM.code as location
+           , IFNULL(ITEM.viewCount, 0) as viewCount
+           , ITEM.status
+           , ITEM.locationId
+           , IFNULL((SELECT true
+                       FROM USER_LIKE_ITEM
+                      WHERE USER_LIKE_ITEM.itemId = ITEM.idx
+                     ${
+                       userIdx
+                         ? `AND USER_LIKE_ITEM.userId = ${userIdx}`
+                         : 'AND USER_LIKE_ITEM.userId = NULL'
+                     }
+                   ), false) as isLike
+           , IFNULL((SELECT count(idx) 
+                       FROM CHAT
+                      WHERE CHAT.itemId = ITEM.idx
+                        AND CHAT.idx IN (SELECT chatId FROM CHAT_MESSAGE)), 0) as chatRoomCount
+        FROM ITEM
+       WHERE seller = ${userIdx}
       `;
 
-      const [queryRes] = (await this.conn.query(sql)) as any[];
+      const [res]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
+        await this.conn.query(sql);
 
-      queryRes.forEach((item) => {
-        result.push({
-          idx: item.idx,
-          title: item.title,
-          chatRoomCount: 0,
-          likeCount: item.likeCount,
-          viewCount: item.viewCount,
-          image: item.images,
-          isLike: false,
-          location: item.code,
-          updatedAt: item.updatedAt,
-          price: item.price,
-        });
-      });
-
-      return result;
+      let myItems: FindItemsDto[] = [].slice.call(res, 0);
+      return myItems;
     } catch (err) {
       throw new HttpException(
         '아이템 조회 중 에러가 발생했습니다.',
@@ -252,6 +261,10 @@ export class ItemService {
                          : 'AND USER_LIKE_ITEM.userId = NULL'
                      }
                        ), false) as isLike
+          , IFNULL((SELECT count(idx) 
+                      FROM CHAT
+			               WHERE CHAT.itemId = ITEM.idx
+                       AND CHAT.idx IN (SELECT chatId FROM CHAT_MESSAGE)), 0) as chatRoomCount
       FROM ITEM
      INNER JOIN USER as seller 
        ON ITEM.seller = seller.idx
@@ -277,7 +290,7 @@ export class ItemService {
       const item = queryRes[0];
       const res: GetItemResponseSuccessDto = {
         category: item.category,
-        chatRoomCount: 0,
+        chatRoomCount: item.chatRoomCount,
         contents: item.contents,
         images: item.images,
         isLike: item.isLike,

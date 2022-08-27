@@ -72,6 +72,7 @@ export class ChatService {
   async findAllChatRoom(userIdx, itemId): Promise<ChatRoomResponseDto[]> {
     try {
       const sql = `
+      
       SELECT c.idx
 	         , CASE WHEN c.sellerId = ${userIdx} THEN buyer.name
 			            WHEN c.buyerId = ${userIdx} THEN seller.name 
@@ -96,11 +97,11 @@ export class ChatService {
           ON c.idx = m.chatId 
        WHERE (c.sellerId = ${userIdx} 
 	        OR c.buyerId = ${userIdx})
-	       AND m.createAt = (SELECT MAX(createAt)
+	       AND m.idx = (SELECT MAX(message.idx)
                              FROM CHAT_MESSAGE message
 					                  WHERE message.chatId = c.idx)
        ${itemId ? `AND itemId = ${itemId}` : ''}
-       ORDER BY m.createAt DESC;
+       ORDER BY m.idx DESC;
       `;
 
       const [res]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
@@ -141,7 +142,7 @@ export class ChatService {
               WHERE chatId = ${chatId}
                 ${lastMessageId ? `AND idx < ${lastMessageId}` : ''}
               ORDER BY createAt DESC
-              LIMIT 10) messages
+              LIMIT ${lastMessageId ? `10` : `30`}) messages
        ORDER BY messages.createAt;
       `;
 

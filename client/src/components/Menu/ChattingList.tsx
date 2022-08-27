@@ -16,7 +16,7 @@ const chatRooms = [
     userName: 'UserE',
     message: '실제로 신어볼 수 있는건가요???sdfsfssssssfsdf',
     updatedAt: '1분 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 200,
   },
@@ -25,7 +25,7 @@ const chatRooms = [
     userName: 'UserD',
     message: '감사합니다! :)',
     updatedAt: '1시간 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 2,
   },
@@ -34,7 +34,7 @@ const chatRooms = [
     userName: 'UserD',
     message: '감사합니다! :)',
     updatedAt: '1시간 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 22,
   },
@@ -43,7 +43,7 @@ const chatRooms = [
     userName: 'UserD',
     message: '감사합니다! :)',
     updatedAt: '1시간 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 0,
   },
@@ -52,7 +52,7 @@ const chatRooms = [
     userName: 'UserD',
     message: '감사합니다! :)',
     updatedAt: '1시간 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 0,
   },
@@ -61,7 +61,7 @@ const chatRooms = [
     userName: 'UserD',
     message: '감사합니다! :)',
     updatedAt: '1시간 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 0,
   },
@@ -70,7 +70,7 @@ const chatRooms = [
     userName: 'UserD',
     message: '감사합니다! :)',
     updatedAt: '1시간 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 0,
   },
@@ -79,7 +79,7 @@ const chatRooms = [
     userName: 'UserD',
     message: '감사합니다! :)',
     updatedAt: '1시간 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 0,
   },
@@ -88,7 +88,7 @@ const chatRooms = [
     userName: 'UserD',
     message: '감사합니다! :)',
     updatedAt: '1시간 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 0,
   },
@@ -97,7 +97,7 @@ const chatRooms = [
     userName: 'UserD',
     message: '감사합니다! :)',
     updatedAt: '1시간 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 0,
   },
@@ -106,7 +106,7 @@ const chatRooms = [
     userName: 'UserD',
     message: '감사합니다! :)',
     updatedAt: '1시간 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 0,
   },
@@ -115,7 +115,7 @@ const chatRooms = [
     userName: 'UserD',
     message: '감사합니다! :)',
     updatedAt: '1시간 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 0,
   },
@@ -124,7 +124,7 @@ const chatRooms = [
     userName: 'UserD',
     message: '감사합니다! :)',
     updatedAt: '1시간 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 0,
   },
@@ -133,7 +133,7 @@ const chatRooms = [
     userName: 'UserD',
     message: '감사합니다! :)',
     updatedAt: '1시간 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 0,
   },
@@ -142,7 +142,7 @@ const chatRooms = [
     userName: 'UserD',
     message: '감사합니다! :)',
     updatedAt: '1시간 전',
-    image:
+    images:
       'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM',
     unReadCount: 0,
   },

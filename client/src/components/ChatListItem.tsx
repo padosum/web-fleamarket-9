@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { elapsedTime } from '../utils/util';
 import { ChatBadge } from './ChatBadge';
 import { colors } from './Color';
 import { ImgBox } from './ImgBox';
@@ -8,7 +9,7 @@ interface Props {
   userName: string;
   message: string;
   updatedAt: string;
-  image: string;
+  images: string;
   unReadCount: number;
   onClick?: React.MouseEventHandler;
 }
@@ -18,10 +19,11 @@ export const ChatListItem = ({
   userName,
   message,
   updatedAt,
-  image,
+  images,
   unReadCount,
   onClick,
 }: Props) => {
+  const [time] = updatedAt.split('T');
   return (
     <ItemContainer onClick={onClick}>
       <ItemWrapper>
@@ -31,10 +33,10 @@ export const ChatListItem = ({
         </LeftWrapper>
         <RightWrapper>
           <MessageDescription>
-            <div>{updatedAt}</div>
+            <div>{elapsedTime(time)}</div>
             <ChatBadge count={unReadCount} top={20} right={1}></ChatBadge>
           </MessageDescription>
-          <ImgBox.Small src={image} />
+          <ImgBox.Small src={images.split(',')[0]} />
         </RightWrapper>
       </ItemWrapper>
     </ItemContainer>
