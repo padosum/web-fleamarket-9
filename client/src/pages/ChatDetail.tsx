@@ -40,6 +40,13 @@ const ChatBarWrapper = styled.div`
 `;
 
 export const ChatDetail = () => {
+  const [chatRoom, setChatRoom] = useState<{
+    title: string;
+    price: number;
+    name: string;
+    itemStatus: string;
+  }>(null!);
+
   const [messages, setMessages] = useState<
     { message: string; sender: number }[]
   >([]);
@@ -55,6 +62,16 @@ export const ChatDetail = () => {
   const { id } = useParams();
 
   useEffect(() => {
+    const getChatRoom = async () => {
+      try {
+        const { data } = await axios.get(`/api/chat/room`, {
+          params: { chatId: id },
+        });
+        setChatRoom(data);
+      } catch (err) {
+        alert(err);
+      }
+    };
     const getMessages = async () => {
       try {
         const { data } = await axios.get('/api/chat/message', {
@@ -65,6 +82,7 @@ export const ChatDetail = () => {
         navigate(-1);
       }
     };
+    getChatRoom();
     getMessages();
   }, []);
 
@@ -110,7 +128,7 @@ export const ChatDetail = () => {
     <ChatDetailWrapper>
       {!isLoggedIn && <Navigate to="/home" replace />}
       <ExitHeader
-        title={'UserE'}
+        title={chatRoom?.name}
         color={'white'}
         onClickBack={() => navigate(-1)}
         onClickExit={handleExitChatRoom}
@@ -118,9 +136,9 @@ export const ChatDetail = () => {
       <HorizontalBar />
       <InfoProduct
         src="https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM"
-        title="title"
-        price="1,000원"
-        buttonText="예약"
+        title={chatRoom?.title}
+        price={chatRoom ? Number(chatRoom?.price).toLocaleString() + '원' : ''}
+        buttonText={chatRoom?.itemStatus}
         onButtonClick={() => {}}
       />
       <HorizontalBar />

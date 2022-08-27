@@ -31,7 +31,6 @@ const GrayText = styled.span`
 `;
 
 const Button = styled.button`
-  width: 78px;
   height: 40px;
   color: ${colors.titleActive};
   font-size: 14px;

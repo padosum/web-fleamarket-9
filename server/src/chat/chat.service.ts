@@ -268,7 +268,31 @@ export class ChatService {
     }
   }
 
-  test() {
-    return 'test';
+  async getChatRoomInfo(chatId, userIdx) {
+    try {
+      const sql = `
+        SELECT ITEM.title
+             , ITEM.price
+             , ITEM_STATUS.name as itemStatus
+             , CHAT.sellerId
+             , CHAT.buyerId
+             , (SELECT name  
+                  FROM USER
+                 WHERE idx = CASE WHEN CHAT.buyerId = ${userIdx} THEN CHAT.sellerId ELSE CHAT.buyerId END) as name 
+          FROM CHAT
+         INNER JOIN ITEM
+            ON CHAT.itemId = ITEM.idx  
+         INNER JOIN ITEM_STATUS
+            ON ITEM.status = ITEM_STATUS.idx
+         WHERE CHAT.idx = ${chatId}
+           AND (CHAT.buyerId = ${userIdx} OR CHAT.sellerId = ${userIdx});`;
+      const [chatRoom]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
+        await this.conn.query(sql);
+
+      return chatRoom[0];
+    } catch (err) {
+      console.log({ err });
+      return null;
+    }
   }
 }

@@ -17,6 +17,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { query } from 'express';
 import { AuthenticatedGuard } from 'src/auth/guard/authenticated.guard';
 import { ChatService } from './chat.service';
 import { ChatMessageResponseDto } from './dto/chat-message-response.dto';
@@ -67,6 +68,24 @@ export class ChatController {
       user: { idx },
     } = req;
     return this.chatService.findAllChatRoom(idx, itemId);
+  }
+
+  @ApiOperation({
+    summary: 'chat room 정보 조회 API',
+    description: 'chat room 정보를 조회한다.',
+  })
+  @ApiQuery({
+    name: 'chatId',
+    type: Number,
+    example: 1,
+    required: true,
+  })
+  @Get('/room')
+  getChatRoomInfo(@Query('chatId') chatId: number, @Request() req: any) {
+    const {
+      user: { idx: userIdx },
+    } = req;
+    return this.chatService.getChatRoomInfo(chatId, userIdx);
   }
 
   @ApiOperation({
