@@ -17,6 +17,7 @@ const TypeAChatBubbleContainer = styled(ChatBubbleContainerCommon)`
 const TypeBChatBubbleContainer = styled(ChatBubbleContainerCommon)`
   background-color: ${colors.primary};
   border-radius: 8px 0 8px 8px;
+  margin-left: auto;
 `;
 
 const ChatBubbleTextCommon = styled.span`
