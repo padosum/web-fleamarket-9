@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useCategory } from '../../hooks/useCategory';
 import { colors } from '../Color';
@@ -40,6 +40,7 @@ export const Category = ({
   toggleOpen: React.MouseEventHandler<HTMLDivElement>;
 }) => {
   const { category } = useCategory();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <CategoryContainer>
@@ -48,10 +49,11 @@ export const Category = ({
         return (
           <CategoryWrapper key={idx}>
             <CategoryLink
-              to={link}
-              onClick={(evt) =>
-                toggleOpen(evt as unknown as React.MouseEvent<HTMLDivElement>)
-              }
+              onClick={(evt) => {
+                searchParams.set('category', `${idx}`);
+                setSearchParams(searchParams);
+                toggleOpen(evt as unknown as React.MouseEvent<HTMLDivElement>);
+              }}
             >
               <ImgBox.Small src={imgMapper[name]}></ImgBox.Small>
               <CategoryTitle>{name}</CategoryTitle>
@@ -100,7 +102,7 @@ const CategoryTitle = styled.div`
   margin-top: 16px;
 `;
 
-const CategoryLink = styled(Link)`
+const CategoryLink = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;

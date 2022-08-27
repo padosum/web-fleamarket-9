@@ -115,7 +115,8 @@ export const Home = () => {
       setCurrentLocationName((currLocation[0] as any).name);
     }
 
-    setSearchParams({ locationId: `${num}` });
+    searchParams.set('locationId', `${num}`);
+    setSearchParams(searchParams);
     setOpenLocation(false);
   };
   const handleToggleCategory = () => {
