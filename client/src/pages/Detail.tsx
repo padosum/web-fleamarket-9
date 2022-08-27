@@ -140,7 +140,18 @@ export const Detail = () => {
     setLike((prevLike: any) => !prevLike);
   };
 
-  const handleClickChat = (owner: boolean, id: string) => {
+  const getChatRoomIdx = async (itemId: number) => {
+    try {
+      const { data } = await axios.post(`/api/chat`, {
+        sellerId: item.seller,
+        buyerId: user?.idx,
+        itemId,
+      });
+      return data.chatId;
+    } catch (err) {}
+  };
+
+  const handleClickChat = async (owner: boolean, id: string) => {
     if (!isLoggedIn) {
       if (window.confirm('로그인 이후에 가능합니다.\n로그인 하시겠습니까?')) {
         navigate('/login');
@@ -151,7 +162,8 @@ export const Detail = () => {
     if (owner) {
       navigate(`/chat?itemId=${id}`);
     } else {
-      navigate(`/chat/${id}`);
+      const chatId = await getChatRoomIdx(+id);
+      navigate(`/chat/${chatId}`);
     }
   };
 

@@ -5,6 +5,7 @@ import { colors } from '../components/Color';
 import { ExitHeader } from '../components/Header/ExitHeader';
 import { InfoProduct } from '../components/InfoProduct';
 import { Spacing } from '../components/Spacing';
+import { useParams } from 'react-router-dom';
 
 const ChatDetailWrapper = styled.div`
   width: 100%;
@@ -34,6 +35,10 @@ const ChatBarWrapper = styled.div`
 `;
 
 export const ChatDetail = () => {
+  const { id } = useParams();
+
+  // TODO 전달받은 id 값으로 메시지 조회
+  console.log({ id });
   return (
     <ChatDetailWrapper>
       <ExitHeader
