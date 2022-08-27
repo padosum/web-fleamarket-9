@@ -39,6 +39,10 @@ export class UsersService {
           `INSERT INTO USER (id, password, name) VALUES ('${id}', '${hashedPassword}', '${name}')`,
         );
 
+      await this.conn.query(
+        `INSERT INTO USER_LOCATION (userId, locationId) VALUES ('${insertRes.insertId}', 478)`,
+      );
+
       return {
         idx: insertRes.insertId,
         id,
@@ -75,13 +79,13 @@ export class UsersService {
       await this.conn.query(
         `SELECT id, password, name FROM USER WHERE idx = ${idx}`,
       );
-    const location = await this.getUserLocationByIdx(idx);
+
     return user[0]
       ? {
           idx,
           id: user[0].id,
           name: user[0].name,
-          location: location,
+          location: await this.getUserLocationByIdx(idx),
         }
       : {
           message: '존재하지 않는 사용자입니다.',
@@ -94,15 +98,13 @@ export class UsersService {
         `SELECT idx, id, password, name FROM USER WHERE id = '${id}'`,
       );
 
-    const location = await this.getUserLocationByIdx(user[0].idx);
-
     return user[0]
       ? {
           idx: user[0].idx,
           id: user[0].id,
           name: user[0].name,
           password: user[0].password,
-          location: location,
+          location: await this.getUserLocationByIdx(user[0]?.idx),
         }
       : {
           message: '존재하지 않는 사용자입니다.',
@@ -116,6 +118,10 @@ export class UsersService {
         await this.conn.query(
           `INSERT INTO USER (id, password, name) VALUES ('${id}', '${randomPassword}', '${name}')`,
         );
+
+      await this.conn.query(
+        `INSERT INTO USER_LOCATION (userId, locationId) VALUES ('${insertRes.insertId}', 478)`,
+      );
 
       return {
         idx: insertRes.insertId,

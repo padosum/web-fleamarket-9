@@ -309,6 +309,7 @@ const DescriptionWrapper = styled.div`
   word-break: keep-all;
   word-wrap: break-word;
   margin: 16px 0;
+  white-space: pre-wrap;
 `;
 const HorizontalBar = styled.div`
   height: 1px;
