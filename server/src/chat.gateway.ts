@@ -59,9 +59,12 @@ export class ChatGateway {
     const clients = Array.from(this.server.clients);
 
     clients.forEach((c: any) => {
-      if (c !== client) {
-        c.send(JSON.stringify({ event: RECEIVE_CHAT, data: payload }));
-      }
+      c.send(
+        JSON.stringify({
+          event: RECEIVE_CHAT,
+          data: { sender: client.userId, message: payload },
+        }),
+      );
     });
   }
 }

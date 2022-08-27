@@ -39,15 +39,23 @@ export const ChatBar = ({
   onTextChange,
   buttonActive,
   onButtonClick,
+  onEnter,
 }: {
   text?: string;
   onTextChange?: React.ChangeEventHandler<HTMLInputElement>;
   buttonActive?: boolean;
   onButtonClick?: React.MouseEventHandler;
+  onEnter?: Function;
 }) => {
   return (
     <ChatBarWrapper>
-      <TextInput value={text} onChange={onTextChange} />
+      <TextInput
+        onKeyPress={(e) => {
+          if (e.key === 'Enter' && onEnter) onEnter();
+        }}
+        value={text}
+        onChange={onTextChange}
+      />
       <ButtonWrapper disabled={!buttonActive} onClick={onButtonClick}>
         <Icon name="iconSend" width={20} height={20} />
       </ButtonWrapper>

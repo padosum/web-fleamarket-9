@@ -6,6 +6,11 @@ import { ExitHeader } from '../components/Header/ExitHeader';
 import { InfoProduct } from '../components/InfoProduct';
 import { Spacing } from '../components/Spacing';
 import { useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { useWorker } from '../context/WorkerContext';
+import { SEND_CHAT } from '../utils/constant';
+import { useAuthContext } from '../context/AuthContext';
+import axios from 'axios';
 
 const ChatDetailWrapper = styled.div`
   width: 100%;
@@ -35,10 +40,43 @@ const ChatBarWrapper = styled.div`
 `;
 
 export const ChatDetail = () => {
+  const [messages, setMessages] = useState<
+    { message: string; sender: number }[]
+  >([]);
   const { id } = useParams();
 
+  const [chatInput, setChatInput] = useState('');
+  const chatWrapperRef = useRef<HTMLDivElement>(null!);
+
+  const worker = useWorker();
+  const { user } = useAuthContext('chat-detail');
+
   // TODO 전달받은 id 값으로 메시지 조회
-  console.log({ id });
+
+  const onSendButtonClick = () => {
+    axios.post(`/api/chat/${id}`, {
+      message: chatInput,
+    });
+
+    worker.port.postMessage(
+      JSON.stringify({ event: SEND_CHAT, data: chatInput }),
+    );
+
+    setChatInput('');
+  };
+
+  const handleMessage = (data: { sender: number; message: string }) => {
+    setMessages((messages) => [...messages, data]);
+  };
+
+  useEffect(() => {
+    worker.port.onmessage = (e) => handleMessage(e.data);
+  }, []);
+
+  useEffect(() => {
+    chatWrapperRef.current.scrollTo({ top: 10000000000000000 });
+  }, [messages]);
+
   return (
     <ChatDetailWrapper>
       <ExitHeader
@@ -56,55 +94,31 @@ export const ChatDetail = () => {
         onButtonClick={() => {}}
       />
       <HorizontalBar />
-      <ChatWrapper>
+      <ChatWrapper ref={chatWrapperRef}>
         <Spacing height={16} />
-        <ChatBubble.TypeB text="dsabdfb" />
-        <Spacing height={16} />
-        <ChatBubble.TypeA text="dasd" />
-        <Spacing height={16} />
-        <ChatBubble.TypeB text="dsabdfb" />
-        <Spacing height={16} />
-        <ChatBubble.TypeA text="dasd" />
-        <Spacing height={16} />
-        <ChatBubble.TypeB text="dsabdfb" />
-        <Spacing height={16} />
-        <ChatBubble.TypeA text="dasd" />
-        <Spacing height={16} />
-        <ChatBubble.TypeB text="dsabdfb" />
-        <Spacing height={16} />
-        <ChatBubble.TypeA text="dasd" />
-        <Spacing height={16} />
-        <ChatBubble.TypeB text="dsabdfb" />
-        <Spacing height={16} />
-        <ChatBubble.TypeB text="dsabdfb" />
-        <Spacing height={16} />
-        <ChatBubble.TypeB text="dsabdfb" />
-        <Spacing height={16} />
-        <ChatBubble.TypeA text="dasd" />
-        <Spacing height={16} />
-        <ChatBubble.TypeB text="dsabdfb" />
-        <Spacing height={16} />
-        <ChatBubble.TypeB text="dsabdfb" />
-        <Spacing height={16} />
-        <ChatBubble.TypeA text="dasd" />
-        <Spacing height={16} />
-        <ChatBubble.TypeB text="dsabdfb" />
-        <Spacing height={16} />
-        <ChatBubble.TypeB text="dsabdfb" />
-        <Spacing height={16} />
-        <ChatBubble.TypeA text="dasd" />
-        <Spacing height={16} />
-        <ChatBubble.TypeB text="dsabdfb" />
-        <Spacing height={16} />
-        <ChatBubble.TypeB text="dsabdfb" />
-        <Spacing height={16} />
-        <ChatBubble.TypeA text="dasd" />
-        <Spacing height={16} />
-        <ChatBubble.TypeB text="dsabdfb" />
+        {messages.map(({ sender, message }) => {
+          return (
+            <>
+              {sender === user?.idx ? (
+                <ChatBubble.TypeB text={message} />
+              ) : (
+                <ChatBubble.TypeA text={message} />
+              )}
+              <Spacing height={16} />
+            </>
+          );
+        })}
+
         <Spacing height={16} />
       </ChatWrapper>
       <ChatBarWrapper>
-        <ChatBar />
+        <ChatBar
+          text={chatInput}
+          onTextChange={(e) => setChatInput(e.target.value)}
+          buttonActive={!!chatInput}
+          onButtonClick={onSendButtonClick}
+          onEnter={onSendButtonClick}
+        />
       </ChatBarWrapper>
     </ChatDetailWrapper>
   );

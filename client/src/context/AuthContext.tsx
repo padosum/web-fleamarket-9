@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { AUTH } from '../utils/constant';
+import { useWorker } from './WorkerContext';
 
 interface Location {
   userId: number;
@@ -39,6 +41,7 @@ export const AuthProvider = ({ children }: Props) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const worker = useWorker();
 
   const getMyInfo = async () => {
     const { data } = await axios.get<User>('/api/users/me');
@@ -48,6 +51,7 @@ export const AuthProvider = ({ children }: Props) => {
   const login = (user: User) => {
     setUser(user);
     setIsLoggedIn(true);
+    worker.port.postMessage(JSON.stringify({ event: AUTH, data: user.idx }));
   };
 
   const logout = async () => {
@@ -62,6 +66,8 @@ export const AuthProvider = ({ children }: Props) => {
     });
     setUser(null);
     setIsLoggedIn(false);
+    worker.port.postMessage(JSON.stringify({ event: AUTH, data: null }));
+
     return true;
   };
 
