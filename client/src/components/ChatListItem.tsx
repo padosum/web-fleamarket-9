@@ -34,7 +34,9 @@ export const ChatListItem = ({
         <RightWrapper>
           <MessageDescription>
             <div>{elapsedTime(time)}</div>
-            <ChatBadge count={unReadCount} top={20} right={1}></ChatBadge>
+            {unReadCount > 0 && (
+              <ChatBadge count={unReadCount} top={20} right={1}></ChatBadge>
+            )}
           </MessageDescription>
           <ImgBox.Small src={images.split(',')[0]} />
         </RightWrapper>
