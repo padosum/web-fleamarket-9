@@ -10,6 +10,7 @@ import { LocationBar } from '../components/LocationBar';
 import { Spacing } from '../components/Spacing';
 import { TextInput } from '../components/TextInput';
 import { useAuthContext } from '../context/AuthContext';
+import { useWorker } from '../context/WorkerContext';
 import { useCategory } from '../hooks/useCategory';
 import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
 import { comma } from '../utils/util';
@@ -120,6 +121,8 @@ export const Write = () => {
     type: string,
     evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
+    worker.port.postMessage(JSON.stringify(info));
+
     switch (type) {
       case 'title':
       case 'contents':
@@ -213,6 +216,13 @@ export const Write = () => {
       price: comma(info.price),
     });
   };
+
+  const worker = useWorker();
+
+  useEffect(() => {
+    worker.port.postMessage({ dsa: 'das' });
+    worker.port.onmessage = (e) => console.log(e);
+  }, []);
 
   useEffect(() => {
     if (itemId) {
