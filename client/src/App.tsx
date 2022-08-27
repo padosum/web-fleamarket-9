@@ -16,6 +16,7 @@ import { PageLayout } from './components/PageLayout';
 import './styles/App.scss';
 import { useAuthContext } from './context/AuthContext';
 import { ChatDetail } from './pages/ChatDetail';
+import { ChatList } from './pages/ChatList';
 
 function App() {
   const { isLoggedIn } = useAuthContext();
@@ -37,6 +38,8 @@ function App() {
         <Route path="/item/write" element={<Write />} />
         <Route path="/item/edit/:id" element={<Write />} />
         <Route path="/chat/:id" element={<ChatDetail />} />
+        <Route path="/chat" element={<ChatList />} />
+
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </PageLayout>

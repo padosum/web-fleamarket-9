@@ -10,6 +10,7 @@ interface Props {
   updatedAt: string;
   image: string;
   unReadCount: number;
+  onClick?: React.MouseEventHandler;
 }
 
 export const ChatListItem = ({
@@ -19,9 +20,10 @@ export const ChatListItem = ({
   updatedAt,
   image,
   unReadCount,
+  onClick,
 }: Props) => {
   return (
-    <ItemContainer>
+    <ItemContainer onClick={onClick}>
       <ItemWrapper>
         <LeftWrapper>
           <UserNameWrapper>{userName}</UserNameWrapper>
@@ -43,20 +45,26 @@ const ItemContainer = styled.div`
   display: flex;
   width: 100%;
   height: 72px;
-  padding: 16px 16px 0 16px;
+  padding: 16px;
   justify-content: space-between;
   align-items: center;
   background: ${colors.white};
   box-sizing: border-box;
+
+  &:active {
+    background-color: ${colors.offWhite};
+  }
 `;
 
 const ItemWrapper = styled.div`
   width: 100%;
-  height: 100%;
+
   border-bottom: 1px solid ${colors.gray3};
 
   display: flex;
   justify-content: space-between;
+
+  padding: 12px;
 `;
 
 const LeftWrapper = styled.div`

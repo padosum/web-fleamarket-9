@@ -149,7 +149,7 @@ export const Detail = () => {
     }
 
     if (owner) {
-      navigate('/chat');
+      navigate(`/chat?itemId=${id}`);
     } else {
       navigate(`/chat/${id}`);
     }
@@ -160,6 +160,16 @@ export const Detail = () => {
   }
 
   const owner = user?.idx === item.seller;
+
+  interface ButtonProps {
+    size?: 'md' | 'lg';
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  }
+  const buttonProps: ButtonProps = {
+    size: 'md',
+    onClick: () => handleClickChat(owner, id),
+  };
+
   return (
     <DetailWrapper>
       <HeaderWrapper>
@@ -221,7 +231,10 @@ export const Detail = () => {
           isLiked={like}
           price={item.price ? Number(item.price).toLocaleString() : ''}
           Button={
-            <Button size="md" onClick={() => handleClickChat(owner, id)}>
+            <Button
+              {...buttonProps}
+              {...(owner && item.chatRoomCount === 0 ? { disabled: true } : {})}
+            >
               {owner
                 ? `채팅${
                     item.chatRoomCount > 0 ? ` (${item.chatRoomCount})` : ''
