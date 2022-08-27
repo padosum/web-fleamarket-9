@@ -64,12 +64,27 @@ button {
   display: none; /* Chrome, Safari, Opera */
 }
 
-// swiper 
+// swiper
 .swiper-pagination-bullet {
   background-color: transparent !important;
-  border: 1px solid #2AC1BC !important;
+  border: 1px solid #2ac1bc !important;
 }
 .swiper-pagination-bullet-active {
-  background: #2AC1BC !important;
-  border: 1px solid #2AC1BC !important;
+  background: #2ac1bc !important;
+  border: 1px solid #2ac1bc !important;
+}
+
+.fade-in {
+  animation: fadeInKeyframes ease-in-out 300ms forwards;
+}
+
+@keyframes fadeInKeyframes {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
 }
