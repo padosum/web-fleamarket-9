@@ -13,6 +13,7 @@ import { Spacing } from '../components/Spacing';
 import { StatusButton } from '../components/StatusButton';
 import { TypoGraphy } from '../components/TypoGraphy';
 import { useAuthContext } from '../context/AuthContext';
+import { useLikeNotify } from '../context/LikeContext';
 import { useItemDetail } from '../hooks/useItemDetail';
 import listenForOutsideClicks, { elapsedTime } from '../utils/util';
 
@@ -42,6 +43,7 @@ export const Detail = () => {
   const [openStatus, setOpenStatus] = useState(false);
   const [like, setLike] = useState(item.isLike);
   const [openMore, setOpenMore] = useState(false);
+  const { notify: notifyItemLike } = useLikeNotify();
 
   const { user, isLoggedIn } = useAuthContext('Detail');
   const navigate = useNavigate();
@@ -131,10 +133,11 @@ export const Detail = () => {
       return;
     }
 
-    if (item.isLike) {
+    if (like) {
       axios.patch(`/api/item/unlike/${id}`);
     } else {
       axios.patch(`/api/item/like/${id}`);
+      notifyItemLike(+id!);
     }
 
     setLike((prevLike: any) => !prevLike);
