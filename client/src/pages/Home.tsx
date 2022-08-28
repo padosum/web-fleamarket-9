@@ -203,6 +203,7 @@ export const Home = () => {
             getItems={getHomeItems}
             items={products}
             type="shopping"
+            isFlatList={true}
           />
         ) : (
           <div style={{ height: 'calc(100vh - 56px)' }}>
