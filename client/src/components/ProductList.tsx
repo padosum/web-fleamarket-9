@@ -27,14 +27,16 @@ export const ProductList = (props: Props) => {
   const [bottomUndisplayedCount, setBottomUndisplayedCount] = useState(0);
   useEffect(() => {
     const onScroll = () => {
-      const screenHeight = window.innerHeight + 3000;
+      const screenHeight = window.innerHeight + 1500;
       const totalHeight = document.documentElement.scrollHeight;
-      const scrollY = window.scrollY;
+      const scrollY = Math.max(window.scrollY - 750, 0);
+      const scrollBottomY = Math.max(
+        0,
+        totalHeight - (scrollY + screenHeight) - 750,
+      );
 
       const topUndiplayedCount = Math.floor(scrollY / UNIT_HEIGHT);
-      const bottomUndisplayedCount = Math.floor(
-        (totalHeight - (scrollY + screenHeight)) / UNIT_HEIGHT,
-      );
+      const bottomUndisplayedCount = Math.floor(scrollBottomY / UNIT_HEIGHT);
 
       setTopUndisplayedCount(topUndiplayedCount);
       setBottomUndisplayedCount(bottomUndisplayedCount);
