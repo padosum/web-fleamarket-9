@@ -9,17 +9,24 @@ const ToastMessageWrapper = styled.div`
   text-align: center;
   padding: 10px;
   margin-bottom: 10px;
+  cursor: pointer;
 `;
 
 export const ToastMessage = ({
   text,
   id,
   setToasts,
+  onClick,
 }: {
   text: string;
   id: string;
   setToasts: Function;
+  onClick?: Function;
 }) => {
+  const onClickMessage = () => {
+    if (onClick) onClick();
+  };
+
   useEffect(() => {
     setTimeout(() => {
       setToasts((toasts: JSX.Element[]) =>
@@ -28,5 +35,9 @@ export const ToastMessage = ({
     }, 2000);
   }, []);
 
-  return <ToastMessageWrapper className="fade-in">{text}</ToastMessageWrapper>;
+  return (
+    <ToastMessageWrapper onClick={onClickMessage} className="fade-in">
+      {text}
+    </ToastMessageWrapper>
+  );
 };

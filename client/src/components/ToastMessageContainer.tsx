@@ -9,12 +9,12 @@ const ToastMessageContainerWrapper = styled.div`
   z-index: 999;
 `;
 
-export let toast: Function = (message: string) => {};
+export let toast: Function = (message: string, onClick?: Function) => {};
 
 export const ToastMessageContainer = () => {
   const [toasts, setToasts] = useState<JSX.Element[]>([]);
 
-  const addToast = (message: string) => {
+  const addToast = (message: string, onClick?: Function) => {
     const random = `${Math.random()}`;
     const toast = (
       <ToastMessage
@@ -22,6 +22,7 @@ export const ToastMessageContainer = () => {
         text={message}
         id={random}
         setToasts={setToasts}
+        onClick={onClick}
       />
     );
     setToasts((toasts) => [...toasts, toast]);
