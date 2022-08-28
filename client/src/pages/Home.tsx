@@ -12,6 +12,7 @@ import { MenuSlide } from '../components/Menu/MenuSlide';
 import { ProductList } from '../components/ProductList';
 import { useAuthContext } from '../context/AuthContext';
 import { useItem } from '../hooks/useItem';
+import useScrollCache from '../hooks/useScrollCache';
 import listenForOutsideClicks from '../utils/util';
 
 const HomeWrapper = styled.div`
@@ -37,7 +38,6 @@ const FabButtonWrapper = styled.div`
 
 export const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
   const [openLocation, setOpenLocation] = useState(false);
 
   const openCategory = searchParams.get('openCategory');
@@ -46,41 +46,17 @@ export const Home = () => {
   const [location, setLocation] = useState([]);
   const [currentLocationName, setCurrentLocationName] = useState('');
 
-  useEffect(() => {
-    const getLocation = async () => {
-      try {
-        const { data } = await axios.get('/api/location/me');
-        const formatLocation = data.map(
-          ({ idx, name }: { idx: number; name: string }) => {
-            return {
-              idx,
-              name: name.split(' ')[2],
-            };
-          },
-        );
-
-        formatLocation.push({ idx: 999, name: '내 동네 설정하기' });
-        setLocation(formatLocation);
-      } catch (err) {}
-    };
-    getLocation();
-  }, []);
-
   const locationRef = useRef(null);
   const [listening, setListening] = useState(false);
-  useEffect(
-    listenForOutsideClicks({
-      listening,
-      setListening,
-      menuRef: locationRef,
-      setIsOpen: setOpenLocation,
-    }),
-  );
 
   const { isLoggedIn } = useAuthContext('Login');
   const navigate = useNavigate();
 
   const windowLocation = useLocation();
+
+  const { containerRef, onScroll } = useScrollCache(
+    windowLocation.pathname + windowLocation.search,
+  );
 
   const [categoryId, locationId] = useMemo(() => {
     const urlParams = new URLSearchParams(windowLocation.search);
@@ -140,6 +116,42 @@ export const Home = () => {
     }
     setSearchParams(searchParams);
   };
+
+  useEffect(
+    listenForOutsideClicks({
+      listening,
+      setListening,
+      menuRef: locationRef,
+      setIsOpen: setOpenLocation,
+    }),
+  );
+
+  useEffect(() => {
+    const getLocation = async () => {
+      try {
+        const { data } = await axios.get('/api/location/me');
+        const formatLocation = data.map(
+          ({ idx, name }: { idx: number; name: string }) => {
+            return {
+              idx,
+              name: name.split(' ')[2],
+            };
+          },
+        );
+
+        formatLocation.push({ idx: 999, name: '내 동네 설정하기' });
+        setLocation(formatLocation);
+      } catch (err) {}
+    };
+    getLocation();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    containerRef.current = window;
+
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <HomeWrapper>

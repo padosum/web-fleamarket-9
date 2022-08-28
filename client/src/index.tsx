@@ -6,6 +6,7 @@ import { ToastMessageContainer } from './components/ToastMessageContainer';
 import { AuthProvider } from './context/AuthContext';
 import { ChatNotiProvider } from './context/ChatContext';
 import { FocusProvider } from './context/FocusContext';
+import { HomeItemProvider } from './context/HomeItemContext';
 import { ItemUploadProvider } from './context/ItemUploadContext';
 import { LikeNotifyProvider } from './context/LikeContext';
 import { WorkerProvider } from './context/WorkerContext';
@@ -21,8 +22,10 @@ root.render(
           <BrowserRouter>
             <ChatNotiProvider>
               <AuthProvider>
-                <App />
-                <ToastMessageContainer />
+                <HomeItemProvider>
+                  <App />
+                  <ToastMessageContainer />
+                </HomeItemProvider>
               </AuthProvider>
             </ChatNotiProvider>
           </BrowserRouter>

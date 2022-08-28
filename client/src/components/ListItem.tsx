@@ -11,6 +11,7 @@ import axios, { AxiosError } from 'axios';
 import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
 import { useNavigate } from 'react-router-dom';
 import { useLikeNotify } from '../context/LikeContext';
+import { ItemTypes, useItem } from '../hooks/useItem';
 
 interface Props {
   idx: number;
@@ -54,6 +55,7 @@ export const ListItem = ({
   const navigate = useNavigate();
   const itemListRef = useRef<HTMLDivElement>(null!);
   const { notify: notifyItemLiked } = useLikeNotify();
+  const { items: homeItems, setItems: setHomeItems } = useItem();
 
   const handleClickAction = async (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -66,9 +68,27 @@ export const ListItem = ({
       }
       if (like) {
         axios.patch(`/api/item/unlike/${idx}`);
+        setHomeItems(
+          homeItems.map((item) => {
+            if (+item.idx === +idx) {
+              return { ...item, isLike: false };
+            } else {
+              return item;
+            }
+          }),
+        );
       } else {
         axios.patch(`/api/item/like/${idx}`);
         notifyItemLiked(+idx);
+        setHomeItems(
+          homeItems.map((item) => {
+            if (+item.idx === +idx) {
+              return { ...item, isLike: true };
+            } else {
+              return item;
+            }
+          }),
+        );
       }
       setLike((prevLike) => !prevLike);
       return;
@@ -143,6 +163,10 @@ export const ListItem = ({
       return () => window.removeEventListener('mousedown', outsideClickHandler);
     }
   }, []);
+
+  useEffect(() => {
+    setLike(isLiked);
+  }, [isLiked]);
 
   return (
     <ItemWrapper ref={itemListRef} onClick={() => navigate(`/item/${idx}`)}>

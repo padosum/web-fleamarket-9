@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { HomeItemContext } from '../context/HomeItemContext';
 
 export type ItemTypes = {
   idx: number;
@@ -14,8 +15,8 @@ export type ItemTypes = {
 };
 
 export const useItem = (categoryId?: string, locationId?: string) => {
-  const [items, setItems] = useState<ItemTypes[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { items, setItems, isLoading, setIsLoading } =
+    useContext(HomeItemContext);
 
   const getItems = async () => {
     const res = await axios.get('/api/item', {
@@ -38,5 +39,5 @@ export const useItem = (categoryId?: string, locationId?: string) => {
     getItems();
   }, [categoryId, locationId]);
 
-  return { items, isLoading };
+  return { items, isLoading, setItems };
 };
