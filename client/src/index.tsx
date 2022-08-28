@@ -9,6 +9,7 @@ import { FocusProvider } from './context/FocusContext';
 import { HomeItemProvider } from './context/HomeItemContext';
 import { ItemUploadProvider } from './context/ItemUploadContext';
 import { LikeNotifyProvider } from './context/LikeContext';
+import { LikeItemProvider } from './context/LikeItemContext';
 import { WorkerProvider } from './context/WorkerContext';
 
 const root = ReactDOM.createRoot(
@@ -23,8 +24,10 @@ root.render(
             <ChatNotiProvider>
               <AuthProvider>
                 <HomeItemProvider>
-                  <App />
-                  <ToastMessageContainer />
+                  <LikeItemProvider>
+                    <App />
+                    <ToastMessageContainer />
+                  </LikeItemProvider>
                 </HomeItemProvider>
               </AuthProvider>
             </ChatNotiProvider>

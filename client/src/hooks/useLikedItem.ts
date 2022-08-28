@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { ItemTypes } from './useItem';
+import { useContext, useEffect } from 'react';
+import { LikeItemContext } from '../context/LikeItemContext';
 
 export const useLikedItem = () => {
-  const [items, setItems] = useState<ItemTypes[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { items, setItems, isLoading, setIsLoading } =
+    useContext(LikeItemContext);
 
   const getItems = async () => {
     const res = await axios.get('/api/item/liked');
@@ -21,5 +21,5 @@ export const useLikedItem = () => {
     getItems();
   }, []);
 
-  return { items, isLoading };
+  return { items, isLoading, setItems };
 };

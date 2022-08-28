@@ -11,7 +11,8 @@ import axios, { AxiosError } from 'axios';
 import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
 import { useNavigate } from 'react-router-dom';
 import { useLikeNotify } from '../context/LikeContext';
-import { ItemTypes, useItem } from '../hooks/useItem';
+import { useItem } from '../hooks/useItem';
+import { useLikedItem } from '../hooks/useLikedItem';
 
 interface Props {
   idx: number;
@@ -49,13 +50,13 @@ export const ListItem = ({
   image,
   isLiked,
 }: Props) => {
-  const [like, setLike] = useState(isLiked);
   const [openMenu, setOpenMenu] = useState(false);
   const isLoggedIn = useIsLoggedIn();
   const navigate = useNavigate();
   const itemListRef = useRef<HTMLDivElement>(null!);
   const { notify: notifyItemLiked } = useLikeNotify();
   const { items: homeItems, setItems: setHomeItems } = useItem();
+  const { items: likeItems, setItems: setLikeItems } = useLikedItem();
 
   const handleClickAction = async (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -66,12 +67,22 @@ export const ListItem = ({
         }
         return;
       }
-      if (like) {
+      if (isLiked) {
         axios.patch(`/api/item/unlike/${idx}`);
         setHomeItems(
           homeItems.map((item) => {
             if (+item.idx === +idx) {
-              return { ...item, isLike: false };
+              return { ...item, isLike: false, likeCount: likeCnt - 1 };
+            } else {
+              return item;
+            }
+          }),
+        );
+
+        setLikeItems(
+          likeItems.map((item) => {
+            if (+item.idx === +idx) {
+              return { ...item, isLike: false, likeCount: likeCnt - 1 };
             } else {
               return item;
             }
@@ -83,14 +94,22 @@ export const ListItem = ({
         setHomeItems(
           homeItems.map((item) => {
             if (+item.idx === +idx) {
-              return { ...item, isLike: true };
+              return { ...item, isLike: true, likeCount: likeCnt + 1 };
+            } else {
+              return item;
+            }
+          }),
+        );
+        setLikeItems(
+          likeItems.map((item) => {
+            if (+item.idx === +idx) {
+              return { ...item, isLike: true, likeCount: likeCnt + 1 };
             } else {
               return item;
             }
           }),
         );
       }
-      setLike((prevLike) => !prevLike);
       return;
     }
 
@@ -142,7 +161,7 @@ export const ListItem = ({
   }
   const iconProps: IconProps = {
     name: 'iconHeart',
-    color: like ? 'primary' : 'gray1',
+    color: isLiked ? 'primary' : 'gray1',
     width: 24,
     height: 24,
     clickable: true,
@@ -163,10 +182,6 @@ export const ListItem = ({
       return () => window.removeEventListener('mousedown', outsideClickHandler);
     }
   }, []);
-
-  useEffect(() => {
-    setLike(isLiked);
-  }, [isLiked]);
 
   return (
     <ItemWrapper ref={itemListRef} onClick={() => navigate(`/item/${idx}`)}>
@@ -191,7 +206,7 @@ export const ListItem = ({
             clickable={true}
           ></Icon>
         ) : (
-          <Icon {...iconProps} {...(like ? { fill: 'primary' } : {})} />
+          <Icon {...iconProps} {...(isLiked ? { fill: 'primary' } : {})} />
         )}
         <StatisticsWrapper>
           {messageCnt > 0 && <Icon name="iconMessage" color="gray1"></Icon>}
