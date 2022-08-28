@@ -13,6 +13,7 @@ import { useAuthContext } from '../context/AuthContext';
 import useIntersectionObserver from '../hooks/useIntersectionObserver';
 
 import axios from 'axios';
+import { ChatDetailSkeleton } from '../components/ChatDetailSekelton';
 
 export const ChatDetail = () => {
   const worker = useWorker();
@@ -30,6 +31,8 @@ export const ChatDetail = () => {
     recieverId: number;
     unReadCount: number;
   }>(null!);
+
+  const [chatRoomLoading, setChatRoomLoading] = useState(true);
 
   const [messages, setMessages] = useState<
     { idx: number; message: string; sender: number; isNew?: boolean }[]
@@ -59,6 +62,7 @@ export const ChatDetail = () => {
           params: { chatId: id },
         });
         setChatRoom(data);
+        setChatRoomLoading(false);
 
         // 메시지 읽음 처리
         if (data.unReadCount > 0) {
@@ -193,24 +197,32 @@ export const ChatDetail = () => {
   return (
     <ChatDetailWrapper>
       {!isLoggedIn && <Navigate to="/home" replace />}
-      <ExitHeader
-        title={chatRoom?.name}
-        color={'white'}
-        onClickBack={() => navigate(-1)}
-        onClickExit={handleExitChatRoom}
-      ></ExitHeader>
-      <HorizontalBar />
-      <InfoProduct
-        src={
-          chatRoom
-            ? chatRoom?.images.split(',')[0]
-            : 'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM'
-        }
-        title={chatRoom?.title}
-        price={chatRoom ? Number(chatRoom?.price).toLocaleString() + '원' : ''}
-        buttonText={chatRoom?.itemStatus}
-        onButtonClick={() => {}}
-      />
+      {chatRoomLoading ? (
+        <ChatDetailSkeleton></ChatDetailSkeleton>
+      ) : (
+        <>
+          <ExitHeader
+            title={chatRoom?.name}
+            color={'white'}
+            onClickBack={() => navigate(-1)}
+            onClickExit={handleExitChatRoom}
+          ></ExitHeader>
+          <HorizontalBar />
+          <InfoProduct
+            src={
+              chatRoom
+                ? chatRoom?.images.split(',')[0]
+                : 'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM'
+            }
+            title={chatRoom?.title}
+            price={
+              chatRoom ? Number(chatRoom?.price).toLocaleString() + '원' : ''
+            }
+            buttonText={chatRoom?.itemStatus}
+            onButtonClick={() => {}}
+          />
+        </>
+      )}
       <HorizontalBar />
       <ChatWrapper ref={chatWrapperRef}>
         <div ref={setTarget}></div>
