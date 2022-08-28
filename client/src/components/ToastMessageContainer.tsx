@@ -17,7 +17,12 @@ export const ToastMessageContainer = () => {
   const addToast = (message: string) => {
     const random = `${Math.random()}`;
     const toast = (
-      <ToastMessage text={message} id={random} setToasts={setToasts} />
+      <ToastMessage
+        key={random}
+        text={message}
+        id={random}
+        setToasts={setToasts}
+      />
     );
     setToasts((toasts) => [...toasts, toast]);
   };
