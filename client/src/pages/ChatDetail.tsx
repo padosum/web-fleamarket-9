@@ -13,6 +13,11 @@ import { useAuthContext } from '../context/AuthContext';
 import axios from 'axios';
 
 export const ChatDetail = () => {
+  const worker = useWorker();
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { user, isLoggedIn } = useAuthContext('chat-detail');
+
   const [chatRoom, setChatRoom] = useState<{
     idx: number;
     title: string;
@@ -21,6 +26,7 @@ export const ChatDetail = () => {
     images: string;
     itemStatus: string;
     recieverId: number;
+    unReadCount: number;
   }>(null!);
 
   const [messages, setMessages] = useState<
@@ -29,11 +35,6 @@ export const ChatDetail = () => {
 
   const [chatInput, setChatInput] = useState('');
   const chatWrapperRef = useRef<HTMLDivElement>(null!);
-  const navigate = useNavigate();
-  const { id } = useParams();
-
-  const worker = useWorker();
-  const { user, isLoggedIn } = useAuthContext('chat-detail');
 
   const getMessages = async (lastMessageId?: number) => {
     try {
@@ -54,6 +55,11 @@ export const ChatDetail = () => {
           params: { chatId: id },
         });
         setChatRoom(data);
+
+        // 메시지 읽음 처리
+        if (data.unReadCount > 0) {
+          await axios.patch(`/api/chat/${id}`);
+        }
       } catch (err) {
         alert(err);
       }
@@ -93,7 +99,7 @@ export const ChatDetail = () => {
     setChatInput('');
   };
 
-  const handleMessage = (data: {
+  const handleMessage = async (data: {
     chatId: number;
     idx: number;
     sender: number;
@@ -104,6 +110,8 @@ export const ChatDetail = () => {
       return;
     }
     if (+data.chatId === +id) {
+      // 읽음 처리
+      await axios.patch(`/api/chat/${data.chatId}`);
       setMessages((messages) => [...messages, { ...data, isNew: true }]);
     }
   };
@@ -135,12 +143,6 @@ export const ChatDetail = () => {
     chatWrapperRef.current.scrollTo({ top: 10000000000000000 });
   }, [messages]);
 
-  const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) => {
-    console.log(isIntersecting);
-    if (isIntersecting) {
-    }
-  };
-
   return (
     <ChatDetailWrapper>
       {!isLoggedIn && <Navigate to="/home" replace />}
@@ -167,6 +169,7 @@ export const ChatDetail = () => {
         {messages.map(({ idx, sender, message, isNew }) => {
           return (
             <div key={idx}>
+              <Spacing height={16} />
               {sender === user?.idx ? (
                 <ChatBubble.TypeB
                   className={isNew ? 'new' : ''}

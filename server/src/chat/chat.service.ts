@@ -282,6 +282,11 @@ export class ChatService {
              , (SELECT name  
                   FROM USER
                  WHERE idx = CASE WHEN CHAT.buyerId = ${userIdx} THEN CHAT.sellerId ELSE CHAT.buyerId END) as name 
+             , IFNULL((SELECT COUNT(message.idx)
+                         FROM CHAT_MESSAGE message
+                        WHERE message.chatId = CHAT.idx
+                          AND message.sender <> ${userIdx}
+                          AND message.read = 0), 0) as unReadCount
           FROM CHAT
          INNER JOIN ITEM
             ON CHAT.itemId = ITEM.idx  
