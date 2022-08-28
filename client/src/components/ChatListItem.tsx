@@ -23,7 +23,6 @@ export const ChatListItem = ({
   unReadCount,
   onClick,
 }: Props) => {
-  const [time] = updatedAt.split('T');
   return (
     <ItemContainer onClick={onClick}>
       <ItemWrapper>
@@ -33,7 +32,7 @@ export const ChatListItem = ({
         </LeftWrapper>
         <RightWrapper>
           <MessageDescription>
-            <div>{elapsedTime(time)}</div>
+            <div>{elapsedTime(updatedAt)}</div>
             {unReadCount > 0 && (
               <ChatBadge count={unReadCount} top={20} right={1}></ChatBadge>
             )}
