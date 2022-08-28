@@ -8,6 +8,7 @@ import { Dropdown } from '../components/Dropdown';
 import { InvisibleHeader } from '../components/Header/InvisibleHeader';
 import { ImageSlide } from '../components/ImageSlide';
 import { InfoSaler } from '../components/InfoSaler';
+import { ItemDetailSkeleton } from '../components/ItemDetailSkeleton';
 import { ProductBar } from '../components/ProductBar';
 import { Spacing } from '../components/Spacing';
 import { StatusButton } from '../components/StatusButton';
@@ -37,7 +38,10 @@ const dropdownItems: DropdownItem[] = [
 export const Detail = () => {
   const { id } = useParams();
 
-  const { item }: { item: any } = useItemDetail(id);
+  const {
+    item,
+    isLoading: isDetailLoading,
+  }: { item: any; isLoading: boolean } = useItemDetail(id);
 
   const [currentStatus, setCurrentStatus] = useState(item.status | 1);
   const [openStatus, setOpenStatus] = useState(false);
@@ -187,78 +191,85 @@ export const Detail = () => {
 
   return (
     <DetailWrapper>
-      <HeaderWrapper>
-        <InvisibleHeader
-          onClickBack={() => navigate(-1)}
-          onClickMore={() => {
-            setOpenMore((prevOpenMore) => !prevOpenMore);
-          }}
-          ref={moreRef}
-          visibleMore={owner}
-        />
-        {openMore && (
-          <Dropdown
-            width="100"
-            top="20"
-            right="20"
-            items={dropdownItems}
-            select={0}
-            handleChange={onDropDownMenuClick}
-          ></Dropdown>
-        )}
-      </HeaderWrapper>
+      {isDetailLoading ? (
+        <ItemDetailSkeleton></ItemDetailSkeleton>
+      ) : (
+        <>
+          <HeaderWrapper>
+            <InvisibleHeader
+              onClickBack={() => navigate(-1)}
+              onClickMore={() => {
+                setOpenMore((prevOpenMore) => !prevOpenMore);
+              }}
+              ref={moreRef}
+              visibleMore={owner}
+            />
+            {openMore && (
+              <Dropdown
+                width="100"
+                top="20"
+                right="20"
+                items={dropdownItems}
+                select={0}
+                handleChange={onDropDownMenuClick}
+              ></Dropdown>
+            )}
+          </HeaderWrapper>
 
-      <BodyWrapper>
-        {/* <ImgBox.Gradient height={320} src={item.images}></ImgBox.Gradient> */}
-        <ImageSlide images={item.images}></ImageSlide>
-        <ContentWrapper>
-          {owner && (
-            <StatusButton
-              ref={statusRef}
-              status={status}
-              select={currentStatus}
-              open={openStatus}
-              handleToggle={handleStatusToggle}
-              handleChange={handleStatusChange}
-            ></StatusButton>
-          )}
-          <Spacing height={16}></Spacing>
-          <TypoGraphy.Large>{item.title}</TypoGraphy.Large>
-          <DataWrapper>
-            <span>{item.categoryName}</span>
-            <span>·{elapsedTime(item.updatedAt)}</span>
-          </DataWrapper>
-          <DescriptionWrapper>{item.contents}</DescriptionWrapper>
-          <DataWrapper>
-            채팅 {item.chatRoomCount}·관심 {item.likeCount}·조회{' '}
-            {item.viewCount}
-          </DataWrapper>
-          <InfoSaler
-            location={item.location}
-            username={item.sellerName}
-          ></InfoSaler>
-        </ContentWrapper>
-      </BodyWrapper>
-      <FooterWrapper>
-        <HorizontalBar />
-        <ProductBar
-          onLikeClick={handleClickLike}
-          isLiked={like}
-          price={item.price ? Number(item.price).toLocaleString() : ''}
-          Button={
-            <Button
-              {...buttonProps}
-              {...(owner && item.chatRoomCount === 0 ? { disabled: true } : {})}
-            >
-              {owner
-                ? `채팅${
-                    item.chatRoomCount > 0 ? ` (${item.chatRoomCount})` : ''
-                  }`
-                : '문의하기'}
-            </Button>
-          }
-        />
-      </FooterWrapper>
+          <BodyWrapper>
+            <ImageSlide images={item.images}></ImageSlide>
+            <ContentWrapper>
+              {owner && (
+                <StatusButton
+                  ref={statusRef}
+                  status={status}
+                  select={currentStatus}
+                  open={openStatus}
+                  handleToggle={handleStatusToggle}
+                  handleChange={handleStatusChange}
+                ></StatusButton>
+              )}
+              <Spacing height={16}></Spacing>
+              <TypoGraphy.Large>{item.title}</TypoGraphy.Large>
+              <DataWrapper>
+                <span>{item.categoryName}</span>
+                <span>·{elapsedTime(item.updatedAt)}</span>
+              </DataWrapper>
+              <DescriptionWrapper>{item.contents}</DescriptionWrapper>
+              <DataWrapper>
+                채팅 {item.chatRoomCount}·관심 {item.likeCount}·조회{' '}
+                {item.viewCount}
+              </DataWrapper>
+              <InfoSaler
+                location={item.location}
+                username={item.sellerName}
+              ></InfoSaler>
+            </ContentWrapper>
+          </BodyWrapper>
+          <FooterWrapper>
+            <HorizontalBar />
+            <ProductBar
+              onLikeClick={handleClickLike}
+              isLiked={like}
+              price={item.price ? Number(item.price).toLocaleString() : ''}
+              Button={
+                <Button
+                  {...buttonProps}
+                  {...(owner && item.chatRoomCount === 0
+                    ? { disabled: true }
+                    : {})}
+                >
+                  {owner
+                    ? `채팅${
+                        item.chatRoomCount > 0 ? ` (${item.chatRoomCount})` : ''
+                      }`
+                    : '문의하기'}
+                </Button>
+              }
+            />
+          </FooterWrapper>
+        </>
+      )}
     </DetailWrapper>
   );
 };
