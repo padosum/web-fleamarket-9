@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { ToastMessageContainer } from './components/ToastMessageContainer';
 import { AuthProvider } from './context/AuthContext';
+import { CategoryProvider } from './context/CategoryContext';
 import { ChatNotiProvider } from './context/ChatContext';
 import { FocusProvider } from './context/FocusContext';
 import { HomeItemProvider } from './context/HomeItemContext';
@@ -23,12 +24,14 @@ root.render(
           <BrowserRouter>
             <ChatNotiProvider>
               <AuthProvider>
-                <HomeItemProvider>
-                  <LikeItemProvider>
-                    <App />
-                    <ToastMessageContainer />
-                  </LikeItemProvider>
-                </HomeItemProvider>
+                <CategoryProvider>
+                  <HomeItemProvider>
+                    <LikeItemProvider>
+                      <App />
+                      <ToastMessageContainer />
+                    </LikeItemProvider>
+                  </HomeItemProvider>
+                </CategoryProvider>
               </AuthProvider>
             </ChatNotiProvider>
           </BrowserRouter>

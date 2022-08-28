@@ -1,0 +1,26 @@
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useLikedItem } from './useLikedItem';
+
+export const useLikedItemFetch = () => {
+  const { setItems, setIsLoading } = useLikedItem();
+  const [searchParams] = useSearchParams();
+
+  const getItems = async () => {
+    const res = await axios.get('/api/item/liked');
+
+    setItems(
+      res.data.map((item: any) => {
+        return { ...item, image: item.image.split(',')[0] };
+      }),
+    );
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    if (searchParams.get('tab') === '3') {
+      getItems();
+    }
+  }, [searchParams]);
+};

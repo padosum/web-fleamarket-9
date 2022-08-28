@@ -11,7 +11,9 @@ import { EmptyText } from '../components/Menu/Common';
 import { MenuSlide } from '../components/Menu/MenuSlide';
 import { ProductList } from '../components/ProductList';
 import { useAuthContext } from '../context/AuthContext';
+import { useHomeItemFetch } from '../hooks/useHomeItemFetch';
 import { useItem } from '../hooks/useItem';
+import { useLikedItemFetch } from '../hooks/useLikedItemFetch';
 import useScrollCache from '../hooks/useScrollCache';
 import listenForOutsideClicks from '../utils/util';
 
@@ -63,7 +65,9 @@ export const Home = () => {
     return ['category', 'locationId'].map((key) => urlParams.get(key));
   }, [windowLocation.search]);
 
-  const { items, isLoading: isItemLoading } = useItem(categoryId!, locationId!);
+  useHomeItemFetch(categoryId!, locationId!);
+  useLikedItemFetch();
+  const { items, isLoading: isItemLoading } = useItem();
 
   const products = useMemo(() => {
     return items.map((item) => {

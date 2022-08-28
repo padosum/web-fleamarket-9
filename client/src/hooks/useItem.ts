@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { HomeItemContext } from '../context/HomeItemContext';
 
 export type ItemTypes = {
@@ -14,30 +13,9 @@ export type ItemTypes = {
   price: number;
 };
 
-export const useItem = (categoryId?: string, locationId?: string) => {
+export const useItem = () => {
   const { items, setItems, isLoading, setIsLoading } =
     useContext(HomeItemContext);
 
-  const getItems = async () => {
-    const res = await axios.get('/api/item', {
-      params: {
-        categoryId,
-        locationId,
-      },
-    });
-
-    setItems(
-      res.data.map((item: any) => {
-        return { ...item, image: item.image.split(',')[0] };
-      }),
-    );
-
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    getItems();
-  }, [categoryId, locationId]);
-
-  return { items, isLoading, setItems };
+  return { items, isLoading, setItems, setIsLoading };
 };
