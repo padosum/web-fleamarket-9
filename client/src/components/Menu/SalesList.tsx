@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import styled from 'styled-components';
 import { useSaleItem } from '../../hooks/useSaleItem';
 import { colors } from '../Color';
+import { ItemSkeleton } from '../ItemSkeleton';
 import { ProductList } from '../ProductList';
 import { EmptyText } from './Common';
 
@@ -21,7 +22,7 @@ const ListWrapper = styled.div`
 `;
 
 export const SalesList = () => {
-  const { items } = useSaleItem();
+  const { items, isLoading } = useSaleItem();
 
   const products = useMemo(() => {
     return items.map((item) => {
@@ -41,13 +42,19 @@ export const SalesList = () => {
 
   return (
     <SalesListWrapper>
-      {products.length > 0 && (
+      {isLoading ? (
+        <div style={{ paddingLeft: 16 }}>
+          <ItemSkeleton />
+          <ItemSkeleton />
+          <ItemSkeleton />
+        </div>
+      ) : products.length > 0 ? (
         <ListWrapper>
           <ProductList items={products} type="sales" />
         </ListWrapper>
+      ) : (
+        <EmptyText>등록한 상품이 없습니다.</EmptyText>
       )}
-
-      {products.length === 0 && <EmptyText>등록한 상품이 없습니다.</EmptyText>}
     </SalesListWrapper>
   );
 };

@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import styled from 'styled-components';
 import { useLikedItem } from '../../hooks/useLikedItem';
 import { colors } from '../Color';
+import { ItemSkeleton } from '../ItemSkeleton';
 import { ProductList } from '../ProductList';
 import { EmptyText } from './Common';
 
@@ -20,7 +21,7 @@ const ListWrapper = styled.div`
 `;
 
 export const LikedList = () => {
-  const { items } = useLikedItem();
+  const { items, isLoading } = useLikedItem();
 
   const products = useMemo(() => {
     return items.map((item) => {
@@ -40,13 +41,17 @@ export const LikedList = () => {
 
   return (
     <LikedListWrapper>
-      {products.length > 0 && (
+      {isLoading ? (
+        <div style={{ paddingLeft: 16 }}>
+          <ItemSkeleton />
+          <ItemSkeleton />
+          <ItemSkeleton />
+        </div>
+      ) : products.length > 0 ? (
         <ListWrapper>
           <ProductList items={products} type="shopping" />
         </ListWrapper>
-      )}
-
-      {products.length === 0 && (
+      ) : (
         <EmptyText>관심을 표시한 상품이 없습니다.</EmptyText>
       )}
     </LikedListWrapper>

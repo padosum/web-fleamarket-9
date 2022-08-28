@@ -4,6 +4,7 @@ import { ItemTypes } from './useItem';
 
 export const useLikedItem = () => {
   const [items, setItems] = useState<ItemTypes[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getItems = async () => {
     const res = await axios.get('/api/item/liked');
@@ -13,11 +14,12 @@ export const useLikedItem = () => {
         return { ...item, image: item.image.split(',')[0] };
       }),
     );
+    setIsLoading(false);
   };
 
   useEffect(() => {
     getItems();
   }, []);
 
-  return { items };
+  return { items, isLoading };
 };
