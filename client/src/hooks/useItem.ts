@@ -15,6 +15,7 @@ export type ItemTypes = {
 
 export const useItem = (categoryId?: string, locationId?: string) => {
   const [items, setItems] = useState<ItemTypes[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getItems = async () => {
     const res = await axios.get('/api/item', {
@@ -29,11 +30,13 @@ export const useItem = (categoryId?: string, locationId?: string) => {
         return { ...item, image: item.image.split(',')[0] };
       }),
     );
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
     getItems();
   }, [categoryId, locationId]);
 
-  return { items };
+  return { items, isLoading };
 };

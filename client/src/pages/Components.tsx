@@ -27,6 +27,8 @@ import { ProductBar } from '../components/ProductBar';
 import { InfoProduct } from '../components/InfoProduct';
 import { ChatListItem } from '../components/ChatListItem';
 import { ChatBar } from '../components/ChatBar';
+import { ItemSkeleton } from '../components/ItemSkeleton';
+import { ListItem } from '../components/ListItem';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -478,13 +480,25 @@ export const Components = () => {
         />
       </div>
 
-      <div style={{ width: 320, height: 500 }}>
-        {chatRooms.map((item) => (
-          <ChatListItem key={item.idx} {...item}></ChatListItem>
-        ))}
-      </div>
+      <div style={{ width: 320, height: 500 }}></div>
       <div style={{ width: 500 }}>
         <ChatBar buttonActive={true} />
+      </div>
+
+      <div style={{ width: 500 }}>
+        <ListItem
+          idx={1}
+          image=""
+          isLiked={true}
+          likeCnt={1}
+          location="d"
+          messageCnt={1}
+          price={1000}
+          timestamp="dsadsad"
+          title="gfdgfd"
+          type="sales"
+        />
+        <ItemSkeleton />
       </div>
     </Wrapper>
   );

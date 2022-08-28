@@ -6,6 +6,8 @@ import { CategorySlide } from '../components/Category/CategorySlide';
 import { Dropdown } from '../components/Dropdown';
 import { Fab } from '../components/Fab';
 import { MainHeader } from '../components/Header/MainHeader';
+import { ItemSkeleton } from '../components/ItemSkeleton';
+import { EmptyText } from '../components/Menu/Common';
 import { MenuSlide } from '../components/Menu/MenuSlide';
 import { ProductList } from '../components/ProductList';
 import { useAuthContext } from '../context/AuthContext';
@@ -85,7 +87,7 @@ export const Home = () => {
     return ['category', 'locationId'].map((key) => urlParams.get(key));
   }, [windowLocation.search]);
 
-  const { items } = useItem(categoryId!, locationId!);
+  const { items, isLoading: isItemLoading } = useItem(categoryId!, locationId!);
 
   const products = useMemo(() => {
     return items.map((item) => {
@@ -174,7 +176,19 @@ export const Home = () => {
       <MenuSlide open={!!openMenu} />
 
       <ProductWrapper>
-        <ProductList items={products} type="shopping" />
+        {isItemLoading ? (
+          <>
+            <ItemSkeleton />
+            <ItemSkeleton />
+            <ItemSkeleton />
+          </>
+        ) : products.length > 0 ? (
+          <ProductList items={products} type="shopping" />
+        ) : (
+          <div style={{ height: 'calc(100vh - 56px)' }}>
+            <EmptyText>아이템이 없습니다.</EmptyText>
+          </div>
+        )}
       </ProductWrapper>
       {isLoggedIn && (
         <FabButtonWrapper>
