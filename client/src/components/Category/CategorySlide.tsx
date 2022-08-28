@@ -3,14 +3,11 @@ import { Category } from './Category';
 import { BackHeader } from '../Header/BackHeader';
 import { colors } from '../Color';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export const CategorySlide = ({
-  open,
-  toggleOpen,
-}: {
-  open: boolean;
-  toggleOpen: React.MouseEventHandler<HTMLDivElement>;
-}) => {
+export const CategorySlide = ({ open }: { open: boolean }) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (open) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = '';
@@ -21,9 +18,9 @@ export const CategorySlide = ({
       <BackHeader
         title={'카테고리'}
         color="offWhite"
-        onClickBack={toggleOpen}
+        onClickBack={navigate.bind(null, -1)}
       ></BackHeader>
-      <Category toggleOpen={toggleOpen}></Category>
+      <Category></Category>
     </CategoryWrapper>
   );
 };

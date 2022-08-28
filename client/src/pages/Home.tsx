@@ -37,8 +37,9 @@ export const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [openLocation, setOpenLocation] = useState(false);
-  const [openCategory, setOpenCategory] = useState(false);
-  const [openMenu, setOpenMenu] = useState(false);
+
+  const openCategory = searchParams.get('openCategory');
+  const openMenu = searchParams.get('menu');
 
   const [location, setLocation] = useState([]);
   const [currentLocationName, setCurrentLocationName] = useState('');
@@ -76,6 +77,7 @@ export const Home = () => {
 
   const { isLoggedIn } = useAuthContext('Login');
   const navigate = useNavigate();
+
   const windowLocation = useLocation();
 
   const [categoryId, locationId] = useMemo(() => {
@@ -120,11 +122,21 @@ export const Home = () => {
     setOpenLocation(false);
   };
   const handleToggleCategory = () => {
-    setOpenCategory((prevOpenCategory) => !prevOpenCategory);
+    if (openCategory) {
+      searchParams.delete('openCategory');
+    } else {
+      searchParams.set('openCategory', 'true');
+    }
+    setSearchParams(searchParams);
   };
 
   const handleToggleMenu = () => {
-    setOpenMenu((openMenu) => !openMenu);
+    if (openMenu) {
+      searchParams.delete('menu');
+    } else {
+      searchParams.set('menu', 'true');
+    }
+    setSearchParams(searchParams);
   };
 
   return (
@@ -157,9 +169,9 @@ export const Home = () => {
         )}
       </HeaderWrapper>
 
-      <CategorySlide open={openCategory} toggleOpen={handleToggleCategory} />
+      <CategorySlide open={!!openCategory} />
 
-      <MenuSlide open={openMenu} toggleOpen={handleToggleMenu} />
+      <MenuSlide open={!!openMenu} />
 
       <ProductWrapper>
         <ProductList items={products} type="shopping" />

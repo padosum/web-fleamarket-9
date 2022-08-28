@@ -189,7 +189,7 @@ export const Detail = () => {
     <DetailWrapper>
       <HeaderWrapper>
         <InvisibleHeader
-          onClickBack={() => navigate('/home')}
+          onClickBack={() => navigate(-1)}
           onClickMore={() => {
             setOpenMore((prevOpenMore) => !prevOpenMore);
           }}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../Color';
 import { BackHeader } from '../Header/BackHeader';
@@ -54,20 +55,18 @@ const tabs = [
   },
 ];
 
-export const MenuSlide = ({
-  open,
-  toggleOpen,
-}: {
-  open: boolean;
-  toggleOpen: React.MouseEventHandler<HTMLDivElement>;
-}) => {
-  const [currentTab, setCurrentTab] = useState(tabs[0].idx);
+export const MenuSlide = ({ open }: { open: boolean }) => {
+  const navigate = useNavigate();
+  const [searchPrams, setSearchParams] = useSearchParams();
+  const currentTab = searchPrams.get('tab') ? +searchPrams.get('tab')! : 1;
 
   const handleTabChange = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!(e.target instanceof HTMLButtonElement)) {
       return;
     }
-    setCurrentTab(+e.target.value);
+
+    searchPrams.set('tab', e.target.value);
+    setSearchParams(searchPrams, { replace: true });
   };
 
   useEffect(() => {
@@ -78,7 +77,11 @@ export const MenuSlide = ({
   return (
     <MenuSlideWrapper open={open}>
       <HeaderWrapper>
-        <BackHeader title={'메뉴'} color="offWhite" onClickBack={toggleOpen} />
+        <BackHeader
+          title={'메뉴'}
+          color="offWhite"
+          onClickBack={navigate.bind(null, -1)}
+        />
         <TabBar tabs={tabs} select={currentTab} onClick={handleTabChange} />
       </HeaderWrapper>
 

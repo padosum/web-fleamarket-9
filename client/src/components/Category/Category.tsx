@@ -34,25 +34,20 @@ const imgMapper = {
     'https://user-images.githubusercontent.com/49009864/187027368-88e0f045-9d51-45ba-98f3-9ebf7f0c77e2.png',
 };
 
-export const Category = ({
-  toggleOpen,
-}: {
-  toggleOpen: React.MouseEventHandler<HTMLDivElement>;
-}) => {
+export const Category = () => {
   const { category } = useCategory();
   const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <CategoryContainer>
       {category.map(({ idx, name }) => {
-        const link = `?category=${idx}`;
         return (
           <CategoryWrapper key={idx}>
             <CategoryLink
-              onClick={(evt) => {
+              onClick={() => {
                 searchParams.set('category', `${idx}`);
+                searchParams.delete('openCategory');
                 setSearchParams(searchParams);
-                toggleOpen(evt as unknown as React.MouseEvent<HTMLDivElement>);
               }}
             >
               <ImgBox.Small src={imgMapper[name]}></ImgBox.Small>
