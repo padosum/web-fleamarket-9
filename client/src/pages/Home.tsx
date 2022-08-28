@@ -65,7 +65,7 @@ export const Home = () => {
     return ['category', 'locationId'].map((key) => urlParams.get(key));
   }, [windowLocation.search]);
 
-  useHomeItemFetch(categoryId!, locationId!);
+  const { getItems: getHomeItems } = useHomeItemFetch(categoryId!, locationId!);
   useLikedItemFetch();
   const { items, isLoading: isItemLoading } = useItem();
 
@@ -199,7 +199,11 @@ export const Home = () => {
             <ItemSkeleton />
           </>
         ) : products.length > 0 ? (
-          <ProductList items={products} type="shopping" />
+          <ProductList
+            getItems={getHomeItems}
+            items={products}
+            type="shopping"
+          />
         ) : (
           <div style={{ height: 'calc(100vh - 56px)' }}>
             <EmptyText>아이템이 없습니다.</EmptyText>

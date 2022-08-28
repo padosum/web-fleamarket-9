@@ -15,13 +15,22 @@ interface Item {
 interface Props {
   items: Item[];
   type: string;
+  getItems?: Function;
 }
 
 export const ProductList = (props: Props) => {
   return (
     <>
-      {props.items.map((item) => {
-        return <ListItem key={item.idx} {...item} type={props.type} />;
+      {props.items.map((item, index) => {
+        return (
+          <ListItem
+            isLastItem={index === props.items.length - 1}
+            getItems={props.getItems}
+            key={item.idx}
+            {...item}
+            type={props.type}
+          />
+        );
       })}
     </>
   );

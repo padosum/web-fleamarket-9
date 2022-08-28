@@ -25,6 +25,8 @@ interface Props {
   type: string;
   image: string;
   isLiked: boolean;
+  isLastItem?: boolean;
+  getItems?: Function;
 }
 
 interface DropdownItem {
@@ -49,6 +51,8 @@ export const ListItem = ({
   type,
   image,
   isLiked,
+  isLastItem,
+  getItems,
 }: Props) => {
   const [openMenu, setOpenMenu] = useState(false);
   const isLoggedIn = useIsLoggedIn();
@@ -180,6 +184,27 @@ export const ListItem = ({
       window.addEventListener('mousedown', outsideClickHandler);
 
       return () => window.removeEventListener('mousedown', outsideClickHandler);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isLastItem) {
+      const observer = new IntersectionObserver(
+        (e) => {
+          if (e[0].isIntersecting) {
+            if (getItems) {
+              observer.unobserve(itemListRef.current);
+              observer.disconnect();
+              getItems();
+            }
+          }
+        },
+        {
+          rootMargin: '0px',
+        },
+      );
+
+      observer.observe(itemListRef.current);
     }
   }, []);
 
