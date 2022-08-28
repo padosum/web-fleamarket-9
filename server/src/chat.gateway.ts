@@ -83,14 +83,16 @@ export class ChatGateway {
   @SubscribeMessage(SEND_CHAT)
   handleChatSend(client: any, payload: any): void {
     const clients = Array.from(this.server.clients);
-
-    clients.forEach((c: any) => {
-      c.send(
-        JSON.stringify({
-          event: RECEIVE_CHAT,
-          data: { sender: client.userId, message: payload },
-        }),
-      );
-    });
+    const { chatId, idx, sender, reciever, message } = payload;
+    for (const c of clients) {
+      if (+(c as any).userId === reciever) {
+        (c as any).send(
+          JSON.stringify({
+            event: RECEIVE_CHAT,
+            data: { chatId, idx, sender, message },
+          }),
+        );
+      }
+    }
   }
 }

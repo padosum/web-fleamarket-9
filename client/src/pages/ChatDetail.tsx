@@ -12,43 +12,19 @@ import { SEND_CHAT } from '../utils/constant';
 import { useAuthContext } from '../context/AuthContext';
 import axios from 'axios';
 
-const ChatDetailWrapper = styled.div`
-  width: 100%;
-  max-width: 100%;
-`;
-
-const HorizontalBar = styled.div`
-  width: 100%;
-  max-width: 100%;
-  height: 1px;
-  background-color: ${colors.gray3};
-`;
-
-const ChatWrapper = styled.div`
-  width: 100%;
-  max-width: 100%;
-  padding: 0 16px;
-  box-sizing: border-box;
-  height: calc(100vh - 182px);
-  max-height: calc(100vh - 182px);
-  overflow-y: auto;
-`;
-
-const ChatBarWrapper = styled.div`
-  width: 100%;
-  max-width: 100%;
-`;
-
 export const ChatDetail = () => {
   const [chatRoom, setChatRoom] = useState<{
+    idx: number;
     title: string;
     price: number;
     name: string;
+    images: string;
     itemStatus: string;
+    recieverId: number;
   }>(null!);
 
   const [messages, setMessages] = useState<
-    { message: string; sender: number }[]
+    { idx: number; message: string; sender: number; isNew?: boolean }[]
   >([]);
 
   const [chatInput, setChatInput] = useState('');
@@ -59,22 +35,77 @@ export const ChatDetail = () => {
   const worker = useWorker();
   const { user, isLoggedIn } = useAuthContext('chat-detail');
 
-  // TODO 전달받은 id 값으로 메시지 조회
+  const getMessages = async (lastMessageId?: number) => {
+    try {
+      const { data } = await axios.get('/api/chat/message', {
+        params: { chatId: id, lastMessageId },
+      });
+      setMessages(data);
+    } catch (err) {
+      navigate(-1);
+    }
+  };
 
-  const onSendButtonClick = () => {
-    axios.post(`/api/chat/${id}`, {
+  // TODO 전달받은 id 값으로 메시지 조회
+  useEffect(() => {
+    const getChatRoom = async () => {
+      try {
+        const { data } = await axios.get(`/api/chat/room`, {
+          params: { chatId: id },
+        });
+        setChatRoom(data);
+      } catch (err) {
+        alert(err);
+      }
+    };
+
+    getChatRoom();
+    getMessages();
+  }, []);
+
+  const onSendButtonClick = async () => {
+    if (chatInput === '') {
+      return;
+    }
+
+    const { data } = await axios.post(`/api/chat/${id}`, {
       message: chatInput,
     });
 
     worker.port.postMessage(
-      JSON.stringify({ event: SEND_CHAT, data: chatInput }),
+      JSON.stringify({
+        event: SEND_CHAT,
+        data: {
+          chatId: id,
+          idx: data.idx,
+          sender: user?.idx,
+          reciever: chatRoom.recieverId,
+          message: chatInput,
+        },
+      }),
     );
+
+    setMessages((messages) => [
+      ...messages,
+      { idx: data.idx, sender: user?.idx!, message: chatInput, isNew: true },
+    ]);
 
     setChatInput('');
   };
 
-  const handleMessage = (data: { sender: number; message: string }) => {
-    setMessages((messages) => [...messages, data]);
+  const handleMessage = (data: {
+    chatId: number;
+    idx: number;
+    sender: number;
+    message: string;
+    isNew?: boolean;
+  }) => {
+    if (!id) {
+      return;
+    }
+    if (+data.chatId === +id) {
+      setMessages((messages) => [...messages, { ...data, isNew: true }]);
+    }
   };
 
   const handleExitChatRoom = async () => {
@@ -104,6 +135,12 @@ export const ChatDetail = () => {
     chatWrapperRef.current.scrollTo({ top: 10000000000000000 });
   }, [messages]);
 
+  const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) => {
+    console.log(isIntersecting);
+    if (isIntersecting) {
+    }
+  };
+
   return (
     <ChatDetailWrapper>
       {!isLoggedIn && <Navigate to="/home" replace />}
@@ -115,7 +152,11 @@ export const ChatDetail = () => {
       ></ExitHeader>
       <HorizontalBar />
       <InfoProduct
-        src="https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM"
+        src={
+          chatRoom
+            ? chatRoom?.images.split(',')[0]
+            : 'https://i.picsum.photos/id/126/250/250.jpg?hmac=LREWNomCU5zCq58oNDwGUv6yUoPd9vOpAEJQUQiDWVM'
+        }
         title={chatRoom?.title}
         price={chatRoom ? Number(chatRoom?.price).toLocaleString() + '원' : ''}
         buttonText={chatRoom?.itemStatus}
@@ -123,17 +164,22 @@ export const ChatDetail = () => {
       />
       <HorizontalBar />
       <ChatWrapper ref={chatWrapperRef}>
-        <Spacing height={16} />
-        {messages.map(({ sender, message }) => {
+        {messages.map(({ idx, sender, message, isNew }) => {
           return (
-            <>
+            <div key={idx}>
               {sender === user?.idx ? (
-                <ChatBubble.TypeB text={message} />
+                <ChatBubble.TypeB
+                  className={isNew ? 'new' : ''}
+                  text={message}
+                />
               ) : (
-                <ChatBubble.TypeA text={message} />
+                <ChatBubble.TypeA
+                  className={isNew ? 'new' : ''}
+                  text={message}
+                />
               )}
               <Spacing height={16} />
-            </>
+            </div>
           );
         })}
 
@@ -151,3 +197,30 @@ export const ChatDetail = () => {
     </ChatDetailWrapper>
   );
 };
+
+const ChatDetailWrapper = styled.div`
+  width: 100%;
+  max-width: 100%;
+`;
+
+const HorizontalBar = styled.div`
+  width: 100%;
+  max-width: 100%;
+  height: 1px;
+  background-color: ${colors.gray3};
+`;
+
+const ChatWrapper = styled.div`
+  width: 100%;
+  max-width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+  height: calc(100vh - 182px);
+  max-height: calc(100vh - 182px);
+  overflow-y: auto;
+`;
+
+const ChatBarWrapper = styled.div`
+  width: 100%;
+  max-width: 100%;
+`;

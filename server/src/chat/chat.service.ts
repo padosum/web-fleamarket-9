@@ -271,9 +271,12 @@ export class ChatService {
   async getChatRoomInfo(chatId, userIdx) {
     try {
       const sql = `
-        SELECT ITEM.title
+        SELECT CHAT.idx
+             , ITEM.title
              , ITEM.price
+             , ITEM.images
              , ITEM_STATUS.name as itemStatus
+             , (CASE WHEN CHAT.buyerId = ${userIdx} THEN CHAT.sellerId ELSE CHAT.buyerId END) as recieverId
              , CHAT.sellerId
              , CHAT.buyerId
              , (SELECT name  
@@ -286,6 +289,7 @@ export class ChatService {
             ON ITEM.status = ITEM_STATUS.idx
          WHERE CHAT.idx = ${chatId}
            AND (CHAT.buyerId = ${userIdx} OR CHAT.sellerId = ${userIdx});`;
+
       const [chatRoom]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
         await this.conn.query(sql);
 
