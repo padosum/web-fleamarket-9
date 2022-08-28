@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { ToastMessageContainer } from './components/ToastMessageContainer';
 import { AuthProvider } from './context/AuthContext';
+import { FocusProvider } from './context/FocusContext';
 import { ItemUploadProvider } from './context/ItemUploadContext';
 import { LikeNotifyProvider } from './context/LikeContext';
 import { WorkerProvider } from './context/WorkerContext';
@@ -13,15 +14,17 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <WorkerProvider>
-    <LikeNotifyProvider>
-      <ItemUploadProvider>
-        <BrowserRouter>
-          <AuthProvider>
-            <App />
-            <ToastMessageContainer />
-          </AuthProvider>
-        </BrowserRouter>
-      </ItemUploadProvider>
-    </LikeNotifyProvider>
+    <FocusProvider>
+      <LikeNotifyProvider>
+        <ItemUploadProvider>
+          <BrowserRouter>
+            <AuthProvider>
+              <App />
+              <ToastMessageContainer />
+            </AuthProvider>
+          </BrowserRouter>
+        </ItemUploadProvider>
+      </LikeNotifyProvider>
+    </FocusProvider>
   </WorkerProvider>,
 );
