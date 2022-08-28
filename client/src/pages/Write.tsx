@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Navigate, useMatch, useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Navigate, useMatch, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { CategoryButton } from '../components/Category/CategoryButton';
 import { colors } from '../components/Color';
@@ -14,6 +14,7 @@ import { useAuthContext } from '../context/AuthContext';
 import { useWorker } from '../context/WorkerContext';
 import { useCategory } from '../hooks/useCategory';
 import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
+import { ITEM_UPLOAD } from '../utils/constant';
 import { comma } from '../utils/util';
 
 const WriteWrapper = styled.div`
@@ -74,25 +75,24 @@ const CategoryWrapper = styled.div`
 `;
 
 export const Write = () => {
-  const { state }: { state: any } = useLocation();
-
   const match = useMatch('/item/edit/:id');
   const itemId = match?.params.id;
+  const { user } = useAuthContext('Write');
+  const worker = useWorker();
 
   const [info, setInfo] = useState({
     imgUrls: [] as string[],
     title: '',
     price: '',
     contents: '',
-    location: '잠실',
+    location: user!.location[0].locationName,
     category: 0,
-    locationId: state?.locationId || 0,
+    locationId: user!.location[0].locationId,
   });
 
   const { title, price, contents } = info;
 
   const isLoggedIn = useIsLoggedIn();
-  const { user } = useAuthContext('Write');
   const fileInputRef = useRef<HTMLInputElement>(null!);
   const { category } = useCategory();
 
@@ -171,13 +171,23 @@ export const Write = () => {
           images: info.imgUrls,
           price: info.price ? +info.price.replace(/,/g, '') : 0,
           contents: info.contents,
-          code: state.locationName,
-          locationId: state.locationId,
+          code: info.location,
+          locationId: info.locationId,
           category: info.category,
         });
 
+        worker.port.postMessage(
+          JSON.stringify({
+            event: ITEM_UPLOAD,
+            data: {
+              locationId: info.locationId,
+              title: info.title,
+              locationName: info.location,
+            },
+          }),
+        );
         alert('물품을 등록했습니다.');
-        navigate('/home');
+        navigate('/home?menu=true', { replace: true });
       }
 
       if (itemId) {
@@ -192,7 +202,7 @@ export const Write = () => {
         });
 
         alert('물품을 수정했습니다.');
-        navigate('/home');
+        navigate(`/item/${itemId}`, { replace: true });
       }
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
@@ -234,7 +244,7 @@ export const Write = () => {
             title={'글쓰기'}
             color={'white'}
             active={checkValidation()}
-            onClickBack={() => navigate('/home')}
+            onClickBack={() => navigate(-1)}
             onClickCheck={onSubmit}
           />
         </HeaderWrapper>
@@ -310,7 +320,7 @@ export const Write = () => {
         </BodyWrapper>
         <HorizontalBar />
         <LocationWrapper>
-          <LocationBar location={itemId ? info.location : state.locationName} />
+          <LocationBar location={info.location} />
         </LocationWrapper>
       </WriteWrapper>
     </form>

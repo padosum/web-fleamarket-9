@@ -36,13 +36,28 @@ export class ChatGateway {
 
   // 아이템을 올렸다.
   @SubscribeMessage(ITEM_UPLOAD)
-  handleItemUpload(client: any, payload: any): void {
+  async handleItemUpload(client: any, payload: any): Promise<void> {
+    const { locationId, title, locationName } = payload;
+
+    // 업로드된 아이템의 로케이션을 자신을 지역으로 선택한 유저 검색.
+    const usersFoundUsingLocationId =
+      await this.usersService.getUsersByLocationId(locationId);
+
+    const dict: { [key: number]: boolean } = {};
+
+    usersFoundUsingLocationId.forEach((user) => (dict[user.userId] = true));
+
     const clients = Array.from(this.server.clients);
 
-    // payload는 업로드된 아이템 Idx.
+    // 해당 유저에 해당하는 웹소켓 클라이언트에게 메시지 전송, 본인 제외
     clients.forEach((c: any) => {
-      if (c !== client) {
-        c.send(JSON.stringify({ event: ITEM_UPLOADED, data: payload }));
+      if (dict[(c as any).userId] && c !== client) {
+        c.send(
+          JSON.stringify({
+            event: ITEM_UPLOADED,
+            data: { title, locationName },
+          }),
+        );
       }
     });
   }

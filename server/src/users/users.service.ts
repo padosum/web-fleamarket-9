@@ -111,6 +111,20 @@ export class UsersService {
         };
   }
 
+  async getUsersByLocationId(
+    locationId: number,
+  ): Promise<{ idx: number; userId: number }[]> {
+    try {
+      const [users] = (await this.conn.query(
+        `select idx, userId FROM USER_LOCATION where locationId = ${locationId}`,
+      )) as any;
+
+      return users;
+    } catch (err) {
+      return [];
+    }
+  }
+
   async createGithubUser(id: string, name: string) {
     try {
       const randomPassword = SHA256(Math.random().toString()).toString();

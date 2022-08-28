@@ -32,8 +32,14 @@ ws.onmessage = ({ data: _data }) => {
 
     case GET_LIKE:
       tabs.forEach((tab) => {
-        tab.postMessage({ event, data: data });
+        tab.postMessage({ event, data });
       });
+      break;
+    case ITEM_UPLOADED:
+      tabs.forEach((tab) => {
+        tab.postMessage({ event, data });
+      });
+      break;
   }
 };
 
@@ -47,6 +53,10 @@ function sendChat(data) {
 
 function sendLike(data) {
   ws.send(JSON.stringify({ event: SEND_LIKE, data }));
+}
+
+function uploadItem(data) {
+  ws.send(JSON.stringify({ event: ITEM_UPLOAD, data }));
 }
 
 // 다른 탭과의 연결
@@ -72,6 +82,11 @@ onconnect = function (e) {
 
       case SEND_LIKE: {
         sendLike(data);
+        break;
+      }
+
+      case ITEM_UPLOAD: {
+        uploadItem(data);
         break;
       }
     }
