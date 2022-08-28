@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLikeNotify } from '../context/LikeContext';
 import { useItem } from '../hooks/useItem';
 import { useLikedItem } from '../hooks/useLikedItem';
+import { LazyloadingImgBox } from './LazyloadingImgBox';
 
 interface Props {
   idx: number;
@@ -211,7 +212,7 @@ export const ListItem = ({
   return (
     <ItemWrapper ref={itemListRef} onClick={() => navigate(`/item/${idx}`)}>
       <ImgWrapper>
-        <ImgBox.Large src={image.split(',')[0]} />
+        <LazyloadingImgBox src={image.split(',')[0]} />
       </ImgWrapper>
       <ItemDescription>
         <ItemTitleText>{title}</ItemTitleText>
