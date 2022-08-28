@@ -10,6 +10,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useWorker } from '../context/WorkerContext';
 import { SEND_CHAT } from '../utils/constant';
 import { useAuthContext } from '../context/AuthContext';
+import useIntersectionObserver from '../hooks/useIntersectionObserver';
+
 import axios from 'axios';
 
 export const ChatDetail = () => {
@@ -32,23 +34,25 @@ export const ChatDetail = () => {
   const [messages, setMessages] = useState<
     { idx: number; message: string; sender: number; isNew?: boolean }[]
   >([]);
+  const [lastMessageId, setLastMessageId] = useState(0);
+
+  const [scrolltoBottom, setScrollToBottom] = useState(true);
 
   const [chatInput, setChatInput] = useState('');
   const chatWrapperRef = useRef<HTMLDivElement>(null!);
 
-  const getMessages = async (lastMessageId?: number) => {
-    try {
-      const { data } = await axios.get('/api/chat/message', {
-        params: { chatId: id, lastMessageId },
-      });
-      setMessages(data);
-    } catch (err) {
-      navigate(-1);
-    }
-  };
-
-  // TODO 전달받은 id 값으로 메시지 조회
   useEffect(() => {
+    const getMessages = async (lastMessageId?: number) => {
+      try {
+        const { data } = await axios.get('/api/chat/message', {
+          params: { chatId: id, lastMessageId },
+        });
+        setMessages(data);
+      } catch (err) {
+        navigate(-1);
+      }
+    };
+
     const getChatRoom = async () => {
       try {
         const { data } = await axios.get(`/api/chat/room`, {
@@ -91,6 +95,7 @@ export const ChatDetail = () => {
       }),
     );
 
+    setScrollToBottom(true);
     setMessages((messages) => [
       ...messages,
       { idx: data.idx, sender: user?.idx!, message: chatInput, isNew: true },
@@ -99,7 +104,7 @@ export const ChatDetail = () => {
     setChatInput('');
   };
 
-  const handleMessage = async (data: {
+  const handleRecieveMessage = async (data: {
     chatId: number;
     idx: number;
     sender: number;
@@ -112,6 +117,8 @@ export const ChatDetail = () => {
     if (+data.chatId === +id) {
       // 읽음 처리
       await axios.patch(`/api/chat/${data.chatId}`);
+
+      setScrollToBottom(true);
       setMessages((messages) => [...messages, { ...data, isNew: true }]);
     }
   };
@@ -131,7 +138,7 @@ export const ChatDetail = () => {
   };
 
   useEffect(() => {
-    const handleWebSocketData = (e: any) => handleMessage(e.data);
+    const handleWebSocketData = (e: any) => handleRecieveMessage(e.data);
     worker.port.addEventListener('message', handleWebSocketData);
 
     worker.port.start();
@@ -140,8 +147,48 @@ export const ChatDetail = () => {
   }, []);
 
   useEffect(() => {
-    chatWrapperRef.current.scrollTo({ top: 10000000000000000 });
+    if (scrolltoBottom) {
+      chatWrapperRef.current.scrollTo({
+        top: chatWrapperRef.current.scrollHeight,
+      });
+    } else {
+      const { scrollHeight } = chatWrapperRef.current!;
+      const newScrollTop = scrollHeight - prevScrollBottomRef.current;
+      chatWrapperRef.current.scrollTo({ top: newScrollTop });
+    }
   }, [messages]);
+
+  const prevScrollBottomRef = useRef(0);
+
+  const onIntersect: IntersectionObserverCallback = async ([
+    { isIntersecting },
+  ]) => {
+    if (isIntersecting) {
+      if (messages[0]) {
+        if (messages[0].idx !== lastMessageId) {
+          const { scrollHeight, scrollTop } = chatWrapperRef.current!;
+          prevScrollBottomRef.current = scrollHeight - scrollTop;
+
+          const getMessages = async (lastMessageId?: number) => {
+            try {
+              const { data } = await axios.get('/api/chat/message', {
+                params: { chatId: id, lastMessageId },
+              });
+
+              setMessages((prevMessages) => [...data, ...prevMessages]);
+              setLastMessageId(messages[0].idx);
+            } catch (err) {
+              navigate(-1);
+            }
+          };
+          setScrollToBottom(false);
+          getMessages(messages[0].idx);
+        }
+      }
+    }
+  };
+
+  const { setTarget } = useIntersectionObserver({ onIntersect });
 
   return (
     <ChatDetailWrapper>
@@ -166,9 +213,10 @@ export const ChatDetail = () => {
       />
       <HorizontalBar />
       <ChatWrapper ref={chatWrapperRef}>
-        {messages.map(({ idx, sender, message, isNew }) => {
+        <div ref={setTarget}></div>
+        {messages.map(({ idx, sender, message, isNew }, index) => {
           return (
-            <div key={idx}>
+            <div key={`${idx}-${index}`}>
               <Spacing height={16} />
               {sender === user?.idx ? (
                 <ChatBubble.TypeB

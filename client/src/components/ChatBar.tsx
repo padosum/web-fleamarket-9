@@ -55,6 +55,7 @@ export const ChatBar = ({
         }}
         value={text}
         onChange={onTextChange}
+        maxLength={250}
       />
       <ButtonWrapper disabled={!buttonActive} onClick={onButtonClick}>
         <Icon name="iconSend" width={20} height={20} />
