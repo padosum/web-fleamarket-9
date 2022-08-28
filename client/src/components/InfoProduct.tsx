@@ -37,6 +37,7 @@ const Button = styled.button`
   padding: 10px 16px;
   border-radius: 8px;
   border: 1px solid ${colors.gray5};
+  flex-shrink: 0;
 `;
 
 export const InfoProduct = ({

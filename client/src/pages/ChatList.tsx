@@ -5,6 +5,9 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import { ChatListItem } from '../components/ChatListItem';
+import { colors } from '../components/Color';
+import { ChatListItemSkeleton } from '../components/ChatListItemSkeleton';
+import { EmptyText } from '../components/Menu/Common';
 
 interface ChatRoom {
   idx: number;
@@ -19,6 +22,7 @@ export const ChatList = () => {
 
   const { isLoggedIn } = useAuthContext('ChatList');
   const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const [searchParams] = useSearchParams();
   const itemId = searchParams.get('itemId');
@@ -26,11 +30,12 @@ export const ChatList = () => {
   useEffect(() => {
     const getChatRooms = async () => {
       try {
+        setLoading(true);
         const { data } = await axios.get('/api/chat', { params: { itemId } });
         setChatRooms(data);
+        setLoading(false);
       } catch (err) {}
     };
-
     getChatRooms();
   }, []);
 
@@ -57,6 +62,14 @@ export const ChatList = () => {
             {...item}
           />
         ))}
+        {loading && chatRooms.length === 0 && (
+          <>
+            <ChatListItemSkeleton></ChatListItemSkeleton>
+          </>
+        )}
+        {!loading && chatRooms.length === 0 && (
+          <EmptyText>채팅 기록이 없습니다.</EmptyText>
+        )}
       </ContentWrapper>
     </ChatListWrapper>
   );

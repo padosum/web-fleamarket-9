@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ChatListItem } from '../ChatListItem';
+import { ChatListItemSkeleton } from '../ChatListItemSkeleton';
 import { colors } from '../Color';
 import { EmptyText } from './Common';
 
@@ -17,13 +18,17 @@ interface ChatRoom {
 
 export const ChattingList = () => {
   const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const getChatRooms = async () => {
       try {
+        setLoading(true);
         const { data } = await axios.get('/api/chat');
         setChatRooms(data);
+        setLoading(false);
       } catch (err) {}
     };
 
@@ -43,7 +48,16 @@ export const ChattingList = () => {
           {...item}
         />
       ))}
-      {chatRooms.length === 0 && <EmptyText>채팅 기록이 없습니다.</EmptyText>}
+      {loading && chatRooms.length === 0 && (
+        <>
+          <ChatListItemSkeleton></ChatListItemSkeleton>
+          <ChatListItemSkeleton></ChatListItemSkeleton>
+          <ChatListItemSkeleton></ChatListItemSkeleton>
+        </>
+      )}
+      {!loading && chatRooms.length === 0 && (
+        <EmptyText>채팅 기록이 없습니다.</EmptyText>
+      )}
     </ChattingListWrapper>
   );
 };
