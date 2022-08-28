@@ -15,7 +15,7 @@ export const useHomeItemFetch = (categoryId?: string, locationId?: string) => {
 
     setItems(
       res.data.map((item: any) => {
-        return { ...item, image: item.image.split(',')[0] };
+        return { ...item, image: item.images.split(',')[0] };
       }),
     );
 

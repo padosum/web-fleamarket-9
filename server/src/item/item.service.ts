@@ -65,54 +65,55 @@ export class ItemService {
     userIdx?: number,
     categoryId?: number,
     locationId?: number,
+    page?: number,
   ): Promise<FindItemsDto[]> {
     try {
-      const result: FindItemsDto[] = [];
-      const sql = `
-      SELECT 
-        * 
-      FROM ITEM
-      WHERE 1=1
-      ${categoryId ? `AND category = ${categoryId}` : ''}
-      ${locationId ? `AND locationId = "${locationId}"` : ''}
-      ${userIdx ? `AND seller != ${userIdx}` : ''}
-      `;
-
-      const [queryRes] = (await this.conn.query(sql)) as any[];
-
-      for (const item of queryRes) {
-        let isLike = false;
-        if (userIdx) {
-          // 내가 좋아요 했는지 확인
-          const isLikedSql = `
-            SELECT 
-              count(idx) as count 
-            FROM USER_LIKE_ITEM 
-            WHERE 
-              itemId = ${item.idx} AND
-              userId = ${userIdx}
-          `;
-
-          const [isLikeRes] = await this.conn.query(isLikedSql);
-
-          if (isLikeRes[0].count > 0) isLike = true;
-        }
-
-        result.push({
-          idx: item.idx,
-          title: item.title,
-          chatRoomCount: 0,
-          likeCount: item.likeCount,
-          viewCount: item.viewCount,
-          image: item.images,
-          isLike,
-          location: item.code,
-          updatedAt: item.updatedAt,
-          price: item.price,
-        });
+      if (!page) {
+        page = 1;
       }
 
-      return result;
+      const sql = `
+      SELECT R1.* 
+        FROM (SELECT ITEM.idx as idx
+                   , ITEM.images
+                   , ITEM.category
+                   , ITEM.updatedAt
+                   , ITEM.createdAt
+                   , ITEM.title
+                   , ITEM.contents
+                   , IFNULL(ITEM.likeCount, 0) as likeCount
+                   , ITEM.price
+                   , ITEM.seller
+                   , ITEM.code as location
+                   , IFNULL(ITEM.viewCount, 0) as viewCount
+                   , ITEM.status
+                   , ITEM.locationId
+                   , IFNULL((SELECT true
+                               FROM USER_LIKE_ITEM
+                              WHERE USER_LIKE_ITEM.itemId = ITEM.idx
+                            ${
+                              userIdx
+                                ? `AND USER_LIKE_ITEM.userId = ${userIdx}`
+                                : 'AND USER_LIKE_ITEM.userId = NULL'
+                            }), false) as isLike
+                   , IFNULL((SELECT count(idx) 
+                               FROM CHAT
+                              WHERE CHAT.itemId = ITEM.idx
+                                AND CHAT.idx IN (SELECT chatId FROM CHAT_MESSAGE)), 0) as chatRoomCount
+                FROM ITEM
+               WHERE 1=1
+                ${categoryId ? `AND category = ${categoryId}` : ''}
+                ${locationId ? `AND locationId = "${locationId}"` : ''}
+                ${userIdx ? `AND seller <> ${userIdx}` : ''}
+	     ORDER BY ITEM.createdAt DESC) R1
+       LIMIT 100 OFFSET ${page === 1 ? 0 : (page - 1) * 100};
+      `;
+
+      const [res]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
+        await this.conn.query(sql);
+
+      let otherItems: FindItemsDto[] = [].slice.call(res, 0);
+      return otherItems;
     } catch (err) {
       throw new HttpException(
         '아이템 조회 중 에러가 발생했습니다.',

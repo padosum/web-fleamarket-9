@@ -85,14 +85,25 @@ export class ItemController {
     name: 'locationId',
     required: false,
   })
+  @ApiQuery({
+    name: 'page',
+    description: '페이지 번호, 전달하지 않으면 1페이지',
+    required: false,
+  })
   @Get()
   async findOtherItems(
     @Req() req: any,
     @Query('categoryId') categoryId?: number,
     @Query('locationId') locationId?: number,
+    @Query('page') page?: number,
   ): Promise<FindItemsDto[]> {
     const userIdx = req.user?.idx;
-    return this.itemService.findOtherItems(userIdx, categoryId, locationId);
+    return this.itemService.findOtherItems(
+      userIdx,
+      categoryId,
+      locationId,
+      page,
+    );
   }
 
   @ApiOperation({
