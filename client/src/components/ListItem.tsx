@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Dispatch, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { colors } from './Color';
 import { Icon } from './Icon';
@@ -28,6 +28,8 @@ interface Props {
   isLiked: boolean;
   isLastItem?: boolean;
   getItems?: Function;
+  loadImages: string[];
+  setLoadImages: Dispatch<React.SetStateAction<string[]>>;
 }
 
 interface DropdownItem {
@@ -54,11 +56,14 @@ export const ListItem = ({
   isLiked,
   isLastItem,
   getItems,
+  loadImages,
+  setLoadImages,
 }: Props) => {
   const [openMenu, setOpenMenu] = useState(false);
   const isLoggedIn = useIsLoggedIn();
   const navigate = useNavigate();
   const itemListRef = useRef<HTMLDivElement>(null!);
+
   const { notify: notifyItemLiked } = useLikeNotify();
   const { items: homeItems, setItems: setHomeItems } = useItem();
   const { items: likeItems, setItems: setLikeItems } = useLikedItem();
@@ -212,7 +217,11 @@ export const ListItem = ({
   return (
     <ItemWrapper ref={itemListRef} onClick={() => navigate(`/item/${idx}`)}>
       <ImgWrapper>
-        <LazyloadingImgBox src={image.split(',')[0]} />
+        <LazyloadingImgBox
+          src={image.split(',')[0]}
+          loadImages={loadImages}
+          setLoadImages={setLoadImages}
+        />
       </ImgWrapper>
       <ItemDescription>
         <ItemTitleText>{title}</ItemTitleText>

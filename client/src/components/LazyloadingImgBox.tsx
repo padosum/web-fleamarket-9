@@ -1,23 +1,32 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Dispatch, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { colors } from './Color';
 
 type Timer = ReturnType<typeof setTimeout>;
 
-export const LazyloadingImgBox = (
-  props: React.ImgHTMLAttributes<HTMLImageElement>,
-) => {
-  const [isLoad, setIsLoad] = useState(false);
+export const LazyloadingImgBox = ({
+  src,
+  loadImages,
+  setLoadImages,
+}: {
+  src: string;
+  loadImages: string[];
+  setLoadImages: Dispatch<React.SetStateAction<string[]>>;
+}) => {
+  const prevLoaded = loadImages ? loadImages.some((v) => v === src) : false;
+  const [isLoad, setIsLoad] = useState(
+    loadImages?.length === 0 ? false : prevLoaded,
+  );
   const imgRef = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
     let timeouts: Timer;
     const observer = new IntersectionObserver(
       (e) => {
-        if (e[0].isIntersecting) {
+        if (e[0].isIntersecting && !isLoad) {
           timeouts = setTimeout(() => {
-            observer.unobserve(imgRef.current);
             setIsLoad(true);
+            setLoadImages((prevSetLoadImages) => [...prevSetLoadImages, src]);
           }, 1000);
         } else {
           clearTimeout(timeouts);
@@ -32,12 +41,9 @@ export const LazyloadingImgBox = (
     observer.observe(imgRef.current);
   }, []);
 
-  const { src, ...restProps } = props;
   return (
     <LargeImgBox ref={imgRef}>
-      {props.src && (
-        <Img {...restProps} {...(isLoad ? { src: props.src } : {})} />
-      )}
+      {src && <Img {...(isLoad ? { src } : {})} />}
     </LargeImgBox>
   );
 };

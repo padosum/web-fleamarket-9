@@ -23,6 +23,8 @@ interface Props {
 const UNIT_HEIGHT = 140;
 
 export const ProductList = (props: Props) => {
+  const [loadImages, setLoadImages] = useState<string[]>([]);
+
   const [topUndiplayedCount, setTopUndisplayedCount] = useState(0);
   const [bottomUndisplayedCount, setBottomUndisplayedCount] = useState(0);
   useEffect(() => {
@@ -74,6 +76,8 @@ export const ProductList = (props: Props) => {
                 key={item.idx}
                 {...item}
                 type={props.type}
+                loadImages={loadImages}
+                setLoadImages={setLoadImages}
               />
             );
           }
@@ -88,6 +92,8 @@ export const ProductList = (props: Props) => {
               key={item.idx}
               {...item}
               type={props.type}
+              loadImages={loadImages}
+              setLoadImages={setLoadImages}
             />
           );
         })}
