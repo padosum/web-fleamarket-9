@@ -9,7 +9,6 @@ import { ImgButton } from '../components/ImgButton';
 import { LocationBar } from '../components/LocationBar';
 import { Spacing } from '../components/Spacing';
 import { TextInput } from '../components/TextInput';
-import { toast } from '../components/ToastMessageContainer';
 import { useAuthContext } from '../context/AuthContext';
 import { useWorker } from '../context/WorkerContext';
 import { useCategory } from '../hooks/useCategory';
@@ -282,6 +281,7 @@ export const Write = () => {
           <TextInput.NoBorder
             onChange={onInputTextChange.bind(null, 'title')}
             placeholder="글 제목"
+            value={title}
             maxLength={30}
           />
           {title && (
