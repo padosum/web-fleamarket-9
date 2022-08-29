@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ListItem } from './ListItem';
 
 interface Item {
@@ -27,8 +27,15 @@ export const ProductList = (props: Props) => {
 
   const [topUndiplayedCount, setTopUndisplayedCount] = useState(0);
   const [bottomUndisplayedCount, setBottomUndisplayedCount] = useState(0);
+  const lastScrollTime = useRef(0);
+
   useEffect(() => {
     const onScroll = () => {
+      const currentTime = new Date().valueOf();
+
+      if (currentTime - lastScrollTime.current < 50) return;
+
+      lastScrollTime.current = currentTime;
       const screenHeight = window.innerHeight + 1500;
       const totalHeight = document.documentElement.scrollHeight;
       const scrollY = Math.max(window.scrollY - 750, 0);
