@@ -6,7 +6,11 @@ let lastPage = 1;
 let lastCategoryId: any = null;
 let lastLocationId: any = null;
 let fetchedPages: number[] = [];
-export const useHomeItemFetch = (categoryId?: string, locationId?: string) => {
+export const useHomeItemFetch = (
+  categoryId?: string,
+  locationId?: string,
+  triggerEffect?: boolean,
+) => {
   const page = useRef(lastPage);
   const { setIsLoading, setItems, items } = useItem();
 
@@ -56,9 +60,16 @@ export const useHomeItemFetch = (categoryId?: string, locationId?: string) => {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    getItems();
-  }, [categoryId, locationId]);
+  const resetCategoryLocationId = () => {
+    lastCategoryId = Math.random();
+    lastLocationId = Math.random();
+  };
 
-  return { getItems };
+  useEffect(() => {
+    if (triggerEffect) {
+      getItems();
+    }
+  }, [categoryId, locationId, triggerEffect]);
+
+  return { getItems, resetCategoryLocationId };
 };

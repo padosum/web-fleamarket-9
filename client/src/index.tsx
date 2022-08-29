@@ -23,16 +23,16 @@ root.render(
         <ItemUploadProvider>
           <BrowserRouter>
             <ChatNotiProvider>
-              <AuthProvider>
-                <CategoryProvider>
-                  <HomeItemProvider>
-                    <LikeItemProvider>
+              <CategoryProvider>
+                <HomeItemProvider>
+                  <LikeItemProvider>
+                    <AuthProvider>
                       <App />
                       <ToastMessageContainer />
-                    </LikeItemProvider>
-                  </HomeItemProvider>
-                </CategoryProvider>
-              </AuthProvider>
+                    </AuthProvider>
+                  </LikeItemProvider>
+                </HomeItemProvider>
+              </CategoryProvider>
             </ChatNotiProvider>
           </BrowserRouter>
         </ItemUploadProvider>

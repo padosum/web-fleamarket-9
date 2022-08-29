@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '../components/Button';
 import { colors } from '../components/Color';
 import { Spacing } from '../components/Spacing';
+import { useHomeItemFetch } from '../hooks/useHomeItemFetch';
 
 const isIos = (contents: string) => {
   return `
@@ -38,6 +40,12 @@ const LogoText = styled.span`
 `;
 
 export const Main = () => {
+  const { resetCategoryLocationId } = useHomeItemFetch();
+
+  useEffect(() => {
+    resetCategoryLocationId();
+  }, []);
+
   return (
     <MainWrapper>
       <LogoImg src="https://user-images.githubusercontent.com/49009864/186298954-7b250a2b-f056-43e8-87bd-1b18635601ac.png" />

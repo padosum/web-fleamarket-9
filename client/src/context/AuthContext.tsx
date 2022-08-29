@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useHomeItemFetch } from '../hooks/useHomeItemFetch';
 import { AUTH } from '../utils/constant';
 import { useWorker } from './WorkerContext';
 
@@ -41,6 +42,7 @@ export const AuthProvider = ({ children }: Props) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { resetCategoryLocationId } = useHomeItemFetch();
   const worker = useWorker();
 
   const getMyInfo = async () => {
@@ -52,6 +54,7 @@ export const AuthProvider = ({ children }: Props) => {
     setUser(user);
     setIsLoggedIn(true);
     worker.port.postMessage(JSON.stringify({ event: AUTH, data: user.idx }));
+    resetCategoryLocationId();
   };
 
   const logout = async () => {

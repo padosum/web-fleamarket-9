@@ -65,7 +65,11 @@ export const Home = () => {
     return ['category', 'locationId'].map((key) => urlParams.get(key));
   }, [windowLocation.search]);
 
-  const { getItems: getHomeItems } = useHomeItemFetch(categoryId!, locationId!);
+  const { getItems: getHomeItems } = useHomeItemFetch(
+    categoryId!,
+    locationId!,
+    true,
+  );
   useLikedItemFetch();
   const { items, isLoading: isItemLoading } = useItem();
 
