@@ -37,12 +37,13 @@ export const ChatDetail = () => {
   const [messages, setMessages] = useState<
     { idx: number; message: string; sender: number; isNew?: boolean }[]
   >([]);
-  const [lastMessageId, setLastMessageId] = useState(0);
 
   const [scrolltoBottom, setScrollToBottom] = useState(true);
 
   const [chatInput, setChatInput] = useState('');
   const chatWrapperRef = useRef<HTMLDivElement>(null!);
+
+  const currentLastMessageId = useRef(0);
 
   useEffect(() => {
     const getMessages = async (lastMessageId?: number) => {
@@ -168,26 +169,26 @@ export const ChatDetail = () => {
     { isIntersecting },
   ]) => {
     if (isIntersecting) {
-      if (messages[0]) {
-        if (messages[0].idx !== lastMessageId) {
-          const { scrollHeight, scrollTop } = chatWrapperRef.current!;
-          prevScrollBottomRef.current = scrollHeight - scrollTop;
+      if (chatWrapperRef.current.dataset.lastmessageid) {
+        const { scrollHeight, scrollTop } = chatWrapperRef.current!;
+        prevScrollBottomRef.current = scrollHeight - scrollTop;
 
-          const getMessages = async (lastMessageId?: number) => {
-            try {
-              const { data } = await axios.get('/api/chat/message', {
-                params: { chatId: id, lastMessageId },
-              });
+        const getMessages = async (lastMessageId?: number) => {
+          try {
+            const { data } = await axios.get('/api/chat/message', {
+              params: { chatId: id, lastMessageId },
+            });
 
+            if (data.length > 0) {
               setMessages((prevMessages) => [...data, ...prevMessages]);
-              setLastMessageId(messages[0].idx);
-            } catch (err) {
-              navigate(-1);
+              currentLastMessageId.current = +data[0].idx;
             }
-          };
-          setScrollToBottom(false);
-          getMessages(messages[0].idx);
-        }
+          } catch (err) {
+            navigate(-1);
+          }
+        };
+        setScrollToBottom(false);
+        getMessages(+chatWrapperRef.current.dataset.lastmessageid);
       }
     }
   };
@@ -224,7 +225,7 @@ export const ChatDetail = () => {
         </>
       )}
       <HorizontalBar />
-      <ChatWrapper ref={chatWrapperRef}>
+      <ChatWrapper ref={chatWrapperRef} data-lastmessageid={messages[0]?.idx}>
         <div ref={setTarget}></div>
         {messages.map(({ idx, sender, message, isNew }, index) => {
           return (
