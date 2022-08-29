@@ -27,7 +27,7 @@ export const LazyloadingImgBox = ({
           timeouts = setTimeout(() => {
             setIsLoad(true);
             setLoadImages((prevSetLoadImages) => [...prevSetLoadImages, src]);
-          }, 1000);
+          }, 200);
         } else {
           clearTimeout(timeouts);
         }
