@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ListItem } from './ListItem';
 
 interface Item {
@@ -23,8 +23,6 @@ interface Props {
 const UNIT_HEIGHT = 140;
 
 export const ProductList = (props: Props) => {
-  const [loadImages, setLoadImages] = useState<string[]>([]);
-
   const [topUndiplayedCount, setTopUndisplayedCount] = useState(0);
   const [bottomUndisplayedCount, setBottomUndisplayedCount] = useState(0);
   const lastScrollTime = useRef(0);
@@ -72,9 +70,9 @@ export const ProductList = (props: Props) => {
       {props.isFlatList &&
         props.items.map((item, index) => {
           if (index < topUndiplayedCount) {
-            return <></>;
+            return <React.Fragment key={item.idx} />;
           } else if (index > props.items.length - bottomUndisplayedCount) {
-            return <></>;
+            return <React.Fragment key={item.idx} />;
           } else {
             return (
               <ListItem
@@ -83,8 +81,6 @@ export const ProductList = (props: Props) => {
                 key={item.idx}
                 {...item}
                 type={props.type}
-                loadImages={loadImages}
-                setLoadImages={setLoadImages}
               />
             );
           }
@@ -99,8 +95,6 @@ export const ProductList = (props: Props) => {
               key={item.idx}
               {...item}
               type={props.type}
-              loadImages={loadImages}
-              setLoadImages={setLoadImages}
             />
           );
         })}

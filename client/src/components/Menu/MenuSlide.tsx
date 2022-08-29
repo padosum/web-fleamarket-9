@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { useSaleItemFetch } from '../../hooks/useSaleItemFetch';
 import { colors } from '../Color';
 import { BackHeader } from '../Header/BackHeader';
 import { TabBar } from '../TabBar';
@@ -59,6 +60,8 @@ export const MenuSlide = ({ open }: { open: boolean }) => {
   const navigate = useNavigate();
   const [searchPrams, setSearchParams] = useSearchParams();
   const currentTab = searchPrams.get('tab') ? +searchPrams.get('tab')! : 1;
+
+  useSaleItemFetch();
 
   const handleTabChange = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!(e.target instanceof HTMLButtonElement)) {

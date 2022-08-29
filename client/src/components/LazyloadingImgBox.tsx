@@ -1,22 +1,14 @@
-import React, { Dispatch, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { colors } from './Color';
 
 type Timer = ReturnType<typeof setTimeout>;
 
-export const LazyloadingImgBox = ({
-  src,
-  loadImages,
-  setLoadImages,
-}: {
-  src: string;
-  loadImages: string[];
-  setLoadImages: Dispatch<React.SetStateAction<string[]>>;
-}) => {
-  const prevLoaded = loadImages ? loadImages.some((v) => v === src) : false;
-  const [isLoad, setIsLoad] = useState(
-    loadImages?.length === 0 ? false : prevLoaded,
-  );
+const isLoaded = new Map();
+
+export const LazyloadingImgBox = ({ src }: { src: string }) => {
+  const prevLoaded = isLoaded.has(src);
+  const [isLoad, setIsLoad] = useState(prevLoaded);
   const imgRef = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
@@ -26,7 +18,8 @@ export const LazyloadingImgBox = ({
         if (e[0].isIntersecting && !isLoad) {
           timeouts = setTimeout(() => {
             setIsLoad(true);
-            setLoadImages((prevSetLoadImages) => [...prevSetLoadImages, src]);
+            isLoaded.set(src, true);
+            observer.unobserve(imgRef.current);
           }, 200);
         } else {
           clearTimeout(timeouts);

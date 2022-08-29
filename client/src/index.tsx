@@ -11,6 +11,7 @@ import { HomeItemProvider } from './context/HomeItemContext';
 import { ItemUploadProvider } from './context/ItemUploadContext';
 import { LikeNotifyProvider } from './context/LikeContext';
 import { LikeItemProvider } from './context/LikeItemContext';
+import { SalesItemProvier } from './context/SalesItemContext';
 import { WorkerProvider } from './context/WorkerContext';
 
 const root = ReactDOM.createRoot(
@@ -27,8 +28,10 @@ root.render(
                 <HomeItemProvider>
                   <LikeItemProvider>
                     <AuthProvider>
-                      <App />
-                      <ToastMessageContainer />
+                      <SalesItemProvier>
+                        <App />
+                        <ToastMessageContainer />
+                      </SalesItemProvier>
                     </AuthProvider>
                   </LikeItemProvider>
                 </HomeItemProvider>

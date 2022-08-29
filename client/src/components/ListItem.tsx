@@ -2,7 +2,6 @@ import { Dispatch, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { colors } from './Color';
 import { Icon } from './Icon';
-import { ImgBox } from './ImgBox';
 import * as icons from './iconPath';
 import { Dropdown } from './Dropdown';
 import moment from 'moment';
@@ -28,8 +27,6 @@ interface Props {
   isLiked: boolean;
   isLastItem?: boolean;
   getItems?: Function;
-  loadImages: string[];
-  setLoadImages: Dispatch<React.SetStateAction<string[]>>;
 }
 
 interface DropdownItem {
@@ -56,8 +53,6 @@ export const ListItem = ({
   isLiked,
   isLastItem,
   getItems,
-  loadImages,
-  setLoadImages,
 }: Props) => {
   const [openMenu, setOpenMenu] = useState(false);
   const isLoggedIn = useIsLoggedIn();
@@ -217,11 +212,7 @@ export const ListItem = ({
   return (
     <ItemWrapper ref={itemListRef} onClick={() => navigate(`/item/${idx}`)}>
       <ImgWrapper>
-        <LazyloadingImgBox
-          src={image.split(',')[0]}
-          loadImages={loadImages}
-          setLoadImages={setLoadImages}
-        />
+        <LazyloadingImgBox src={image.split(',')[0]} />
       </ImgWrapper>
       <ItemDescription>
         <ItemTitleText>{title}</ItemTitleText>

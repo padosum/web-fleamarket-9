@@ -1,24 +1,9 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { ItemTypes } from './useItem';
+import { useContext } from 'react';
+import { SalesItemContext } from '../context/SalesItemContext';
 
 export const useSaleItem = () => {
-  const [items, setItems] = useState<ItemTypes[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLoading, items, setIsLoading, setItems } =
+    useContext(SalesItemContext);
 
-  const getItems = async () => {
-    const res = await axios.get('/api/item/me');
-    setItems(
-      res.data.map((item: any) => {
-        return { ...item, image: item.images.split(',')[0] };
-      }),
-    );
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    getItems();
-  }, []);
-
-  return { items, isLoading };
+  return { items, isLoading, setIsLoading, setItems };
 };

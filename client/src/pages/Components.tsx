@@ -497,8 +497,6 @@ export const Components = () => {
           timestamp="dsadsad"
           title="gfdgfd"
           type="sales"
-          loadImages={['sdfs']}
-          setLoadImages={() => {}}
         />
         <ItemSkeleton />
       </div>
