@@ -13,6 +13,7 @@ import { useLikeNotify } from '../context/LikeContext';
 import { useItem } from '../hooks/useItem';
 import { useLikedItem } from '../hooks/useLikedItem';
 import { LazyloadingImgBox } from './LazyloadingImgBox';
+import { useSaleItem } from '../hooks/useSaleItem';
 
 interface Props {
   idx: number;
@@ -62,6 +63,7 @@ export const ListItem = ({
   const { notify: notifyItemLiked } = useLikeNotify();
   const { items: homeItems, setItems: setHomeItems } = useItem();
   const { items: likeItems, setItems: setLikeItems } = useLikedItem();
+  const { items: salesItems, setItems: setSalesItems } = useSaleItem();
 
   const handleClickAction = async (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -150,6 +152,10 @@ export const ListItem = ({
 
       await axios.delete(`/api/item/${itemId}`);
       alert('아이템을 삭제했습니다.');
+      setHomeItems(homeItems.filter((homeItem) => +homeItem.idx !== +itemId));
+      setSalesItems(
+        salesItems.filter((salesItem) => +salesItem.idx !== +itemId),
+      );
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
         alert(err.response?.data.message);

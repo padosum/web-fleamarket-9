@@ -92,6 +92,7 @@ export const Detail = () => {
       // 삭제하기
       case 99999:
         deleteItem(id);
+
         break;
     }
   };
@@ -108,6 +109,7 @@ export const Detail = () => {
 
       await axios.delete(`/api/item/${itemId}`);
       alert('아이템을 삭제했습니다.');
+      navigate(-1);
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
         alert(err.response?.data.message);
