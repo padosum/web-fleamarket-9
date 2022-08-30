@@ -153,6 +153,7 @@ export class ItemService {
                         AND CHAT.idx IN (SELECT chatId FROM CHAT_MESSAGE)), 0) as chatRoomCount
         FROM ITEM
        WHERE seller = ${userIdx}
+       ORDER BY ITEM.createdAt DESC;
       `;
 
       const [res]: [Imysql.ResultSetHeader, Imysql.FieldPacket[]] =
