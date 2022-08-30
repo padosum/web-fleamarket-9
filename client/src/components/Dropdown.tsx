@@ -58,6 +58,8 @@ const DropdownWrapper = styled.div<{
   z-index: 100;
   top: ${({ top }) => (top ? `${top}px` : '50px')};
   ${({ left }) => (left ? `left: ${left}px;` : '')}
+  ${({ left }) =>
+    left === 'center' ? 'left: 50%; transform: translateX(-50%);' : ''}
   ${({ right }) => (right ? `right: ${right}px;` : '')}
   ${({ width }) => (width ? `width: ${width}px;` : '')}
 

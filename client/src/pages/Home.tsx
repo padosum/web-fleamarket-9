@@ -186,7 +186,7 @@ export const Home = () => {
             items={location}
             select={0}
             handleChange={handleChangeLocation}
-            left={'100'}
+            left={'center'}
           ></Dropdown>
         )}
       </HeaderWrapper>
