@@ -47,7 +47,7 @@ const Gradient = styled.div<{
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-      background-image: url(${props.src}),
+      background-image: url(${CSS.escape(props.src)}),
         linear-gradient(
           180deg,
           rgba(0, 0, 0, 0.24) 0%,
