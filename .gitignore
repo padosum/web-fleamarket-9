@@ -23,6 +23,7 @@ client/.env.production
 client/npm-debug.log*
 client/yarn-debug.log*
 client/yarn-error.log*
+client/package-lock.json
 
 
 
@@ -33,6 +34,7 @@ server/node_modules
 server/.env
 server/.development.env
 server/.production.env
+server/package-lock.json
 
 # Logs
 logs
