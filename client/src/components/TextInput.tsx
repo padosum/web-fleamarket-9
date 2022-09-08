@@ -1,6 +1,52 @@
 import styled from 'styled-components';
 import { colors } from './Color';
 
+export const TextInput = (
+  props: React.InputHTMLAttributes<HTMLInputElement>,
+) => {
+  return (
+    <MediumInputContainer height={props.height} width={props.width}>
+      <MediumInput type="text" {...props} />
+    </MediumInputContainer>
+  );
+};
+
+TextInput.Medium = TextInput;
+
+TextInput.Large = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
+  return (
+    <LargeInputContainer height={props.height} width={props.width}>
+      <LargeInput type="text" {...props} />
+    </LargeInputContainer>
+  );
+};
+
+TextInput.NoBorder = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
+  return (
+    <MediumInputContainer height={props.height} width={props.width}>
+      <NoBorderInput type="text" {...props} />
+    </MediumInputContainer>
+  );
+};
+
+TextInput.TextArea = (
+  props: React.InputHTMLAttributes<HTMLTextAreaElement>,
+) => {
+  return (
+    <MediumInputContainer height={props.height} width={props.width}>
+      <TextArea type="text" {...props} />
+    </MediumInputContainer>
+  );
+};
+
+TextInput.Icon = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
+  return (
+    <LargeInputContainer height={props.height} width={props.width}>
+      <IconInput type="text" {...props} />
+    </LargeInputContainer>
+  );
+};
+
 const MediumInputContainer = styled.div<{
   height?: string | number;
   width?: string | number;
@@ -86,49 +132,3 @@ const IconInput = styled(InputCommon)`
   font-size: 16px;
   line-height: 22px;
 `;
-
-export const TextInput = (
-  props: React.InputHTMLAttributes<HTMLInputElement>,
-) => {
-  return (
-    <MediumInputContainer height={props.height} width={props.width}>
-      <MediumInput type="text" {...props} />
-    </MediumInputContainer>
-  );
-};
-
-TextInput.Medium = TextInput;
-
-TextInput.Large = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
-  return (
-    <LargeInputContainer height={props.height} width={props.width}>
-      <LargeInput type="text" {...props} />
-    </LargeInputContainer>
-  );
-};
-
-TextInput.NoBorder = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
-  return (
-    <MediumInputContainer height={props.height} width={props.width}>
-      <NoBorderInput type="text" {...props} />
-    </MediumInputContainer>
-  );
-};
-
-TextInput.TextArea = (
-  props: React.InputHTMLAttributes<HTMLTextAreaElement>,
-) => {
-  return (
-    <MediumInputContainer height={props.height} width={props.width}>
-      <TextArea type="text" {...props} />
-    </MediumInputContainer>
-  );
-};
-
-TextInput.Icon = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
-  return (
-    <LargeInputContainer height={props.height} width={props.width}>
-      <IconInput type="text" {...props} />
-    </LargeInputContainer>
-  );
-};
