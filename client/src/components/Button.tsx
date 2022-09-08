@@ -1,7 +1,28 @@
 import styled from 'styled-components';
 import { colors } from './Color';
 
-interface Props {
+export const Button = ({
+  size,
+  bgColor,
+  disabled,
+  className,
+  children,
+  onClick,
+}: ButtonProps) => {
+  return (
+    <ButtonCommon
+      size={size}
+      bgColor={bgColor}
+      disabled={disabled}
+      className={className}
+      onClick={onClick}
+    >
+      {children}
+    </ButtonCommon>
+  );
+};
+
+interface ButtonProps {
   size?: 'md' | 'lg';
   bgColor?: keyof typeof colors;
   disabled?: boolean;
@@ -30,7 +51,7 @@ const PADDING = {
   lg: '10px 16px',
 };
 
-const ButtonCommon = styled.button<Props>`
+const ButtonCommon = styled.button<ButtonProps>`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -62,24 +83,3 @@ const ButtonCommon = styled.button<Props>`
       bgColor ? colors[bgColor] : colors.primary2};
   }
 `;
-
-export const Button = ({
-  size,
-  bgColor,
-  disabled,
-  className,
-  children,
-  onClick,
-}: Props) => {
-  return (
-    <ButtonCommon
-      size={size}
-      bgColor={bgColor}
-      disabled={disabled}
-      className={className}
-      onClick={onClick}
-    >
-      {children}
-    </ButtonCommon>
-  );
-};
