@@ -81,7 +81,7 @@ export function debounce<Params extends any[]>(
   };
 }
 
-export default function listenForOutsideClicks({
+export function listenForOutsideClicks({
   listening,
   setListening,
   menuRef,

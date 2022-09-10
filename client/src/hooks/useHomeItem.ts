@@ -13,7 +13,7 @@ export type ItemTypes = {
   price: number;
 };
 
-export const useItem = () => {
+export const useHomeItem = () => {
   const { items, setItems, isLoading, setIsLoading } =
     useContext(HomeItemContext);
 

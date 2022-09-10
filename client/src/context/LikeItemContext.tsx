@@ -1,5 +1,5 @@
 import React, { Dispatch, ReactNode, useState } from 'react';
-import { ItemTypes } from '../hooks/useItem';
+import { ItemTypes } from '../hooks/useHomeItem';
 
 export const LikeItemContext = React.createContext<{
   items: ItemTypes[];

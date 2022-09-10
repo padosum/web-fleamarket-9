@@ -10,7 +10,7 @@ import axios, { AxiosError } from 'axios';
 import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
 import { useNavigate } from 'react-router-dom';
 import { useLikeNotify } from '../context/LikeContext';
-import { useItem } from '../hooks/useItem';
+import { useHomeItem } from '../hooks/useHomeItem';
 import { useLikedItem } from '../hooks/useLikedItem';
 import { LazyloadingImgBox } from './LazyloadingImgBox';
 import { useSaleItem } from '../hooks/useSaleItem';
@@ -61,7 +61,7 @@ export const ListItem = ({
   const itemListRef = useRef<HTMLDivElement>(null!);
 
   const { notify: notifyItemLiked } = useLikeNotify();
-  const { items: homeItems, setItems: setHomeItems } = useItem();
+  const { items: homeItems, setItems: setHomeItems } = useHomeItem();
   const { items: likeItems, setItems: setLikeItems } = useLikedItem();
   const { items: salesItems, setItems: setSalesItems } = useSaleItem();
 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useRef } from 'react';
-import { useItem } from './useItem';
+import { useHomeItem } from './useHomeItem';
 
 let lastPage = 1;
 let lastCategoryId: any = null;
@@ -12,7 +12,7 @@ export const useHomeItemFetch = (
   triggerEffect?: boolean,
 ) => {
   const page = useRef(lastPage);
-  const { setIsLoading, setItems, items } = useItem();
+  const { setIsLoading, setItems, items } = useHomeItem();
 
   const getItems = async () => {
     let overwrite = false;
@@ -38,22 +38,22 @@ export const useHomeItemFetch = (
       },
     });
 
-    if (res.data.length > 0) {
-      if (overwrite) {
-        setItems(
-          res.data.map((item: any) => {
-            return { ...item, image: item.images.split(',')[0] };
-          }),
-        );
-      } else {
-        setItems([
-          ...items,
-          ...res.data.map((item: any) => {
-            return { ...item, image: item.images.split(',')[0] };
-          }),
-        ]);
-      }
+    if (overwrite) {
+      setItems(
+        res.data.map((item: any) => {
+          return { ...item, image: item.images.split(',')[0] };
+        }),
+      );
+    } else {
+      setItems([
+        ...items,
+        ...res.data.map((item: any) => {
+          return { ...item, image: item.images.split(',')[0] };
+        }),
+      ]);
+    }
 
+    if (res.data.length > 0) {
       page.current += 1;
     }
 

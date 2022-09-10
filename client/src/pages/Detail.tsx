@@ -16,7 +16,7 @@ import { TypoGraphy } from '../components/TypoGraphy';
 import { useAuthContext } from '../context/AuthContext';
 import { useLikeNotify } from '../context/LikeContext';
 import { useItemDetail } from '../hooks/useItemDetail';
-import listenForOutsideClicks, { elapsedTime } from '../utils/util';
+import { elapsedTime, listenForOutsideClicks } from '../utils/util';
 
 const status = [
   { idx: 1, name: '판매중' },

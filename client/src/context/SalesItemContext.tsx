@@ -1,5 +1,5 @@
 import React, { Dispatch, PropsWithChildren, useState } from 'react';
-import { ItemTypes } from '../hooks/useItem';
+import { ItemTypes } from '../hooks/useHomeItem';
 
 export const SalesItemContext = React.createContext<{
   items: ItemTypes[];
