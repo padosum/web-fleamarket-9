@@ -1,6 +1,6 @@
 import React, { createContext, useEffect } from 'react';
+import { useWorker } from '../hooks';
 import { FOCUS } from '../utils/constant';
-import { useWorker } from './WorkerContext';
 
 const FocusContext = createContext<null>(null);
 

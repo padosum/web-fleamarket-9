@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
-import { useHomeItemFetch } from '../hooks/useHomeItemFetch';
+import { useHomeItemFetch, useWorker } from '../hooks';
 import { AUTH } from '../utils/constant';
-import { useWorker } from './WorkerContext';
 
 interface Location {
   userId: number;

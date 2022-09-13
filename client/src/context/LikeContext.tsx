@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { toast } from '../components/Base';
+import { useWorker } from '../hooks';
 import { GET_LIKE, SEND_LIKE } from '../utils/constant';
-import { useWorker } from './WorkerContext';
 
 export const LikeNotifyContext = React.createContext<{
   notify: (itemId: number) => void;

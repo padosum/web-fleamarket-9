@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import { useAuthContext } from '../../hooks/useAuthContext';
+import { useAuthContext } from '../../hooks';
 import { colors } from '../Color';
 import { Icon } from '../Base';
 import { HeaderWrapper } from './HeaderWrapper';

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../hooks/useAuthContext';
+import { useAuthContext } from '../hooks';
 import styled from 'styled-components';
 import { BackHeader } from '../components/Header/BackHeader';
 import { Button, Spacing } from '../components/Base';

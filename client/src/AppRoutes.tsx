@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { useAuthContext } from './hooks/useAuthContext';
+import { useAuthContext } from './hooks';
 import {
   Detail,
   Home,
@@ -10,9 +10,9 @@ import {
   Signup,
   User,
   Write,
+  ChatDetail,
+  ChatList,
 } from './pages';
-import { ChatDetail } from './pages/ChatDetail';
-import { ChatList } from './pages/ChatList';
 
 export const AppRoutes = () => {
   const { isLoggedIn } = useAuthContext();

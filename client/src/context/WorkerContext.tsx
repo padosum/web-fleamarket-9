@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 const worker = new SharedWorker('/worker.js');
-const WorkerContext = React.createContext<{ worker: SharedWorker }>(null!);
+export const WorkerContext = React.createContext<{ worker: SharedWorker }>(
+  null!,
+);
 
 export const WorkerProvider = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -9,12 +11,4 @@ export const WorkerProvider = ({ children }: { children: React.ReactNode }) => {
       {children}
     </WorkerContext.Provider>
   );
-};
-
-export const useWorker = () => {
-  const context = useContext(WorkerContext);
-
-  if (!context) throw new Error('error');
-
-  return context.worker;
 };

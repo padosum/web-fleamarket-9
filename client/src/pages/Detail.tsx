@@ -13,11 +13,9 @@ import {
   StatusButton,
   TypoGraphy,
 } from '../components/Base';
+import { useAuthContext, useItemDetail, useLikeNotify } from '../hooks';
 import { colors } from '../components/Color';
 import { InvisibleHeader } from '../components/Header/InvisibleHeader';
-import { useAuthContext } from '../hooks/useAuthContext';
-import { useItemDetail } from '../hooks/useItemDetail';
-import { useLikeNotify } from '../hooks/useLikeNotify';
 import { elapsedTime, listenForOutsideClicks } from '../utils/util';
 
 const status = [

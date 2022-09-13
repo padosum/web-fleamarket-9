@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button, Icon, Spacing, TypoGraphy } from '../components/Base';
 import { BackHeader } from '../components/Header/BackHeader';
-import { useAuthContext } from '../hooks/useAuthContext';
+import { useAuthContext } from '../hooks';
 
 interface Location {
   userId: number;
@@ -11,7 +11,7 @@ interface Location {
   locationCode: string;
 }
 
-interface User {
+interface UserTypes {
   idx: number;
   id: string;
   name: string;
@@ -19,9 +19,9 @@ interface User {
 }
 
 interface AuthContextValue {
-  user: User | null;
+  user: UserTypes | null;
   isLoggedIn: boolean;
-  login: (user: User) => void;
+  login: (user: UserTypes) => void;
   logout: () => Promise<boolean>;
 }
 

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import styled from 'styled-components';
-import { useLikedItem } from '../../hooks/useLikedItem';
+import { useLikedItem } from '../../hooks';
 import { colors } from '../Color';
 import { ItemSkeleton, ProductList } from '../Base';
 import { EmptyText } from './Common';

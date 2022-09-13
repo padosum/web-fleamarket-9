@@ -1,5 +1,7 @@
+import { useEffect, useRef, useState } from 'react';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import styled from 'styled-components';
-import { useAuthContext } from '../hooks/useAuthContext';
 import {
   ChatBar,
   ChatBubble,
@@ -7,14 +9,10 @@ import {
   InfoProduct,
   Spacing,
 } from '../components/Base';
+import { useWorker, useIntersectionObserver, useAuthContext } from '../hooks';
 import { colors } from '../components/Color';
 import { ExitHeader } from '../components/Header/ExitHeader';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
-import { useWorker } from '../context/WorkerContext';
 import { SEND_CHAT } from '../utils/constant';
-import useIntersectionObserver from '../hooks/useIntersectionObserver';
-import axios from 'axios';
 
 export const ChatDetail = () => {
   const worker = useWorker();

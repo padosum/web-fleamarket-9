@@ -6,9 +6,7 @@ import { CategoryButton } from '../components/Category/CategoryButton';
 import { colors } from '../components/Color';
 import { WriteHeader } from '../components/Header/WriteHeader';
 import { ImgButton, LocationBar, Spacing, TextInput } from '../components/Base';
-import { useWorker } from '../context/WorkerContext';
-import { useAuthContext } from '../hooks/useAuthContext';
-import { useCategory } from '../hooks/useCategory';
+import { useWorker, useAuthContext, useCategory } from '../hooks';
 import { ITEM_UPLOAD } from '../utils/constant';
 import { comma } from '../utils/util';
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button, Spacing } from '../components/Base';
 import { colors } from '../components/Color';
-import { useHomeItemFetch } from '../hooks/useHomeItemFetch';
+import { useHomeItemFetch } from '../hooks';
 
 const isIos = (contents: string) => {
   return `

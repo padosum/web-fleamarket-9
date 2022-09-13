@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../hooks/useAuthContext';
+import { useAuthContext } from '../hooks';
 import { BackHeader } from '../components/Header/BackHeader';
 import { colors } from '../components/Color';
 import styled from 'styled-components';

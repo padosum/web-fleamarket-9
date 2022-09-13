@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { useSaleItemFetch } from '../../hooks/useSaleItemFetch';
+import { useSaleItemFetch } from '../../hooks';
 import { colors } from '../Color';
 import { BackHeader } from '../Header/BackHeader';
 import { TabBar } from '../Base';
