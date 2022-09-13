@@ -8,6 +8,10 @@ on:
     branches: [ "dev" ]
   pull_request:
     branches: [ "dev" ]
+    
+defaults:
+  run:
+    working-directory: client
 
 jobs:
   build:
@@ -26,6 +30,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - cd client
     - run: npm ci
     - run: npm test
