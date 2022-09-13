@@ -2,13 +2,10 @@ import React, { MouseEventHandler } from 'react';
 import { NavigateFunction } from 'react-router-dom';
 import styled from 'styled-components';
 import { CategorySlide } from '../Category/CategorySlide';
-import { Dropdown } from '../Dropdown';
-import { Fab } from '../Fab';
+import { Dropdown, Fab, ItemSkeleton, ProductList } from '../Base';
 import { MainHeader } from '../Header/MainHeader';
-import { ItemSkeleton } from '../ItemSkeleton';
 import { EmptyText } from '../Menu/Common';
 import { MenuSlide } from '../Menu/MenuSlide';
-import { ProductList } from '../ProductList';
 
 type HomeViewProps = {
   locationRef: React.MutableRefObject<null>;

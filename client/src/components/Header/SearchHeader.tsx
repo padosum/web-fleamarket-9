@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { colors } from '../Color';
-import { Icon } from '../Icon';
-import { TextInput } from '../TextInput';
+import { Icon, TextInput } from '../Base';
 import { HeaderWrapper } from './HeaderWrapper';
 
 interface Props {

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { toast } from '../components/ToastMessageContainer';
+import { toast } from '../components/Base';
 import { GET_LIKE, SEND_LIKE } from '../utils/constant';
 import { useWorker } from './WorkerContext';
 

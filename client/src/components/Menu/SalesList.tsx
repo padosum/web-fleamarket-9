@@ -2,8 +2,7 @@ import { useMemo } from 'react';
 import styled from 'styled-components';
 import { useSaleItem } from '../../hooks/useSaleItem';
 import { colors } from '../Color';
-import { ItemSkeleton } from '../ItemSkeleton';
-import { ProductList } from '../ProductList';
+import { ItemSkeleton, ProductList } from '../Base';
 import { EmptyText } from './Common';
 
 const SalesListWrapper = styled.div`

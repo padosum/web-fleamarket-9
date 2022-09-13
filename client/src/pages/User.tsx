@@ -1,10 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { Button } from '../components/Button';
+import { Button, Icon, Spacing, TypoGraphy } from '../components/Base';
 import { BackHeader } from '../components/Header/BackHeader';
-import { Icon } from '../components/Icon';
-import { Spacing } from '../components/Spacing';
-import { TypoGraphy } from '../components/TypoGraphy';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 interface Location {

@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import styled from 'styled-components';
 import { colors } from '../Color';
-import { Icon } from '../Icon';
+import { Icon } from '../Base';
 import { HeaderWrapper } from './HeaderWrapper';
 
 interface Props {

@@ -2,17 +2,19 @@ import axios, { AxiosError } from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { Button } from '../components/Button';
+import {
+  Button,
+  Dropdown,
+  ImageSlide,
+  InfoSaler,
+  ItemDetailSkeleton,
+  ProductBar,
+  Spacing,
+  StatusButton,
+  TypoGraphy,
+} from '../components/Base';
 import { colors } from '../components/Color';
-import { Dropdown } from '../components/Dropdown';
 import { InvisibleHeader } from '../components/Header/InvisibleHeader';
-import { ImageSlide } from '../components/ImageSlide';
-import { InfoSaler } from '../components/InfoSaler';
-import { ItemDetailSkeleton } from '../components/ItemDetailSkeleton';
-import { ProductBar } from '../components/ProductBar';
-import { Spacing } from '../components/Spacing';
-import { StatusButton } from '../components/StatusButton';
-import { TypoGraphy } from '../components/TypoGraphy';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useItemDetail } from '../hooks/useItemDetail';
 import { useLikeNotify } from '../hooks/useLikeNotify';

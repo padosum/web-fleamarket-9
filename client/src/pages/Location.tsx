@@ -2,9 +2,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { BackHeader } from '../components/Header/BackHeader';
 import styled from 'styled-components';
-import { LocationButton } from '../components/LocationButton';
+import { LocationButton, Spacing } from '../components/Base';
 import { colors } from '../components/Color';
-import { Spacing } from '../components/Spacing';
 import { useEffect, useState } from 'react';
 
 export const Location = () => {

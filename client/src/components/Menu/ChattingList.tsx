@@ -2,8 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { ChatListItem } from '../ChatListItem';
-import { ChatListItemSkeleton } from '../ChatListItemSkeleton';
+import { ChatListItem, ChatListItemSkeleton } from '../Base';
 import { colors } from '../Color';
 import { EmptyText } from './Common';
 

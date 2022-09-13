@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { FormContext } from '../../context/FormContext';
 import { colors } from '../Color';
-import { TextInput } from '../TextInput';
+import { TextInput } from '../Base';
 
 const Field = (props: any) => {
   const { getFieldProps, errors, touched }: any = useContext(FormContext);

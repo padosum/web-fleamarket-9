@@ -2,7 +2,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useCategory } from '../../hooks/useCategory';
 import { colors } from '../Color';
-import { ImgBox } from '../ImgBox';
+import { ImgBox } from '../Base';
 
 const imgMapper = {
   디지털기기:

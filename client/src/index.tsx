@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { ToastMessageContainer } from './components/ToastMessageContainer';
+import { ToastMessageContainer } from './components/Base';
 import { GlobalProvider } from './GlobalProvider';
 
 const root = ReactDOM.createRoot(

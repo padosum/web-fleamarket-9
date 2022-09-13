@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useSaleItemFetch } from '../../hooks/useSaleItemFetch';
 import { colors } from '../Color';
 import { BackHeader } from '../Header/BackHeader';
-import { TabBar } from '../TabBar';
+import { TabBar } from '../Base';
 import { ChattingList } from './ChattingList';
 import { LikedList } from './LikedList';
 import { SalesList } from './SalesList';

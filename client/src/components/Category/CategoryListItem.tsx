@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { colors } from '../Color';
-import { ImgBox } from '../ImgBox';
+import { ImgBox } from '../Base';
 
 const CategoryListItemWrap = styled.div`
   display: flex;

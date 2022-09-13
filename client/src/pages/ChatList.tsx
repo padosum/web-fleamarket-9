@@ -4,8 +4,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { BackHeader } from '../components/Header/BackHeader';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { ChatListItem } from '../components/ChatListItem';
-import { ChatListItemSkeleton } from '../components/ChatListItemSkeleton';
+import { ChatListItem, ChatListItemSkeleton } from '../components/Base';
 import { EmptyText } from '../components/Menu/Common';
 
 interface ChatRoom {
