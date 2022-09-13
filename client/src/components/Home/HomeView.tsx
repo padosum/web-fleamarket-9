@@ -1,25 +1,31 @@
-import React, { MouseEventHandler } from 'react';
-import { NavigateFunction } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
+import {
+  FabButtonWrapper,
+  HeaderWrapper,
+  HomeWrapper,
+  ProductWrapper,
+} from './HomeView.styled';
 import { CategorySlide } from '../Category/CategorySlide';
 import { Dropdown, Fab, ItemSkeleton, ProductList } from '../Base';
 import { MainHeader } from '../Header/MainHeader';
 import { EmptyText } from '../Menu/Common';
 import { MenuSlide } from '../Menu/MenuSlide';
+import { listenForOutsideClicks } from '../../utils/util';
 
 type HomeViewProps = {
-  locationRef: React.MutableRefObject<null>;
   currentLocationName?: string;
   onCategoryClick: MouseEventHandler;
   onMenuClick: MouseEventHandler;
+  onMapClick: MouseEventHandler;
+  onUserClick: MouseEventHandler;
+  onFabButtonClick: MouseEventHandler;
   setIsLocationedOpened: React.Dispatch<React.SetStateAction<boolean>>;
   isLoggedIn: boolean;
-  navigate: NavigateFunction;
   isLocationOpened: boolean;
   location: Array<{ idx: number; name: string }>;
   handleChangeLocation?: Function;
-  openCategory?: string;
-  openMenu?: string;
+  isCategoryOpened?: string;
+  isMenuOpened?: string;
   isItemLoading: boolean;
   products: Array<{
     idx: number;
@@ -33,47 +39,51 @@ type HomeViewProps = {
     isLiked: boolean;
   }>;
   getHomeItems: Function;
-  locationId?: string;
 };
 
 const DEFAULT_LOCATION_NAME = '장소';
 
 export const HomeView = ({
-  locationRef,
   currentLocationName = DEFAULT_LOCATION_NAME,
   onCategoryClick,
+  onMapClick,
+  onUserClick,
+  onFabButtonClick,
   setIsLocationedOpened,
   isLoggedIn,
-  navigate,
   onMenuClick,
   isLocationOpened,
   location,
   handleChangeLocation,
-  openCategory,
-  openMenu,
+  isCategoryOpened,
+  isMenuOpened,
   isItemLoading,
   products,
   getHomeItems,
-  locationId,
 }: HomeViewProps) => {
+  const locationRef = useRef<HTMLDivElement>(null!);
+  const [listening, setListening] = useState(false);
+
+  useEffect(
+    listenForOutsideClicks({
+      listening,
+      setListening,
+      menuRef: locationRef,
+      setIsOpen: setIsLocationedOpened,
+    }),
+  );
   return (
     <HomeWrapper>
       <HeaderWrapper>
         <MainHeader
-          ref={locationRef}
           title={currentLocationName}
           color={'primary'}
           onClickCategory={onCategoryClick}
-          onClickMap={() => setIsLocationedOpened((prev) => !prev)}
-          onClickUser={() => {
-            if (isLoggedIn) {
-              navigate('/user');
-            } else {
-              navigate('/login');
-            }
-          }}
+          onClickMap={onMapClick}
+          onClickUser={onUserClick}
           onClickMenu={onMenuClick}
-        ></MainHeader>
+          ref={locationRef}
+        />
         {isLocationOpened && (
           <Dropdown
             items={location}
@@ -83,10 +93,8 @@ export const HomeView = ({
           />
         )}
       </HeaderWrapper>
-
-      <CategorySlide open={!!openCategory} />
-
-      <MenuSlide open={!!openMenu} />
+      <CategorySlide open={!!isCategoryOpened} />
+      <MenuSlide open={!!isMenuOpened} />
 
       <ProductWrapper>
         {isItemLoading ? (
@@ -110,58 +118,9 @@ export const HomeView = ({
       </ProductWrapper>
       {isLoggedIn && (
         <FabButtonWrapper>
-          <Fab
-            onClick={() => {
-              if (locationId) {
-                const currentLocation: any[] = location.filter(
-                  (item: { idx: number; name: string }) =>
-                    item.idx === +locationId,
-                );
-
-                if (currentLocation[0]) {
-                  navigate('/item/write', {
-                    state: {
-                      locationId,
-                      locationName: currentLocation[0].name,
-                    },
-                  });
-                }
-              } else {
-                if (location) {
-                  const { idx, name } = location[0];
-                  navigate('/item/write', {
-                    state: {
-                      locationId: idx,
-                      locationName: name,
-                    },
-                  });
-                }
-              }
-            }}
-          />
+          <Fab onClick={onFabButtonClick} />
         </FabButtonWrapper>
       )}
     </HomeWrapper>
   );
 };
-
-const HomeWrapper = styled.div`
-  width: 100%;
-  max-width: 100%;
-`;
-
-const ProductWrapper = styled.div`
-  padding: 0 16px;
-`;
-
-const HeaderWrapper = styled.div`
-  position: sticky;
-  top: 0;
-  z-index: 9;
-`;
-
-const FabButtonWrapper = styled.div`
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-`;

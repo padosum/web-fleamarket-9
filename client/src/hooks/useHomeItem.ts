@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { HomeItemContext } from '../context/HomeItemContext';
 
 export type ItemTypes = {
@@ -17,5 +17,21 @@ export const useHomeItem = () => {
   const { items, setItems, isLoading, setIsLoading } =
     useContext(HomeItemContext);
 
-  return { items, isLoading, setItems, setIsLoading };
+  const products = useMemo(() => {
+    return items.map((item) => {
+      return {
+        idx: item.idx,
+        title: item.title,
+        location: item.location,
+        timestamp: item.updatedAt,
+        price: item.price,
+        likeCnt: item.likeCount,
+        messageCnt: item.chatRoomCount,
+        image: item.image,
+        isLiked: item.isLike,
+      };
+    });
+  }, [items]);
+
+  return { items, products, isLoading, setItems, setIsLoading };
 };

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import { BrowserRouter, useNavigate } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { useHomeMenuOpenStates } from './useHomeMenuOpenStates';
 
 /* 테스팅용 컴포넌트 */
@@ -10,7 +10,6 @@ const App = ({
 }: {
   myLocations: Array<{ idx: number; name: string }>;
 }) => {
-  const navigate = useNavigate();
   const {
     categoryId,
     currentLocationName,
@@ -21,7 +20,7 @@ const App = ({
     onCategoryClick,
     onMenuClick,
     onMyLocationChange,
-  } = useHomeMenuOpenStates(navigate, myLocations);
+  } = useHomeMenuOpenStates(myLocations, true);
 
   return (
     <div>

@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { NavigateFunction, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const CATEGORY_OPEN_QUERY_STRING = 'isCategoryOpened';
 const MENU_OPEN_QUERY_STRING = 'isMenuOpened';
@@ -25,9 +25,10 @@ const TRUE = 'true';
  *  locationId
  */
 export const useHomeMenuOpenStates = (
-  navigate: NavigateFunction,
   myLocations: Array<{ idx: number; name: string }>,
+  isLoggedIn: boolean,
 ) => {
+  const navigate = useNavigate();
   const [isLocationOpened, setIsLocationedOpened] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const isCategoryOpened = searchParams.get(CATEGORY_OPEN_QUERY_STRING);
@@ -75,10 +76,49 @@ export const useHomeMenuOpenStates = (
     setSearchParams(searchParams);
   }, [isMenuOpened, searchParams, setSearchParams]);
 
+  const onMapClick = () => setIsLocationedOpened((prev) => !prev);
+  const onUserClick = () => {
+    if (isLoggedIn) {
+      navigate('/user');
+    } else {
+      navigate('/login');
+    }
+  };
+
+  const onFabButtonClick = () => {
+    if (locationId) {
+      const currentLocation: any[] = myLocations.filter(
+        (item: { idx: number; name: string }) => item.idx === +locationId,
+      );
+
+      if (currentLocation[0]) {
+        navigate('/item/write', {
+          state: {
+            locationId,
+            locationName: currentLocation[0].name,
+          },
+        });
+      }
+    } else {
+      if (myLocations) {
+        const { idx, name } = myLocations[0];
+        navigate('/item/write', {
+          state: {
+            locationId: idx,
+            locationName: name,
+          },
+        });
+      }
+    }
+  };
+
   return {
     onMyLocationChange,
     onCategoryClick,
     onMenuClick,
+    onMapClick,
+    onUserClick,
+    onFabButtonClick,
     setIsLocationedOpened,
     isLocationOpened,
     currentLocationName,

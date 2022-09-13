@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useLikedItem } from './useLikedItem';
 
@@ -7,7 +7,7 @@ export const useLikedItemFetch = () => {
   const { setItems, setIsLoading } = useLikedItem();
   const [searchParams] = useSearchParams();
 
-  const getItems = async () => {
+  const getItems = useCallback(async () => {
     const res = await axios.get('/api/item/liked');
 
     setItems(
@@ -16,11 +16,11 @@ export const useLikedItemFetch = () => {
       }),
     );
     setIsLoading(false);
-  };
+  }, [setItems, setIsLoading]);
 
   useEffect(() => {
     if (searchParams.get('tab') === '3') {
       getItems();
     }
-  }, [searchParams]);
+  }, [searchParams, getItems]);
 };
