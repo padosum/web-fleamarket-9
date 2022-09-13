@@ -9,10 +9,9 @@ import { ImgButton } from '../components/ImgButton';
 import { LocationBar } from '../components/LocationBar';
 import { Spacing } from '../components/Spacing';
 import { TextInput } from '../components/TextInput';
-import { useAuthContext } from '../context/AuthContext';
 import { useWorker } from '../context/WorkerContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 import { useCategory } from '../hooks/useCategory';
-import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
 import { ITEM_UPLOAD } from '../utils/constant';
 import { comma } from '../utils/util';
 
@@ -76,7 +75,7 @@ const CategoryWrapper = styled.div`
 export const Write = () => {
   const match = useMatch('/item/edit/:id');
   const itemId = match?.params.id;
-  const { user } = useAuthContext('Write');
+  const { user, isLoggedIn } = useAuthContext('Write');
   const worker = useWorker();
 
   const [info, setInfo] = useState({
@@ -91,7 +90,6 @@ export const Write = () => {
 
   const { title, price, contents } = info;
 
-  const isLoggedIn = useIsLoggedIn();
   const fileInputRef = useRef<HTMLInputElement>(null!);
   const { category } = useCategory();
 

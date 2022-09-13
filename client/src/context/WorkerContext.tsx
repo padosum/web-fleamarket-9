@@ -14,7 +14,7 @@ export const WorkerProvider = ({ children }: { children: React.ReactNode }) => {
 export const useWorker = () => {
   const context = useContext(WorkerContext);
 
-  if (!context) throw 'error';
+  if (!context) throw new Error('error');
 
   return context.worker;
 };

@@ -13,9 +13,9 @@ import { ProductBar } from '../components/ProductBar';
 import { Spacing } from '../components/Spacing';
 import { StatusButton } from '../components/StatusButton';
 import { TypoGraphy } from '../components/TypoGraphy';
-import { useAuthContext } from '../context/AuthContext';
-import { useLikeNotify } from '../context/LikeContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 import { useItemDetail } from '../hooks/useItemDetail';
+import { useLikeNotify } from '../hooks/useLikeNotify';
 import { elapsedTime, listenForOutsideClicks } from '../utils/util';
 
 const status = [

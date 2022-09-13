@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 import { useHomeItemFetch } from '../hooks/useHomeItemFetch';
 import { useHomeItem } from '../hooks/useHomeItem';
 import { useLikedItemFetch } from '../hooks/useLikedItemFetch';

@@ -1,4 +1,4 @@
-import { Dispatch, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { colors } from './Color';
 import { Icon } from './Icon';
@@ -7,13 +7,13 @@ import { Dropdown } from './Dropdown';
 import moment from 'moment';
 import { comma } from '../utils/util';
 import axios, { AxiosError } from 'axios';
-import { useIsLoggedIn } from '../hooks/useIsLoggedIn';
 import { useNavigate } from 'react-router-dom';
-import { useLikeNotify } from '../context/LikeContext';
 import { useHomeItem } from '../hooks/useHomeItem';
 import { useLikedItem } from '../hooks/useLikedItem';
 import { LazyloadingImgBox } from './LazyloadingImgBox';
 import { useSaleItem } from '../hooks/useSaleItem';
+import { useLikeNotify } from '../hooks/useLikeNotify';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 interface Props {
   idx: number;
@@ -56,7 +56,7 @@ export const ListItem = ({
   getItems,
 }: Props) => {
   const [openMenu, setOpenMenu] = useState(false);
-  const isLoggedIn = useIsLoggedIn();
+  const { isLoggedIn } = useAuthContext();
   const navigate = useNavigate();
   const itemListRef = useRef<HTMLDivElement>(null!);
 

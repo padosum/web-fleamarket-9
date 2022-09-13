@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from '../components/ToastMessageContainer';
-import { RECEIVE_CHAT } from '../utils/constant';
 import { useWorker } from './WorkerContext';
 
 const ChatNotiContext = React.createContext<null>(null!);

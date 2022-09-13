@@ -5,7 +5,7 @@ import { BackHeader } from '../components/Header/BackHeader';
 import { Icon } from '../components/Icon';
 import { Spacing } from '../components/Spacing';
 import { TypoGraphy } from '../components/TypoGraphy';
-import { useAuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 interface Location {
   userId: number;

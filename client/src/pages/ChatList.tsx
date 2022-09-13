@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
+import { useAuthContext } from '../hooks/useAuthContext';
 import { BackHeader } from '../components/Header/BackHeader';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { useAuthContext } from '../context/AuthContext';
 import { ChatListItem } from '../components/ChatListItem';
-import { colors } from '../components/Color';
 import { ChatListItemSkeleton } from '../components/ChatListItemSkeleton';
 import { EmptyText } from '../components/Menu/Common';
 

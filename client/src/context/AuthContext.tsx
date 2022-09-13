@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { useHomeItemFetch } from '../hooks/useHomeItemFetch';
 import { AUTH } from '../utils/constant';
 import { useWorker } from './WorkerContext';
@@ -25,14 +25,6 @@ interface AuthContextValue {
 }
 
 export const AuthContext = createContext<AuthContextValue | null>(null);
-
-export function useAuthContext(component?: string) {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error(`<${component}/> is not child of ContextProvider`);
-  }
-  return context;
-}
 
 interface Props {
   children: React.ReactNode;

@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import { useIsLoggedIn } from '../../hooks/useIsLoggedIn';
+import { useAuthContext } from '../../hooks/useAuthContext';
 import { colors } from '../Color';
 import { Icon } from '../Icon';
 import { HeaderWrapper } from './HeaderWrapper';
@@ -64,7 +64,7 @@ export const MainHeader = forwardRef(
     }: Props,
     ref,
   ) => {
-    const isLoggedIn = useIsLoggedIn();
+    const { isLoggedIn } = useAuthContext();
 
     return (
       <HeaderWrapper color={color} rad={true}>
