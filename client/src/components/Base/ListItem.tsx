@@ -216,7 +216,11 @@ export const ListItem = ({
   }, []);
 
   return (
-    <ItemWrapper ref={itemListRef} onClick={() => navigate(`/item/${idx}`)}>
+    <ItemWrapper
+      data-testid="homeitem"
+      ref={itemListRef}
+      onClick={() => navigate(`/item/${idx}`)}
+    >
       <ImgWrapper>
         <LazyloadingImgBox src={image.split(',')[0]} />
       </ImgWrapper>

@@ -35,8 +35,12 @@ export const LazyloadingImgBox = ({ src }: { src: string }) => {
   }, []);
 
   return (
-    <LargeImgBox ref={imgRef}>
-      {src && <Img {...(isLoad ? { src } : {})} />}
+    <LargeImgBox
+      data-cy="loaded-count"
+      data-total-loaded-count={isLoaded.size}
+      ref={imgRef}
+    >
+      {src && <Img data-cy="lazy-img" {...(isLoad ? { src } : {})} />}
     </LargeImgBox>
   );
 };

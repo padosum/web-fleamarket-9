@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { ListItem } from '.';
 
 interface Item {
@@ -13,18 +13,19 @@ interface Item {
   isLiked: boolean;
 }
 
-interface Props {
+interface ProductListProps {
   items: Item[];
   type: string;
   getItems?: Function;
   isFlatList?: boolean;
 }
-
 const UNIT_HEIGHT = 140;
+const HEIGHT_MARGIN = 1500;
 
-export const ProductList = (props: Props) => {
+export const ProductList = (props: ProductListProps) => {
   const [topUndiplayedCount, setTopUndisplayedCount] = useState(0);
   const [bottomUndisplayedCount, setBottomUndisplayedCount] = useState(0);
+
   const lastScrollTime = useRef(0);
 
   useEffect(() => {
@@ -34,19 +35,10 @@ export const ProductList = (props: Props) => {
       if (currentTime - lastScrollTime.current < 50) return;
 
       lastScrollTime.current = currentTime;
-      const screenHeight = window.innerHeight + 1500;
-      const totalHeight = document.documentElement.scrollHeight;
-      const scrollY = Math.max(window.scrollY - 750, 0);
-      const scrollBottomY = Math.max(
-        0,
-        totalHeight - (scrollY + screenHeight) - 750,
-      );
-
-      const topUndiplayedCount = Math.floor(scrollY / UNIT_HEIGHT);
-      const bottomUndisplayedCount = Math.floor(scrollBottomY / UNIT_HEIGHT);
-
-      setTopUndisplayedCount(topUndiplayedCount);
-      setBottomUndisplayedCount(bottomUndisplayedCount);
+      const [topUndiplayedCountTemp, bottomUndisplayedCountTemp] =
+        getCurrentUndisplayedCount();
+      setTopUndisplayedCount(topUndiplayedCountTemp);
+      setBottomUndisplayedCount(bottomUndisplayedCountTemp);
     };
 
     if (props.isFlatList) {
@@ -55,6 +47,13 @@ export const ProductList = (props: Props) => {
 
     return () => window.removeEventListener('scroll', onScroll);
   }, [props.isFlatList]);
+
+  useLayoutEffect(() => {
+    const [topUndiplayedCountTemp, bottomUndisplayedCountTemp] =
+      getCurrentUndisplayedCount();
+    setTopUndisplayedCount(topUndiplayedCountTemp);
+    setBottomUndisplayedCount(bottomUndisplayedCountTemp);
+  }, [props.items.length]);
 
   return (
     <div
@@ -100,4 +99,19 @@ export const ProductList = (props: Props) => {
         })}
     </div>
   );
+};
+
+const getCurrentUndisplayedCount = () => {
+  const screenHeight = window.innerHeight + HEIGHT_MARGIN;
+  const totalHeight = document.documentElement.scrollHeight;
+  const scrollY = Math.max(window.scrollY - HEIGHT_MARGIN / 2, 0);
+  const scrollBottomY = Math.max(
+    0,
+    totalHeight - (scrollY + screenHeight) - HEIGHT_MARGIN / 2,
+  );
+
+  const topUndiplayedCountTemp = Math.floor(scrollY / UNIT_HEIGHT);
+  const bottomUndisplayedCountTemp = Math.floor(scrollBottomY / UNIT_HEIGHT);
+
+  return [topUndiplayedCountTemp, bottomUndisplayedCountTemp];
 };
