@@ -48,9 +48,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "cypress": "cypress open",
+    "cypress": "cypress open --config-file=cypress.config.ts",
     "test": "jest",
     "test:dev": "jest --watch",
+    "test:e2e": "cypress run --config-file=cypress.config.ts",
     "serve": "serve -s build",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
