@@ -1,3 +1,6 @@
+/// <reference types="cypress" />
+import { expect } from 'chai';
+
 describe('홈 아이템 페이지 스크롤 관련 이벤트 테스트', () => {
   let homeItem: any[] = [];
 

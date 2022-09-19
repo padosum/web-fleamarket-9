@@ -1,11 +1,11 @@
-name: e2e
+name: e2e테스트
 on:
   push:
     branches:
       - '**'
 
 jobs:
-  cypress-run:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

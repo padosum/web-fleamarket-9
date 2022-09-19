@@ -1,4 +1,4 @@
-name: deploy
+name: 배포
 on:
   push:
     branches:

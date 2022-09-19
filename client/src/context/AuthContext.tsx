@@ -9,7 +9,7 @@ interface Location {
   locationName: string;
   locationCode: string;
 }
-interface User {
+export interface User {
   idx: number;
   id: string;
   name: string;

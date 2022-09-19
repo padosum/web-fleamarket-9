@@ -200,7 +200,9 @@ export const ListItem = ({
         (e) => {
           if (e[0].isIntersecting) {
             if (getItems) {
-              observer.unobserve(itemListRef.current);
+              if (itemListRef.current instanceof HTMLElement) {
+                observer.unobserve(itemListRef.current);
+              }
               observer.disconnect();
               getItems();
             }

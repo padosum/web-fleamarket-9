@@ -1,321 +1,36 @@
-import axios, { AxiosError } from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
-import { Navigate, useMatch, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { CategoryButton } from '../components/Category/CategoryButton';
-import { colors } from '../components/Color';
-import { WriteHeader } from '../components/Header/WriteHeader';
-import { ImgButton, LocationBar, Spacing, TextInput } from '../components/Base';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useWorker, useAuthContext, useCategory } from '../hooks';
-import { ITEM_UPLOAD } from '../utils/constant';
-import { comma } from '../utils/util';
-
-const WriteWrapper = styled.div`
-  width: 100%;
-  max-width: 100%;
-
-  @supports (-webkit-touch-callout: none) {
-    max-height: -webkit-fill-available;
-  }
-
-  box-sizing: border-box;
-`;
-
-const HeaderWrapper = styled.div`
-  position: sticky;
-  width: 100%;
-  z-index: 9;
-  top: 0;
-  border-bottom: 1px solid ${colors.gray3};
-`;
-
-const BodyWrapper = styled.div`
-  padding: 0 16px;
-  box-sizing: border-box;
-`;
-
-const ImgWrap = styled.div`
-  display: flex;
-  max-width: 100%;
-  padding: 24px 0;
-  width: 100%;
-  box-sizing: border-box;
-  overflow: auto;
-`;
-
-const HorizontalBar = styled.div`
-  height: 1px;
-  width: 100%;
-  background-color: ${colors.gray3};
-`;
-
-const HorizontalSpacing = styled.div<{ width: number }>`
-  width: ${({ width }) => `${width}px`};
-  min-width: ${({ width }) => `${width}px`};
-`;
-
-const LocationWrapper = styled.div`
-  height: 36px;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-`;
-
-const CategoryWrapper = styled.div`
-  width: 100%;
-  max-width: 100%;
-  overflow: auto;
-`;
+import { WriteView } from '../components/Write/WriteView';
+import { useItemWriteDetail, useItemWriteForm } from '../hooks/Write';
 
 export const Write = () => {
-  const match = useMatch('/item/edit/:id');
-  const itemId = match?.params.id;
+  const { id: itemId } = useParams();
+  const navigate = useNavigate();
   const { user, isLoggedIn } = useAuthContext('Write');
+  const { category: categories } = useCategory();
   const worker = useWorker();
 
-  const [info, setInfo] = useState({
-    imgUrls: [] as string[],
-    title: '',
-    price: '',
-    contents: '',
-    location: user!.location[0].locationName,
-    category: 0,
-    locationId: user!.location[0].locationId,
-  });
-
-  const { title, price, contents } = info;
-
-  const fileInputRef = useRef<HTMLInputElement>(null!);
-  const { category } = useCategory();
-
-  const onFileInputChange = async (
-    evt: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const files = evt.currentTarget.files;
-
-    if (files?.length) {
-      const img = files[0];
-      evt.currentTarget.value = '';
-      const formData = new FormData();
-      formData.append('file', img);
-      const res = await axios.post('/api/image', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-
-      const { url } = res.data;
-
-      setInfo({ ...info, imgUrls: [...info.imgUrls, url] });
-    }
-  };
-
-  const navigate = useNavigate();
-
-  const onInputTextChange = (
-    type: string,
-    evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    switch (type) {
-      case 'title':
-      case 'contents':
-        setInfo({ ...info, [type]: evt.target.value });
-        break;
-      case 'price':
-        setInfo({
-          ...info,
-          [type]: comma(evt.target.value),
-        });
-        break;
-      case 'category':
-        setInfo({ ...info, [type]: +evt.target.value });
-    }
-  };
-
-  const onImageAddClick = () => {
-    fileInputRef.current.click();
-  };
-
-  const onImageDeleteClick = (url: string) => {
-    setInfo({
-      ...info,
-      imgUrls: info.imgUrls.filter((imgUrl) => imgUrl !== url),
-    });
-  };
-
-  const checkValidation = () => {
-    return !!(
-      info.imgUrls.length > 0 &&
-      info.title &&
-      info.contents &&
-      info.location &&
-      info.category > 0
-    );
-  };
-
-  const onSubmit = async (evt?: React.FormEvent) => {
-    evt?.preventDefault();
-
-    if (!checkValidation()) return;
-
-    try {
-      if (!itemId) {
-        await axios.post('/api/item', {
-          title: info.title,
-          images: info.imgUrls,
-          price: info.price ? +info.price.replace(/,/g, '') : 0,
-          contents: info.contents,
-          code: info.location,
-          locationId: info.locationId,
-          category: info.category,
-        });
-
-        worker.port.postMessage(
-          JSON.stringify({
-            event: ITEM_UPLOAD,
-            data: {
-              locationId: info.locationId,
-              title: info.title,
-              locationName: info.location,
-            },
-          }),
-        );
-        alert('물품을 등록했습니다.');
-        navigate('/home?menu=true', { replace: true });
-      }
-
-      if (itemId) {
-        await axios.patch(`/api/item/${itemId}`, {
-          title: info.title,
-          images: info.imgUrls,
-          price: +info.price.replace(/,/g, ''),
-          contents: info.contents,
-          code: info.location,
-          locationId: info.locationId,
-          category: info.category,
-        });
-
-        alert('물품을 수정했습니다.');
-        navigate(`/item/${itemId}`, { replace: true });
-      }
-    } catch (err: unknown) {
-      if (err instanceof AxiosError) {
-        alert(err!.response!.data.message);
-      }
-    }
-  };
-
-  const getItemDetail = async () => {
-    const res = await axios.get(`/api/item/${itemId}`);
-    const { data: info } = res;
-
-    setInfo({
-      title: info.title,
-      category: info.category,
-      contents: info.contents,
-      imgUrls: info.images.split(','),
-      location: info.location,
-      locationId: info.locationId,
-      price: comma(info.price),
-    });
-  };
-
-  useEffect(() => {
-    if (itemId) {
-      getItemDetail();
-    }
-  }, [itemId]);
+  const { info, setInfo } = useItemWriteDetail(itemId, user);
+  const {
+    checkValidation,
+    onFileInputChange,
+    onImageDeleteClick,
+    onInputTextChange,
+    onSubmit,
+  } = useItemWriteForm(itemId, info, setInfo, navigate, worker);
 
   return (
-    <form onSubmit={onSubmit}>
-      {!isLoggedIn && <Navigate to="/home" replace />}
-      {isLoggedIn && user?.location.length === 0 && (
-        <Navigate to="/location" replace />
-      )}
-      <WriteWrapper>
-        <HeaderWrapper>
-          <WriteHeader
-            title={'글쓰기'}
-            color={'white'}
-            active={checkValidation()}
-            onClickBack={() => navigate(-1)}
-            onClickCheck={onSubmit}
-          />
-        </HeaderWrapper>
-
-        <input
-          type="file"
-          onChange={onFileInputChange}
-          ref={fileInputRef}
-          style={{ display: 'none' }}
-          accept="image/*"
-        />
-
-        <ImgWrap>
-          <HorizontalSpacing width={16} />
-          <ImgButton.Add
-            onClick={onImageAddClick}
-            text={`${info.imgUrls.length}/10`}
-          />
-          {info.imgUrls.map((imgUrl) => {
-            return [
-              <HorizontalSpacing key={'space' + imgUrl} width={16} />,
-              <ImgButton.Delete
-                onClick={onImageDeleteClick.bind(null, imgUrl)}
-                key={'img' + imgUrl}
-                src={imgUrl}
-              />,
-            ];
-          })}
-          <HorizontalSpacing width={16} />
-        </ImgWrap>
-
-        <BodyWrapper>
-          <HorizontalBar />
-          <Spacing height={24} />
-          <TextInput.NoBorder
-            onChange={onInputTextChange.bind(null, 'title')}
-            placeholder="글 제목"
-            value={title}
-            maxLength={30}
-          />
-          {title && (
-            <>
-              <Spacing height={5} />
-              <CategoryWrapper className="no-scroll">
-                <CategoryButton
-                  initialCategory={info.category}
-                  categories={category}
-                  onChange={onInputTextChange.bind(null, 'category')}
-                />
-              </CategoryWrapper>
-            </>
-          )}
-
-          <Spacing height={24} />
-          <HorizontalBar />
-          <Spacing height={24} />
-          <TextInput.NoBorder
-            onChange={onInputTextChange.bind(null, 'price')}
-            value={price ? '₩ ' + price : ''}
-            placeholder="₩ 가격(선택사항)"
-            maxLength={15}
-          />
-          <Spacing height={24} />
-          <HorizontalBar />
-          <Spacing height={24} />
-          <TextInput.TextArea
-            onChange={onInputTextChange.bind(null, 'contents')}
-            value={contents}
-            placeholder="게시글 내용을 작성해주세요."
-            height={150}
-            maxLength={500}
-          />
-          <Spacing height={48} />
-        </BodyWrapper>
-        <HorizontalBar />
-        <LocationWrapper>
-          <LocationBar location={info.location} />
-        </LocationWrapper>
-      </WriteWrapper>
-    </form>
+    <WriteView
+      onSubmit={onSubmit}
+      categories={categories}
+      checkValidation={checkValidation}
+      info={info}
+      isLoggedIn={isLoggedIn}
+      navigate={navigate}
+      onFileInputChange={onFileInputChange}
+      onImageDeleteClick={onImageDeleteClick}
+      onInputTextChange={onInputTextChange}
+      user={user}
+    />
   );
 };

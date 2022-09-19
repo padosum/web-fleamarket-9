@@ -1,8 +1,11 @@
+/// <reference types="@types/jest" />
+/// <reference types="@testing-library/jest-dom" />
+
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { useHomeMenuOpenStates } from './useHomeMenuOpenStates';
+import { useHomeMenuOpenStates } from '../src/hooks/useHomeMenuOpenStates';
 
 /* 테스팅용 컴포넌트 */
 const App = ({
