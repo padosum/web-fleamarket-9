@@ -1,0 +1,19 @@
+{
+  "idx": 40,
+  "id": "hjhjhj",
+  "name": "이형준",
+  "location": [
+    {
+      "userId": 40,
+      "locationId": 469,
+      "locationName": "서울특별시 송파구 잠실동",
+      "locationCode": "1171010100"
+    },
+    {
+      "userId": 40,
+      "locationId": 478,
+      "locationName": "서울특별시 송파구 방이동",
+      "locationCode": "1171011100"
+    }
+  ]
+}

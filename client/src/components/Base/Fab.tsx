@@ -6,6 +6,7 @@ interface FabProps {
   disabled?: boolean;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  role?: string;
 }
 
 const FabCommon = styled.button<FabProps>`
@@ -29,9 +30,14 @@ const FabCommon = styled.button<FabProps>`
   }
 `;
 
-export const Fab = ({ disabled, className, onClick }: FabProps) => {
+export const Fab = ({ disabled, className, onClick, role }: FabProps) => {
   return (
-    <FabCommon disabled={disabled} className={className} onClick={onClick}>
+    <FabCommon
+      role={role}
+      disabled={disabled}
+      className={className}
+      onClick={onClick}
+    >
       <Icon name="iconAdd" color="white"></Icon>
     </FabCommon>
   );

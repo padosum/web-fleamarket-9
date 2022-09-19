@@ -118,7 +118,7 @@ export const HomeView = ({
       </ProductWrapper>
       {isLoggedIn && (
         <FabButtonWrapper>
-          <Fab onClick={onFabButtonClick} />
+          <Fab onClick={onFabButtonClick} role="item-add-button" />
         </FabButtonWrapper>
       )}
     </HomeWrapper>

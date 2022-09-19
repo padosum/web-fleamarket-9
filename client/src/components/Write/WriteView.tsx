@@ -97,6 +97,7 @@ export const WriteView = ({
           <TextInput.NoBorder
             onChange={onInputTextChange.bind(null, 'title')}
             placeholder="글 제목"
+            data-cy="title"
             value={title}
             maxLength={30}
           />
@@ -120,6 +121,7 @@ export const WriteView = ({
             onChange={onInputTextChange.bind(null, 'price')}
             value={price ? '₩ ' + price : ''}
             placeholder="₩ 가격(선택사항)"
+            data-cy="price"
             maxLength={15}
           />
           <Spacing height={24} />
@@ -129,6 +131,7 @@ export const WriteView = ({
             onChange={onInputTextChange.bind(null, 'contents')}
             value={contents}
             placeholder="게시글 내용을 작성해주세요."
+            data-cy="contents"
             height={150}
             maxLength={500}
           />

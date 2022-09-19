@@ -1,0 +1,20 @@
+[
+  {
+    "idx": 661,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1662451894746999.png",
+    "category": 1,
+    "updatedAt": "2022-09-09T06:44:12.000Z",
+    "createdAt": "2022-09-06T08:11:42.000Z",
+    "title": "222",
+    "contents": "222",
+    "likeCount": 2,
+    "price": "2222",
+    "seller": 58,
+    "location": "서울특별시 송파구 방이동",
+    "viewCount": 15,
+    "status": 1,
+    "locationId": 478,
+    "isLike": 0,
+    "chatRoomCount": 1
+  }
+]
