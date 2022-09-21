@@ -1,46 +1,32 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { colors } from '../Color';
 
-type Timer = ReturnType<typeof setTimeout>;
-
-const isLoaded = new Map();
+const LAZY_LOAD_TIME_INTERVAL = 200;
+const loadedImages = new Map();
 
 export const LazyloadingImgBox = ({ src }: { src: string }) => {
-  const prevLoaded = isLoaded.has(src);
-  const [isLoad, setIsLoad] = useState(prevLoaded);
-  const imgRef = useRef<HTMLDivElement>(null!);
+  const [isloaded, setIsLoaded] = useState(loadedImages.has(src));
 
   useEffect(() => {
-    let timeouts: Timer;
-    const observer = new IntersectionObserver(
-      (e) => {
-        if (e[0].isIntersecting && !isLoad) {
-          timeouts = setTimeout(() => {
-            setIsLoad(true);
-            isLoaded.set(src, true);
-            observer.unobserve(imgRef.current);
-          }, 200);
-        } else {
-          clearTimeout(timeouts);
-        }
-      },
-      {
-        rootMargin: '0px',
-        threshold: 0.3,
-      },
-    );
+    const timer = setTimeout(() => {
+      const img = new Image();
+      img.onload = () => {
+        setIsLoaded(true);
+        loadedImages.set(src, true);
+      };
+      img.src = src;
+    }, LAZY_LOAD_TIME_INTERVAL);
 
-    observer.observe(imgRef.current);
-  }, []);
+    return () => clearTimeout(timer);
+  }, [src]);
 
   return (
     <LargeImgBox
       data-cy="loaded-count"
-      data-total-loaded-count={isLoaded.size}
-      ref={imgRef}
+      data-total-loaded-count={loadedImages.size}
     >
-      {src && <Img data-cy="lazy-img" {...(isLoad ? { src } : {})} />}
+      {src && <Img data-cy="lazy-img" {...(isloaded ? { src } : {})} />}
     </LargeImgBox>
   );
 };

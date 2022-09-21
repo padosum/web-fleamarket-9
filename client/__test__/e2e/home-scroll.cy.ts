@@ -52,7 +52,7 @@ describe('홈 아이템 페이지 스크롤 관련 이벤트 테스트', () => {
   });
 
   describe('이미지 레이지 로딩 테스트', () => {
-    it('초기에 화면 밖 이미지는 호출되지 않아야함.', () => {
+    it('초기에 화면 밖 이미지도 요청하여야 함.', () => {
       cy.wait('@getItems');
 
       cy.wait(3000);
@@ -62,7 +62,7 @@ describe('홈 아이템 페이지 스크롤 관련 이벤트 테스트', () => {
           const loadedImages = Array.from(lazyImages).filter((img) => {
             return (img as unknown as HTMLImageElement).src;
           });
-          expect(items.length).not.to.equal(loadedImages.length);
+          expect(items.length).to.equal(loadedImages.length);
         });
       });
     });

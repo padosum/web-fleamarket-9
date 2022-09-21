@@ -5,8 +5,8 @@ name: 기능테스트
 
 on:
   push:
-    branches:
-      - '**'
+    branches-ignore:
+      - 'main'
   pull_request:
     branches:
       - 'dev'

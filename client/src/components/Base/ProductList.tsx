@@ -32,7 +32,7 @@ export const ProductList = (props: ProductListProps) => {
     const onScroll = () => {
       const currentTime = new Date().valueOf();
 
-      if (currentTime - lastScrollTime.current < 50) return;
+      if (currentTime - lastScrollTime.current < 100) return;
 
       lastScrollTime.current = currentTime;
       const [topUndiplayedCountTemp, bottomUndisplayedCountTemp] =
@@ -68,9 +68,10 @@ export const ProductList = (props: ProductListProps) => {
     >
       {props.isFlatList &&
         props.items.map((item, index) => {
-          if (index < topUndiplayedCount) {
-            return <React.Fragment key={item.idx} />;
-          } else if (index > props.items.length - bottomUndisplayedCount) {
+          if (
+            index < topUndiplayedCount ||
+            index > props.items.length - bottomUndisplayedCount
+          ) {
             return <React.Fragment key={item.idx} />;
           } else {
             return (
