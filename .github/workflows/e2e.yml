@@ -5,9 +5,7 @@ on:
       - 'dev'
   push:
     branches:
-      - '**'
-      - '!dev'
-      - '!main'
+      - 'dev'
 
 jobs:
   test:
@@ -21,7 +19,7 @@ jobs:
         with:
           start: npm start
           test: npm test:e2e
-          record: false
+          record: true
           config-file: cypress.config.ts
           browser: firefox
           headless: false
