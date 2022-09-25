@@ -5,7 +5,9 @@ on:
       - 'dev'
   push:
     branches:
-      - 'dev'
+      - '**'
+      - '!dev'
+      - '!main'
 
 jobs:
   test:
