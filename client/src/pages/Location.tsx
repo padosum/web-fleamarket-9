@@ -1,19 +1,20 @@
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { BackHeader } from '../components/Header/BackHeader';
 import styled from 'styled-components';
 import { LocationButton, Spacing } from '../components/Base';
 import { colors } from '../components/Color';
 import { useEffect, useState } from 'react';
+import Api from '../utils/api';
+import { LocationType } from '../types/location';
 
 export const Location = () => {
   const navigate = useNavigate();
 
-  const [location, setLocation] = useState([]);
+  const [location, setLocation] = useState<LocationType[]>([]);
 
   const getLocation = async () => {
     try {
-      const { data } = await axios.get('/api/location/me');
+      const data: LocationType[] = await Api.get({ url: '/api/location/me' });
       setLocation(data);
     } catch (err) {}
   };
@@ -25,7 +26,10 @@ export const Location = () => {
   const handleDeleteLocation = async (id: number) => {
     if (window.confirm('삭제하시겠습니까?')) {
       try {
-        const { data } = await axios.delete(`/api/location/${id}`);
+        const data: { count: number } = await Api.delete({
+          url: `/api/location/${id}`,
+        });
+
         if (data.count) {
           getLocation();
         }

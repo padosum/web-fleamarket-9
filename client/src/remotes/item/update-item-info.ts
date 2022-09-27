@@ -1,12 +1,12 @@
-import { http } from '../_http';
+import API from '../../utils/api';
 import { UploadNewItemPayload, UploadNewItemResult } from './upload-new-item';
 
 export interface UpdateItemPayload extends UploadNewItemPayload {}
 export interface UpdateItemResult extends UploadNewItemResult {}
 
 export function updateItemInfo(itemId: string, payload: UpdateItemPayload) {
-  return http.patch<UpdateItemPayload, UpdateItemResult>(
-    `/api/item/${itemId}`,
-    payload,
-  );
+  return API.patch<UpdateItemResult>({
+    url: `/api/item/${itemId}`,
+    data: payload,
+  });
 }

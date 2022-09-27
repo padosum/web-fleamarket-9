@@ -1,4 +1,4 @@
-import { http } from '../_http';
+import API from '../../utils/api';
 
 export interface UploadImagePayload {
   file: File;
@@ -11,7 +11,10 @@ export interface UploadImageResult {
 export async function uploadItemImage(payload: UploadImagePayload) {
   const formData = new FormData();
   formData.append('file', payload.file);
-  return http.post<FormData, UploadImageResult>('/api/image', formData, {
+
+  return API.post<UploadImageResult>({
+    url: '/api/image',
+    data: formData,
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 }

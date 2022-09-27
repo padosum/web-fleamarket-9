@@ -1,4 +1,4 @@
-import { http } from '../_http';
+import API from '../../utils/api';
 
 export interface UploadNewItemPayload {
   title: string;
@@ -18,8 +18,5 @@ export interface UploadNewItemResult {
 export async function uploadNewItem(
   payload: UploadNewItemPayload,
 ): Promise<UploadNewItemResult> {
-  return http.post<UploadNewItemPayload, UploadNewItemResult>(
-    '/api/item',
-    payload,
-  );
+  return API.post<UploadNewItemResult>({ url: '/api/item', data: payload });
 }

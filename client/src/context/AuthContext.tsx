@@ -2,24 +2,12 @@ import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
 import { useHomeItemFetch, useWorker } from '../hooks';
 import { AUTH } from '../utils/constant';
-
-interface Location {
-  userId: number;
-  locationId: number;
-  locationName: string;
-  locationCode: string;
-}
-export interface User {
-  idx: number;
-  id: string;
-  name: string;
-  location: Location[];
-}
+import { UserType } from '../types/user';
 
 interface AuthContextValue {
-  user: User | null;
+  user: UserType | null;
   isLoggedIn: boolean;
-  login: (user: User) => void;
+  login: (user: UserType) => void;
   logout: () => Promise<boolean>;
 }
 
@@ -30,18 +18,18 @@ interface Props {
 }
 
 export const AuthProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserType | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { resetCategoryLocationId } = useHomeItemFetch();
   const worker = useWorker();
 
   const getMyInfo = async () => {
-    const { data } = await axios.get<User>('/api/users/me');
+    const { data } = await axios.get<UserType>('/api/users/me');
     return data;
   };
 
-  const login = (user: User) => {
+  const login = (user: UserType) => {
     setUser(user);
     setIsLoggedIn(true);
     worker.port.postMessage(JSON.stringify({ event: AUTH, data: user.idx }));

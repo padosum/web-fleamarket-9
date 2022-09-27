@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks';
 import { BackHeader } from '../components/Header/BackHeader';
@@ -9,6 +8,8 @@ import { TypoGraphy } from '../components/Base';
 import Form from '../context/FormContext';
 import ErrorMessage from '../components/Form/ErrorMessage';
 import Field from '../components/Form/Field';
+import Api from '../utils/api';
+import { UserType } from '../types/user';
 
 type InputValue = {
   [key: string]: string;
@@ -37,16 +38,10 @@ export const Login = () => {
 
   const handleSubmit = async (values: InputValue) => {
     try {
-      const { data } = await axios.post(
-        '/api/auth/login',
-        { id: values.id, password: values.password },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-        },
-      );
+      const data: UserType = await Api.post({
+        url: '/api/auth/login',
+        data: { id: values.id, password: values.password },
+      });
       login(data);
       navigate('/home');
     } catch (err) {

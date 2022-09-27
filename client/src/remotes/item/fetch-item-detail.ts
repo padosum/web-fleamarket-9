@@ -1,4 +1,4 @@
-import { http } from '../_http';
+import API from '../../utils/api';
 
 export interface ItemDetailTypes {
   category: number;
@@ -21,5 +21,5 @@ export interface ItemDetailTypes {
 }
 
 export async function fetchItemDetail(itemId: string) {
-  return http.get<ItemDetailTypes>(`/api/item/${itemId}`);
+  return API.get<ItemDetailTypes>({ url: `/api/item/${itemId}` });
 }

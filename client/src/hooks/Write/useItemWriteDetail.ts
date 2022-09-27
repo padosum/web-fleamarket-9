@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { User } from '../../context/AuthContext';
+import { UserType as User } from '../../types/user';
 import { comma } from '../../utils/util';
 import { fetchItemDetail } from '../../remotes/item/fetch-item-detail';
 

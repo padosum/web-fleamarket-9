@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks';
 import styled from 'styled-components';
@@ -7,6 +6,12 @@ import { Button, Spacing } from '../components/Base';
 import Form from '../context/FormContext';
 import Field from '../components/Form/Field';
 import ErrorMessage from '../components/Form/ErrorMessage';
+import Api from '../utils/api';
+import { UserType } from '../types/user';
+
+type SignupResponse<T> = Omit<T, 'location'> & {
+  message: string;
+};
 
 type InputValue = {
   [key: string]: string;
@@ -44,36 +49,24 @@ const validate = ({ id, password, name }: InputValue): InputValue => {
 
 export const Signup = () => {
   const navigate = useNavigate();
-  const { login, isLoggedIn, user, logout } = useAuthContext('Login');
+  const { login } = useAuthContext('Login');
 
   const handleSubmit = async (values: InputValue) => {
     try {
-      const { data } = await axios.post(
-        '/api/users',
-        { id: values.id, password: values.password, name: values.name },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-        },
-      );
+      const data: SignupResponse<UserType> = await Api.post({
+        url: '/api/users',
+        data: { id: values.id, password: values.password, name: values.name },
+      });
 
       if (data.message) {
         alert(data.message);
         return;
       }
 
-      const { data: loginResponse } = await axios.post(
-        '/api/auth/login',
-        { id: values.id, password: values.password },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-        },
-      );
+      const loginResponse: UserType = await Api.post({
+        url: '/api/auth/login',
+        data: { id: values.id, password: values.password },
+      });
 
       login(loginResponse);
       navigate('/home');

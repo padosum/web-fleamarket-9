@@ -5,7 +5,7 @@ import {
   useRef,
 } from 'react';
 import { Navigate, NavigateFunction } from 'react-router-dom';
-import { User } from '../../context/AuthContext';
+import { UserType as User } from '../../types/user';
 import { ImgButton, LocationBar, Spacing, TextInput } from '../Base';
 import { CategoryButton } from '../Category/CategoryButton';
 import { WriteHeader } from '../Header/WriteHeader';

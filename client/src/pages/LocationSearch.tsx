@@ -1,10 +1,11 @@
-import axios, { AxiosResponse } from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import React, { useEffect, useRef, useState } from 'react';
 import { SearchHeader } from '../components/Header/SearchHeader';
 import { colors } from '../components/Color';
 import { debounce } from '../utils/util';
+import Api from '../utils/api';
+import { LocationType } from '../types/location';
 
 export const LocationSearch = () => {
   const navigate = useNavigate();
@@ -12,11 +13,12 @@ export const LocationSearch = () => {
 
   const formEl = useRef<HTMLFormElement>(null);
 
-  const [searchLocation, setSearchLocation] = useState([]);
+  const [searchLocation, setSearchLocation] = useState<LocationType[]>([]);
 
   const getLocation = async (searchName: string) => {
     try {
-      const { data } = await axios.get('/api/location', {
+      const data: LocationType[] = await Api.get({
+        url: '/api/location',
         params: { name: searchName },
       });
       setSearchLocation(data);
@@ -40,26 +42,19 @@ export const LocationSearch = () => {
   };
 
   const requestAddLocationToUser = async (locationId: number) => {
-    const res: void | AxiosResponse<any, any> = await axios
-      .post(
-        '/api/location',
-        { locationId },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-        },
-      )
-      .catch((err) => {
-        if (err.response) {
-          alert(err.response.data.message);
-        }
-      });
+    const res: void | { idx: number } = await Api.post<{ idx: number }>({
+      url: '/api/location',
+      data: { locationId },
+    }).catch((err) => {
+      if (err.response) {
+        alert(err.message);
+      }
+    });
+
     if (!res) {
       return;
     }
-    if (res.data.idx) {
+    if (res.idx) {
       navigate('/location');
     }
   };
@@ -68,7 +63,9 @@ export const LocationSearch = () => {
     // 삭제할 동네가 있는 경우 삭제 우선처리
     if (state) {
       try {
-        const { data } = await axios.delete(`/api/location/${state}`);
+        const data: { count: number } = await Api.delete({
+          url: `/api/location/${state}`,
+        });
         if (data.count) {
           requestAddLocationToUser(locationId);
         }
