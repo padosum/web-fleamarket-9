@@ -1,4 +1,4 @@
-name: 배포
+name: 클라이언트 배포
 on:
   push:
     branches:
@@ -18,10 +18,7 @@ jobs:
             cd client
             sudo npm install
             sudo npm run build
-            cd ../server
-            sudo npm install
-            sudo npm run build
-            sudo pm2 restart all
+            sudo pm2 restart client
           host: ${{ secrets.HOST }}
           user: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}

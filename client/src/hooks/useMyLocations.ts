@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { instance } from '../utils/instance';
 import { useEffect, useState } from 'react';
 
 export const useMyLocations = () => {
@@ -7,7 +7,7 @@ export const useMyLocations = () => {
   useEffect(() => {
     const getLocation = async () => {
       try {
-        const { data } = await axios.get('/api/location/me');
+        const { data } = await instance.get('/api/location/me');
         const formatLocation = data.map(
           ({ idx, name }: { idx: number; name: string }) => {
             return {

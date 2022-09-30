@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { instance } from '../../utils/instance';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -25,7 +25,7 @@ export const ChattingList = () => {
     const getChatRooms = async () => {
       try {
         setLoading(true);
-        const { data } = await axios.get('/api/chat');
+        const { data } = await instance.get('/api/chat');
         setChatRooms(data);
         setLoading(false);
       } catch (err) {}

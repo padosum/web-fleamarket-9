@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { instance } from '../utils/instance';
 import styled from 'styled-components';
 import {
   ChatBar,
@@ -47,7 +47,7 @@ export const ChatDetail = () => {
   useEffect(() => {
     const getMessages = async (lastMessageId?: number) => {
       try {
-        const { data } = await axios.get('/api/chat/message', {
+        const { data } = await instance.get('/api/chat/message', {
           params: { chatId: id, lastMessageId },
         });
         setMessages(data);
@@ -58,7 +58,7 @@ export const ChatDetail = () => {
 
     const getChatRoom = async () => {
       try {
-        const { data } = await axios.get(`/api/chat/room`, {
+        const { data } = await instance.get(`/api/chat/room`, {
           params: { chatId: id },
         });
         setChatRoom(data);
@@ -66,7 +66,7 @@ export const ChatDetail = () => {
 
         // 메시지 읽음 처리
         if (data.unReadCount > 0) {
-          await axios.patch(`/api/chat/${id}`);
+          await instance.patch(`/api/chat/${id}`);
         }
       } catch (err) {
         alert(err);
@@ -82,7 +82,7 @@ export const ChatDetail = () => {
       return;
     }
 
-    const { data } = await axios.post(`/api/chat/${id}`, {
+    const { data } = await instance.post(`/api/chat/${id}`, {
       message: chatInput,
     });
 
@@ -120,7 +120,7 @@ export const ChatDetail = () => {
     }
     if (+data.chatId === +id) {
       // 읽음 처리
-      await axios.patch(`/api/chat/${data.chatId}`);
+      await instance.patch(`/api/chat/${data.chatId}`);
 
       setScrollToBottom(true);
       setMessages((messages) => [...messages, { ...data, isNew: true }]);
@@ -136,7 +136,7 @@ export const ChatDetail = () => {
       return;
     }
 
-    const { data } = await axios.delete(`/api/chat/${id}`);
+    const { data } = await instance.delete(`/api/chat/${id}`);
     alert(data.message);
     navigate(-1);
   };
@@ -174,7 +174,7 @@ export const ChatDetail = () => {
 
         const getMessages = async (lastMessageId?: number) => {
           try {
-            const { data } = await axios.get('/api/chat/message', {
+            const { data } = await instance.get('/api/chat/message', {
               params: { chatId: id, lastMessageId },
             });
 

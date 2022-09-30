@@ -1,4 +1,5 @@
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
+import { instance } from '../utils/instance';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -107,7 +108,7 @@ export const Detail = () => {
         return;
       }
 
-      await axios.delete(`/api/item/${itemId}`);
+      await instance.delete(`/api/item/${itemId}`);
       alert('아이템을 삭제했습니다.');
       navigate(-1);
     } catch (err: unknown) {
@@ -123,7 +124,7 @@ export const Detail = () => {
 
   const handleStatusChange = (num: number) => {
     try {
-      axios.patch(`/api/item/status/${id}`, {
+      instance.patch(`/api/item/status/${id}`, {
         statusId: num,
       });
     } catch (err) {}
@@ -140,9 +141,9 @@ export const Detail = () => {
     }
 
     if (like) {
-      axios.patch(`/api/item/unlike/${id}`);
+      instance.patch(`/api/item/unlike/${id}`);
     } else {
-      axios.patch(`/api/item/like/${id}`);
+      instance.patch(`/api/item/like/${id}`);
       notifyItemLike(+id!);
     }
 
@@ -151,7 +152,7 @@ export const Detail = () => {
 
   const getChatRoomIdx = async (itemId: number) => {
     try {
-      const { data } = await axios.post(`/api/chat`, {
+      const { data } = await instance.post(`/api/chat`, {
         sellerId: item.seller,
         buyerId: user?.idx,
         itemId,

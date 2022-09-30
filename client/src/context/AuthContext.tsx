@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { instance } from '../utils/instance';
 import React, { createContext, useEffect, useState } from 'react';
 import { useHomeItemFetch, useWorker } from '../hooks';
 import { AUTH } from '../utils/constant';
@@ -33,7 +33,7 @@ export const AuthProvider = ({
   const worker = useWorker();
 
   const getMyInfo = async () => {
-    const { data } = await axios.get<UserType>('/api/users/me');
+    const { data } = await instance.get<UserType>('/api/users/me');
     return data;
   };
 
@@ -45,7 +45,7 @@ export const AuthProvider = ({
   };
 
   const logout = async () => {
-    await axios.post('/api/auth/logout').catch((err) => {
+    await instance.post('/api/auth/logout').catch((err) => {
       if (err.response) {
         alert(err.response.data);
       } else if (err.request) {

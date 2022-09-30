@@ -20,5 +20,5 @@
     "typeRoots": ["./common.d.ts", "node_modules/@types"]
   },
   "include": ["src"],
-  "exclude": ["cypress"]
+  "exclude": ["cypress", "node_modules"]
 }

@@ -16,7 +16,7 @@ app.use(
   }),
 );
 
-/** API 호출은 $root/server(nestjs)에서 처리. */
+/** API 호출은 server(nestjs)에서 처리. */
 app.use('/api', apiProxy);
 
 /** 이외 요청은 렌더링 처리. */

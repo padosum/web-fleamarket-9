@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { instance } from '../utils/instance';
 import React, { Dispatch, PropsWithChildren, useEffect, useState } from 'react';
 
 export const CategoryContext = React.createContext<{
@@ -12,7 +12,7 @@ export const CategoryProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const { data } = await axios.get('/api/category');
+        const { data } = await instance.get('/api/category');
         setCategory(data);
       } catch (err) {
       } finally {

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { instance } from '../utils/instance';
 import { useCallback, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useLikedItem } from './useLikedItem';
@@ -8,7 +8,7 @@ export const useLikedItemFetch = () => {
   const [searchParams] = useSearchParams();
 
   const getItems = useCallback(async () => {
-    const res = await axios.get('/api/item/liked');
+    const res = await instance.get('/api/item/liked');
 
     setItems(
       res.data.map((item: any) => {

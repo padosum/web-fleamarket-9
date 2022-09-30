@@ -1,4 +1,5 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig } from 'axios';
+import { instance } from './instance';
 
 const request = async (option: AxiosRequestConfig) => {
   const {
@@ -17,7 +18,7 @@ const request = async (option: AxiosRequestConfig) => {
     data,
   };
 
-  return axios(config);
+  return instance(config);
 };
 
 const get = async <T>(option: AxiosRequestConfig): Promise<T> => {

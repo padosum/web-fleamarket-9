@@ -1,7 +1,5 @@
 import Express from 'express';
-import axios from 'axios';
 import hash from 'object-hash';
-import { BASE_URL } from './constant';
 import { html } from './html';
 import {
   fetchItemDetail,
@@ -13,7 +11,6 @@ import {
   LOCATION_ID_QUERY_STRING,
 } from '../src/hooks/useHomeMenuOpenStates';
 import { ItemTypes } from '../src/hooks/useHomeItem';
-axios.defaults.baseURL = BASE_URL;
 
 export const router = Express.Router();
 

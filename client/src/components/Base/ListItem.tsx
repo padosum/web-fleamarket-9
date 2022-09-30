@@ -5,7 +5,8 @@ import { Dropdown, Icon, LazyloadingImgBox } from '.';
 import * as icons from '../iconPath';
 import moment from 'moment';
 import { comma } from '../../utils/util';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
+import { instance } from '../../utils/instance';
 import { useNavigate } from 'react-router-dom';
 import {
   useHomeItem,
@@ -75,7 +76,7 @@ export const ListItem = ({
         return;
       }
       if (isLiked) {
-        axios.patch(`/api/item/unlike/${idx}`);
+        instance.patch(`/api/item/unlike/${idx}`);
         setHomeItems(
           homeItems.map((item) => {
             if (+item.idx === +idx) {
@@ -96,7 +97,7 @@ export const ListItem = ({
           }),
         );
       } else {
-        axios.patch(`/api/item/like/${idx}`);
+        instance.patch(`/api/item/like/${idx}`);
         notifyItemLiked(+idx);
         setHomeItems(
           homeItems.map((item) => {
@@ -150,7 +151,7 @@ export const ListItem = ({
         return;
       }
 
-      await axios.delete(`/api/item/${itemId}`);
+      await instance.delete(`/api/item/${itemId}`);
       alert('아이템을 삭제했습니다.');
       setHomeItems(homeItems.filter((homeItem) => +homeItem.idx !== +itemId));
       setSalesItems(

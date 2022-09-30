@@ -1,0 +1,24 @@
+name: API 서버 배포
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run scripts in server
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            cd ~/web-fleamarket-9
+            sudo git fetch origin main
+            sudo git reset --hard origin/main
+            cd server
+            sudo npm install
+            sudo npm run build
+            sudo pm2 restart server
+          host: ${{ secrets.SERVER_HOST }}
+          user: ${{ secrets.USER }}
+          key: ${{ secrets.PRIVATE_KEY }}
