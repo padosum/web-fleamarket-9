@@ -21,7 +21,7 @@ jobs:
             cd ../server
             sudo npm install
             sudo npm run build
-            sudo pm2 restart server
+            sudo pm2 restart all
           host: ${{ secrets.HOST }}
           user: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
