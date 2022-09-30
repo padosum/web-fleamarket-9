@@ -26,15 +26,10 @@ router.get('/', (req, res) => {
 router.get('/home', async (req, res) => {
   let itemList: ItemTypes[] = [];
   try {
-    const cookie = req.headers.cookie;
-
     const categoryId = req.query[CATEGORY_ID_QUERY_STRING] as string;
     const locationId = req.query[LOCATION_ID_QUERY_STRING] as string;
 
-    const results = await fetchItemList(
-      { page: 1, categoryId, locationId },
-      { cookie: cookie! },
-    );
+    const results = await fetchItemList({ page: 1, categoryId, locationId });
 
     itemList = results.map((item) => {
       return {
