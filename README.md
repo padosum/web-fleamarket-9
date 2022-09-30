@@ -35,7 +35,7 @@
     최연정, 이형준의 우아마켙입니다.
     <br />
     <br />
-    <a href="http://54.180.151.154/">👀 View Demo</a>
+    <a href="http://13.125.211.114/">👀 View Demo</a>
     <br>
     <a href="http://54.180.151.154/api/docs">🎾 API docs</a>
     <br>
