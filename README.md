@@ -37,7 +37,7 @@
     <br />
     <a href="http://13.125.211.114/">👀 View Demo</a>
     <br>
-    <a href="http://54.180.151.154/api/docs">🎾 API docs</a>
+    <a href="http://15.165.228.164/api/docs">🎾 API docs</a>
     <br>
     <a href="https://github.com/woowa-techcamp-2022/web-fleamarket-9/wiki">📚 Wiki</a>
   </p>
