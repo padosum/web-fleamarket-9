@@ -13,14 +13,22 @@ interface AuthContextValue {
 
 export const AuthContext = createContext<AuthContextValue | null>(null);
 
-interface Props {
+interface AuthContextProps {
   children: React.ReactNode;
+  initialUser?: UserType | null;
+  initialLoggedIn?: boolean;
+  initialLoading?: boolean;
 }
 
-export const AuthProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<UserType | null>(null);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+export const AuthProvider = ({
+  children,
+  initialUser = null,
+  initialLoggedIn = false,
+  initialLoading = true,
+}: AuthContextProps) => {
+  const [user, setUser] = useState<UserType | null>(initialUser);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(initialLoggedIn);
+  const [isLoading, setIsLoading] = useState<boolean>(initialLoading);
   const { resetCategoryLocationId } = useHomeItemFetch();
   const worker = useWorker();
 

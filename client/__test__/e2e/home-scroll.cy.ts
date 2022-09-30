@@ -79,7 +79,6 @@ describe('홈 아이템 페이지 스크롤 관련 이벤트 테스트', () => {
       cy.wait(1500);
 
       cy.get('[data-cy=loaded-count]').then((images) => {
-        console.log(images[0].dataset.totalLoadedCount);
         const loadedCount = +(images[0].dataset.totalLoadedCount ?? '0');
 
         expect(loadedCount).lessThan(50);

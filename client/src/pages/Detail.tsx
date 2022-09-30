@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import {
   Button,
   Dropdown,
-  ImageSlide,
   InfoSaler,
   ItemDetailSkeleton,
   ProductBar,
@@ -17,6 +16,7 @@ import { useAuthContext, useItemDetail, useLikeNotify } from '../hooks';
 import { colors } from '../components/Color';
 import { InvisibleHeader } from '../components/Header/InvisibleHeader';
 import { elapsedTime, listenForOutsideClicks } from '../utils/util';
+import { ImageSlide } from '../components/Base/ImageSlide';
 
 const status = [
   { idx: 1, name: '판매중' },

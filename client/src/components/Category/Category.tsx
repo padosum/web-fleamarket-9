@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import { useCategory } from '../../hooks';
 import { colors } from '../Color';
 import { ImgBox } from '../Base';
+import {
+  CATEGORY_ID_QUERY_STRING,
+  CATEGORY_OPEN_QUERY_STRING,
+} from '../../hooks/useHomeMenuOpenStates';
 
 export const Category = () => {
   const { category } = useCategory();
@@ -15,8 +19,8 @@ export const Category = () => {
           <CategoryWrapper key={idx}>
             <CategoryLink
               onClick={() => {
-                searchParams.set('category', `${idx}`);
-                searchParams.delete('openCategory');
+                searchParams.set(CATEGORY_ID_QUERY_STRING, `${idx}`);
+                searchParams.delete(CATEGORY_OPEN_QUERY_STRING);
                 setSearchParams(searchParams);
               }}
             >

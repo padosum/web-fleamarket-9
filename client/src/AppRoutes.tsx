@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuthContext } from './hooks';
 import {
-  Detail,
   Home,
   Location,
   LocationSearch,
@@ -13,6 +12,7 @@ import {
   ChatDetail,
   ChatList,
 } from './pages';
+import { Detail } from './pages/Detail';
 
 export const AppRoutes = () => {
   const { isLoggedIn } = useAuthContext();

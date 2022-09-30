@@ -8,7 +8,7 @@ import { ChatListItemSkeleton } from './ChatListItemSkeleton';
 import { Dropdown } from './Dropdown';
 import { Fab } from './Fab';
 import { Icon } from './Icon';
-import { ImageSlide } from './ImageSlide';
+
 import { ImgBox, MediumImgBox } from './ImgBox';
 import { ImgButton } from './ImgButton';
 import { InfoProduct } from './InfoProduct';
@@ -30,6 +30,7 @@ import { ToastMessage } from './ToastMessage';
 import { ToastMessageContainer, toast } from './ToastMessageContainer';
 import { TypoGraphy } from './TypoGraphy';
 
+// export { ImageSlide } from './ImageSlide';
 export {
   Button,
   ChatBadge,
@@ -41,7 +42,6 @@ export {
   Dropdown,
   Fab,
   Icon,
-  ImageSlide,
   ImgBox,
   MediumImgBox,
   ImgButton,

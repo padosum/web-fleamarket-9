@@ -10,6 +10,8 @@ describe('아이템 업로드 테스트', () => {
 
   it('아이템 업로드 페이지 이동', () => {
     cy.get('button').contains('구경하러 가기').click();
+
+    cy.wait(2000);
     cy.get('button[role=item-add-button]').click();
 
     cy.get('div').contains('글쓰기').should('be.visible');

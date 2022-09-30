@@ -1,6 +1,17 @@
 import React from 'react';
 
-const worker = new SharedWorker('/worker.js');
+let worker = {
+  addEventListener: () => {},
+  dispatchEvent: () => {},
+  onerror: null,
+  port: {},
+  removeEventListener: () => {},
+} as unknown as SharedWorker;
+
+if (typeof SharedWorker === 'function') {
+  worker = new SharedWorker('/worker.js');
+}
+
 export const WorkerContext = React.createContext<{ worker: SharedWorker }>(
   null!,
 );

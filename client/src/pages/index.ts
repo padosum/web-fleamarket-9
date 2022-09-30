@@ -6,7 +6,6 @@ import { Signup } from './Signup';
 import { Write } from './Write';
 import { Location } from './Location';
 import { LocationSearch } from './LocationSearch';
-import { Detail } from './Detail';
 import { ChatDetail } from './ChatDetail';
 import { ChatList } from './ChatList';
 
@@ -19,7 +18,6 @@ export {
   Write,
   Location,
   LocationSearch,
-  Detail,
   ChatDetail,
   ChatList,
 };

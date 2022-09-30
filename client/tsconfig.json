@@ -16,7 +16,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "typeRoots": ["./common.d.ts", "node_modules/@types"]
   },
   "include": ["src"],
   "exclude": ["cypress"]

@@ -1,10 +1,10 @@
 import { useCallback, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-const CATEGORY_OPEN_QUERY_STRING = 'isCategoryOpened';
+export const CATEGORY_OPEN_QUERY_STRING = 'isCategoryOpened';
 const MENU_OPEN_QUERY_STRING = 'isMenuOpened';
-const LOCATION_ID_QUERY_STRING = 'locationId';
-const CATEGORY_ID_QUERY_STRING = 'category';
+export const LOCATION_ID_QUERY_STRING = 'locationId';
+export const CATEGORY_ID_QUERY_STRING = 'category';
 const MY_LOCATION_SETTING_PAGE_URL = '/location';
 const TRUE = 'true';
 

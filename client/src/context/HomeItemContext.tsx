@@ -8,9 +8,17 @@ export const HomeItemContext = React.createContext<{
   setIsLoading: Dispatch<boolean>;
 }>(null!);
 
-export const HomeItemProvider = ({ children }: { children: ReactNode }) => {
-  const [items, setItems] = useState<ItemTypes[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+export const HomeItemProvider = ({
+  children,
+  initialItems = [],
+  initialItemLoading = true,
+}: {
+  children: ReactNode;
+  initialItems?: ItemTypes[];
+  initialItemLoading?: boolean;
+}) => {
+  const [items, setItems] = useState<ItemTypes[]>(initialItems);
+  const [isLoading, setIsLoading] = useState(initialItemLoading);
 
   return (
     <HomeItemContext.Provider

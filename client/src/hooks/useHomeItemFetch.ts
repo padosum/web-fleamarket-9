@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { useEffect, useRef } from 'react';
+import { fetchItemList } from '../remotes/item/fetch-item-list';
 import { useHomeItem } from './useHomeItem';
 
 let lastPage = 1;
@@ -30,30 +30,28 @@ export const useHomeItemFetch = (
     lastLocationId = locationId;
     fetchedPages.push(page.current);
 
-    const res = await axios.get('/api/item', {
-      params: {
-        categoryId,
-        locationId,
-        page: page.current,
-      },
+    const data = await fetchItemList({
+      categoryId,
+      locationId,
+      page: page.current,
     });
 
     if (overwrite) {
       setItems(
-        res.data.map((item: any) => {
+        data.map((item: any) => {
           return { ...item, image: item.images.split(',')[0] };
         }),
       );
     } else {
       setItems([
         ...items,
-        ...res.data.map((item: any) => {
+        ...data.map((item: any) => {
           return { ...item, image: item.images.split(',')[0] };
         }),
       ]);
     }
 
-    if (res.data.length > 0) {
+    if (data.length > 0) {
       page.current += 1;
     }
 
