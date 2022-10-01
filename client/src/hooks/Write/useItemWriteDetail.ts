@@ -5,6 +5,7 @@ import { fetchItemDetail } from '../../remotes/item/fetch-item-detail';
 
 export type InfoTypes = {
   imgUrls: string[];
+  thumbnail: string;
   title: string;
   price: string;
   contents: string;
@@ -19,6 +20,7 @@ export const useItemWriteDetail = (
 ) => {
   const [info, setInfo] = useState<InfoTypes>({
     imgUrls: [] as string[],
+    thumbnail: '',
     title: '',
     price: '',
     contents: '',
@@ -30,12 +32,12 @@ export const useItemWriteDetail = (
   const getItemDetail = useCallback(
     async (itemId: string) => {
       const info = await fetchItemDetail(itemId);
-
       setInfo({
         title: info.title,
         category: info.category,
         contents: info.contents,
         imgUrls: info.images.split(','),
+        thumbnail: info.thumbnail,
         location: info.location,
         locationId: user!.location[0].locationId,
         price: comma(info.price),

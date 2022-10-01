@@ -3,6 +3,7 @@ import API from '../../utils/api';
 export interface UploadNewItemPayload {
   title: string;
   images: string[];
+  thumbnail: string;
   price: number;
   contents: string;
   code: string;

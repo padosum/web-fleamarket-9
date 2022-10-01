@@ -10,6 +10,7 @@ interface Item {
   messageCnt: number;
   likeCnt: number;
   image: string;
+  thumbnail: string;
   isLiked: boolean;
 }
 

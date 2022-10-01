@@ -5,6 +5,7 @@ export interface ListItemTypes {
   idx: number;
   /** 이미지 url을 ,로 구분하여 받습니다. (e.g. "https://amazonaws.com/16633, https://amazonaws.com/16632") */
   images: string;
+  thumbnail: string;
   category: number;
   updatedAt: string;
   createdAt: string;

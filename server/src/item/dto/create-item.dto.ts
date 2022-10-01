@@ -16,6 +16,13 @@ export class CreateItemDto {
   readonly images: string[];
 
   @ApiProperty({
+    example: 'http://image.com',
+    description: 'item의 썸네일',
+    required: true,
+  })
+  readonly thumbnail: string;
+
+  @ApiProperty({
     example: 10000,
     description: 'item 가격',
     required: true,

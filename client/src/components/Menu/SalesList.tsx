@@ -34,6 +34,7 @@ export const SalesList = () => {
         likeCnt: item.likeCount,
         messageCnt: item.chatRoomCount,
         image: item.image,
+        thumbnail: item.thumbnail,
         isLiked: item.isLike,
       };
     });

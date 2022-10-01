@@ -1,12 +1,13 @@
 import { Dispatch } from 'react';
 import { AxiosError } from 'axios';
 import { NavigateFunction } from 'react-router-dom';
-import { comma } from '../../utils/util';
+import { comma, getThumbnail } from '../../utils/util';
 import { InfoTypes } from './useItemWriteDetail';
 import { ITEM_UPLOAD } from '../../utils/constant';
 import { uploadNewItem } from '../../remotes/item/upload-new-item';
 import { updateItemInfo } from '../../remotes/item/update-item-info';
 import { uploadItemImage } from '../../remotes/item/upload-image';
+import { instance } from '../../utils/instance';
 
 export const useItemWriteForm = (
   itemId: string | undefined,
@@ -71,6 +72,13 @@ export const useItemWriteForm = (
 
     if (!checkValidation()) return;
 
+    /** 썸네일 생성.. */
+    const res = await instance.post('/api/image/convert', {
+      url: info.imgUrls[0],
+    });
+    const base64 = 'data:image/jpeg;base64,' + res.data.base64;
+    const thumbnail = await getThumbnail(base64, uploadItemImage);
+
     try {
       if (!itemId) {
         const confirm = window.confirm('물품을 등록하시겠습니까?');
@@ -80,6 +88,7 @@ export const useItemWriteForm = (
         await uploadNewItem({
           title: info.title,
           images: info.imgUrls,
+          thumbnail,
           price: info.price ? +info.price.replace(/,/g, '') : 0,
           contents: info.contents,
           code: info.location,
@@ -109,6 +118,7 @@ export const useItemWriteForm = (
         await updateItemInfo(itemId, {
           title: info.title,
           images: info.imgUrls,
+          thumbnail,
           price: +info.price.replace(/,/g, ''),
           contents: info.contents,
           code: info.location,

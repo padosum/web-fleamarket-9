@@ -17,7 +17,7 @@ export class ImageService {
     });
 
     try {
-      const Key = `${Date.now() + file.originalname}`;
+      const Key = `${new Date().valueOf()}`;
       await new AWS.S3()
         .putObject({
           Key,

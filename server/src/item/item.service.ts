@@ -30,12 +30,21 @@ export class ItemService {
   async create(createItemDto: CreateItemDto, userIdx: number): Promise<number> {
     try {
       await this.conn.beginTransaction();
-      const { title, images, price, contents, code, category, locationId } =
-        createItemDto;
+      const {
+        title,
+        images,
+        price,
+        contents,
+        code,
+        category,
+        locationId,
+        thumbnail,
+      } = createItemDto;
 
       if (!title) throw '제목을 입력해주세요.';
       if (!Array.isArray(images) || images.length === 0)
         throw '이미지를 업로드해주세요.';
+      if (!thumbnail) throw '썸네일을 입력해주세요.';
       if (price === undefined) throw '가격을 입력해주세요.';
       if (!contents) throw '내용을 입력해주세요.';
       if (!code) throw '지역을 입력해주세요.';
@@ -43,11 +52,11 @@ export class ItemService {
 
       const sql = `
       INSERT INTO
-        ITEM(images, title, price, contents, code, category, status, seller, locationId)
+        ITEM(images, title, price, contents, code, category, status, seller, locationId, thumbnail)
       VALUES
         ("${images.join(
           ',',
-        )}", "${title}", ${price}, "${contents}", "${code}", ${category}, ${1}, ${userIdx}, ${locationId})
+        )}", "${title}", ${price}, "${contents}", "${code}", ${category}, ${1}, ${userIdx}, ${locationId}, "${thumbnail}")
       `;
 
       const [res] = (await this.conn.query(sql)) as any;
@@ -76,6 +85,7 @@ export class ItemService {
       SELECT R1.* 
         FROM (SELECT ITEM.idx as idx
                    , ITEM.images
+                   , ITEM.thumbnail
                    , ITEM.category
                    , ITEM.updatedAt
                    , ITEM.createdAt
@@ -127,6 +137,7 @@ export class ItemService {
       const sql = `
       SELECT ITEM.idx as idx
            , ITEM.images
+           , ITEM.thumbnail
            , ITEM.category
            , ITEM.updatedAt
            , ITEM.title
@@ -319,7 +330,9 @@ export class ItemService {
     updateItemDto: UpdateItemDto,
   ): Promise<UpdateItemResponseSuccessDto | UpdateItemResponseFailDto> {
     try {
-      const { title, images, price, contents, code, category } = updateItemDto;
+      const { title, images, price, contents, code, category, thumbnail } =
+        updateItemDto;
+
       const sql = `
         UPDATE
           ITEM
@@ -330,6 +343,7 @@ export class ItemService {
               ? `images = "${images.join(',')}",`
               : ''
           }
+          ${thumbnail ? `thumbnail = "${thumbnail}",` : ''}
           ${price ? `price = ${price},` : ''}
           ${contents ? `contents = "${contents}",` : ''}
           ${code ? `code = "${code}",` : ''}

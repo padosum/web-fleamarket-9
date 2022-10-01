@@ -36,6 +36,7 @@ type HomeViewProps = {
     likeCnt: number;
     messageCnt: number;
     image: string;
+    thumbnail: string;
     isLiked: boolean;
   }>;
   getHomeItems: Function;

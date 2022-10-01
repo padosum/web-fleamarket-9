@@ -107,3 +107,31 @@ export function listenForOutsideClicks({
     });
   };
 }
+
+export function getThumbnail(
+  url: string,
+  uploadItemImage: Function,
+): Promise<string> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = url;
+
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 104;
+      canvas.height = 104;
+      var ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.drawImage(img, 0, 0, 104, 104);
+        canvas.toBlob(function (blob) {
+          if (blob) {
+            var file = new File([blob], 'name.jpg');
+            uploadItemImage({ file }).then((res: any) => {
+              resolve(res.url);
+            });
+          }
+        });
+      }
+    };
+  });
+}

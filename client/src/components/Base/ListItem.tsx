@@ -26,6 +26,7 @@ interface ListItemProps {
   likeCnt: number;
   type: string;
   image: string;
+  thumbnail: string;
   isLiked: boolean;
   isLastItem?: boolean;
   getItems?: Function;
@@ -51,7 +52,7 @@ export const ListItem = ({
   messageCnt,
   likeCnt,
   type,
-  image,
+  thumbnail,
   isLiked,
   isLastItem,
   getItems,
@@ -225,7 +226,7 @@ export const ListItem = ({
       onClick={() => navigate(`/item/${idx}`)}
     >
       <ImgWrapper>
-        <LazyloadingImgBox src={image.split(',')[0]} />
+        <LazyloadingImgBox src={thumbnail} />
       </ImgWrapper>
       <ItemDescription>
         <ItemTitleText>{title}</ItemTitleText>

@@ -7,6 +7,7 @@ export type ItemTypes = {
   chatRoomCount: number;
   likeCount: number;
   image: string;
+  thumbnail: string;
   isLike: boolean;
   location: string;
   updatedAt: string;
@@ -29,6 +30,7 @@ export const useHomeItem = () => {
         messageCnt: item.chatRoomCount,
         image: item.image,
         isLiked: item.isLike,
+        thumbnail: item.thumbnail,
       };
     });
   }, [items]);

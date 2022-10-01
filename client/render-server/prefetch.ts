@@ -33,6 +33,7 @@ router.get('/home', async (req, res) => {
         chatRoomCount: item.chatRoomCount,
         idx: item.idx,
         image: item.images.split(',')[0],
+        thumbnail: item.thumbnail,
         isLike: !!item.isLike,
         likeCount: item.likeCount,
         location: item.location,

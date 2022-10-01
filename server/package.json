@@ -32,6 +32,7 @@
     "@types/crypto-js": "^4.1.1",
     "@types/express-session": "^1.17.5",
     "aws-sdk": "^2.1201.0",
+    "axios": "^0.27.2",
     "crypto-js": "^4.1.1",
     "express-session": "^1.17.3",
     "fleamarket-9-shared": "^1.0.2",
