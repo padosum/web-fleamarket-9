@@ -1,17 +1,75 @@
 [
   {
+    "idx": 666,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646805355,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646821227",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646852203",
+    "category": 5,
+    "updatedAt": "2022-10-01T17:55:41.000Z",
+    "createdAt": "2022-10-01T17:54:25.000Z",
+    "title": "자전거팝니다",
+    "contents": "자전거 팔아요",
+    "likeCount": 0,
+    "price": "120000",
+    "seller": 40,
+    "location": "서울특별시 송파구 잠실동",
+    "viewCount": 2,
+    "status": 1,
+    "locationId": 469,
+    "isLike": 0,
+    "chatRoomCount": 0
+  },
+  {
+    "idx": 665,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664641205924",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664641575487",
+    "category": 8,
+    "updatedAt": "2022-10-01T17:33:29.000Z",
+    "createdAt": "2022-10-01T16:26:17.000Z",
+    "title": "베이프티셔츠 팝니당",
+    "contents": "베이프티셔츠 팝니당",
+    "likeCount": 0,
+    "price": "1230000",
+    "seller": 40,
+    "location": "서울특별시 송파구 잠실동",
+    "viewCount": 1,
+    "status": 1,
+    "locationId": 469,
+    "isLike": 0,
+    "chatRoomCount": 0
+  },
+  {
+    "idx": 664,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642103660",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642105955",
+    "category": 4,
+    "updatedAt": "2022-10-01T17:51:47.000Z",
+    "createdAt": "2022-09-16T09:16:40.000Z",
+    "title": "도쿄리벤저스 인형 양도2",
+    "contents": "도쿄리벤저스 인형 양도",
+    "likeCount": 1,
+    "price": "17000",
+    "seller": 40,
+    "location": "서울특별시 송파구 잠실동",
+    "viewCount": 55,
+    "status": 1,
+    "locationId": 469,
+    "isLike": 0,
+    "chatRoomCount": 0
+  },
+  {
     "idx": 661,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1662451894746999.png",
-    "category": 1,
-    "updatedAt": "2022-09-09T06:44:12.000Z",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646417691",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646418672",
+    "category": 4,
+    "updatedAt": "2022-10-01T17:46:59.000Z",
     "createdAt": "2022-09-06T08:11:42.000Z",
-    "title": "222",
-    "contents": "222",
+    "title": "도쿄리벤저스 인형 양도2",
+    "contents": "도쿄리벤저스 인형 양도",
     "likeCount": 2,
-    "price": "2222",
-    "seller": 58,
-    "location": "서울특별시 송파구 방이동",
-    "viewCount": 15,
+    "price": "17000",
+    "seller": 40,
+    "location": "서울특별시 송파구 잠실동",
+    "viewCount": 57,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -19,17 +77,18 @@
   },
   {
     "idx": 659,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661842142998[áá§á«áá®á¯] áá£á¼áá¡á«áá§á¼ ááµáá¬áá¨ ááµáá³ááµáá¡ ááµá«áá¡á¯ áá¦áºáá¥á¸ áá³á¯áá¢á¨.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646440116",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646440942",
     "category": 4,
-    "updatedAt": "2022-09-09T08:11:56.000Z",
+    "updatedAt": "2022-10-01T17:50:48.000Z",
     "createdAt": "2022-08-30T06:49:17.000Z",
     "title": "집업 점퍼",
     "contents": "집업 점퍼",
     "likeCount": 1,
     "price": "100000",
-    "seller": 55,
+    "seller": 40,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 117,
+    "viewCount": 226,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -37,9 +96,10 @@
   },
   {
     "idx": 658,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835298239áá¡á·áá¥á¼áá¡ááµáá©á«áá³.jpg.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643000620",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643002050",
     "category": 6,
-    "updatedAt": "2022-09-06T06:12:41.000Z",
+    "updatedAt": "2022-10-01T16:50:03.000Z",
     "createdAt": "2022-08-30T04:55:10.000Z",
     "title": "삼성라이온즈 밀리터리 유니폼",
     "contents": "사놓고 2번밖에 안입기도 햇고 야구도 잘 안보게돠서 팔아요 관심잇으신분 연락주세요 네고도 가능합니다!\n\n",
@@ -47,17 +107,18 @@
     "price": "45000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 168,
+    "viewCount": 211,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
-    "chatRoomCount": 4
+    "chatRoomCount": 5
   },
   {
     "idx": 657,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835292249áá¡á·XL : áá©áá³áá¦ááµáá³ áá¡áá¡á·áá¡á¨ááµ áá¡áá¦áº.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642142661",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642147605",
     "category": 8,
-    "updatedAt": "2022-09-03T12:56:53.000Z",
+    "updatedAt": "2022-10-01T16:36:07.000Z",
     "createdAt": "2022-08-30T04:54:57.000Z",
     "title": "남XL / 노스페이스 바람막이 자켓",
     "contents": "남XL / 노스페이스 바람막이 자켓",
@@ -65,7 +126,7 @@
     "price": "78000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 40,
+    "viewCount": 699,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -73,9 +134,10 @@
   },
   {
     "idx": 656,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835268615áá¡ááµáá³áá¡á¨áá³.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643021693",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643022692",
     "category": 5,
-    "updatedAt": "2022-09-13T11:01:13.000Z",
+    "updatedAt": "2022-10-01T16:50:23.000Z",
     "createdAt": "2022-08-30T04:54:41.000Z",
     "title": "아이스박스",
     "contents": "오래 전 구입하였으나 두어번 정도 사용.\n필요하신 분 있으시면 무료 나눔합니다.",
@@ -83,7 +145,7 @@
     "price": "0",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 21,
+    "viewCount": 97,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -91,14 +153,53 @@
   },
   {
     "idx": 655,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835262064áá©áá®á« ááµá¼áá³á¯ áá¥á¯ááµ áá¢á«áá³ taupe 2áá¡ááµáá³.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642201133",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642202095",
     "category": 8,
-    "updatedAt": "2022-09-06T08:08:52.000Z",
+    "updatedAt": "2022-10-01T16:36:43.000Z",
     "createdAt": "2022-08-30T04:54:31.000Z",
     "title": "노운 링클 멀티 팬츠 taupe 2사이즈",
     "contents": "노운 링클 멀티 팬츠 taupe 2사이즈",
     "likeCount": 1,
     "price": "78000",
+    "seller": 40,
+    "location": "서울특별시 송파구 잠실동",
+    "viewCount": 18,
+    "status": 1,
+    "locationId": 469,
+    "isLike": 0,
+    "chatRoomCount": 0
+  },
+  {
+    "idx": 654,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643037600",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643038719",
+    "category": 14,
+    "updatedAt": "2022-10-01T16:50:40.000Z",
+    "createdAt": "2022-08-30T04:54:04.000Z",
+    "title": "인조잔디",
+    "contents": "글 수정해요\n너무많은분들이 필요하신거같네요~~\n이사때문에 처분하구요\n나눔이에요 돈안받구요\n빌라 베란다에 한달정도 깔았어요\n시골이라 위에 벌레가 묻어 있을거에요\n사이즈는 베란다사진 참고해주세요\n베란다 꽉 차게 깔았었어요! 3m 50 정도일거같아요",
+    "likeCount": 0,
+    "price": "0",
+    "seller": 12,
+    "location": "서울특별시 송파구 방이동",
+    "viewCount": 13,
+    "status": 1,
+    "locationId": 478,
+    "isLike": 0,
+    "chatRoomCount": 1
+  },
+  {
+    "idx": 653,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642232006",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642233056",
+    "category": 8,
+    "updatedAt": "2022-10-01T16:37:14.000Z",
+    "createdAt": "2022-08-30T04:53:49.000Z",
+    "title": "아디다스 키즈 집업 세트",
+    "contents": "아디다스 키즈 집업 세트",
+    "likeCount": 0,
+    "price": "67000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
     "viewCount": 14,
@@ -108,46 +209,11 @@
     "chatRoomCount": 0
   },
   {
-    "idx": 654,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835236371ááµá«áá©áá¡á«ááµ.jpeg",
-    "category": 14,
-    "updatedAt": "2022-09-03T12:58:46.000Z",
-    "createdAt": "2022-08-30T04:54:04.000Z",
-    "title": "인조잔디",
-    "contents": "글 수정해요\n너무많은분들이 필요하신거같네요~~\n이사때문에 처분하구요\n나눔이에요 돈안받구요\n빌라 베란다에 한달정도 깔았어요\n시골이라 위에 벌레가 묻어 있을거에요\n사이즈는 베란다사진 참고해주세요\n베란다 꽉 차게 깔았었어요! 3m 50 정도일거같아요",
-    "likeCount": 0,
-    "price": "0",
-    "seller": 12,
-    "location": "서울특별시 송파구 방이동",
-    "viewCount": 8,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 1
-  },
-  {
-    "idx": 653,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835221141áá¡ááµáá¡áá³ ááµáá³ ááµá¸áá¥á¸ áá¦áá³.jpeg",
-    "category": 8,
-    "updatedAt": "2022-09-03T12:59:12.000Z",
-    "createdAt": "2022-08-30T04:53:49.000Z",
-    "title": "아디다스 키즈 집업 세트",
-    "contents": "아디다스 키즈 집업 세트",
-    "likeCount": 0,
-    "price": "67000",
-    "seller": 40,
-    "location": "서울특별시 송파구 잠실동",
-    "viewCount": 12,
-    "status": 1,
-    "locationId": 469,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
     "idx": 652,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835208359áá¡áá±áá¥á¯áá¦.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643060705",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643061994",
     "category": 14,
-    "updatedAt": "2022-08-30T05:13:32.000Z",
+    "updatedAt": "2022-10-01T16:51:03.000Z",
     "createdAt": "2022-08-30T04:53:39.000Z",
     "title": "바퀴벌레잡아주세요",
     "contents": "최대한빨리요",
@@ -155,7 +221,7 @@
     "price": "30000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 2,
+    "viewCount": 4,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -163,9 +229,10 @@
   },
   {
     "idx": 651,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835179987áá³áá©á«áá¡ááµá¯áá¢á«áá³.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643075065",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643076224",
     "category": 8,
-    "updatedAt": "2022-08-30T05:06:05.000Z",
+    "updatedAt": "2022-10-01T16:51:17.000Z",
     "createdAt": "2022-08-30T04:53:10.000Z",
     "title": "스톤아일랜드 오버셔츠 (오염있는 제품) 정품",
     "contents": "스톤아일랜드 정품입니다\n단추 와팬 필요 하신분 구매하시기 바랍니다\n제품에 오염이 있습니다",
@@ -173,7 +240,7 @@
     "price": "17000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 4,
+    "viewCount": 6,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -181,9 +248,10 @@
   },
   {
     "idx": 650,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835181460(L)áá¢á«áá¥áá³á«áá¦á¯ áá³áá¡ááµáá¥á« áá¡ááµáá¥ áá©á·áá¥ áá¡áá¦áº.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642260304",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642261160",
     "category": 8,
-    "updatedAt": "2022-08-30T05:29:49.000Z",
+    "updatedAt": "2022-10-01T16:37:42.000Z",
     "createdAt": "2022-08-30T04:53:06.000Z",
     "title": "(L)앤더슨벨 브라이언 바이커 봄버 자켓",
     "contents": "(L)앤더슨벨 브라이언 바이커 봄버 자켓",
@@ -191,7 +259,7 @@
     "price": "67000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 5,
+    "viewCount": 7,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -199,9 +267,10 @@
   },
   {
     "idx": 649,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835148615áá¦áá¦áá³ááµáá©.jpg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643088465",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643089558",
     "category": 9,
-    "updatedAt": "2022-09-02T03:58:41.000Z",
+    "updatedAt": "2022-10-01T16:51:30.000Z",
     "createdAt": "2022-08-30T04:52:38.000Z",
     "title": "베베드피노 110",
     "contents": "베베드피노 110 맨투맨 4개랑\n표시해둔 노란맨투맨 120 1개에요\n\n큰얼룩은 없고 각 소매쪽에 작은 얼룩있어요\n자주입진않았지만 베베드피노 소재특성상 세탁감있어요 얼집용으로 편하게 입히실분이요!\n일괄 3만",
@@ -209,7 +278,7 @@
     "price": "30000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 3,
+    "viewCount": 7,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -217,9 +286,10 @@
   },
   {
     "idx": 648,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835139469áá©áá³áá¦ááµáá³ áá¡ááµáá¦á«áá³ áá¡áá¡á·áá¡á¨ááµ (105).jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642305521",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642306800",
     "category": 8,
-    "updatedAt": "2022-09-02T03:58:43.000Z",
+    "updatedAt": "2022-10-01T16:38:28.000Z",
     "createdAt": "2022-08-30T04:52:28.000Z",
     "title": "노스페이스 하이벤트 바람막이 (105)",
     "contents": "노스페이스 하이벤트 바람막이 (105)",
@@ -227,7 +297,7 @@
     "price": "65000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 5,
+    "viewCount": 10,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -235,9 +305,10 @@
   },
   {
     "idx": 647,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835115970áá¢áºáá¡á«.jpg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643103979",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643105228",
     "category": 5,
-    "updatedAt": "2022-09-09T06:10:21.000Z",
+    "updatedAt": "2022-10-01T16:51:46.000Z",
     "createdAt": "2022-08-30T04:52:07.000Z",
     "title": "햇반, 스팸팔아요 일괄",
     "contents": "이사로 인해서 햇반17개(작은공기) 스팸8개 팝니당\n햇반 유통기한 23년 3/22까지\n스팸 유통기한 23년 9/11일까지로 넉넉하고\n\n죽전역한양아이클래스 앞에서 직거래만 합니다!\n혹시 지금 바로 거래가능하신분 있으시면 환영입니다",
@@ -245,7 +316,7 @@
     "price": "15000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 3,
+    "viewCount": 5,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -253,9 +324,10 @@
   },
   {
     "idx": 646,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835091071sbd áá¦á¯áá©áá³á¯ááµáá³ sáá¡ááµáá³.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642330080",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642331115",
     "category": 8,
-    "updatedAt": "2022-08-30T05:29:52.000Z",
+    "updatedAt": "2022-10-01T16:38:52.000Z",
     "createdAt": "2022-08-30T04:51:47.000Z",
     "title": "sbd 엘보슬리브 s사이즈",
     "contents": "sbd 엘보슬리브 s사이즈",
@@ -263,7 +335,7 @@
     "price": "27000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 2,
+    "viewCount": 8,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -271,9 +343,10 @@
   },
   {
     "idx": 645,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835085348áá©á¨áá¡á»áá¡áº.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643452263",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664643454379",
     "category": 13,
-    "updatedAt": "2022-09-06T06:17:26.000Z",
+    "updatedAt": "2022-10-01T16:57:36.000Z",
     "createdAt": "2022-08-30T04:51:38.000Z",
     "title": "쪽파씨앗",
     "contents": "지금부터 심어 가을에 수확하고 월동시켜 내년봄까지 먹을 수 있는 쪽파 씨앗 나눕니다.\n\n퇴근 시간 이후에는 대실역 근처, 낮에는 두류동(반고개 근처)에서 받으실 수 있어요.\n\n",
@@ -281,7 +354,7 @@
     "price": "0",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 3,
+    "viewCount": 7,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -289,9 +362,10 @@
   },
   {
     "idx": 644,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835054140[áá§á«áá®á¯] áá£á¼áá¡á«áá§á¼ ááµáá¬áá¨ ááµáá³ááµáá¡ ááµá«áá¡á¯ áá¦áºáá¥á¸ áá³á¯áá¢á¨.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642352363",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642353549",
     "category": 7,
-    "updatedAt": "2022-08-30T04:51:01.000Z",
+    "updatedAt": "2022-10-01T16:39:14.000Z",
     "createdAt": "2022-08-30T04:51:01.000Z",
     "title": "[현물] 양산형 지뢰계 리즈리사 긴팔 셋업 블랙",
     "contents": "[현물] 양산형 지뢰계 리즈리사 긴팔 셋업 블랙",
@@ -299,7 +373,7 @@
     "price": "28000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -307,9 +381,10 @@
   },
   {
     "idx": 643,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835041541áá­áá©á«.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644375113",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644376394",
     "category": 12,
-    "updatedAt": "2022-08-30T04:50:56.000Z",
+    "updatedAt": "2022-10-01T17:12:57.000Z",
     "createdAt": "2022-08-30T04:50:56.000Z",
     "title": "교촌치킨 기프티콘",
     "contents": "교촌 반반 기프티콘 13000에 싸게 넘깁니다\n\n",
@@ -317,7 +392,7 @@
     "price": "13000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 4,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -325,9 +400,10 @@
   },
   {
     "idx": 642,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835007495áá©áá¦áºáá©á«áá¡á¼.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644392759",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644394908",
     "category": 9,
-    "updatedAt": "2022-08-30T05:05:38.000Z",
+    "updatedAt": "2022-10-01T17:13:16.000Z",
     "createdAt": "2022-08-30T04:50:26.000Z",
     "title": "포켓몬빵",
     "contents": "빵 못구하신분들. 계실까봐 올려요. 정가그대로입니다. 총8개입니다.\n\n",
@@ -335,7 +411,7 @@
     "price": "15700",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 2,
+    "viewCount": 4,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -343,17 +419,18 @@
   },
   {
     "idx": 641,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661835008308áá¦áá¦áº teket áá©áá¡ áá¡á¸ááµáá¡.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642371193",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642375075",
     "category": 8,
-    "updatedAt": "2022-08-30T05:29:54.000Z",
+    "updatedAt": "2022-10-01T16:39:36.000Z",
     "createdAt": "2022-08-30T04:50:16.000Z",
     "title": "테켓 teket 모자 팝니다",
     "contents": "테켓 teket 모자 팝니다",
-    "likeCount": 0,
+    "likeCount": 1,
     "price": "270000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 1,
+    "viewCount": 6,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -361,9 +438,10 @@
   },
   {
     "idx": 640,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834963355áá¦ááµáá¡.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644412685",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644413850",
     "category": 6,
-    "updatedAt": "2022-08-30T05:02:41.000Z",
+    "updatedAt": "2022-10-01T17:13:34.000Z",
     "createdAt": "2022-08-30T04:49:37.000Z",
     "title": "메리다 로드 자전거  팝니다",
     "contents": "16년도 메리다 자전거 팝니다\n년도는 많은데 많이 타지는 않았어요\n작년 겨울 되기전에 브레이크 기어 케이블 갈아구요\n바퀴는 업그레이드 했어요 페달은 마지막 사진에 있는\n돌기 평페달로 드립니다 싸이즈52 입니다\n\n",
@@ -371,7 +449,7 @@
     "price": "350000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 1,
+    "viewCount": 5,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -379,9 +457,10 @@
   },
   {
     "idx": 639,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834969194arket áá¡áá³áá¦áº ááµáá³ áá©áá¦áá¥ áá¥á·áá¥ áá³áá°áá¥ áá¡áá³áá³ááµá« M.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642406895",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642408071",
     "category": 8,
-    "updatedAt": "2022-08-30T05:01:10.000Z",
+    "updatedAt": "2022-10-01T16:40:09.000Z",
     "createdAt": "2022-08-30T04:49:36.000Z",
     "title": "arket 아르켓 니트 모헤어 점퍼 스웨터 다크그린 M",
     "contents": "arket 아르켓 니트 모헤어 점퍼 스웨터 다크그린 M",
@@ -389,7 +468,7 @@
     "price": "280000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 1,
+    "viewCount": 5,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -397,9 +476,10 @@
   },
   {
     "idx": 638,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834933562áá¢á¯áá¥á¨ááµáá©áá³20.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644436603",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644438308",
     "category": 1,
-    "updatedAt": "2022-08-30T06:50:47.000Z",
+    "updatedAt": "2022-10-01T17:13:59.000Z",
     "createdAt": "2022-08-30T04:49:05.000Z",
     "title": "[풀박스]갤럭시노트20 울트라5G 256GB 블랙색상 ",
     "contents": "노트20 울트라 5G/ 256G /미스틱 블랙\n최초통신사 - LG\n선택약정 가능\n정상해지완료\n\n풀박스 다있습니다.\n상태 좋습니다. 서브폰으로 사용하려 샀던거라\n사용거의 안하고 노래만 들었습니다.\n\n귀찮은거 싫어해서 가격낮추고 빨리처분하려하는거니\n쿨거래하실분만 깔끔하게 하길 원합니다^-^\n\n",
@@ -407,7 +487,7 @@
     "price": "450000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 2,
+    "viewCount": 4,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -415,9 +495,10 @@
   },
   {
     "idx": 637,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834922767áá³á¯áá®áá©á¨ áá§á¼áá£á¼áá¢ááµá¼ 100 áá¡ááµáá³.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642426829",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642428179",
     "category": 7,
-    "updatedAt": "2022-09-03T18:04:46.000Z",
+    "updatedAt": "2022-10-01T16:40:29.000Z",
     "createdAt": "2022-08-30T04:48:54.000Z",
     "title": "블루독 경량패딩 100 사이즈",
     "contents": "블루독 경량패딩 100 사이즈",
@@ -425,7 +506,7 @@
     "price": "270000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 2,
+    "viewCount": 4,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -433,9 +514,10 @@
   },
   {
     "idx": 636,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834904749áá¢áá¥ááµ áá®á¼áá¥á«ááµ áá¨áá©ááµ.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644459635",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644460790",
     "category": 14,
-    "updatedAt": "2022-08-30T04:48:36.000Z",
+    "updatedAt": "2022-10-01T17:14:21.000Z",
     "createdAt": "2022-08-30T04:48:36.000Z",
     "title": "배터리 충전기 예초기",
     "contents": "1년전\n정원 풀깎기용\n배터리 충전식 예초기",
@@ -443,7 +525,7 @@
     "price": "15000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -451,9 +533,10 @@
   },
   {
     "idx": 635,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834883651áá¡áá¥ ááµá«áá¥áá¢áá§áá¥á¯ A7 38áá¡ááµáá³.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642463564",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642464799",
     "category": 8,
-    "updatedAt": "2022-08-30T04:48:09.000Z",
+    "updatedAt": "2022-10-01T16:41:10.000Z",
     "createdAt": "2022-08-30T04:48:09.000Z",
     "title": "바버 인터내셔널 A7 38사이즈",
     "contents": "바버 인터내셔널 A7 38사이즈",
@@ -461,7 +544,7 @@
     "price": "220000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 0,
+    "viewCount": 3,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -469,9 +552,10 @@
   },
   {
     "idx": 634,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834870091áá¥á¼ááµá«áá¡áá¥á«áá¥1.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834874157áá¥á¼ááµá«áá¡áá¥á«áá¥2.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644482833",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644484578",
     "category": 6,
-    "updatedAt": "2022-08-30T04:48:05.000Z",
+    "updatedAt": "2022-10-01T17:14:47.000Z",
     "createdAt": "2022-08-30T04:48:05.000Z",
     "title": "성인 자전거 팝니다",
     "contents": "각각 30000원 입니다\n조금 먼지가 있어서 그렇지 상태는 괜찮고 잘 나가요\n닦아서 사용하시면 괜찬아요",
@@ -479,7 +563,7 @@
     "price": "30000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -487,9 +571,10 @@
   },
   {
     "idx": 633,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834844413áá³áá©á«áá¡ááµá¯áá¢á«áá³ áá¢á«áá®áá¢á«.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642501951",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642502993",
     "category": 8,
-    "updatedAt": "2022-08-30T04:47:32.000Z",
+    "updatedAt": "2022-10-01T16:41:44.000Z",
     "createdAt": "2022-08-30T04:47:32.000Z",
     "title": "스톤아일랜드 맨투맨",
     "contents": "스톤아일랜드 맨투맨",
@@ -497,7 +582,7 @@
     "price": "300000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -505,9 +590,10 @@
   },
   {
     "idx": 632,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834833292áá©á¯áá³áá¢á¨.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644516333",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644517966",
     "category": 6,
-    "updatedAt": "2022-08-30T05:15:23.000Z",
+    "updatedAt": "2022-10-01T17:15:19.000Z",
     "createdAt": "2022-08-30T04:47:26.000Z",
     "title": "골프백 드라이브 우드.퍼터",
     "contents": "골프백: 2~5만 모두 깨끗\n드라이브:핑g425,혼마베레스2\n고반발 스타덤\n유틸:3개\n퍼터:오딧세이3개\n미사일 그라파이트 아연셑\n3456789pas\n각각 필요하신분 톡주세요",
@@ -515,7 +601,7 @@
     "price": "1",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 1,
+    "viewCount": 3,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -523,9 +609,10 @@
   },
   {
     "idx": 631,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834803909áá©áá³áá©.jpg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644542483",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644543978",
     "category": 1,
-    "updatedAt": "2022-08-30T04:46:56.000Z",
+    "updatedAt": "2022-10-01T17:15:45.000Z",
     "createdAt": "2022-08-30T04:46:56.000Z",
     "title": "고프로 히어로10 판매합니다",
     "contents": "구매시기 금년도 4월경 네이버 스마트스토어구매\n\n볼링촬영 및 결혼식 촬영에만쓰고 안씀 실사용 한달\n\n구성품은 정품삼각대겸 셀카봉, 64기가 sd카드, 카드리더기, 서드파티3way삼각대, 배터리2개 및 충전기, 기본악세서리 및 파우치\n\n거래장소는 부산공고앞입니다~",
@@ -533,7 +620,7 @@
     "price": "350000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -541,9 +628,10 @@
   },
   {
     "idx": 630,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834794601áá³áá¦á« ááªááµáá³ áá¢á«ááµá¼ áá¢á«áá³.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642536961",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642537792",
     "category": 7,
-    "updatedAt": "2022-08-30T04:46:42.000Z",
+    "updatedAt": "2022-10-01T16:42:18.000Z",
     "createdAt": "2022-08-30T04:46:42.000Z",
     "title": "스젠 와이드 밴딩 팬츠",
     "contents": "스젠 와이드 밴딩 팬츠",
@@ -551,7 +639,7 @@
     "price": "44000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 0,
+    "viewCount": 4,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -559,9 +647,10 @@
   },
   {
     "idx": 629,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834774289áá©áá³10.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644680683",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644681627",
     "category": 1,
-    "updatedAt": "2022-08-30T04:46:27.000Z",
+    "updatedAt": "2022-10-01T17:18:02.000Z",
     "createdAt": "2022-08-30T04:46:27.000Z",
     "title": "노트10플러스",
     "contents": "◇노트 10 플러스 256G\n\n◇앞면 메인보드 및 액정 정상\n기기를 사용하는데는 전혀 이상 없습니다\n급하게 폰을 장기간 써야 하거나\n임시로 유심을 끼울 폰이 필요하신 분이\n가져가시면 유용할 듯 하네요\n\n◇S펜 없음\n뒷면 액정 파손\n생활 기스, 흠집으로\n원래 중고가격보다 많이 감가하여 판매합니다\n꼭 참고해주세요 !!\n\n",
@@ -569,7 +658,7 @@
     "price": "130000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -577,9 +666,10 @@
   },
   {
     "idx": 628,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/16618347408111ááµá«áá¡áá® áá¢á¼áá¡á¼áá©.jpg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644694672",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644696079",
     "category": 2,
-    "updatedAt": "2022-09-01T06:56:30.000Z",
+    "updatedAt": "2022-10-01T17:18:17.000Z",
     "createdAt": "2022-08-30T04:45:52.000Z",
     "title": "1인가구 냉장고",
     "contents": "구매 1년 정도 됬습니다.\n\n이사하게 되면서 판매합니다.\n\n9월 4일 이사일이라 오전에 오시면 내려드릴 수 있습니다.\n\n기능 이상 없고\n냉장,냉동 잘 됩니다.\n\n현재 사용 중이라 비어있는 내부 사진은 없습니다.",
@@ -587,7 +677,7 @@
     "price": "70000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 1,
+    "viewCount": 3,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -595,9 +685,10 @@
   },
   {
     "idx": 627,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834740658áá¥áá¯á«áá³ áá¡áá¡á·áá¡á¨ááµ áá¡á·áá¡ áá©ááµ 95.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642554665",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642555999",
     "category": 8,
-    "updatedAt": "2022-08-30T04:45:47.000Z",
+    "updatedAt": "2022-10-01T16:42:37.000Z",
     "createdAt": "2022-08-30T04:45:47.000Z",
     "title": "더원트 바람막이 잠바 조끼 95",
     "contents": "더원트 바람막이 잠바 조끼 95",
@@ -605,7 +696,7 @@
     "price": "66000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 0,
+    "viewCount": 5,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -613,9 +704,10 @@
   },
   {
     "idx": 626,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834698706áá¡áá¡áá©ááµáá¡ ááµá«ááµá¯áá¡ ááµáá¦á¯ L.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642574337",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642575540",
     "category": 8,
-    "updatedAt": "2022-08-30T04:45:07.000Z",
+    "updatedAt": "2022-10-01T16:42:56.000Z",
     "createdAt": "2022-08-30T04:45:07.000Z",
     "title": "파타고니아 신칠라 니켈 L",
     "contents": "파타고니아 신칠라 니켈 L",
@@ -623,7 +715,7 @@
     "price": "57000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -631,9 +723,10 @@
   },
   {
     "idx": 625,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834691724áá©á¯áá¡á«ááµ.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644709794",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644710957",
     "category": 9,
-    "updatedAt": "2022-08-30T04:45:03.000Z",
+    "updatedAt": "2022-10-01T17:18:31.000Z",
     "createdAt": "2022-08-30T04:45:03.000Z",
     "title": "돌반지 판매요",
     "contents": "아기 1돈짜리 돌반지 2개에 40에 판매해요\n케이스 분실 보증서 분실 금은방 확인결과 1돈 맞구요\n\n",
@@ -641,7 +734,7 @@
     "price": "400000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -649,9 +742,10 @@
   },
   {
     "idx": 624,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834664299áá¥á¯áá¦ áá¥áá¡á¸áá¡á¼.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644728884",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644729865",
     "category": 3,
-    "updatedAt": "2022-09-09T06:10:26.000Z",
+    "updatedAt": "2022-10-01T17:18:50.000Z",
     "createdAt": "2022-08-30T04:44:36.000Z",
     "title": "철제 서랍장",
     "contents": "상단부분에 사용감 있어요.\n매직블럭으로 지워보진 않아서\n지워지는지는 모르겠어요.\n편하게 사용하실 분 가져가세요\n\n대덕동 계좌이체 문앞 비대면거래 원해요.",
@@ -659,7 +753,7 @@
     "price": "50000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 1,
+    "viewCount": 3,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -667,9 +761,10 @@
   },
   {
     "idx": 623,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834644190áá¥áá¥ááµ ááµááµ áá³á¯áá¢á¨ áá¢áá¡á¼áá®á·.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642596055",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642597890",
     "category": 8,
-    "updatedAt": "2022-08-30T05:06:25.000Z",
+    "updatedAt": "2022-10-01T16:43:19.000Z",
     "createdAt": "2022-08-30T04:44:14.000Z",
     "title": "써저리 비니 블랙 새상품",
     "contents": "써저리 비니 블랙 새상품",
@@ -677,7 +772,7 @@
     "price": "55000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 2,
+    "viewCount": 4,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -685,9 +780,10 @@
   },
   {
     "idx": 622,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834634234áá¦áá¥áá¡áº.jpg.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644743326",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644744499",
     "category": 1,
-    "updatedAt": "2022-08-30T05:02:44.000Z",
+    "updatedAt": "2022-10-01T17:19:05.000Z",
     "createdAt": "2022-08-30T04:44:06.000Z",
     "title": "에어팟 프로 최연정 에디션",
     "contents": "제 짱친이 쓰던건데 그냥 1만원에 팔아요\n\n에어팟 프로 상태 좋습니다\n\n",
@@ -695,7 +791,7 @@
     "price": "10000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 1,
+    "viewCount": 3,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -703,9 +799,10 @@
   },
   {
     "idx": 620,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834604803áá¢á¨áá¡á¼áá¥á«áá¡á«.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644759162",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644760119",
     "category": 3,
-    "updatedAt": "2022-08-30T04:43:35.000Z",
+    "updatedAt": "2022-10-01T17:19:20.000Z",
     "createdAt": "2022-08-30T04:43:35.000Z",
     "title": "챙장/선반",
     "contents": "교환 ❌\n환불 ❌",
@@ -713,7 +810,7 @@
     "price": "5000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -721,9 +818,10 @@
   },
   {
     "idx": 621,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834602704ááµáá¡áá¡ááµáá³ rtx3060ti EARGLE OC 8G.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642614099",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642615113",
     "category": 1,
-    "updatedAt": "2022-09-06T06:17:40.000Z",
+    "updatedAt": "2022-10-01T16:43:36.000Z",
     "createdAt": "2022-08-30T04:43:35.000Z",
     "title": "기가바이트 rtx3060ti EARGLE OC 8G",
     "contents": "기가바이트 rtx3060ti EARGLE OC 8G",
@@ -731,7 +829,7 @@
     "price": "330000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 1,
+    "viewCount": 3,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -739,9 +837,10 @@
   },
   {
     "idx": 619,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834554121ááµáá¡áá³.jpeg.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644785549",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644786929",
     "category": 6,
-    "updatedAt": "2022-08-30T04:42:48.000Z",
+    "updatedAt": "2022-10-01T17:19:47.000Z",
     "createdAt": "2022-08-30T04:42:48.000Z",
     "title": "지라프 구이바다L",
     "contents": "실사용 5회 이내입니다.\n스크래치 있어 저렴하게 판매합니다.\n사진 상세히 찍었으니 상태 보시고 연락주세요\n\n고촌으로 가지러 오셔야 합니다",
@@ -749,7 +848,7 @@
     "price": "40000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 4,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -757,9 +856,10 @@
   },
   {
     "idx": 618,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834510405áá¢á¼áá¡á¼áá©1.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834514204áá¢á¼áá¡á¼áá©2.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644801675",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644803879",
     "category": 2,
-    "updatedAt": "2022-08-30T04:42:07.000Z",
+    "updatedAt": "2022-10-01T17:20:04.000Z",
     "createdAt": "2022-08-30T04:42:07.000Z",
     "title": "캐리어 클라윈드 냉장고 295L",
     "contents": "상태 좋습니다\n캐리어 클라윈드 냉장고 295L",
@@ -767,7 +867,7 @@
     "price": "100000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -775,9 +875,10 @@
   },
   {
     "idx": 617,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834504029áá©áá¦áá³áá³áá®áá³ áá©áá³áá¥á«áá¡áá¦áº.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642635272",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642636213",
     "category": 7,
-    "updatedAt": "2022-08-30T04:42:00.000Z",
+    "updatedAt": "2022-10-01T16:43:57.000Z",
     "createdAt": "2022-08-30T04:42:00.000Z",
     "title": "모데스트무드 보스턴자켓",
     "contents": "모데스트무드 보스턴자켓",
@@ -785,7 +886,7 @@
     "price": "88000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -793,9 +894,10 @@
   },
   {
     "idx": 616,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834473998áá©á«áá©á¯.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644830689",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644831632",
     "category": 3,
-    "updatedAt": "2022-08-30T04:41:23.000Z",
+    "updatedAt": "2022-10-01T17:20:34.000Z",
     "createdAt": "2022-08-30T04:41:23.000Z",
     "title": "콘솔",
     "contents": "# 무료나눔\n내취향 내마음데로\n화분겸 액자\n등..인테리어 활용으로",
@@ -803,7 +905,7 @@
     "price": "0",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -811,9 +913,10 @@
   },
   {
     "idx": 615,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834453375MSGM áá¥á¼áá¡ááµ áá¡á«áá¢ áá¡á¸ááµáá¡..jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642653655",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642658223",
     "category": 8,
-    "updatedAt": "2022-08-30T04:41:06.000Z",
+    "updatedAt": "2022-10-01T16:44:21.000Z",
     "createdAt": "2022-08-30T04:41:06.000Z",
     "title": "MSGM 청바지 판매 합니다.",
     "contents": "MSGM 청바지 판매 합니다.",
@@ -821,7 +924,7 @@
     "price": "78000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -829,9 +932,10 @@
   },
   {
     "idx": 614,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834412697áá¢á·ááµá¼.jpg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834415756áá¢á·ááµá¼2.jpg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644855024",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644856552",
     "category": 6,
-    "updatedAt": "2022-08-30T04:40:33.000Z",
+    "updatedAt": "2022-10-01T17:20:57.000Z",
     "createdAt": "2022-08-30T04:40:33.000Z",
     "title": "캠핑접습니다 각종용품판매",
     "contents": "구이바다l\n네이처하이크더블매트\n팩가방\n루메나렌턴\n코스트코테이블\n캔버스홀릭 텐트등등\n사진에있는것들판매합니다",
@@ -839,7 +943,7 @@
     "price": "99999999",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -847,9 +951,10 @@
   },
   {
     "idx": 613,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834403021áá¡á¯áá¦á«ááµáá¡áá¡ áá¢ááµáá³ áá¦ááµá· áá§áá³ 46.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642677360",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642678433",
     "category": 8,
-    "updatedAt": "2022-08-30T05:05:48.000Z",
+    "updatedAt": "2022-10-01T16:44:39.000Z",
     "createdAt": "2022-08-30T04:40:15.000Z",
     "title": "발렌시아가 패디드 데님 셔츠 46",
     "contents": "발렌시아가 패디드 데님 셔츠 46",
@@ -857,7 +962,7 @@
     "price": "78000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 1,
+    "viewCount": 3,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -865,9 +970,10 @@
   },
   {
     "idx": 612,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834358164áá¡áá³ááµ áá¡áá¦áá³áá¡ áá¦áá© (áá³á¯áá¢á¨)áá¦á«áá³ áá¡á¸ááµáá¡..jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642696209",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642696979",
     "category": 5,
-    "updatedAt": "2022-08-30T04:39:31.000Z",
+    "updatedAt": "2022-10-01T16:44:58.000Z",
     "createdAt": "2022-08-30T04:39:31.000Z",
     "title": "카즈미 라페스타 네오 (블랙)텐트 팝니다.",
     "contents": "카즈미 라페스타 네오 (블랙)텐트 팝니다.",
@@ -875,7 +981,7 @@
     "price": "78000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -883,9 +989,10 @@
   },
   {
     "idx": 610,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834292239áá¡á¯áá¡áá³ áá®áá³ááµá¸áá¥á¸ M.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642711062",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642711886",
     "category": 8,
-    "updatedAt": "2022-08-30T04:38:20.000Z",
+    "updatedAt": "2022-10-01T16:45:13.000Z",
     "createdAt": "2022-08-30T04:38:20.000Z",
     "title": "칼하트 후드집업 M",
     "contents": "칼하트 후드집업 M",
@@ -893,7 +1000,7 @@
     "price": "66000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -901,9 +1008,10 @@
   },
   {
     "idx": 609,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834264742áá©áá¡.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834268910áá©áá¡2.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644881037",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644882459",
     "category": 3,
-    "updatedAt": "2022-08-30T04:39:24.000Z",
+    "updatedAt": "2022-10-01T17:21:23.000Z",
     "createdAt": "2022-08-30T04:38:00.000Z",
     "title": "까사미아 깜포쇼파 (베이지)",
     "contents": "2020년에 구입했습니다.\n티비마다 협찬으로 많이 나오는 쇼파구요.\n너무 편한쇼파랍니다.\n직접 가져가셔야합니다.",
@@ -911,7 +1019,7 @@
     "price": "100000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 1,
+    "viewCount": 3,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -919,9 +1027,10 @@
   },
   {
     "idx": 608,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834238357áá³áá©áá®ááµáº áá² áá³áá³áá¦ááµáá³ áá¦ááµá· áá¢á«áá³ áá³á¯áá¢á¨ M.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642734973",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642735715",
     "category": 8,
-    "updatedAt": "2022-08-30T05:03:34.000Z",
+    "updatedAt": "2022-10-01T16:45:36.000Z",
     "createdAt": "2022-08-30T04:37:28.000Z",
     "title": "드로우핏 뉴 스트레이트 데님 팬츠 블랙 M",
     "contents": "드로우핏 뉴 스트레이트 데님 팬츠 블랙 M",
@@ -929,7 +1038,7 @@
     "price": "70000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 1,
+    "viewCount": 3,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -937,9 +1046,10 @@
   },
   {
     "idx": 607,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834224145áá§á¼áá®á«ááµ.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834233814áá§á¼áá®á«ááµ2.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644898308",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644899915",
     "category": 14,
-    "updatedAt": "2022-08-30T04:37:24.000Z",
+    "updatedAt": "2022-10-01T17:21:40.000Z",
     "createdAt": "2022-08-30T04:37:24.000Z",
     "title": "경운기 매매",
     "contents": "시골 고향집에세 아버님이\n사용하시던 경운기입니다\n최근까지 사용한 기기라\n큰 하자는 없을듯 합니다\n테스트해보지 않았으니\n직접 내방 하시어 꼼꼼히 확인 후 구매하세요 ^^\n기기소재지 담양 입니다",
@@ -947,7 +1057,7 @@
     "price": "1000000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -955,9 +1065,10 @@
   },
   {
     "idx": 606,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834180054Rnf.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644955825",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644957385",
     "category": 5,
-    "updatedAt": "2022-08-30T05:16:21.000Z",
+    "updatedAt": "2022-10-01T17:22:38.000Z",
     "createdAt": "2022-08-30T04:36:34.000Z",
     "title": "아카시아꿀(1kg),참기름",
     "contents": "아카시아꿀 1kg이랑 참기름집에서 구입한 참기름 팔아요\n\n",
@@ -965,7 +1076,7 @@
     "price": "8000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 1,
+    "viewCount": 3,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -973,9 +1084,10 @@
   },
   {
     "idx": 605,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834137849ááµááµ.jpg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644979222",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664644980443",
     "category": 2,
-    "updatedAt": "2022-08-30T04:35:53.000Z",
+    "updatedAt": "2022-10-01T17:23:01.000Z",
     "createdAt": "2022-08-30T04:35:53.000Z",
     "title": "유맥스 55인치 tv",
     "contents": "사용은 1년 반 정도 했구요\n가져가시려면 9/4 가져가실 수 있고 직접 가져가셔야 합니다\n\n위치는 가산동 142-59 에요\n\n넷플 유튭 등등 다 호환 됩니다\n\n티비 밑에 있는 것도 함께 가져가시길 원하면 +7만원 입니다\n\n참고로 오늘의 집에서 17만원 주고 구입한 다리에요",
@@ -983,7 +1095,7 @@
     "price": "100000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -991,9 +1103,10 @@
   },
   {
     "idx": 604,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834104527áá®áá­áá¢á¨áá¡á¼1.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834108322áá®áá­áá¢á¨áá¡á¼2.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645577190",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645584621",
     "category": 3,
-    "updatedAt": "2022-08-30T04:35:17.000Z",
+    "updatedAt": "2022-10-01T17:33:06.000Z",
     "createdAt": "2022-08-30T04:35:17.000Z",
     "title": "무료 책상",
     "contents": "10만원 짜리\n조립하고 사용하지 못하고\n이사 관계로 드립니다",
@@ -1001,7 +1114,7 @@
     "price": "0",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1009,9 +1122,10 @@
   },
   {
     "idx": 603,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834074245áá©á¼áá¯á«áá¡á·ááµ.jpeg.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645618643",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645620257",
     "category": 5,
-    "updatedAt": "2022-08-30T04:34:43.000Z",
+    "updatedAt": "2022-10-01T17:33:42.000Z",
     "createdAt": "2022-08-30T04:34:43.000Z",
     "title": "동원참치",
     "contents": "2022년6월 선물로 들어옴 150g 17개에요 개당 1300원\n\n",
@@ -1019,7 +1133,7 @@
     "price": "22000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1027,9 +1141,10 @@
   },
   {
     "idx": 602,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834025704áá¥á«áá¡áá¦á«ááµ.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661834029019áá¥á«áá¡áá¦á«ááµ2.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645712427",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645713214",
     "category": 1,
-    "updatedAt": "2022-09-03T18:04:42.000Z",
+    "updatedAt": "2022-10-01T17:35:14.000Z",
     "createdAt": "2022-08-30T04:33:58.000Z",
     "title": "전자렌지",
     "contents": "작동 잘되고 오늘까지 갖고가실분\n이사중이라 싸게 올려요!!!! 선착순입니다.\n\n망경한보입니다",
@@ -1037,7 +1152,7 @@
     "price": "10000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 4,
+    "viewCount": 6,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1045,9 +1160,10 @@
   },
   {
     "idx": 601,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661833980421ááµá¨áá©áá³1.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661833983075ááµá¨áá©áá³2.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661833985691ááµá¨áá©áá³3.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645732570",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645733662",
     "category": 6,
-    "updatedAt": "2022-08-30T04:33:22.000Z",
+    "updatedAt": "2022-10-01T17:35:34.000Z",
     "createdAt": "2022-08-30T04:33:22.000Z",
     "title": "전동킥보드 필요하신분",
     "contents": "전동킥보드를 사용하지 않아서 필요하신분께 나눠드리려고 합니다.\n충전기 포함입니다.\n다만 속도계가 고장입니다.\n고쳐쓰셔도 되고 그냥 사용하실수도 있습니다.\n그냥 사용해도 속도만 모를뿐 사용하시기에는 문제없습니다.\n이마트 월배점 야외주차장에서 직거래 합니다.",
@@ -1055,7 +1171,7 @@
     "price": "0",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 3,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1063,9 +1179,10 @@
   },
   {
     "idx": 600,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661833931192áá®áá¡á«1.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661833935412áá®áá¡á«2.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645754788",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645755887",
     "category": 14,
-    "updatedAt": "2022-08-30T04:32:28.000Z",
+    "updatedAt": "2022-10-01T17:35:57.000Z",
     "createdAt": "2022-08-30T04:32:28.000Z",
     "title": "창고정리우산",
     "contents": "납품하다남은우산창고정리합니다\n무조건국내최저가\n방문",
@@ -1073,7 +1190,7 @@
     "price": "1000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1081,9 +1198,10 @@
   },
   {
     "idx": 599,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661826086294áá©áá©áá¡ áá¦á¯áá¦ááµá¯ áá¥áá³áá¥á· áá¦á¯ 2áá¢ ááµá¯ááªá¯.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642753912",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642754925",
     "category": 8,
-    "updatedAt": "2022-08-30T05:03:26.000Z",
+    "updatedAt": "2022-10-01T16:45:56.000Z",
     "createdAt": "2022-08-30T02:21:33.000Z",
     "title": "오호라 젤네일 커스텀 젤 2개 일괄",
     "contents": "오호라 젤네일 커스텀 젤 2개 일괄",
@@ -1091,7 +1209,7 @@
     "price": "12000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 1,
+    "viewCount": 3,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -1099,9 +1217,10 @@
   },
   {
     "idx": 598,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661826025327áá³áá©áá¦1.jpg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661826035970áá³áá©áá¦2.jpg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661826044445áá³áá©áá¦3.jpg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645776354",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645777766",
     "category": 9,
-    "updatedAt": "2022-08-30T02:20:57.000Z",
+    "updatedAt": "2022-10-01T17:36:18.000Z",
     "createdAt": "2022-08-30T02:20:57.000Z",
     "title": "스토케 트립트랩 팝니다",
     "contents": "-2015년 12월 구매\n-유아용 식판, 쿠션, 안전바 있음\n-일부 생활기스있음\n-직접 방문하셔야 됩니다",
@@ -1109,7 +1228,7 @@
     "price": "180000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1117,9 +1236,10 @@
   },
   {
     "idx": 597,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661826013602áá¡ááµáá¡áá³ áá¦ááµáá³ áá³á¨áá¨ áá³áá¢á¨áá¡á¸.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642769295",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642772015",
     "category": 8,
-    "updatedAt": "2022-08-30T05:03:18.000Z",
+    "updatedAt": "2022-10-01T16:46:13.000Z",
     "createdAt": "2022-08-30T02:20:21.000Z",
     "title": "아디다스 베이프 흑계 트랙탑",
     "contents": "아디다스 베이프 흑계 트랙탑",
@@ -1127,7 +1247,7 @@
     "price": "120000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 3,
+    "viewCount": 9,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -1135,9 +1255,10 @@
   },
   {
     "idx": 596,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825953568áá©á¯áá³áá¢á¨1.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825957042áá©á¯áá³áá¢á¨2.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825960000áá©á¯áá³áá¢á¨3.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645794741",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645795913",
     "category": 6,
-    "updatedAt": "2022-08-30T02:19:42.000Z",
+    "updatedAt": "2022-10-01T17:36:36.000Z",
     "createdAt": "2022-08-30T02:19:42.000Z",
     "title": "골프백 드라이브 우드.퍼터",
     "contents": "골프백: 2~5만 모두 깨끗\n드라이브:핑g425,혼마베레스2\n고반발 스타덤\n유틸:3개\n퍼터:오딧세이3개\n미사일 그라파이트 아연셑\n3456789pas\n각각 필요하신분 톡주세요\n\n",
@@ -1145,7 +1266,7 @@
     "price": "1",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1153,9 +1274,10 @@
   },
   {
     "idx": 595,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825972143197810370_1_1661772350_w856.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642787569",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642788568",
     "category": 8,
-    "updatedAt": "2022-08-30T05:03:16.000Z",
+    "updatedAt": "2022-10-01T16:46:29.000Z",
     "createdAt": "2022-08-30T02:19:18.000Z",
     "title": "기아타이거즈 김도영 이의리 포카 ",
     "contents": "기아타이거즈 김도영 이의리 포카 ",
@@ -1163,7 +1285,7 @@
     "price": "4000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 5,
+    "viewCount": 8,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -1171,9 +1293,10 @@
   },
   {
     "idx": 594,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825897814189040462_1_1661774640_w856.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642809985",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642810988",
     "category": 7,
-    "updatedAt": "2022-08-30T05:01:32.000Z",
+    "updatedAt": "2022-10-01T16:46:52.000Z",
     "createdAt": "2022-08-30T02:18:40.000Z",
     "title": "방탄 지민 BT21 재팬 일본 탓똔 인형",
     "contents": "방탄 지민 BT21 재팬 일본 탓똔 핑크 치미 스탠딩 인형 양도",
@@ -1181,7 +1304,7 @@
     "price": "44000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 5,
+    "viewCount": 8,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -1189,9 +1312,10 @@
   },
   {
     "idx": 593,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825881723áá¡ááµáá¥á«1.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825885486áá¡ááµáá¥á«2.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825888760áá¡ááµáá¥á«3.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645815433",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645816576",
     "category": 7,
-    "updatedAt": "2022-08-30T05:02:47.000Z",
+    "updatedAt": "2022-10-01T17:36:57.000Z",
     "createdAt": "2022-08-30T02:18:28.000Z",
     "title": "이세이미야케 플리츠플리즈, 블랙가디건",
     "contents": "플리츠플리즈는 워낙 유명하니 긴 설명은\n필요없을 것 같습니다.\n요즘 백화점마다 물량부족에 완판행진으로 플리츠플리즈 매장가보면 행거가\n거의 텅 비어 있네요.\n가디건은 거의 45만원 대에 판매됩니다.\n\n*까페에서 에어컨바람 싫을때 핸드백에서 꺼내걸치면 간지납니다.\n*여행지에 가져가기 너무 좋습니다\n*여성스러운 라인이고 버튼이 없어서\n오히려 걸쳤을때 늘어지는 모양이 자연스럽고\n참 예쁩니다.\n\n사이즈 3이고, 꼭 필요한 분만 문자주세요.\n구매 후 반품은 사절입니다😊",
@@ -1199,7 +1323,7 @@
     "price": "70000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 2,
+    "viewCount": 4,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1207,9 +1331,10 @@
   },
   {
     "idx": 592,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825860525197640568_2_1661613292_w856.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642827376",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642828545",
     "category": 7,
-    "updatedAt": "2022-08-30T02:17:50.000Z",
+    "updatedAt": "2022-10-01T16:47:09.000Z",
     "createdAt": "2022-08-30T02:17:50.000Z",
     "title": "드라이로즈 투웨이 코르셋 셔츠 핑크",
     "contents": "드라이로즈 투웨이 코르셋 셔츠 핑크 팝니다.",
@@ -1217,7 +1342,7 @@
     "price": "55000",
     "seller": 40,
     "location": "서울특별시 송파구 잠실동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 469,
     "isLike": 0,
@@ -1225,9 +1350,10 @@
   },
   {
     "idx": 591,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825816787áá¡ááµáá³á«1.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825819203áá¡ááµáá³á«2.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645839185",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645840285",
     "category": 2,
-    "updatedAt": "2022-08-30T02:17:40.000Z",
+    "updatedAt": "2022-10-01T17:37:21.000Z",
     "createdAt": "2022-08-30T02:17:12.000Z",
     "title": "다이슨드라이기",
     "contents": "사진참조하세요",
@@ -1235,7 +1361,7 @@
     "price": "20000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 3,
+    "viewCount": 5,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1243,9 +1369,10 @@
   },
   {
     "idx": 590,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825773924áá¦áá¡á¨ááµ1.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825776781áá¦áá¡á¨ááµ2.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645865786",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645866706",
     "category": 2,
-    "updatedAt": "2022-08-30T07:04:53.000Z",
+    "updatedAt": "2022-10-01T17:37:47.000Z",
     "createdAt": "2022-08-30T02:16:30.000Z",
     "title": "세탁기 판매 합니다!!! 만원",
     "contents": "사용한지 3년됏고요\n이사가는곳이 설치불가라 어쩔수없이 무료나눔 합니다\n연락주세요",
@@ -1253,7 +1380,7 @@
     "price": "10000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 3,
+    "viewCount": 5,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1261,9 +1388,10 @@
   },
   {
     "idx": 589,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825584937áá¡á©ááµ1.jpeg.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825660791áá¡á©ááµ2.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825665661áá¡á©ááµ.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645884080",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645885108",
     "category": 14,
-    "updatedAt": "2022-08-30T02:14:42.000Z",
+    "updatedAt": "2022-10-01T17:38:05.000Z",
     "createdAt": "2022-08-30T02:14:42.000Z",
     "title": "낚시용품 릴",
     "contents": "릴(일제 시마노) 작동잘됨.\n2셋 1만원",
@@ -1271,7 +1399,7 @@
     "price": "10000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1279,9 +1407,10 @@
   },
   {
     "idx": 588,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825473744áá¡á·ááµ1.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825476515áá¡á·ááµ2.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645899769",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645900848",
     "category": 5,
-    "updatedAt": "2022-09-09T06:10:32.000Z",
+    "updatedAt": "2022-10-01T17:38:21.000Z",
     "createdAt": "2022-08-30T02:11:30.000Z",
     "title": "참치선물셋트(새거)",
     "contents": "선물받은거 이사하며 싸게팝니다\n추석에 쓰심되네요",
@@ -1289,7 +1418,7 @@
     "price": "10000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 2,
+    "viewCount": 4,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1297,9 +1426,10 @@
   },
   {
     "idx": 587,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661825381957áá¦áá³á¸ááµ.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645915473",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645916262",
     "category": 2,
-    "updatedAt": "2022-08-30T02:09:59.000Z",
+    "updatedAt": "2022-10-01T17:38:36.000Z",
     "createdAt": "2022-08-30T02:09:59.000Z",
     "title": "제습기",
     "contents": "한번도 사용안한 제품입니다",
@@ -1307,7 +1437,7 @@
     "price": "10000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 0,
+    "viewCount": 2,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1315,17 +1445,18 @@
   },
   {
     "idx": 586,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661759957936197387768_3_1661392014_w856.jpg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661759964496197387768_2_1661392014_w856.jpg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646465255",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646466052",
     "category": 7,
-    "updatedAt": "2022-08-29T13:26:07.000Z",
+    "updatedAt": "2022-10-01T17:47:46.000Z",
     "createdAt": "2022-08-29T07:59:42.000Z",
     "title": "인형 팝니다",
     "contents": "30000",
     "likeCount": 3,
     "price": "40000",
-    "seller": 52,
+    "seller": 40,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 94,
+    "viewCount": 96,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1333,9 +1464,10 @@
   },
   {
     "idx": 583,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661743152528áá©á¾.jpg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645929014",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645929904",
     "category": 5,
-    "updatedAt": "2022-08-29T11:19:04.000Z",
+    "updatedAt": "2022-10-01T17:38:50.000Z",
     "createdAt": "2022-08-29T03:19:29.000Z",
     "title": "꽃 팝니다.",
     "contents": "꽃 팝니다\n",
@@ -1343,7 +1475,7 @@
     "price": "250000",
     "seller": 12,
     "location": "서울특별시 송파구 방이동",
-    "viewCount": 29,
+    "viewCount": 31,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1351,9 +1483,10 @@
   },
   {
     "idx": 541,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719277259m65252455184_3.jpg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646353400",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646354509",
     "category": 7,
-    "updatedAt": "2022-08-29T08:02:36.000Z",
+    "updatedAt": "2022-10-01T17:45:56.000Z",
     "createdAt": "2022-08-28T20:29:08.000Z",
     "title": "옷 팝니다",
     "contents": "판매합니다....\n급처합니다...",
@@ -1361,7 +1494,7 @@
     "price": "63329",
     "seller": 12,
     "location": "방이동",
-    "viewCount": 23,
+    "viewCount": 26,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1369,9 +1502,10 @@
   },
   {
     "idx": 542,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719332144áá¡áá¡á¼.jpg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719343438áá¡áá¡á¼2.jpeg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646381802",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646382799",
     "category": 9,
-    "updatedAt": "2022-08-29T14:06:12.000Z",
+    "updatedAt": "2022-10-01T17:46:24.000Z",
     "createdAt": "2022-08-28T20:29:08.000Z",
     "title": "가방 팝니다",
     "contents": "판매합니다....\n급처합니다...",
@@ -1379,7 +1513,7 @@
     "price": "97969",
     "seller": 12,
     "location": "방이동",
-    "viewCount": 8,
+    "viewCount": 11,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1387,9 +1521,10 @@
   },
   {
     "idx": 543,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719461734ááµá«áá¡á¯.png",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646408960",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646410133",
     "category": 14,
-    "updatedAt": "2022-08-29T08:00:57.000Z",
+    "updatedAt": "2022-10-01T17:46:52.000Z",
     "createdAt": "2022-08-28T20:29:08.000Z",
     "title": "신발 팝니다",
     "contents": "판매합니다....\n급처합니다...",
@@ -1397,7 +1532,7 @@
     "price": "46966",
     "seller": 12,
     "location": "방이동",
-    "viewCount": 6,
+    "viewCount": 9,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1405,9 +1540,10 @@
   },
   {
     "idx": 544,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719598650áá¡áá¦áº1.png,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719602272áá¦ááµáá³.jpg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646435696",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646437776",
     "category": 6,
-    "updatedAt": "2022-08-29T08:00:59.000Z",
+    "updatedAt": "2022-10-01T17:47:19.000Z",
     "createdAt": "2022-08-28T20:29:08.000Z",
     "title": "테니스 라켓 팝니다",
     "contents": "가방도 드립니다\n어서 가져가세요 ",
@@ -1415,7 +1551,7 @@
     "price": "26880",
     "seller": 12,
     "location": "방이동",
-    "viewCount": 7,
+    "viewCount": 10,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1423,9 +1559,10 @@
   },
   {
     "idx": 545,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719658388áá©áá¡1.jpg",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646461821",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646463314",
     "category": 8,
-    "updatedAt": "2022-08-28T20:47:41.000Z",
+    "updatedAt": "2022-10-01T17:47:44.000Z",
     "createdAt": "2022-08-28T20:29:08.000Z",
     "title": "모자 팝니다",
     "contents": "판매합니다....\n급처합니다...",
@@ -1433,7 +1570,7 @@
     "price": "76295",
     "seller": 12,
     "location": "방이동",
-    "viewCount": 2,
+    "viewCount": 5,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1441,9 +1578,10 @@
   },
   {
     "idx": 546,
-    "images": "https://picsum.photos/id/5/200/300",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646486498",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646487645",
     "category": 1,
-    "updatedAt": "2022-09-04T15:39:11.000Z",
+    "updatedAt": "2022-10-01T17:48:09.000Z",
     "createdAt": "2022-08-28T20:29:08.000Z",
     "title": "컴퓨터 팝니다",
     "contents": "판매합니다....\n급처합니다...",
@@ -1451,7 +1589,7 @@
     "price": "19737",
     "seller": 12,
     "location": "방이동",
-    "viewCount": 63,
+    "viewCount": 66,
     "status": 1,
     "locationId": 478,
     "isLike": 0,
@@ -1459,590 +1597,15 @@
   },
   {
     "idx": 547,
-    "images": "https://picsum.photos/id/6/200/300",
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646515028",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646516147",
     "category": 11,
-    "updatedAt": "2022-09-04T15:39:28.000Z",
+    "updatedAt": "2022-10-01T17:48:38.000Z",
     "createdAt": "2022-08-28T20:29:08.000Z",
     "title": "맥북 팝니다",
     "contents": "판매합니다....\n급처합니다...",
     "likeCount": 2,
     "price": "4979",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 19,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 548,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719697499ááµáá©áá³.jpeg",
-    "category": 1,
-    "updatedAt": "2022-08-28T20:48:20.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "키보드 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "2728",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 2,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 549,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719724256áá©á¾.jpg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719737150áá©á¾2.jpg",
-    "category": 13,
-    "updatedAt": "2022-09-06T06:17:28.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "꽃 팝니다",
-    "contents": "선물해보세요 ",
-    "likeCount": 0,
-    "price": "61296",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 5,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 550,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719850846áá¥áá®á¨ááµ.jpg",
-    "category": 11,
-    "updatedAt": "2022-08-29T03:37:54.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "거북이 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "4315",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 6,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 551,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719893063áá¦á¨áá¡ááµ.jpeg",
-    "category": 8,
-    "updatedAt": "2022-08-28T20:51:38.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "넥타이 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "8949",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 2,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 552,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719928662áá¥á¯áá³á·1.jpg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719933688áá¥á¯áá³á·2.png.png",
-    "category": 14,
-    "updatedAt": "2022-08-28T20:52:20.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "얼음 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "72614",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 2,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 553,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719975307áá§á¨áá©á¯2.jpg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661719981161áá§á¨áá©á¯3.jpeg",
-    "category": 14,
-    "updatedAt": "2022-09-02T04:51:04.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "벽돌 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 1,
-    "price": "89258",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 6,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 1
-  },
-  {
-    "idx": 554,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720025741ááµáá¢á¼ááµ3.jpg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720031073ááµáá¢á¼ááµ2.jpeg",
-    "category": 14,
-    "updatedAt": "2022-08-28T20:53:58.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "비행기 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "99387",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 2,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 555,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720085512áá©á¯ááµáá¥2.jpg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720091247áá©á¯ááµáá¥1.jpg.jpeg",
-    "category": 10,
-    "updatedAt": "2022-08-29T08:02:23.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "골키퍼 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 1,
-    "price": "47351",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 5,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 556,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720129381áá¢á¨áá§á«ááµá¯.png",
-    "category": 7,
-    "updatedAt": "2022-09-03T18:04:35.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "색연필 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 1,
-    "price": "91446",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 5,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 557,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720158057ááµáá®á¯.jpg",
-    "category": 5,
-    "updatedAt": "2022-09-09T06:10:39.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "이불 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 1,
-    "price": "39037",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 5,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 558,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720193312áá©áá¡.jpg",
-    "category": 5,
-    "updatedAt": "2022-08-29T08:01:09.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "도마 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 1,
-    "price": "15457",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 4,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 559,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720262625áá®á¯áá¥á¯.jpg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720269568áá®á¯áá¥á¯.jpg",
-    "category": 5,
-    "updatedAt": "2022-08-29T08:01:10.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "꿀 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 1,
-    "price": "35656",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 4,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 560,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720345063áá®áá².jpg",
-    "category": 5,
-    "updatedAt": "2022-08-29T08:01:11.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "우유 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 1,
-    "price": "55637",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 4,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 561,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720409407áá¡áá¥á«áá¥.png,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720416977áá¡áá¥á«áá¥1.png",
-    "category": 4,
-    "updatedAt": "2022-09-06T06:17:36.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "자전거 팝니다",
-    "contents": "몇번 안타서 거의 새것입니다.",
-    "likeCount": 1,
-    "price": "23296",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 6,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 562,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720485682ááµáá©.jpg",
-    "category": 11,
-    "updatedAt": "2022-08-29T08:01:15.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "물고기 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 1,
-    "price": "29818",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 4,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 563,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720526931áá¡á¯ááµ1.jpg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720532013áá¡á¯ááµ2.jpg.jpeg",
-    "category": 5,
-    "updatedAt": "2022-08-29T08:01:16.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "갈비 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 1,
-    "price": "92258",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 4,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 564,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720574776áá¡áá®áá¡ááµ.jpeg",
-    "category": 4,
-    "updatedAt": "2022-08-29T08:07:03.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "나뭇가지 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 1,
-    "price": "24573",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 7,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 565,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720626155áá¡áá³á¯.jpg",
-    "category": 2,
-    "updatedAt": "2022-09-01T06:56:37.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "바늘 팝니다",
-    "contents": "귀한 매물 \n바늘 3종 세트입니다.\n",
-    "likeCount": 1,
-    "price": "90360",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 6,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 566,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720686488áá¢áá®á¯áá¡á¼.jpg.jpeg",
-    "category": 5,
-    "updatedAt": "2022-08-29T08:07:05.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "해물탕 팝니다",
-    "contents": "얼큰합니다.",
-    "likeCount": 1,
-    "price": "75683",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 5,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 567,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720740378áá©á¨áá¡ááµ2.jpeg",
-    "category": 1,
-    "updatedAt": "2022-08-29T11:19:55.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "복사기 팝니다",
-    "contents": "완전 멀쩡해요 ",
-    "likeCount": 1,
-    "price": "80485",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 7,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 568,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720776236áá³á¯ááµ.jpg",
-    "category": 10,
-    "updatedAt": "2022-08-28T21:06:24.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "틀니 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "34016",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 2,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 569,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720817232áá¡á·áá©áº.jpg",
-    "category": 8,
-    "updatedAt": "2022-08-28T21:07:03.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "잠옷 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "64716",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 2,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 570,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720864472áá¢á¨áá¥á¼áá©áá¬á¯áá³á·2.jpg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720869531áá¢á¨áá¥á¼áá©áá©ááµá¯áá³á·.png",
-    "category": 14,
-    "updatedAt": "2022-08-29T08:02:39.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "액정 보호 필름 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 1,
-    "price": "94408",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 4,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 571,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720923629áá¡á¼áá¡á«áá¡á·.jpg",
-    "category": 4,
-    "updatedAt": "2022-08-28T21:08:47.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "장난감 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "60164",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 2,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 572,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661720960864áá¥á«áá¥á«ááµ2.jpg",
-    "category": 14,
-    "updatedAt": "2022-08-28T21:09:32.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "건전지 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "75965",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 2,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 573,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661721002317áá©áá©áá¡ááµ.png",
-    "category": 14,
-    "updatedAt": "2022-08-28T21:10:09.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "오토바이 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "6481",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 2,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 574,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661721043934áá¦á¯ááµ.jpeg",
-    "category": 14,
-    "updatedAt": "2022-08-28T21:10:48.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "헬기 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "16679",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 2,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 575,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661721127517ááµá¨ááµ.jpeg",
-    "category": 14,
-    "updatedAt": "2022-08-28T21:12:10.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "식기 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "25408",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 3,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 576,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661721155618áá©á¯ááµá¼áá©á¼.jpg",
-    "category": 2,
-    "updatedAt": "2022-08-28T21:12:37.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "볼링공 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "56352",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 2,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 577,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661721189655áá©á«áá©áá©á¨áá¦.jpg",
-    "category": 14,
-    "updatedAt": "2022-08-29T08:02:40.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "손소독제 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 1,
-    "price": "66414",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 4,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 578,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661721345645áá©á«.jpg",
-    "category": 1,
-    "updatedAt": "2022-08-29T08:02:41.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "핸드폰 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 1,
-    "price": "86902",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 4,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 579,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661721421070áá¢á¨áá©á¼ááµ.jpg",
-    "category": 12,
-    "updatedAt": "2022-08-29T08:02:52.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "색종이 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "55865",
     "seller": 12,
     "location": "방이동",
     "viewCount": 22,
@@ -2052,15 +1615,130 @@
     "chatRoomCount": 0
   },
   {
-    "idx": 580,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661721360721áá¡áá±1.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661721366729áá¡áá±2.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661721371157áá¡áá±3.png",
-    "category": 14,
-    "updatedAt": "2022-08-29T08:02:43.000Z",
+    "idx": 548,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646625273",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646625968",
+    "category": 1,
+    "updatedAt": "2022-10-01T17:50:31.000Z",
     "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "가위 팝니다",
+    "title": "키보드 팝니다",
     "contents": "판매합니다....\n급처합니다...",
     "likeCount": 0,
-    "price": "80869",
+    "price": "2728",
+    "seller": 12,
+    "location": "방이동",
+    "viewCount": 12,
+    "status": 1,
+    "locationId": 478,
+    "isLike": 0,
+    "chatRoomCount": 0
+  },
+  {
+    "idx": 549,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646588246",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646589822",
+    "category": 13,
+    "updatedAt": "2022-10-01T17:49:51.000Z",
+    "createdAt": "2022-08-28T20:29:08.000Z",
+    "title": "꽃 팝니다",
+    "contents": "선물해보세요 ",
+    "likeCount": 0,
+    "price": "61296",
+    "seller": 12,
+    "location": "방이동",
+    "viewCount": 8,
+    "status": 1,
+    "locationId": 478,
+    "isLike": 0,
+    "chatRoomCount": 0
+  },
+  {
+    "idx": 550,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646603416",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646604894",
+    "category": 11,
+    "updatedAt": "2022-10-01T17:50:12.000Z",
+    "createdAt": "2022-08-28T20:29:08.000Z",
+    "title": "거북이 팝니다",
+    "contents": "판매합니다....\n급처합니다...",
+    "likeCount": 0,
+    "price": "4315",
+    "seller": 12,
+    "location": "방이동",
+    "viewCount": 11,
+    "status": 1,
+    "locationId": 478,
+    "isLike": 0,
+    "chatRoomCount": 0
+  },
+  {
+    "idx": 551,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645944222",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645945260",
+    "category": 8,
+    "updatedAt": "2022-10-01T17:39:06.000Z",
+    "createdAt": "2022-08-28T20:29:08.000Z",
+    "title": "넥타이 팝니다",
+    "contents": "판매합니다....\n급처합니다...",
+    "likeCount": 0,
+    "price": "8949",
+    "seller": 12,
+    "location": "방이동",
+    "viewCount": 4,
+    "status": 1,
+    "locationId": 478,
+    "isLike": 0,
+    "chatRoomCount": 0
+  },
+  {
+    "idx": 552,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646191842",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646192665",
+    "category": 14,
+    "updatedAt": "2022-10-01T17:43:13.000Z",
+    "createdAt": "2022-08-28T20:29:08.000Z",
+    "title": "얼음 팝니다",
+    "contents": "판매합니다....\n급처합니다...",
+    "likeCount": 0,
+    "price": "72614",
+    "seller": 12,
+    "location": "방이동",
+    "viewCount": 4,
+    "status": 1,
+    "locationId": 478,
+    "isLike": 0,
+    "chatRoomCount": 0
+  },
+  {
+    "idx": 553,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646172433",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646173051",
+    "category": 14,
+    "updatedAt": "2022-10-01T17:42:53.000Z",
+    "createdAt": "2022-08-28T20:29:08.000Z",
+    "title": "벽돌 팝니다",
+    "contents": "판매합니다....\n급처합니다...",
+    "likeCount": 1,
+    "price": "89258",
+    "seller": 12,
+    "location": "방이동",
+    "viewCount": 8,
+    "status": 1,
+    "locationId": 478,
+    "isLike": 0,
+    "chatRoomCount": 1
+  },
+  {
+    "idx": 554,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646157483",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646158099",
+    "category": 14,
+    "updatedAt": "2022-10-01T17:42:38.000Z",
+    "createdAt": "2022-08-28T20:29:08.000Z",
+    "title": "비행기 팝니다",
+    "contents": "판매합니다....\n급처합니다...",
+    "likeCount": 0,
+    "price": "99387",
     "seller": 12,
     "location": "방이동",
     "viewCount": 5,
@@ -2070,124 +1748,17 @@
     "chatRoomCount": 0
   },
   {
-    "idx": 581,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661718748419ááµáá¡áá©1.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661718751738ááµáá¡áá©2.jpeg",
-    "category": 4,
-    "updatedAt": "2022-08-28T20:32:43.000Z",
+    "idx": 555,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646130727",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646131470",
+    "category": 10,
+    "updatedAt": "2022-10-01T17:42:12.000Z",
     "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "피아노 팝니다",
+    "title": "골키퍼 팝니다",
     "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "12681",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 2,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 582,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661718666721áá³áá¢áá¥.jpg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661718688413áá³áá¢áá¥2.jpg.jpeg",
-    "category": 1,
-    "updatedAt": "2022-09-06T06:17:43.000Z",
-    "createdAt": "2022-08-28T20:29:08.000Z",
-    "title": "스캐너 팝니다",
-    "contents": "판매합니다....\n급처합니다...",
-    "likeCount": 0,
-    "price": "94820",
-    "seller": 12,
-    "location": "방이동",
-    "viewCount": 3,
-    "status": 1,
-    "locationId": 478,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 41,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661704732805áá¢á¼áá¡á¼áá©.jpeg,https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661704751016áá¢á¼áá¡á¼áá©2.jpg",
-    "category": 2,
-    "updatedAt": "2022-08-30T05:06:31.000Z",
-    "createdAt": "2022-08-28T16:39:28.000Z",
-    "title": "냉장고",
-    "contents": "구매 1년 정도 됬습니다.\n\n이사하게 되면서 판매합니다.\n\n9월 4일 이사일이라 오전에 오시면 내려드릴 수 있습니다.\n\n기능 이상 없고\n냉장,냉동 잘 됩니다.\n\n현재 사용 중이라 비어있는 내부 사진은 없습니다.",
     "likeCount": 1,
-    "price": "70000",
-    "seller": 29,
-    "location": "서울특별시 중구 장충동2가",
-    "viewCount": 17,
-    "status": 1,
-    "locationId": 132,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 40,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661704689316áá¡áá¥á«áá¥.png",
-    "category": 6,
-    "updatedAt": "2022-08-29T07:06:16.000Z",
-    "createdAt": "2022-08-28T16:38:18.000Z",
-    "title": "자전거",
-    "contents": "이사오고 탈곳이없어서 몇개월 세워뒀다해요\n자전거는 잘 몰라서 설명이 어려워요\n헬맷은 있을것같은데 찾아보고 있음 같이 드릴게요",
-    "likeCount": 0,
-    "price": "15000",
-    "seller": 29,
-    "location": "서울특별시 중구 장충동2가",
-    "viewCount": 4,
-    "status": 1,
-    "locationId": 132,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 39,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661674595272áá¡ááµááµááµá«áá¡á¯.jpeg",
-    "category": 8,
-    "updatedAt": "2022-08-28T23:08:25.000Z",
-    "createdAt": "2022-08-28T08:16:51.000Z",
-    "title": "나이키 신발 ",
-    "contents": "나이키 신발",
-    "likeCount": 0,
-    "price": "60000",
-    "seller": 46,
-    "location": "경기도 화성시 중동",
-    "viewCount": 15,
-    "status": 1,
-    "locationId": 3418,
-    "isLike": 0,
-    "chatRoomCount": 1
-  },
-  {
-    "idx": 32,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661667952842áá¡á·áá²á¯.jpeg",
-    "category": 5,
-    "updatedAt": "2022-08-28T07:17:02.000Z",
-    "createdAt": "2022-08-28T06:26:13.000Z",
-    "title": "달고 시원한 감귤팝니다.",
-    "contents": "달고 시원한 감귤팝니다. 5만원",
-    "likeCount": 1,
-    "price": "50000",
-    "seller": 40,
-    "location": "중동",
-    "viewCount": 6,
-    "status": 1,
-    "locationId": 3418,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 31,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661613772218digital.png",
-    "category": 1,
-    "updatedAt": "2022-08-28T17:24:48.000Z",
-    "createdAt": "2022-08-27T15:23:23.000Z",
-    "title": "27인치 모니터",
-    "contents": "27인치 모니터를 판매합니다.\n깨끗합니다 ^^ ",
-    "likeCount": 0,
-    "price": "0",
-    "seller": 45,
+    "price": "47351",
+    "seller": 12,
     "location": "방이동",
     "viewCount": 7,
     "status": 1,
@@ -2196,56 +1767,135 @@
     "chatRoomCount": 0
   },
   {
-    "idx": 30,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661603054920logo.ico",
-    "category": 14,
-    "updatedAt": "2022-09-03T18:04:57.000Z",
-    "createdAt": "2022-08-27T12:24:34.000Z",
-    "title": "주화",
-    "contents": "기념주화",
+    "idx": 556,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646111402",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646112418",
+    "category": 7,
+    "updatedAt": "2022-10-01T17:41:53.000Z",
+    "createdAt": "2022-08-28T20:29:08.000Z",
+    "title": "색연필 팝니다",
+    "contents": "판매합니다....\n급처합니다...",
     "likeCount": 1,
-    "price": "10000000",
+    "price": "91446",
     "seller": 12,
-    "location": "장충동2가",
-    "viewCount": 15,
+    "location": "방이동",
+    "viewCount": 7,
     "status": 1,
-    "locationId": 132,
+    "locationId": 478,
     "isLike": 0,
     "chatRoomCount": 0
   },
   {
-    "idx": 28,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661514843088áá¡ááµááµááµá«áá¡á¯.jpeg",
-    "category": 8,
-    "updatedAt": "2022-08-30T02:09:59.000Z",
-    "createdAt": "2022-08-26T11:54:10.000Z",
-    "title": "나이키 신발 팝니다",
-    "contents": "나이키 신발 팝니다",
-    "likeCount": 1,
-    "price": "100000",
-    "seller": 40,
-    "location": "잠실동",
-    "viewCount": 188,
-    "status": 3,
-    "locationId": 469,
-    "isLike": 0,
-    "chatRoomCount": 0
-  },
-  {
-    "idx": 15,
-    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1661428633528banner.jpeg",
+    "idx": 557,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646085335",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646086093",
     "category": 5,
-    "updatedAt": "2022-08-28T19:00:08.000Z",
-    "createdAt": "2022-08-25T11:57:40.000Z",
-    "title": "커피빈 팝니다.",
-    "contents": "커피콩 팝니다.",
-    "likeCount": 4,
-    "price": "40000",
-    "seller": 20,
-    "location": "잠실",
-    "viewCount": 844,
+    "updatedAt": "2022-10-01T17:41:26.000Z",
+    "createdAt": "2022-08-28T20:29:08.000Z",
+    "title": "이불 팝니다",
+    "contents": "판매합니다....\n급처합니다...",
+    "likeCount": 1,
+    "price": "39037",
+    "seller": 12,
+    "location": "방이동",
+    "viewCount": 8,
     "status": 1,
-    "locationId": 419,
+    "locationId": 478,
+    "isLike": 0,
+    "chatRoomCount": 0
+  },
+  {
+    "idx": 558,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646096419",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646097448",
+    "category": 5,
+    "updatedAt": "2022-10-01T17:41:38.000Z",
+    "createdAt": "2022-08-28T20:29:08.000Z",
+    "title": "도마 팝니다",
+    "contents": "판매합니다....\n급처합니다...",
+    "likeCount": 1,
+    "price": "15457",
+    "seller": 12,
+    "location": "방이동",
+    "viewCount": 9,
+    "status": 1,
+    "locationId": 478,
+    "isLike": 0,
+    "chatRoomCount": 0
+  },
+  {
+    "idx": 559,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646008976",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646009661",
+    "category": 5,
+    "updatedAt": "2022-10-01T17:40:10.000Z",
+    "createdAt": "2022-08-28T20:29:08.000Z",
+    "title": "꿀 팝니다",
+    "contents": "판매합니다....\n급처합니다...",
+    "likeCount": 1,
+    "price": "35656",
+    "seller": 12,
+    "location": "방이동",
+    "viewCount": 6,
+    "status": 1,
+    "locationId": 478,
+    "isLike": 0,
+    "chatRoomCount": 0
+  },
+  {
+    "idx": 560,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645985860",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645986866",
+    "category": 5,
+    "updatedAt": "2022-10-01T17:39:47.000Z",
+    "createdAt": "2022-08-28T20:29:08.000Z",
+    "title": "우유 팝니다",
+    "contents": "판매합니다....\n급처합니다...",
+    "likeCount": 1,
+    "price": "55637",
+    "seller": 12,
+    "location": "방이동",
+    "viewCount": 6,
+    "status": 1,
+    "locationId": 478,
+    "isLike": 0,
+    "chatRoomCount": 0
+  },
+  {
+    "idx": 561,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645972295",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664645973012",
+    "category": 4,
+    "updatedAt": "2022-10-01T17:39:33.000Z",
+    "createdAt": "2022-08-28T20:29:08.000Z",
+    "title": "자전거 팝니다",
+    "contents": "몇번 안타서 거의 새것입니다.",
+    "likeCount": 1,
+    "price": "23296",
+    "seller": 12,
+    "location": "방이동",
+    "viewCount": 8,
+    "status": 1,
+    "locationId": 478,
+    "isLike": 0,
+    "chatRoomCount": 0
+  },
+  {
+    "idx": 562,
+    "images": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646586335",
+    "thumbnail": "https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664646587034",
+    "category": 11,
+    "updatedAt": "2022-10-01T17:49:47.000Z",
+    "createdAt": "2022-08-28T20:29:08.000Z",
+    "title": "물고기 팝니다",
+    "contents": "판매합니다....\n급처합니다...",
+    "likeCount": 1,
+    "price": "29818",
+    "seller": 12,
+    "location": "방이동",
+    "viewCount": 7,
+    "status": 1,
+    "locationId": 478,
     "isLike": 0,
     "chatRoomCount": 0
   }

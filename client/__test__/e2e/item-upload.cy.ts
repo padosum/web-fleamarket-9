@@ -56,12 +56,16 @@ describe('아이템 업로드 테스트', () => {
   });
 
   it('등록 및 내 아이템 페이지 이동', () => {
+    cy.setupImageUploadInterceptor();
+
     cy.intercept({ method: 'POST', url: '/api/item' }, (req) => {
       expect(req.body).to.deep.equal({
         title: '후드티 팝니다',
         images: [
           'https://media.bunjang.co.kr/product/199664302_1_1663559233_w856.jpg',
         ],
+        thumbnail:
+          'https://media.bunjang.co.kr/product/199664302_1_1663559233_w856.jpg',
         price: 120000,
         contents: '검정색 후드티 싸게 팝니다.',
         code: '서울특별시 송파구 잠실동',
@@ -70,9 +74,11 @@ describe('아이템 업로드 테스트', () => {
       });
 
       req.reply({ id: 124 });
-    });
+    }).as('upload');
 
     cy.get('[name=iconCheck]').click();
+
+    cy.wait('@upload');
 
     cy.window().then((win) => {
       expect(win.location.pathname).to.equal('/home');

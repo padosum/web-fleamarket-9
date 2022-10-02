@@ -23,12 +23,16 @@ describe('아이템 업데이트 테스트', () => {
     });
 
     it('업데이트버튼 클릭', () => {
+      cy.setupImageUploadInterceptor();
+
       cy.intercept({ method: 'PATCH', url: '/api/item/*' }, (req) => {
         expect(req.body).to.deep.equal({
           title: '도쿄리벤저스 인형 양도2',
           images: [
-            'https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1663319657454áá©áá­ááµáá¦á«áá¥áá³ áá©ááµáá¦á« áá¡ááµ áá¦ááµáá³áá¦ ááµáá¢áá©á¼ áá¡á¬áá³á« áá®ááµ ááµá«áá§á¼ áá£á¼áá©.jpeg',
+            'https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642105955',
           ],
+          thumbnail:
+            'https://media.bunjang.co.kr/product/199664302_1_1663559233_w856.jpg',
           price: 17000,
           contents: '도쿄리벤저스 인형 양도',
           code: '서울특별시 송파구 잠실동',
@@ -78,13 +82,18 @@ describe('아이템 업데이트 테스트', () => {
     });
 
     it('수정 및 내 아이템 상세 페이지 이동', () => {
+      cy.setupImageUploadInterceptor();
+
       cy.intercept({ method: 'PATCH', url: '/api/item/*' }, (req) => {
+        console.log(req.body);
         expect(req.body).to.deep.equal({
           title: '후드티 팝니다',
           images: [
-            'https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1663319657454áá©áá­ááµáá¦á«áá¥áá³ áá©ááµáá¦á« áá¡ááµ áá¦ááµáá³áá¦ ááµáá¢áá©á¼ áá¡á¬áá³á« áá®ááµ ááµá«áá§á¼ áá£á¼áá©.jpeg',
+            'https://web-fleamarket-09.s3.ap-northeast-2.amazonaws.com/1664642105955',
             'https://media.bunjang.co.kr/product/199664302_1_1663559233_w856.jpg',
           ],
+          thumbnail:
+            'https://media.bunjang.co.kr/product/199664302_1_1663559233_w856.jpg',
           price: 120000,
           contents: '검정색 후드티 싸게 팝니다.',
           code: '서울특별시 송파구 잠실동',
