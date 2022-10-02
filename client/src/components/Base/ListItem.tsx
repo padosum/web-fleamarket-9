@@ -56,6 +56,7 @@ export const ListItem = ({
   isLiked,
   isLastItem,
   getItems,
+  image,
 }: ListItemProps) => {
   const [openMenu, setOpenMenu] = useState(false);
   const { isLoggedIn } = useAuthContext();
@@ -126,6 +127,15 @@ export const ListItem = ({
       setOpenMenu((prevOpenMenu) => !prevOpenMenu);
       return;
     }
+  };
+
+  const onMouseEnter = (images: string) => {
+    /** Image prefetch
+     *  아이템 마우스 엔터되는 순간, 원본 이미지 요청을 보내
+     *  체감 이미지 로드 시간을 줄임.
+     */
+    const img = new Image();
+    img.src = images.split(',')[0];
   };
 
   const onDropDownMenuClick = (num: number) => {
@@ -224,6 +234,7 @@ export const ListItem = ({
       data-testid="homeitem"
       ref={itemListRef}
       onClick={() => navigate(`/item/${idx}`)}
+      onMouseEnter={onMouseEnter.bind(null, image)}
     >
       <ImgWrapper>
         <LazyloadingImgBox src={thumbnail} />
