@@ -13,11 +13,15 @@ const dbProvider = {
       user: configService.get<string>('MYSQL_USER'),
       password: configService.get<string>('MYSQL_PW'),
       database: configService.get<string>('MYSQL_DB'),
-      keepAliveInitialDelay: 10000, // 0 by default.
-      enableKeepAlive: true, // false by default.
+      connectionLimit: 30,
     });
-    const conn = await pool.getConnection();
-    return conn;
+    // const conn = await pool.getConnection();
+
+    // setTimeout(() => {
+    //   conn.release();
+    // }, 60000);
+
+    return pool;
   },
 };
 

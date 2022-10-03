@@ -7,7 +7,7 @@ const app = Express();
 
 app.use(
   Express.static(path.join(process.cwd(), 'build'), {
-    setHeaders(res, path, stat) {
+    setHeaders(res) {
       res.setHeader(
         'Cache-Control',
         'private, max-age=31536000, must-revalidate',
