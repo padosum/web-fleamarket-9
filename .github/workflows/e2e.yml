@@ -21,8 +21,8 @@ jobs:
           test: npm test:e2e
           record: true
           config-file: cypress.config.ts
-          browser: firefox
-          headless: false
+          browser: firefox 104
+          headless: true
           working-directory: ./client/
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
