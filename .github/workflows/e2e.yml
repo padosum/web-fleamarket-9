@@ -19,9 +19,9 @@ jobs:
         with:
           start: npm start
           test: npm test:e2e
-          record: true
+          record: false
           config-file: cypress.config.ts
-          browser: firefox
+          browser: chrome
           headless: true
           working-directory: ./client/
         env:
