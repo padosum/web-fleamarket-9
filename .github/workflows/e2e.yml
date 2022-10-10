@@ -21,7 +21,7 @@ jobs:
           test: npm test:e2e
           record: false
           config-file: cypress.config.ts
-          browser: chrome
+          browser: electron
           headless: true
           working-directory: ./client/
         env:
