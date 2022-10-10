@@ -21,7 +21,7 @@ jobs:
           test: npm test:e2e
           record: true
           config-file: cypress.config.ts
-          browser: firefox 104
+          browser: firefox
           headless: true
           working-directory: ./client/
         env:
