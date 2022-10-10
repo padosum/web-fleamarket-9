@@ -1,5 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { ListItem } from '.';
+import {
+  CATEGORY_ID_QUERY_STRING,
+  LOCATION_ID_QUERY_STRING,
+} from '../../hooks/useHomeMenuOpenStates';
 
 interface Item {
   idx: number;
@@ -26,35 +31,49 @@ const HEIGHT_MARGIN = 1500;
 export const ProductList = (props: ProductListProps) => {
   const [topUndiplayedCount, setTopUndisplayedCount] = useState(0);
   const [bottomUndisplayedCount, setBottomUndisplayedCount] = useState(0);
-
+  const [searchParams] = useSearchParams();
+  const lastCategory = useRef(searchParams.get(CATEGORY_ID_QUERY_STRING));
+  const lastLocation = useRef(searchParams.get(LOCATION_ID_QUERY_STRING));
   const lastScrollTime = useRef(0);
 
-  useEffect(() => {
-    const onScroll = () => {
-      const currentTime = new Date().valueOf();
+  const onScroll = useCallback(() => {
+    const currentTime = new Date().valueOf();
 
-      if (currentTime - lastScrollTime.current < 100) return;
+    if (currentTime - lastScrollTime.current < 100) return;
 
-      lastScrollTime.current = currentTime;
-      const [topUndiplayedCountTemp, bottomUndisplayedCountTemp] =
-        getCurrentUndisplayedCount();
+    lastScrollTime.current = currentTime;
+    const [topUndiplayedCountTemp, bottomUndisplayedCountTemp] =
+      getCurrentUndisplayedCount();
+
+    const category = searchParams.get(CATEGORY_ID_QUERY_STRING);
+    const location = searchParams.get(LOCATION_ID_QUERY_STRING);
+
+    if (
+      lastCategory.current !== category ||
+      lastLocation.current !== location
+    ) {
+      setTopUndisplayedCount(0);
+      setBottomUndisplayedCount(0);
+      lastCategory.current = category;
+      lastLocation.current = location;
+    } else {
       setTopUndisplayedCount(topUndiplayedCountTemp);
       setBottomUndisplayedCount(bottomUndisplayedCountTemp);
-    };
+    }
+  }, [searchParams]);
 
+  useEffect(() => {
     if (props.isFlatList) {
       window.addEventListener('scroll', onScroll);
     }
 
     return () => window.removeEventListener('scroll', onScroll);
-  }, [props.isFlatList]);
+  }, [props.isFlatList, onScroll]);
 
+  /** 초기 렌더링 시 가상 스크롤 처리..  */
   useEffect(() => {
-    const [topUndiplayedCountTemp, bottomUndisplayedCountTemp] =
-      getCurrentUndisplayedCount();
-    setTopUndisplayedCount(topUndiplayedCountTemp);
-    setBottomUndisplayedCount(bottomUndisplayedCountTemp);
-  }, [props.items.length]);
+    onScroll();
+  }, [props.items.length, onScroll]);
 
   return (
     <div
